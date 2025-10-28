@@ -7,17 +7,50 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "firebase:preview": "sh -c 'pnpm run build && firebase hosting:channel:deploy ${1:-preview} --expires ${2:-10m}' --",
+    "firebase:emulate": "pnpm run build && firebase emulators:start",
+    "firebase:deploy": "pnpm run build && firebase deploy"
   },
   "dependencies": {
+    "@iconify-json/circle-flags": "^1.2.10",
+    "@iconify-json/logos": "^1.2.9",
+    "@iconify-json/lucide": "^1.2.70",
+    "@nuxt/image": "1.11.0",
+    "@nuxt/ui": "^4.0.1",
+    "@nuxtjs/seo": "3.2.2",
+    "@nuxtjs/tailwindcss": "6.14.0",
+    "@pinia/colada": ">=0.17.6",
+    "@pinia/colada-nuxt": "0.2.3",
+    "@pinia/nuxt": "^0.11.2",
+    "@tailwindcss/postcss": "^4.1.15",
+    "@tailwindcss/vite": "^4.1.15",
+    "firebase-admin": "^13.5.0",
+    "firebase-functions": "^6.6.0",
     "nuxt": "^4.1.3",
+    "nuxt-llms": "^0.1.3",
+    "pinia": "^3.0.3",
+    "postcss": "^8.5.6",
+    "postcss-import": "^16.1.1",
+    "postcss-nested": "^7.0.2",
+    "runtime": "link:@nuxt/image/runtime",
+    "tailwindcss": "^4.1.15",
+    "ufo": "^1.6.1",
+    "vitest": "^4.0.3",
     "vue": "^3.5.22",
     "vue-router": "^4.5.1"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
+      "@firebase/util",
       "@parcel/watcher",
-      "esbuild"
+      "esbuild",
+      "protobufjs",
+      "sharp",
+      "vue-demi"
+    ],
+    "ignoredBuiltDependencies": [
+      "sharp"
     ]
   }
 }

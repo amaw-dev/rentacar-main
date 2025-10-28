@@ -22,3 +22,10 @@ logs
 .env
 .env.*
 !.env.example
+
+# firebase
+.firebase/
+
+# robots
+_robots.txt
+robots.txt

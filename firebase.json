@@ -1,0 +1,20 @@
+{
+  "functions": {
+    "source": ".output/server"
+  },
+  "hosting": {
+    "site": "rentacar-main-alquilatucarro",
+    "public": ".output/public",
+    "ignore": [
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "function": "rentacar_main_alquilatucarro"
+      }
+    ],
+    "cleanUrls": true
+  }
+}
