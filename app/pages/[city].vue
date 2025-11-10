@@ -12,7 +12,7 @@ const route = useRoute();
 const cityParam = route.params.city;
 const city = cityParam ? getCityById(cityParam as string) : undefined
 
-useBaseSEO();
+useBaseSEO()
 
 useHead({
   title: `${franchise.title} | ${city?.name}`,
@@ -25,6 +25,11 @@ useHead({
       href: `${franchise.website}/${cityParam}`
     }
   ]
+})
+
+definePageMeta({
+    colorMode: 'dark',
+    middleware: ['validate-city-params']
 })
 
 </script>

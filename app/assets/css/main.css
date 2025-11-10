@@ -1,16 +1,3 @@
 @import "tailwindcss";
 @import "@nuxt/ui";
 
-:root {
-  --ui-header-height: --spacing(44);
-}
-
-.main-bg {
-  @apply bg-no-repeat bg-white text-white px-6 text-center;
-
-  background-image: image-set(
-    url("https://firebasestorage.googleapis.com/v0/b/rentacar-403321.firebasestorage.app/o/rentacar-main%2Falquilatucarro%2Fimg%2Fcuerpo.avif?alt=media&token=54d638b2-609a-4836-8da4-f32a9874bb58") type("image/avif"),
-    url("https://firebasestorage.googleapis.com/v0/b/rentacar-403321.firebasestorage.app/o/rentacar-main%2Falquilatucarro%2Fimg%2Fcuerpo.webp?alt=media&token=481222f3-2a7c-44aa-9221-c969efc919c0") type("image/webp"),
-    url("https://firebasestorage.googleapis.com/v0/b/rentacar-403321.firebasestorage.app/o/rentacar-main%2Falquilatucarro%2Fimg%2Fcuerpo.png?alt=media&token=371eab4a-87ae-4a12-a9ef-34aacb24270a") type("image/png"),
-  );
-}
