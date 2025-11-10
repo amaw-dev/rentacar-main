@@ -1,92 +1,109 @@
 <template>
     <UPage>
         <!-- Hero Section -->
-        <UPageHero class="main-bg">
+        <UPageHero orientation="horizontal">
+          <template #headline>
+            <div class="space-x-2 text-white text-center">
+              <UIcon name="ic:round-star" class="bg-white"></UIcon>
+              <UIcon name="ic:round-star" class="bg-white"></UIcon>
+              <UIcon name="ic:round-star" class="bg-white"></UIcon>
+              <UIcon name="ic:round-star" class="bg-white"></UIcon>
+              <UIcon name="ic:round-star" class="bg-white"></UIcon>
+              <span>4.9 reviews</span>
+            </div>
+          </template>
           <template #title>
-            <span class="bg-blue-900 text-white text-2xl md:text-4xl font-bold uppercase mb-6">ALQUILER DE CARROS EN COLOMBIA</span>
-            <!-- <NuxtImg src="/img/carros.png" alt="carros" class="mx-auto mb-6 w-full "/> -->
-               <picture>
-                  <!-- AVIF: Prioridad más alta -->
-                  <source 
-                    type="image/avif"
-                    media="(min-width: 768px)"
-                    srcset="https://firebasestorage.googleapis.com/v0/b/rentacar-403321.firebasestorage.app/o/rentacar-main%2Falquilatucarro%2Fimg%2Fcarros.avif?alt=media&token=3b1a1f54-0133-439b-9b38-9611e1ddc628"
-                    alt="carros"
-                    width="1552"
-                    height="361"
-                    loading="eager"
-                  />
-                  <source 
-                    type="image/avif"
-                    media="(max-width: 767px)"
-                    srcset="https://firebasestorage.googleapis.com/v0/b/rentacar-403321.firebasestorage.app/o/rentacar-main%2Falquilatucarro%2Fimg%2Fcarros-movil.avif?alt=media&token=301c9d22-4946-4443-a5ba-eeb2fa787792"
-                    alt="carros"
-                    width="333"
-                    height="77"
-                    loading="eager"
-                  />
-                  
-                  <!-- WEBP: Segunda prioridad -->
-                  <source 
-                    type="image/webp"
-                    media="(min-width: 768px)"
-                    srcset="https://firebasestorage.googleapis.com/v0/b/rentacar-403321.firebasestorage.app/o/rentacar-main%2Falquilatucarro%2Fimg%2Fcarros.webp?alt=media&token=783dd577-b8dd-4d49-a7e1-eb1c81c32849"
-                    alt="carros"
-                    width="1552"
-                    height="361"
-                    loading="eager"
-                  />
-                  <source 
-                    type="image/webp"
-                    media="(max-width: 767px)"
-                    srcset="https://firebasestorage.googleapis.com/v0/b/rentacar-403321.firebasestorage.app/o/rentacar-main%2Falquilatucarro%2Fimg%2Fcarros-movil.webp?alt=media&token=70dfc644-14b2-41c1-8f9c-5c46a41ce02f"
-                    alt="carros"
-                    width="333"
-                    height="77"
-                    loading="eager"
-                  />
-                  
-                  <!-- PNG: Fallback final -->
-                  <source 
-                    type="image/png"
-                    media="(min-width: 768px)"
-                    srcset="https://firebasestorage.googleapis.com/v0/b/rentacar-403321.firebasestorage.app/o/rentacar-main%2Falquilatucarro%2Fimg%2Fcarros.png?alt=media&token=e1bb5ce1-cc29-4a52-be78-76963eda7530"
-                    alt="carros"
-                    width="1552"
-                    height="361"
-                    loading="eager"
-                  />
-                  <source 
-                    type="image/png"
-                    media="(max-width: 767px)"
-                    srcset="https://firebasestorage.googleapis.com/v0/b/rentacar-403321.firebasestorage.app/o/rentacar-main%2Falquilatucarro%2Fimg%2Fcarros-movil.png?alt=media&token=e1e02abf-5dae-476d-bb97-23d0d6323cf1"
-                    alt="carros"
-                    width="333"
-                    height="77"
-                    loading="eager"
-                  />
-                  
-                  <!-- Imagen fallback (PNG de escritorio, pero las sources cubren ambos) -->
-                  <img 
-                    src="https://firebasestorage.googleapis.com/v0/b/rentacar-403321.firebasestorage.app/o/rentacar-main%2Falquilatucarro%2Fimg%2Fcarros.png?alt=media&token=e1bb5ce1-cc29-4a52-be78-76963eda7530" 
-                    alt="carros"
-                    width="1552"
-                    height="361"
-                    loading="eager"
-                    class="mx-auto"
-                  />
-                </picture>
+            <div class="text-white text-4xl text-center">
+              <div class="">
+                <div class="font-bold uppercase">ALQUILER</div>
+                <div>DE CARROS EN</div>
+              </div>
+              <div class="italic">COLOMBIA</div>
+            </div>
           </template>
           <template #body>
-            <div class="text-xl md:text-3xl font-bold mb-4 text-blue-700">LOS MEJORES PRECIOS EN ALQUILER DE AUTOS COLOMBIA</div>
-            <p class="text-lg mb-6 text-black">
-              ALQUILATUCARRO a la red de agencias de alquiler de autos Colombia mas importante de la región, obtenga promociones y descuentos de temporada y un trato amable de nuestro personal, alquile nuestros autos con su Documento de identidad, una licencia de conducción y una tarjeta de crédito con cupo disponible. Reserve su vehículo sin anticipo (No requerimos pagos previos), Aproveche nuestros descuentos para reservas de 7 y 30 días. Vehículos como nuevos, renovamos nuestra flota cada 2 años.
-            </p>
+            <div class="text-center justify-items-center">
+              <div class="mb-4 text-white text-2xl">¿En que ciudad deseas recoger tu carro?</div>
+              <div class="min-w-80 my-3">
+                <SelectBranch/>
+              </div>
+              <p class="text-white">
+                Contamos con 27 sedes a nivel nacional y una excelente reputación en alquiler de carros
+                y camionetas que se adaptan a tu necesidad y presupuesto
+              </p>
+            </div>
           </template>
+          <picture>
+            <source 
+              type="image/avif"
+              media="(min-width: 768px)"
+              srcset="https://firebasestorage.googleapis.com/v0/b/rentacar-403321.firebasestorage.app/o/rentacar-main%2Falquilatucarro%2Fimg%2Ffamilia.avif?alt=media&token=a14e3f1c-428e-40b2-ad1e-0d724579e487"
+              alt="carros"
+              width="2000"
+              height="1620"
+              loading="eager"
+            />
+            <source 
+              type="image/avif"
+              media="(max-width: 767px)"
+              srcset="https://firebasestorage.googleapis.com/v0/b/rentacar-403321.firebasestorage.app/o/rentacar-main%2Falquilatucarro%2Fimg%2Ffamilia-movil.avif?alt=media&token=09ef76e8-4f99-4188-8d9a-57e13e198c4b"
+              alt="carros"
+              width="333"
+              height="270"
+              loading="eager"
+            />
+            
+            <source 
+              type="image/webp"
+              media="(min-width: 768px)"
+              srcset="https://firebasestorage.googleapis.com/v0/b/rentacar-403321.firebasestorage.app/o/rentacar-main%2Falquilatucarro%2Fimg%2Ffamilia.webp?alt=media&token=3a180793-69a9-471f-a1d1-8f720ba14662"
+              alt="carros"
+              width="2000"
+              height="1620"
+              loading="eager"
+            />
+            <source 
+              type="image/webp"
+              media="(max-width: 767px)"
+              srcset="https://firebasestorage.googleapis.com/v0/b/rentacar-403321.firebasestorage.app/o/rentacar-main%2Falquilatucarro%2Fimg%2Ffamilia-movil.webp?alt=media&token=ba908a15-bfaa-4c82-88e4-538fee298fae"
+              alt="carros"
+              width="333"
+              height="270"
+              loading="eager"
+            />
+            
+            <source 
+              type="image/png"
+              media="(min-width: 768px)"
+              srcset="https://firebasestorage.googleapis.com/v0/b/rentacar-403321.firebasestorage.app/o/rentacar-main%2Falquilatucarro%2Fimg%2Ffamilia.png?alt=media&token=5b5675e2-3c7d-4076-b0e9-7bf74c085ef9"
+              alt="carros"
+              width="2000"
+              height="1620"
+              loading="eager"
+            />
+            <source 
+              type="image/png"
+              media="(max-width: 767px)"
+              srcset="https://firebasestorage.googleapis.com/v0/b/rentacar-403321.firebasestorage.app/o/rentacar-main%2Falquilatucarro%2Fimg%2Ffamilia-movil.png?alt=media&token=769cd789-8e38-4cd8-b650-863a02dfa8ce"
+              alt="carros"
+              width="333"
+              height="270"
+              loading="eager"
+            />
+            
+            <img 
+              src="https://firebasestorage.googleapis.com/v0/b/rentacar-403321.firebasestorage.app/o/rentacar-main%2Falquilatucarro%2Fimg%2Ffamilia.png?alt=media&token=5b5675e2-3c7d-4076-b0e9-7bf74c085ef9" 
+              alt="carros"
+              width="2000"
+              height="1620"
+              loading="eager"
+              class="mx-auto"
+            />
+          </picture>
         </UPageHero>
     
         <!-- Locations Section -->
-        <UPageSection class="locations py-12 px-6 text-white">
+        <UPageSection id="sedes" class="locations py-12 px-6 text-white">
           <UContainer>
             <h2 class="text-3xl font-bold text-center mb-8">¿Dónde desea alquilar un carro?</h2>
             <p class="text-lg text-center mb-6">
@@ -179,7 +196,7 @@
         </UPageSection>
     
         <!-- FAQ Section -->
-        <UPageSection class="faq px-6 text-white">
+        <UPageSection id="faqs" class="faq px-6 text-white">
           <UContainer>
             <h2 class="text-3xl font-bold text-center mb-8">Preguntas Frecuentes</h2>
             <p class="text-lg mb-6">
@@ -249,17 +266,17 @@ useSchemaOrg([
           acceptedAnswer: faq.content
       })))
   }
-]);
+])
 
 useHead({
   link: [
     { rel: 'canonical', href: franchise.website },
-    { rel: 'preload', as: 'image', href: "https://firebasestorage.googleapis.com/v0/b/rentacar-403321.firebasestorage.app/o/rentacar-main%2Falquilatucarro%2Fimg%2Fcuerpo.avif?alt=media&token=54d638b2-609a-4836-8da4-f32a9874bb58", fetchpriority: 'high' }
+    { rel: 'preload', as: 'image', href: "https://firebasestorage.googleapis.com/v0/b/rentacar-403321.firebasestorage.app/o/rentacar-main%2Falquilatucarro%2Fimg%2Ffamilia.avif?alt=media&token=a14e3f1c-428e-40b2-ad1e-0d724579e487", fetchpriority: 'high' }
   ]
-});
+})
 
 definePageMeta({
-    colorMode: 'light',
+    colorMode: 'dark',
 })
 
 </script>
