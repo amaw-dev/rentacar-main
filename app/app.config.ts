@@ -9,6 +9,18 @@ export default defineAppConfig({
       slots: {
         container: 'flex flex-col lg:grid py-8 sm:py-16 lg:py-24 gap-8 sm:gap-y-16',
       }
+    },
+    button: {
+      variants: {
+        size: {
+          '2xl': {
+            base: 'px-6 py-6 text-xl gap-3',
+            leadingIcon: 'size-8',
+            leadingAvatarSize: 'sm',
+            trailingIcon: 'size-8'
+          }
+        }
+      }
     }
   },
   organization: {
@@ -36,6 +48,7 @@ export default defineAppConfig({
     svglogo:
       "https://firebasestorage.googleapis.com/v0/b/rentacar-403321.firebasestorage.app/o/rentacar-main%2Falquilatucarro%2Fimg%2Flogo.svg?alt=media&token=ab04ed05-fef3-4b92-9c72-a7c459933c35",
     phone: "+57 301 672 9250",
+    whatsapp: "https://wa.me/573016729250",
     email: "alquilatucarro@gmail.com",
     socialmedia: [
       "https://www.facebook.com/alquilerdecarroscolombia",

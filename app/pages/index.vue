@@ -42,6 +42,7 @@
               width="2000"
               height="1620"
               loading="eager"
+              fetchpriority="high"
             />
             <source 
               type="image/avif"
@@ -51,6 +52,7 @@
               width="333"
               height="270"
               loading="eager"
+              fetchpriority="high"
             />
             
             <source 
@@ -61,6 +63,7 @@
               width="2000"
               height="1620"
               loading="eager"
+              fetchpriority="high"
             />
             <source 
               type="image/webp"
@@ -70,6 +73,7 @@
               width="333"
               height="270"
               loading="eager"
+              fetchpriority="high"
             />
             
             <source 
@@ -80,6 +84,7 @@
               width="2000"
               height="1620"
               loading="eager"
+              fetchpriority="high"
             />
             <source 
               type="image/png"
@@ -89,6 +94,7 @@
               width="333"
               height="270"
               loading="eager"
+              fetchpriority="high"
             />
             
             <img 
@@ -98,6 +104,7 @@
               height="1620"
               loading="eager"
               class="mx-auto"
+              fetchpriority="high"
             />
           </picture>
         </UPageHero>
