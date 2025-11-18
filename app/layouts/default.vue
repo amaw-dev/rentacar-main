@@ -24,6 +24,47 @@
 
     <!-- Footer -->
     <UFooter class="text-white py-8 px-6 text-center">
+      <UModal>
+        <template #body>
+          <div class="text-center space-y-6">
+            <div class="space-y-2">
+              <p class="font-bold text-2xl">¿Chateamos?</p>
+              <p>Estamos a un mensaje de distancia</p>
+              <UButton 
+                icon="logos:whatsapp-icon" 
+                size="xl" 
+                class="text-white"
+                label="Whatsapp"
+                target="_blank"
+                :external="true"
+                :to="franchise.whatsapp"
+              >
+              </UButton>
+            </div>
+            <div class="space-y-2">
+              <p class="font-bold text-2xl">¿Charlamos?</p>
+              <p>LLamanos y Hablamos!</p>
+              <UButton 
+                color="info" 
+                icon="lucide:phone" 
+                size="xl" 
+                class="text-white"
+                :external="true"
+                :label="franchise.phone"
+                :to="`tel:${franchise.phone}`"
+              >
+              </UButton>
+            </div>
+          </div>
+        </template>
+        <UButton
+          icon="lucide:message-circle-plus"
+          square
+          class="fixed bottom-4 right-4 z-50 rounded-full animate-bounce text-white"
+          size="2xl"
+          color="primary"
+        />
+      </UModal>
       <div class="flex flex-col space-y-2">
         <p>
           <NuxtLink v-for="city in cities" :to="city.link" class="text-xs text-blue-500">
@@ -93,5 +134,6 @@ const items = computed<NavigationMenuItem[]>(() => [
 ])
 
 const { cities } = useData();
+const { franchise } = useAppConfig();
 
 </script>
