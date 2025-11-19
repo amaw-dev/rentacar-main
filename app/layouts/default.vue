@@ -22,82 +22,91 @@
 
     <slot></slot>
 
+    <!-- Enlaces ciudades -->
+    <section class="bg-blue-700 text-white text-center py-12 lg:py-20">
+      <UContainer class="space-y-6">
+        <div class="text-2xl font-bold">Ciudades donde ofrecemos alquiler de carros</div>
+        <div >
+          Estamos presentes en más de 19 ciudades de Colombia como Bogotá, Medellín, Cali y Cartagena. Explora cada destino y reserva en la sede que más te convenga.
+        </div>
+        <div class="flex flex-wrap justify-center gap-3">
+          <UButton 
+            v-for="city in cities" 
+            :to="city.link" 
+            class="text-white justify-center bg-blue-600 hover:bg-blue-800 rounded-lg py-1 w-fit"
+          >
+            Alquiler de carros en {{ city.name }}
+          </UButton>
+        </div>
+      </UContainer>
+    </section>
+
+    <!-- Enlaces -->
+    <section class="text-white py-4 lg:py-6">
+      <UContainer>
+        <div class="flex flex-col md:flex-row items-center justify-center space-x-4">
+          <template v-for="(footerLink, index) in franchise.footerLinks">
+            <NuxtLink 
+              :to="footerLink.link"
+              v-text="footerLink.label"
+              class="hover:underline"
+            >
+            </NuxtLink>
+            <span class="hidden md:block" v-if="index != franchise.footerLinks.length - 1">|</span>
+          </template>
+        </div>
+      </UContainer>
+    </section>
+
     <!-- Footer -->
-    <UFooter class="text-white py-8 px-6 text-center">
-      <UModal>
-        <template #body>
-          <div class="text-center space-y-6">
-            <div class="space-y-2">
-              <p class="font-bold text-2xl">¿Chateamos?</p>
-              <p>Estamos a un mensaje de distancia</p>
-              <UButton 
-                icon="logos:whatsapp-icon" 
-                size="xl" 
-                class="text-white"
-                label="Whatsapp"
-                target="_blank"
-                :external="true"
-                :to="franchise.whatsapp"
-              >
-              </UButton>
-            </div>
-            <div class="space-y-2">
-              <p class="font-bold text-2xl">¿Charlamos?</p>
-              <p>LLamanos y Hablamos!</p>
-              <UButton 
-                color="info" 
-                icon="lucide:phone" 
-                size="xl" 
-                class="text-white"
-                :external="true"
-                :label="franchise.phone"
-                :to="`tel:${franchise.phone}`"
-              >
-              </UButton>
-            </div>
-          </div>
-        </template>
-        <UButton
-          icon="lucide:message-circle-plus"
-          square
-          class="fixed bottom-4 right-4 z-50 rounded-full animate-bounce text-white"
-          size="2xl"
-          color="primary"
-        />
-      </UModal>
-      <div class="flex flex-col space-y-2">
-        <p>
-          <NuxtLink v-for="city in cities" :to="city.link" class="text-xs text-blue-500">
-            Alquiler de carros en {{ city.name }} |
-          </NuxtLink>
-        </p>
-        <p class="text-white">
-          Copyright 2016 | Alquiler de carros en Colombia - rentar carro colombia
-        </p>
-        <p class="text-blue-500">
-          <NuxtLink 
-            to="https://storage.googleapis.com/alquilatucarro/rentacar-landing/2023/pdf/POL%C3%8DTICA%20DE%20PRIVACIDAD.pdf"
-            target="_blank"
-          >
-            Términos y condiciones
-          </NuxtLink>
-          |
-          <NuxtLink 
-            to="https://storage.googleapis.com/alquilatucarro/rentacar-landing/2023/pdf/tratamiento-datos-alquilatucarro.pdf"
-            target="_blank"
-          >
-            Política de tratamiento de datos personales
-          </NuxtLink>
-          |
-          <NuxtLink 
-            to="https://docs.google.com/forms/d/e/1FAIpQLSe5NLCil5hQNqsdPhwDM3DYe3wbGiUyr-2VK4RBTYE3YQbcug/viewform"
-            target="_blank"
-          >
-            Quejas y reclamos
-          </NuxtLink>
-        </p>
-      </div>
+    <UFooter class="bg-black text-white text-center">
+      <p class="text-white">
+        copyright 2025 © Alquilatucarro renta car Colombia
+      </p>
     </UFooter>
+
+    <!-- Widget chat -->
+    <UModal>
+      <template #body>
+        <div class="text-center space-y-6">
+          <div class="space-y-2">
+            <p class="font-bold text-2xl">¿Chateamos?</p>
+            <p>Estamos a un mensaje de distancia</p>
+            <UButton 
+              icon="logos:whatsapp-icon" 
+              size="xl" 
+              class="text-white"
+              label="Whatsapp"
+              target="_blank"
+              :external="true"
+              :to="franchise.whatsapp"
+            >
+            </UButton>
+          </div>
+          <div class="space-y-2">
+            <p class="font-bold text-2xl">¿Charlamos?</p>
+            <p>LLamanos y Hablamos!</p>
+            <UButton 
+              color="info" 
+              icon="lucide:phone" 
+              size="xl" 
+              class="text-white"
+              :external="true"
+              :label="franchise.phone"
+              :to="`tel:${franchise.phone}`"
+            >
+            </UButton>
+          </div>
+        </div>
+      </template>
+      <UButton
+        icon="lucide:message-circle-plus"
+        square
+        class="fixed bottom-4 right-4 z-50 rounded-full animate-bounce text-white"
+        size="2xl"
+        color="primary"
+      />
+    </UModal>
   </div>
 </template>
 
