@@ -58,6 +58,28 @@ export default defineAppConfig({
       "https://www.tiktok.com/@alquilatucarro",
       "https://co.pinterest.com/alquilatucarro/",
     ],
+    footerLinks: [
+      {
+        link: "https://storage.googleapis.com/alquilatucarro/rentacar-landing/2023/pdf/POL%C3%8DTICA%20DE%20PRIVACIDAD.pdf",
+        label: "Términos y condiciones"
+      },
+      {
+        link: "https://storage.googleapis.com/alquilatucarro/rentacar-landing/2023/pdf/tratamiento-datos-alquilatucarro.pdf",
+        label: "Política de tratamiento de datos personales"
+      },
+      {
+        link: "https://docs.google.com/forms/d/e/1FAIpQLSe5NLCil5hQNqsdPhwDM3DYe3wbGiUyr-2VK4RBTYE3YQbcug/viewform",
+        label: "Quejas y reclamos"
+      },
+      {
+        link: "https://www.alquilatucarro.com/gana/",
+        label: "Gana comisiones"
+      },
+      {
+        link: "https://www.alquilatucarro.com/blog/",
+        label: "Blog"
+      },
+    ]
   },
   branches: [
     {
