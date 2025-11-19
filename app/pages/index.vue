@@ -220,23 +220,6 @@
             
           </UContainer>
         </UPageSection>
-
-        <UPageSection class="bg-green-700">
-          <div class="justify-items-center space-y-2">
-            <div class="text-center text-2xl text-white">
-              <NuxtLink to="/" class="hover:underline" >Alquiler de Carros en Colombia.</NuxtLink>
-              Comunícate Ahora!
-            </div>
-            <div class="text-center text-2xl text-white font-medium flex flex-row gap-2 items-center">
-              <UIcon name="circle-flags:co"></UIcon>
-              <span>Teléfono Colombia</span>
-            </div>
-            <NuxtLink to="tel:+573016729250" class="text-center text-2xl w-full md:w-auto text-white hover:underline flex flex-row gap-2 items-center justify-center">
-              <UIcon name="logos:whatsapp-icon"></UIcon>
-              <span>+57 301 672 9250</span>
-            </NuxtLink>
-          </div>
-        </UPageSection>
     </UPage>
 </template>
 
