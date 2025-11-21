@@ -2,10 +2,12 @@
   <div class="min-h-screen bg-gradient-to-r from-blue-950 via-blue-800 to-blue-950 font-sans text-gray-800">
     <!-- Header -->
     <UHeader
-      class="bg-gradient-to-r from-blue-950 via-blue-700 to-blue-950 shadow-md z-50 py-6 md:py-12 px-6 border-none"
+      class="bg-gradient-to-r from-blue-950 via-blue-700 to-blue-950 shadow-md z-50 py-6 md:py-12 px-6 border-none relative"
       mode="slideover"
      >
       <template #left>
+        <ImagesCol100 />
+        <ImagesCol224 />
         <NuxtLink to="/" aria-label="alquilatucarro">
           <Logo />
         </NuxtLink>
