@@ -316,37 +316,41 @@
             </UPageGrid>
           </template>
         </UPageSection>
+
+        <!-- Testimonials Section -->
+         <UPageSection 
+          id="testimonios"
+          orientation="vertical" 
+          class="bg-white text-black"
+          title="Lo que dicen nuestros clientes"
+          description="Descubre por qué somos la opción preferida para alquilar carros en Armenia. Nuestros clientes destacan nuestra atención, precios competitivos y la facilidad para explorar el Eje Cafetero."
+          :ui="testimoniosPageSectionUIConfig"
+        >
               <template #default>
-                <div class="mx-auto">
-                  <picture>
-                    <source
-                      type="image/avif" 
-                      srcset="https://firebasestorage.googleapis.com/v0/b/rentacar-403321.firebasestorage.app/o/rentacar-main%2Falquilatucarro%2Fimg%2Fquienes.avif?alt=media&token=5fa0eeaa-9cf3-4cdb-940d-4cf360408024"
-                      alt="quienes"
-                      width="333"
-                      height="333"
-                      loading="lazy"
+            <UPageGrid>
+              <UPageCard 
+                v-for="testimonio in testimonios"
+                :description="testimonio.quote"
+                variant="solid"
+                :ui="testimonioPageCardUIConfig"
+              >
+                <template #title>
+                    <UUser 
+                      size="3xl" 
+                      v-bind="testimonio.user" 
+                      :ui="testimonioUserUIConfig"
                     />
-                    <source
-                      type="image/webp"
-                      srcset="https://firebasestorage.googleapis.com/v0/b/rentacar-403321.firebasestorage.app/o/rentacar-main%2Falquilatucarro%2Fimg%2Fquienes.webp?alt=media&token=1b322555-06db-4cca-a005-fdeb3725a8af"
-                      alt="quienes"
-                      width="333"
-                      height="333"
-                      loading="lazy"
-                    />
-                    <img 
-                      src="https://firebasestorage.googleapis.com/v0/b/rentacar-403321.firebasestorage.app/o/rentacar-main%2Falquilatucarro%2Fimg%2Fquienes.png?alt=media&token=9bd1ea78-b079-4d46-afcf-095a33fb27e3" 
-                      alt="quienes"
-                      width="333"
-                      height="333"
-                      loading="lazy"
-                    />
-                  </picture>
-                </div>
-                <!-- <NuxtImg src="/img/quienes.png" /> -->
+                </template>
+                <template #footer>
+                  <UIcon name="ic:round-star" class="bg-yellow-500 size-6"></UIcon>
+                  <UIcon name="ic:round-star" class="bg-yellow-500 size-6"></UIcon>
+                  <UIcon name="ic:round-star" class="bg-yellow-500 size-6"></UIcon>
+                  <UIcon name="ic:round-star" class="bg-yellow-500 size-6"></UIcon>
+                  <UIcon name="ic:round-star" class="bg-yellow-500 size-6"></UIcon>
               </template>
             </UPageCard>
+            </UPageGrid>
+          </template>
         </UPageSection>
     
         <!-- FAQ Section -->
@@ -415,6 +419,100 @@ useHead({
 definePageMeta({
     colorMode: 'dark',
 })
+
+const requisitosPageFeatureUIConfig = {
+  leadingIcon:'bg-red-600', 
+  title: 'text-black',
+  description: 'text-black'
+}
+
+const categoriasPageCardUIConfig = {
+  title: 'text-center text-black',
+  description: 'text-center text-black',
+  footer: 'mx-auto'
+}
+
+const testimonios = [
+  {
+    user: {
+      name: 'Stephany M. García',
+      description: 'Peru',
+      avatar: {
+        src: "https://www.alquilerdecarrosarmenia.com/src/perfil/uifaces-popular-image5.webp",
+        alt: 'Stephany M. García'
+      }
+    },
+    quote: "Durante nuestra estadía en Armenia, tuvimos la oportunidad de conocer Filandia, Salento y el Valle de Cocora. Fue muy cómodo desplazarse entre estos destinos y disfrutar del paisaje a nuestro propio ritmo."
+  },
+  {
+    user: {
+      name: 'Sandra Milena Barona',
+      description: 'Colombia',
+      avatar: {
+        src: "https://www.alquilerdecarrosarmenia.com/src/perfil/uifaces-popular-image4.webp",
+        alt: 'Sandra Milena Barona'
+      }
+    },
+    quote: "Hicimos una parada en el mirador de Buenavista al final de la tarde, después de visitar Circasia. Contar con transporte propio nos dio la libertad de hacer ese desvío tranquilo y disfrutar del paisaje sin afanes."
+  },
+  {
+    user: {
+      name: 'Luis Javier Rodríguez M.',
+      description: 'Honduras',
+      avatar: {
+        src: "https://www.alquilerdecarrosarmenia.com/src/perfil/uifaces-popular-image3.webp",
+        alt: 'Luis Javier Rodríguez M.'
+      }
+    },
+    quote: "Hicimos una parada en el mirador de Buenavista al final de la tarde, después de visitar Circasia. Contar con transporte propio nos dio la libertad de hacer ese desvío tranquilo y disfrutar del paisaje sin afanes."
+  },
+  {
+    user: {
+      name: 'Carlos Andrés Mejía',
+      description: 'Colombia',
+      avatar: {
+        src: "https://www.alquilerdecarrosarmenia.com/src/perfil/uifaces-popular-image2.webp",
+        alt: 'Carlos Andrés Mejía'
+      }
+    },
+    quote: "Me encantó el servicio. Todo muy puntual y el carro estaba en excelente estado. Pude conocer el Parque del Café sin preocupaciones. ¡Totalmente recomendado!"
+  },
+  {
+    user: {
+      name: 'Ana Lucía Torres',
+      description: 'Ecuador',
+      avatar: {
+        src: "https://www.alquilerdecarrosarmenia.com/src/perfil/uifaces-human-image6.webp",
+        alt: 'Ana Lucía Torres'
+      }
+    },
+    quote: "Viajar en familia a Armenia fue muy fácil gracias a este servicio de alquiler. Buen precio y excelente atención, sin complicaciones. Muy confiable."
+  },
+  {
+    user: {
+      name: 'Esteban Páez',
+      description: 'Colombia',
+      avatar: {
+        src: "https://www.alquilerdecarrosarmenia.com/src/perfil/uifaces-human-image6.webp",
+        alt: 'Esteban Páez'
+      }
+    },
+    quote: "Excelente alternativa para recorrer el Quindío. El auto fue perfecto para los trayectos, muy limpio, seguro y con buen consumo de gasolina."
+  },
+]
+
+const testimoniosPageSectionUIConfig = {
+  title: 'text-black'
+}
+
+const testimonioPageCardUIConfig = {
+  root: 'border-1 border-gray-100 rounded-lg bg-gray-50 shadow',
+  description: 'mt-4'
+}
+
+const testimonioUserUIConfig = {
+  name: 'text-black',
+}
 
 </script>
 
