@@ -253,7 +253,7 @@
           orientation="vertical" 
           class="bg-white text-black"
           title="Lo que dicen nuestros clientes"
-          description="Descubre por qué somos la opción preferida para alquilar carros en Armenia. Nuestros clientes destacan nuestra atención, precios competitivos y la facilidad para explorar el Eje Cafetero."
+          description="Descubre por qué somos la opción preferida para alquilar carros en Colombia. Nuestros clientes destacan nuestra atención, precios competitivos y la facilidad para explorar."
           :ui="testimoniosPageSectionUIConfig"
         >
           <template #default>
@@ -269,6 +269,7 @@
                       size="3xl" 
                       v-bind="testimonio.user" 
                       :ui="testimonioUserUIConfig"
+                      loading="lazy"
                     />
                 </template>
                 <template #footer>
@@ -368,66 +369,66 @@ const testimonios = [
       name: 'Stephany M. García',
       description: 'Peru',
       avatar: {
-        src: "https://www.alquilerdecarrosarmenia.com/src/perfil/uifaces-popular-image5.webp",
+        src: "https://firebasestorage.googleapis.com/v0/b/rentacar-403321.firebasestorage.app/o/rentacar-main%2Falquilatucarro%2Fimg%2Favatares%2Fuifaces-popular-image5.webp?alt=media&token=b6467738-4692-48dd-937c-16c81f715926",
         alt: 'Stephany M. García'
       }
     },
-    quote: "Durante nuestra estadía en Armenia, tuvimos la oportunidad de conocer Filandia, Salento y el Valle de Cocora. Fue muy cómodo desplazarse entre estos destinos y disfrutar del paisaje a nuestro propio ritmo."
+    quote: "Durante nuestra estadía en Bogotá, tuvimos la oportunidad de visitar Monserrate y La Candelaria. Fue muy cómodo desplazarse entre estos destinos y disfrutar de la vista panorámica a nuestro propio ritmo."
   },
   {
     user: {
       name: 'Sandra Milena Barona',
       description: 'Colombia',
       avatar: {
-        src: "https://www.alquilerdecarrosarmenia.com/src/perfil/uifaces-popular-image4.webp",
+        src: "https://firebasestorage.googleapis.com/v0/b/rentacar-403321.firebasestorage.app/o/rentacar-main%2Falquilatucarro%2Fimg%2Favatares%2Fuifaces-popular-image4.webp?alt=media&token=5d545267-03e6-4e83-a081-4a16259805e2",
         alt: 'Sandra Milena Barona'
       }
     },
-    quote: "Hicimos una parada en el mirador de Buenavista al final de la tarde, después de visitar Circasia. Contar con transporte propio nos dio la libertad de hacer ese desvío tranquilo y disfrutar del paisaje sin afanes."
+    quote: "Hicimos una parada en el Metrocable de Medellín al final de la tarde, después de explorar Comuna 13. Contar con transporte propio nos dio la libertad de hacer ese recorrido sin prisas y apreciar la transformación urbana."
   },
   {
     user: {
       name: 'Luis Javier Rodríguez M.',
       description: 'Honduras',
       avatar: {
-        src: "https://www.alquilerdecarrosarmenia.com/src/perfil/uifaces-popular-image3.webp",
+        src: "https://firebasestorage.googleapis.com/v0/b/rentacar-403321.firebasestorage.app/o/rentacar-main%2Falquilatucarro%2Fimg%2Favatares%2Fuifaces-popular-image3.webp?alt=media&token=54d9ed05-162a-4b20-a485-bdc87aaeb27f",
         alt: 'Luis Javier Rodríguez M.'
       }
     },
-    quote: "Hicimos una parada en el mirador de Buenavista al final de la tarde, después de visitar Circasia. Contar con transporte propio nos dio la libertad de hacer ese desvío tranquilo y disfrutar del paisaje sin afanes."
+    quote: "En Cali, visitamos el Zoológico y subimos a Cristo Rey para ver la ciudad desde arriba. Tener un auto nos permitió movernos con facilidad y disfrutar de la salsa y el ambiente sin preocupaciones."
   },
   {
     user: {
       name: 'Carlos Andrés Mejía',
       description: 'Colombia',
       avatar: {
-        src: "https://www.alquilerdecarrosarmenia.com/src/perfil/uifaces-popular-image2.webp",
+        src: "https://firebasestorage.googleapis.com/v0/b/rentacar-403321.firebasestorage.app/o/rentacar-main%2Falquilatucarro%2Fimg%2Favatares%2Fuifaces-popular-image2.webp?alt=media&token=24560311-369e-4f54-9a1a-36f0da7ec9f7",
         alt: 'Carlos Andrés Mejía'
       }
     },
-    quote: "Me encantó el servicio. Todo muy puntual y el carro estaba en excelente estado. Pude conocer el Parque del Café sin preocupaciones. ¡Totalmente recomendado!"
+    quote: "Me encantó el servicio en Barranquilla. Todo muy puntual y el carro en excelente estado. Pude conocer el Carnaval Museum y Bocas de Ceniza sin complicaciones. ¡Totalmente recomendado!"
   },
   {
     user: {
       name: 'Ana Lucía Torres',
       description: 'Ecuador',
       avatar: {
-        src: "https://www.alquilerdecarrosarmenia.com/src/perfil/uifaces-human-image6.webp",
+        src: "https://firebasestorage.googleapis.com/v0/b/rentacar-403321.firebasestorage.app/o/rentacar-main%2Falquilatucarro%2Fimg%2Favatares%2Fuifaces-human-image6.webp?alt=media&token=bb28b34b-f738-40ee-be58-e5fd35751da2",
         alt: 'Ana Lucía Torres'
       }
     },
-    quote: "Viajar en familia a Armenia fue muy fácil gracias a este servicio de alquiler. Buen precio y excelente atención, sin complicaciones. Muy confiable."
+    quote: "Viajar en familia a Cartagena fue muy fácil gracias a este servicio de alquiler. Recorrimos la Ciudad Amurallada y el Castillo San Felipe, con buen precio y excelente atención."
   },
   {
     user: {
       name: 'Esteban Páez',
       description: 'Colombia',
       avatar: {
-        src: "https://www.alquilerdecarrosarmenia.com/src/perfil/uifaces-human-image6.webp",
+        src: "https://firebasestorage.googleapis.com/v0/b/rentacar-403321.firebasestorage.app/o/rentacar-main%2Falquilatucarro%2Fimg%2Favatares%2Fuifaces-popular-image.webp?alt=media&token=556252eb-f9e0-4cc5-832a-0e97d691b4d0",
         alt: 'Esteban Páez'
       }
     },
-    quote: "Excelente alternativa para recorrer el Quindío. El auto fue perfecto para los trayectos, muy limpio, seguro y con buen consumo de gasolina."
+    quote: "Excelente alternativa para recorrer Bucaramanga. El auto fue perfecto para ir al Cañón del Chicamocha y Girón, muy limpio, seguro y con buen consumo de gasolina."
   },
 ]
 
