@@ -253,7 +253,7 @@
           orientation="vertical" 
           class="bg-white text-black"
           title="Lo que dicen nuestros clientes"
-          description="Descubre por qué somos la opción preferida para alquilar carros en Armenia. Nuestros clientes destacan nuestra atención, precios competitivos y la facilidad para explorar el Eje Cafetero."
+          description="Descubre por qué somos la opción preferida para alquilar carros en Colombia. Nuestros clientes destacan nuestra atención, precios competitivos y la facilidad para explorar."
           :ui="testimoniosPageSectionUIConfig"
         >
           <template #default>
