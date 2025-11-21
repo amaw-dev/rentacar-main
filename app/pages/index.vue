@@ -181,19 +181,37 @@
                     icon="ic:baseline-location-on"
                     :ui="requisitosPageFeatureUIConfig"
                   />
-                  <img 
-                    :src='`https://firebasestorage.googleapis.com/v0/b/rentacar-403321.firebasestorage.app/o/rentacar-main%2Falquilatucarro%2Fimg%2Favatares%2F${city.id}.png?alt=media`' 
-                    :alt="city.id"
-                    class="w-40"
-                    width="161"
-                    height="162"
-                    loading="lazy"
+                </li>
+                <li>
+                  <UPageFeature
+                    title="TARJETA DE CRÉDITO"
+                    description="(Única forma de pago)"
+                    icon="ic:baseline-location-on"
+                    :ui="requisitosPageFeatureUIConfig"
                   />
-                </picture>
-                <!-- <NuxtImg :src="'/img/avatares/' + city.avatar" class="w-40" /> -->
-              </NuxtLink>
+                </li>
+                <li>
+                  <UPageFeature
+                    title="LICENCIA DE CONDUCIR"
+                    icon="ic:baseline-location-on"
+                    :ui="requisitosPageFeatureUIConfig"
+                  />
+                </li>
+              </ul>
             </div>
-          </UContainer>
+            
+          </template>
+          <template #body>
+            <div class="text-center justify-items-center">
+              <div class="font-bold text-lg">¿En que ciudad deseas recoger tu carro?</div>
+              <div class="min-w-80 my-3">
+                <SelectBranch />
+              </div>
+            </div>
+          </template>
+          <template #default>
+            <ImagesPersona />
+          </template>
         </UPageSection>
 
         <!-- Main Content Section -->
