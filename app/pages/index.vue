@@ -214,23 +214,108 @@
           </template>
         </UPageSection>
 
-        <!-- Main Content Section -->
-        <UPageSection class="py-0 px-6 bg-white">
+        <!-- Vehicle Category Section -->
+         <UPageSection 
+          id="categorias"
+          orientation="vertical" 
+          class="bg-white text-black"
+        >
+          <template #title>
+            <div class="text-center">
+              <div class="space-x-2">
+                <span class="text-red-700">Tipos de Vehículos</span>
+                <span class="text-black">ideales para tu necesidad</span>
+              </div>
+              
+            </div>
+          </template>
+          <template #description>
+            <div class="text-black justify-items-center">
+              <p class="mb-4">
+                Cada estilo de vida tiene su vehículo perfecto. Ya sea la agilidad
+                para la ciudad, la comodidad para los viajes largos o la potencia
+                para la aventura, tenemos la llave para tus necesidades.  <br />
+                Descubre el que fue hecho para tí.
+              </p>
+            </div>
+          </template>
+          <template #default>
+            <UPageGrid>
+              <template #default>
+                  <UPageCard
+                    title="COMPACTO"
+                    description="Practicidad urbana con estilo. La agilidad que necesitas en la ciudad"
+                    variant="ghost"
+                    :ui="categoriasPageCardUIConfig"
+                    orientation="vertical"
+                    reverse
+                  >
+                    <template #footer>
+                      <UModal title="Selecciona ciudad">
+                        <template #body>
+                          <div class="mb-4 text-white text-2xl">¿En que ciudad deseas recoger tu carro?</div>
+                          <div class="min-w-80 my-3">
+                            <SelectBranch />
+                          </div>
+                        </template>
+                        <UButton color="info" class="text-white">Ver disponibilidad</UButton>
+                      </UModal>
+                    </template>
+                    <template #default>
+                      <ImagesCategoriasCompacto />
+                    </template>
+                  </UPageCard>
             <UPageCard
+                    title="SEDAN"
+                    description="Confort y espacio. Disfruta cada viaje con la máxima comodidad"
               variant="ghost"
-              orientation="horizontal"
+                    :ui="categoriasPageCardUIConfig"
+                    orientation="vertical"
               reverse
             >
-              <template #header>
-                <h2 class="text-3xl font-bold text-center mb-2 text-blue-800">
-                  Alquilatucarro - Renta Autos Colombia
-                </h2>
+                    <template #footer>
+                      <UModal title="Selecciona ciudad">
+                        <template #body>
+                          <div class="mb-4 text-white text-2xl">¿En que ciudad deseas recoger tu carro?</div>
+                          <div class="min-w-80 my-3">
+                            <SelectBranch />
+                          </div>
+                        </template>
+                        <UButton color="info" class="text-white">Ver disponibilidad</UButton>
+                      </UModal>
+                    </template>
+                    <template #default>
+                      <ImagesCategoriasSedan />
               </template>
+                  </UPageCard>
+                  <UPageCard
+                    title="CAMIONETA"
+                    description="Robustez y tamaño. Capacidad para dominar cualquier camino"
+                    variant="ghost"
+                    :ui="categoriasPageCardUIConfig"
+                    orientation="vertical"
+                    reverse
+                  >
+                    <template #footer>
+                      <UModal title="Selecciona ciudad">
               <template #body>
-                <p class="text-lg mb-6 text-black">
-                  A través de los años la renta de carros en Colombia se ha convertido en un negocio que impulsa y promueve el turismo en la región, uno de los principales ejes de la Economía colombiana por eso nuestra misión es prestar un servicio de alquiler de autos en Colombia con las tarifas mas bajas del mercado, con amplia gama, variedad y calidad de vehículos, cuando piense en alquiler de carros Colombia piense en nosotros como su mejor opción, por confiabilidad, por disponibilidad y precio.
-                </p>
+                          <div class="mb-4 text-white text-2xl">¿En que ciudad deseas recoger tu carro?</div>
+                          <div class="min-w-80 my-3">
+                            <SelectBranch />
+                          </div>
+                        </template>
+                        <UButton color="info" class="text-white">Ver disponibilidad</UButton>
+                      </UModal>
+                    </template>
+                    <template #default> 
+                      <ImagesCategoriasSUV />
+                    </template>
+                  </UPageCard>
               </template>
+              
+            </UPageGrid>
+          </template>
+        </UPageSection>
               <template #default>
                 <div class="mx-auto">
                   <picture>
