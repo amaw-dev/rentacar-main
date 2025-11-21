@@ -373,7 +373,7 @@ const testimonios = [
         alt: 'Stephany M. García'
       }
     },
-    quote: "Durante nuestra estadía en Armenia, tuvimos la oportunidad de conocer Filandia, Salento y el Valle de Cocora. Fue muy cómodo desplazarse entre estos destinos y disfrutar del paisaje a nuestro propio ritmo."
+    quote: "Durante nuestra estadía en Bogotá, tuvimos la oportunidad de visitar Monserrate y La Candelaria. Fue muy cómodo desplazarse entre estos destinos y disfrutar de la vista panorámica a nuestro propio ritmo."
   },
   {
     user: {
@@ -384,7 +384,7 @@ const testimonios = [
         alt: 'Sandra Milena Barona'
       }
     },
-    quote: "Hicimos una parada en el mirador de Buenavista al final de la tarde, después de visitar Circasia. Contar con transporte propio nos dio la libertad de hacer ese desvío tranquilo y disfrutar del paisaje sin afanes."
+    quote: "Hicimos una parada en el Metrocable de Medellín al final de la tarde, después de explorar Comuna 13. Contar con transporte propio nos dio la libertad de hacer ese recorrido sin prisas y apreciar la transformación urbana."
   },
   {
     user: {
@@ -395,7 +395,7 @@ const testimonios = [
         alt: 'Luis Javier Rodríguez M.'
       }
     },
-    quote: "Hicimos una parada en el mirador de Buenavista al final de la tarde, después de visitar Circasia. Contar con transporte propio nos dio la libertad de hacer ese desvío tranquilo y disfrutar del paisaje sin afanes."
+    quote: "En Cali, visitamos el Zoológico y subimos a Cristo Rey para ver la ciudad desde arriba. Tener un auto nos permitió movernos con facilidad y disfrutar de la salsa y el ambiente sin preocupaciones."
   },
   {
     user: {
@@ -406,7 +406,7 @@ const testimonios = [
         alt: 'Carlos Andrés Mejía'
       }
     },
-    quote: "Me encantó el servicio. Todo muy puntual y el carro estaba en excelente estado. Pude conocer el Parque del Café sin preocupaciones. ¡Totalmente recomendado!"
+    quote: "Me encantó el servicio en Barranquilla. Todo muy puntual y el carro en excelente estado. Pude conocer el Carnaval Museum y Bocas de Ceniza sin complicaciones. ¡Totalmente recomendado!"
   },
   {
     user: {
@@ -417,7 +417,7 @@ const testimonios = [
         alt: 'Ana Lucía Torres'
       }
     },
-    quote: "Viajar en familia a Armenia fue muy fácil gracias a este servicio de alquiler. Buen precio y excelente atención, sin complicaciones. Muy confiable."
+    quote: "Viajar en familia a Cartagena fue muy fácil gracias a este servicio de alquiler. Recorrimos la Ciudad Amurallada y el Castillo San Felipe, con buen precio y excelente atención."
   },
   {
     user: {
@@ -428,7 +428,7 @@ const testimonios = [
         alt: 'Esteban Páez'
       }
     },
-    quote: "Excelente alternativa para recorrer el Quindío. El auto fue perfecto para los trayectos, muy limpio, seguro y con buen consumo de gasolina."
+    quote: "Excelente alternativa para recorrer Bucaramanga. El auto fue perfecto para ir al Cañón del Chicamocha y Girón, muy limpio, seguro y con buen consumo de gasolina."
   },
 ]
 
