@@ -4,11 +4,11 @@
         <UPageHero orientation="horizontal">
           <template #headline>
             <div class="space-x-2 text-white text-center">
-              <UIcon name="ic:round-star" class="bg-white"></UIcon>
-              <UIcon name="ic:round-star" class="bg-white"></UIcon>
-              <UIcon name="ic:round-star" class="bg-white"></UIcon>
-              <UIcon name="ic:round-star" class="bg-white"></UIcon>
-              <UIcon name="ic:round-star" class="bg-white"></UIcon>
+              <UIcon name="ic:round-star" class="bg-white size-5"></UIcon>
+              <UIcon name="ic:round-star" class="bg-white size-5"></UIcon>
+              <UIcon name="ic:round-star" class="bg-white size-5"></UIcon>
+              <UIcon name="ic:round-star" class="bg-white size-5"></UIcon>
+              <UIcon name="ic:round-star" class="bg-white size-5"></UIcon>
               <span>4.9 reviews</span>
             </div>
           </template>
@@ -25,7 +25,7 @@
             <div class="text-center justify-items-center">
               <div class="mb-4 text-white text-2xl">¿En que ciudad deseas recoger tu carro?</div>
               <div class="min-w-80 my-3">
-                <SelectBranch/>
+                <SelectBranch />
               </div>
               <p class="text-white">
                 Contamos con 27 sedes a nivel nacional y una excelente reputación en alquiler de carros
@@ -33,173 +33,254 @@
               </p>
             </div>
           </template>
-          <picture>
-            <source 
-              type="image/avif"
-              media="(min-width: 768px)"
-              srcset="https://firebasestorage.googleapis.com/v0/b/rentacar-403321.firebasestorage.app/o/rentacar-main%2Falquilatucarro%2Fimg%2Ffamilia.avif?alt=media&token=a14e3f1c-428e-40b2-ad1e-0d724579e487"
-              alt="carros"
-              width="2000"
-              height="1620"
-              loading="eager"
-              fetchpriority="high"
-            />
-            <source 
-              type="image/avif"
-              media="(max-width: 767px)"
-              srcset="https://firebasestorage.googleapis.com/v0/b/rentacar-403321.firebasestorage.app/o/rentacar-main%2Falquilatucarro%2Fimg%2Ffamilia-movil.avif?alt=media&token=09ef76e8-4f99-4188-8d9a-57e13e198c4b"
-              alt="carros"
-              width="333"
-              height="270"
-              loading="eager"
-              fetchpriority="high"
-            />
-            
-            <source 
-              type="image/webp"
-              media="(min-width: 768px)"
-              srcset="https://firebasestorage.googleapis.com/v0/b/rentacar-403321.firebasestorage.app/o/rentacar-main%2Falquilatucarro%2Fimg%2Ffamilia.webp?alt=media&token=3a180793-69a9-471f-a1d1-8f720ba14662"
-              alt="carros"
-              width="2000"
-              height="1620"
-              loading="eager"
-              fetchpriority="high"
-            />
-            <source 
-              type="image/webp"
-              media="(max-width: 767px)"
-              srcset="https://firebasestorage.googleapis.com/v0/b/rentacar-403321.firebasestorage.app/o/rentacar-main%2Falquilatucarro%2Fimg%2Ffamilia-movil.webp?alt=media&token=ba908a15-bfaa-4c82-88e4-538fee298fae"
-              alt="carros"
-              width="333"
-              height="270"
-              loading="eager"
-              fetchpriority="high"
-            />
-            
-            <source 
-              type="image/png"
-              media="(min-width: 768px)"
-              srcset="https://firebasestorage.googleapis.com/v0/b/rentacar-403321.firebasestorage.app/o/rentacar-main%2Falquilatucarro%2Fimg%2Ffamilia.png?alt=media&token=5b5675e2-3c7d-4076-b0e9-7bf74c085ef9"
-              alt="carros"
-              width="2000"
-              height="1620"
-              loading="eager"
-              fetchpriority="high"
-            />
-            <source 
-              type="image/png"
-              media="(max-width: 767px)"
-              srcset="https://firebasestorage.googleapis.com/v0/b/rentacar-403321.firebasestorage.app/o/rentacar-main%2Falquilatucarro%2Fimg%2Ffamilia-movil.png?alt=media&token=769cd789-8e38-4cd8-b650-863a02dfa8ce"
-              alt="carros"
-              width="333"
-              height="270"
-              loading="eager"
-              fetchpriority="high"
-            />
-            
-            <img 
-              src="https://firebasestorage.googleapis.com/v0/b/rentacar-403321.firebasestorage.app/o/rentacar-main%2Falquilatucarro%2Fimg%2Ffamilia.png?alt=media&token=5b5675e2-3c7d-4076-b0e9-7bf74c085ef9" 
-              alt="carros"
-              width="2000"
-              height="1620"
-              loading="eager"
-              class="mx-auto"
-              fetchpriority="high"
-            />
-          </picture>
+          <template #default>
+            <ImagesFamily />
+          </template>
+          
         </UPageHero>
-    
-        <!-- Locations Section -->
-        <UPageSection id="sedes" class="locations py-12 px-6 text-white">
-          <UContainer>
-            <h2 class="text-3xl font-bold text-center mb-8">¿Dónde desea alquilar un carro?</h2>
-            <p class="text-lg text-center mb-6">
-              Alquilatucarro es una agencia de alquiler de carros en Colombia con sedes en las principales ciudades del país.
-            </p>
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 justify-items-center">
-              <NuxtLink v-for="city in cities" :key="city.id" :to="city.link" target="_blank" class="justify-center">
-                <picture>
-                  <source
-                    type="image/avif"
-                    :srcset='`https://firebasestorage.googleapis.com/v0/b/rentacar-403321.firebasestorage.app/o/rentacar-main%2Falquilatucarro%2Fimg%2Favatares%2F${city.id}.avif?alt=media`' 
-                    :alt="city.id"
-                    class="w-40"
-                    width="161"
-                    height="162"
-                    loading="lazy"
-                  />
-                  <source
-                    type="image/avif"
-                    :srcset='`https://firebasestorage.googleapis.com/v0/b/rentacar-403321.firebasestorage.app/o/rentacar-main%2Falquilatucarro%2Fimg%2Favatares%2F${city.id}.webp?alt=media`' 
-                    :alt="city.id"
-                    class="w-40"
-                    width="161"
-                    height="162"
-                    loading="lazy"
-                  />
-                  <img 
-                    :src='`https://firebasestorage.googleapis.com/v0/b/rentacar-403321.firebasestorage.app/o/rentacar-main%2Falquilatucarro%2Fimg%2Favatares%2F${city.id}.png?alt=media`' 
-                    :alt="city.id"
-                    class="w-40"
-                    width="161"
-                    height="162"
-                    loading="lazy"
-                  />
-                </picture>
-                <!-- <NuxtImg :src="'/img/avatares/' + city.avatar" class="w-40" /> -->
-              </NuxtLink>
+
+        <!-- Video Section -->
+        <UPageSection
+          id="video" 
+          orientation="horizontal" 
+          :reverse="true"
+          class="bg-white text-black"
+        >
+          <template #title>
+            <div class="text-center">
+              <div class="text-red-700">Hasta 60% de Descuento</div>
+              <div class="text-black text-4xl">Reserva Ahora, Paga Después</div>
             </div>
-          </UContainer>
+          </template>
+          <template #description>
+            <div class="text-black text-center">
+              Obtén hasta un 60% de descuento al reservar con anticipación.
+              Aplica para todas las categorías: compactos, sedanes y camionetas.
+              Reserva sin pago anticipado y asegura los mejores precios por
+              planificar tu viaje con tiempo
+            </div>
+            
+          </template>
+          <template #body>
+            <div class="text-center justify-items-center">
+              <div class="font-bold text-lg">¿En que ciudad deseas recoger tu carro?</div>
+              <div class="min-w-80 my-3">
+                <SelectBranch></SelectBranch>
+              </div>
+            </div>
+          </template>
+          <template #default>
+            <ImagesVideo />
+          </template>
         </UPageSection>
 
-        <!-- Main Content Section -->
-        <UPageSection class="py-0 px-6 bg-white">
-            <UPageCard
-              variant="ghost"
-              orientation="horizontal"
-              reverse
-            >
-              <template #header>
-                <h2 class="text-3xl font-bold text-center mb-2 text-blue-800">
-                  Alquilatucarro - Renta Autos Colombia
-                </h2>
-              </template>
-              <template #body>
-                <p class="text-lg mb-6 text-black">
-                  A través de los años la renta de carros en Colombia se ha convertido en un negocio que impulsa y promueve el turismo en la región, uno de los principales ejes de la Economía colombiana por eso nuestra misión es prestar un servicio de alquiler de autos en Colombia con las tarifas mas bajas del mercado, con amplia gama, variedad y calidad de vehículos, cuando piense en alquiler de carros Colombia piense en nosotros como su mejor opción, por confiabilidad, por disponibilidad y precio.
-                </p>
-              </template>
+        <!-- Persona Section -->
+        <UPageSection 
+          id="requisitos"
+          orientation="horizontal" 
+          :reverse="true"
+          class="bg-gray-200 text-black"
+        >
+          <template #title>
+            <div class="text-center lg:text-left">
+              <div class="space-x-2">
+                <span class="text-red-700">Requisitos</span>
+                <span class="text-black">para tu alquiler</span>
+              </div>
+              
+            </div>
+          </template>
+          <template #description>
+            <div class="text-black justify-items-center">
+              <div class="mb-4">
+                En {{ franchise.shortname }} tu experiencia es sin complicaciones...
+              </div>
+              <ul class="flex flex-col gap-1">
+                <li>
+                  <UPageFeature
+                    title="RESERVA PREVIA"
+                    description="(más anticipación más descuento)"
+                    icon="ic:baseline-location-on"
+                    :ui="requisitosPageFeatureUIConfig"
+                  />
+                </li>
+                <li>
+                  <UPageFeature
+                    title="DOCUMENTO DE IDENTIDAD"
+                    description="(18+ Cédula o pasaporte original)"
+                    icon="ic:baseline-location-on"
+                    :ui="requisitosPageFeatureUIConfig"
+                  />
+                </li>
+                <li>
+                  <UPageFeature
+                    title="TARJETA DE CRÉDITO"
+                    description="(Única forma de pago)"
+                    icon="ic:baseline-location-on"
+                    :ui="requisitosPageFeatureUIConfig"
+                  />
+                </li>
+                <li>
+                  <UPageFeature
+                    title="LICENCIA DE CONDUCIR"
+                    icon="ic:baseline-location-on"
+                    :ui="requisitosPageFeatureUIConfig"
+                  />
+                </li>
+              </ul>
+            </div>
+            
+          </template>
+          <template #body>
+            <div class="text-center justify-items-center">
+              <div class="font-bold text-lg">¿En que ciudad deseas recoger tu carro?</div>
+              <div class="min-w-80 my-3">
+                <SelectBranch />
+              </div>
+            </div>
+          </template>
+          <template #default>
+            <ImagesPersona />
+          </template>
+        </UPageSection>
+
+        <!-- Vehicle Category Section -->
+         <UPageSection 
+          id="categorias"
+          orientation="vertical" 
+          class="bg-white text-black"
+        >
+          <template #title>
+            <div class="text-center">
+              <div class="space-x-2">
+                <span class="text-red-700">Tipos de Vehículos</span>
+                <span class="text-black">ideales para tu necesidad</span>
+              </div>
+              
+            </div>
+          </template>
+          <template #description>
+            <div class="text-black justify-items-center">
+              <p class="mb-4">
+                Cada estilo de vida tiene su vehículo perfecto. Ya sea la agilidad
+                para la ciudad, la comodidad para los viajes largos o la potencia
+                para la aventura, tenemos la llave para tus necesidades.  <br />
+                Descubre el que fue hecho para tí.
+              </p>
+            </div>
+          </template>
+          <template #default>
+            <UPageGrid>
               <template #default>
-                <div class="mx-auto">
-                  <picture>
-                    <source
-                      type="image/avif" 
-                      srcset="https://firebasestorage.googleapis.com/v0/b/rentacar-403321.firebasestorage.app/o/rentacar-main%2Falquilatucarro%2Fimg%2Fquienes.avif?alt=media&token=5fa0eeaa-9cf3-4cdb-940d-4cf360408024"
-                      alt="quienes"
-                      width="333"
-                      height="333"
-                      loading="lazy"
-                    />
-                    <source
-                      type="image/webp"
-                      srcset="https://firebasestorage.googleapis.com/v0/b/rentacar-403321.firebasestorage.app/o/rentacar-main%2Falquilatucarro%2Fimg%2Fquienes.webp?alt=media&token=1b322555-06db-4cca-a005-fdeb3725a8af"
-                      alt="quienes"
-                      width="333"
-                      height="333"
-                      loading="lazy"
-                    />
-                    <img 
-                      src="https://firebasestorage.googleapis.com/v0/b/rentacar-403321.firebasestorage.app/o/rentacar-main%2Falquilatucarro%2Fimg%2Fquienes.png?alt=media&token=9bd1ea78-b079-4d46-afcf-095a33fb27e3" 
-                      alt="quienes"
-                      width="333"
-                      height="333"
-                      loading="lazy"
-                    />
-                  </picture>
-                </div>
-                <!-- <NuxtImg src="/img/quienes.png" /> -->
+                  <UPageCard
+                    title="COMPACTO"
+                    description="Practicidad urbana con estilo. La agilidad que necesitas en la ciudad"
+                    variant="ghost"
+                    :ui="categoriasPageCardUIConfig"
+                    orientation="vertical"
+                    reverse
+                  >
+                    <template #footer>
+                      <UModal title="Selecciona ciudad">
+                        <template #body>
+                          <div class="mb-4 text-white text-2xl">¿En que ciudad deseas recoger tu carro?</div>
+                          <div class="min-w-80 my-3">
+                            <SelectBranch />
+                          </div>
+                        </template>
+                        <UButton color="info" class="text-white">Ver disponibilidad</UButton>
+                      </UModal>
+                    </template>
+                    <template #default>
+                      <ImagesCategoriasCompacto />
+                    </template>
+                  </UPageCard>
+                  <UPageCard
+                    title="SEDAN"
+                    description="Confort y espacio. Disfruta cada viaje con la máxima comodidad"
+                    variant="ghost"
+                    :ui="categoriasPageCardUIConfig"
+                    orientation="vertical"
+                    reverse
+                  >
+                    <template #footer>
+                      <UModal title="Selecciona ciudad">
+                        <template #body>
+                          <div class="mb-4 text-white text-2xl">¿En que ciudad deseas recoger tu carro?</div>
+                          <div class="min-w-80 my-3">
+                            <SelectBranch />
+                          </div>
+                        </template>
+                        <UButton color="info" class="text-white">Ver disponibilidad</UButton>
+                      </UModal>
+                    </template>
+                    <template #default>
+                      <ImagesCategoriasSedan />
+                    </template>
+                  </UPageCard>
+                  <UPageCard
+                    title="CAMIONETA"
+                    description="Robustez y tamaño. Capacidad para dominar cualquier camino"
+                    variant="ghost"
+                    :ui="categoriasPageCardUIConfig"
+                    orientation="vertical"
+                    reverse
+                  >
+                    <template #footer>
+                      <UModal title="Selecciona ciudad">
+                        <template #body>
+                          <div class="mb-4 text-white text-2xl">¿En que ciudad deseas recoger tu carro?</div>
+                          <div class="min-w-80 my-3">
+                            <SelectBranch />
+                          </div>
+                        </template>
+                        <UButton color="info" class="text-white">Ver disponibilidad</UButton>
+                      </UModal>
+                    </template>
+                    <template #default> 
+                      <ImagesCategoriasSUV />
+                    </template>
+                  </UPageCard>
               </template>
-            </UPageCard>
+              
+            </UPageGrid>
+          </template>
+        </UPageSection>
+
+        <!-- Testimonials Section -->
+         <UPageSection 
+          id="testimonios"
+          orientation="vertical" 
+          class="bg-white text-black"
+          title="Lo que dicen nuestros clientes"
+          description="Descubre por qué somos la opción preferida para alquilar carros en Armenia. Nuestros clientes destacan nuestra atención, precios competitivos y la facilidad para explorar el Eje Cafetero."
+          :ui="testimoniosPageSectionUIConfig"
+        >
+          <template #default>
+            <UPageGrid>
+              <UPageCard 
+                v-for="testimonio in testimonios"
+                :description="testimonio.quote"
+                variant="solid"
+                :ui="testimonioPageCardUIConfig"
+              >
+                <template #title>
+                    <UUser 
+                      size="3xl" 
+                      v-bind="testimonio.user" 
+                      :ui="testimonioUserUIConfig"
+                    />
+                </template>
+                <template #footer>
+                  <UIcon name="ic:round-star" class="bg-yellow-500 size-6"></UIcon>
+                  <UIcon name="ic:round-star" class="bg-yellow-500 size-6"></UIcon>
+                  <UIcon name="ic:round-star" class="bg-yellow-500 size-6"></UIcon>
+                  <UIcon name="ic:round-star" class="bg-yellow-500 size-6"></UIcon>
+                  <UIcon name="ic:round-star" class="bg-yellow-500 size-6"></UIcon>
+                </template>
+              </UPageCard>
+            </UPageGrid>
+          </template>
         </UPageSection>
     
         <!-- FAQ Section -->
@@ -225,7 +306,7 @@
 
 <script lang="ts" setup>
 import type { FAQPage } from 'schema-dts'
-const { cities, faqs, franchise } = useAppConfig();
+const { faqs, franchise } = useAppConfig();
 
 useSeoMeta({
   ogType: "website",
@@ -268,6 +349,100 @@ useHead({
 definePageMeta({
     colorMode: 'dark',
 })
+
+const requisitosPageFeatureUIConfig = {
+  leadingIcon:'bg-red-600', 
+  title: 'text-black',
+  description: 'text-black'
+}
+
+const categoriasPageCardUIConfig = {
+  title: 'text-center text-black',
+  description: 'text-center text-black',
+  footer: 'mx-auto'
+}
+
+const testimonios = [
+  {
+    user: {
+      name: 'Stephany M. García',
+      description: 'Peru',
+      avatar: {
+        src: "https://www.alquilerdecarrosarmenia.com/src/perfil/uifaces-popular-image5.webp",
+        alt: 'Stephany M. García'
+      }
+    },
+    quote: "Durante nuestra estadía en Armenia, tuvimos la oportunidad de conocer Filandia, Salento y el Valle de Cocora. Fue muy cómodo desplazarse entre estos destinos y disfrutar del paisaje a nuestro propio ritmo."
+  },
+  {
+    user: {
+      name: 'Sandra Milena Barona',
+      description: 'Colombia',
+      avatar: {
+        src: "https://www.alquilerdecarrosarmenia.com/src/perfil/uifaces-popular-image4.webp",
+        alt: 'Sandra Milena Barona'
+      }
+    },
+    quote: "Hicimos una parada en el mirador de Buenavista al final de la tarde, después de visitar Circasia. Contar con transporte propio nos dio la libertad de hacer ese desvío tranquilo y disfrutar del paisaje sin afanes."
+  },
+  {
+    user: {
+      name: 'Luis Javier Rodríguez M.',
+      description: 'Honduras',
+      avatar: {
+        src: "https://www.alquilerdecarrosarmenia.com/src/perfil/uifaces-popular-image3.webp",
+        alt: 'Luis Javier Rodríguez M.'
+      }
+    },
+    quote: "Hicimos una parada en el mirador de Buenavista al final de la tarde, después de visitar Circasia. Contar con transporte propio nos dio la libertad de hacer ese desvío tranquilo y disfrutar del paisaje sin afanes."
+  },
+  {
+    user: {
+      name: 'Carlos Andrés Mejía',
+      description: 'Colombia',
+      avatar: {
+        src: "https://www.alquilerdecarrosarmenia.com/src/perfil/uifaces-popular-image2.webp",
+        alt: 'Carlos Andrés Mejía'
+      }
+    },
+    quote: "Me encantó el servicio. Todo muy puntual y el carro estaba en excelente estado. Pude conocer el Parque del Café sin preocupaciones. ¡Totalmente recomendado!"
+  },
+  {
+    user: {
+      name: 'Ana Lucía Torres',
+      description: 'Ecuador',
+      avatar: {
+        src: "https://www.alquilerdecarrosarmenia.com/src/perfil/uifaces-human-image6.webp",
+        alt: 'Ana Lucía Torres'
+      }
+    },
+    quote: "Viajar en familia a Armenia fue muy fácil gracias a este servicio de alquiler. Buen precio y excelente atención, sin complicaciones. Muy confiable."
+  },
+  {
+    user: {
+      name: 'Esteban Páez',
+      description: 'Colombia',
+      avatar: {
+        src: "https://www.alquilerdecarrosarmenia.com/src/perfil/uifaces-human-image6.webp",
+        alt: 'Esteban Páez'
+      }
+    },
+    quote: "Excelente alternativa para recorrer el Quindío. El auto fue perfecto para los trayectos, muy limpio, seguro y con buen consumo de gasolina."
+  },
+]
+
+const testimoniosPageSectionUIConfig = {
+  title: 'text-black'
+}
+
+const testimonioPageCardUIConfig = {
+  root: 'border-1 border-gray-100 rounded-lg bg-gray-50 shadow',
+  description: 'mt-4'
+}
+
+const testimonioUserUIConfig = {
+  name: 'text-black',
+}
 
 </script>
 
