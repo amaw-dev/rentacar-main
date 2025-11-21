@@ -23,7 +23,7 @@
     <slot></slot>
 
     <!-- Enlaces ciudades -->
-    <section class="bg-blue-700 text-white text-center py-12 lg:py-20">
+    <section id="sedes" class="bg-blue-700 text-white text-center py-12 lg:py-20">
       <UContainer class="space-y-6">
         <div class="text-2xl font-bold">Ciudades donde ofrecemos alquiler de carros</div>
         <div >
