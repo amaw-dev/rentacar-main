@@ -1,0 +1,7 @@
+export default interface BranchData {
+  id: number;
+  code: string;
+  name: string;
+  city: string;
+  schedule: object;
+}

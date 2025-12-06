@@ -1,4 +1,5 @@
 export default defineAppConfig({
+  defaultTimezone: 'America/Bogota',
   ui: {
     pageSection: {
       slots: {

@@ -1,0 +1,201 @@
+.reservation-resume {
+    @apply scheme-light;
+
+    .reservation-data {
+        @apply flex flex-col;
+
+        .carrusel-container {
+            @apply relative;
+
+            .nombre-modelo {
+                @apply absolute top-5 left-5 bg-black/50 p-2 rounded-lg text-white;
+            }
+        }
+
+        .category-name {
+            @apply font-bold mb-0 mt-2;
+        }
+    
+        .category-description, .category-picoyplaca {
+            @apply lowercase leading-tight;
+        }
+    
+        .pickup-info {
+    
+            @apply my-2 text-sm;
+    
+            .pickup-location {
+                &-label {
+                    @apply text-muted text-left;
+                }
+    
+                &-text {
+                    @apply font-bold text-left;
+                }
+            }
+    
+            .pickup-date {
+                @apply flex flex-row gap-1;
+    
+                &-label {
+                    @apply text-muted text-left;
+                }
+    
+                &-text {
+                    @apply font-bold;
+                }
+            }
+    
+            .pickup-hour {
+                @apply flex flex-row gap-1;
+    
+                &-label {
+                    @apply text-muted text-left;
+                }
+    
+                &-text {
+                    @apply font-bold;
+                }
+            }
+        }
+    
+        .return-info {
+            @apply mb-3 text-sm;
+    
+            .return-location {
+                &-label {
+                    @apply text-muted text-left;
+                }
+    
+                &-text {
+                    @apply font-bold text-left;
+                }
+            }
+    
+            .return-date {
+                @apply flex flex-row gap-1;
+    
+                &-label {
+                    @apply text-muted text-left;
+                }
+    
+                &-text {
+                    @apply font-bold;
+                }
+            }
+    
+            .return-hour {
+                @apply flex flex-row gap-1;
+    
+                &-label {
+                    @apply text-muted text-left;
+                }
+    
+                &-text {
+                    @apply font-bold text-left;
+                }
+            }
+        }
+    }
+
+
+    .prices {
+        @apply flex flex-col flex-1 pl-0 text-sm;
+
+        .discount {
+            @apply text-right text-gray-500 text-xs;
+
+            & div:first {
+                @apply flex items-center justify-end;
+
+                & span:first {
+                    @apply text-xs;
+                }
+            }
+        }
+
+        .discount-percentage {
+            @apply text-right;
+
+            & span:first-child {
+                @apply bg-[#8ed57a] text-black font-medium rounded-none px-1 py-0.5 text-xs;
+            }
+        }
+
+        .daily-price {
+            @apply text-right font-bold text-xl text-black;
+
+            & div:first {
+                @apply flex items-center justify-end;
+
+                & span:first {
+                    @apply text-xs;
+                }
+            }
+        }
+
+        .extra-hours {
+            &-label {
+                @apply text-right mt-3;
+            }
+            &-text {
+                @apply text-right flex items-center justify-end -mr-[3px]; /* TODO revisar si esta bien esto */
+
+                & span:first-child {
+                    @apply text-xs;
+                }
+            }
+        }
+        
+        .return-fee {
+            &-label {
+                @apply text-right;
+            }
+            &-text {
+                @apply text-right flex items-center justify-end -mr-[3px]; /* TODO revisar si esta bien esto */
+
+                & span:first-child {
+                    @apply text-xs;
+                }
+            }
+        }
+
+        .total-price {
+            &-label {
+                @apply text-right font-bold mt-3;
+            }
+
+            &-text {
+                @apply text-right font-bold text-2xl mb-0
+            }
+        }
+
+        .not-included {
+            @apply text-right text-[xx-small] mb-2;
+        }
+
+        .included {
+            &-label {
+                @apply text-right mt-4 font-bold;
+            }
+
+            &-text {
+                @apply ps-3 leading-tight text-right list-none;
+
+                .mileage, .unlimited-km, .coverage  {
+                   @apply text-current;     
+                }
+                
+                
+            }
+        }
+
+        .additional-services {
+            @apply text-right mt-2;
+
+            &-label {
+                @apply font-bold;
+            }
+        }
+    }
+}

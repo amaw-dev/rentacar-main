@@ -18,7 +18,10 @@
             <div class="font-bold uppercase">ALQUILER</div>
             <div>DE CARROS EN</div>
           </div>
-          <div v-text="city.name"></div>
+          <div>
+            {{ city?.name }}
+            <UIcon name="ic:baseline-location-on" class="bg-red-600"></UIcon>
+          </div>
           <div class="italic">COLOMBIA</div>
         </div>
       </template>
@@ -33,12 +36,31 @@
       </template>
       <template #default>
         <!-- Buscador -->
-        <ImagesFamily />
+         <template v-if="pendingAdminData">
+          <PlaceholdersSearcher />
+         </template>
+         <template v-else>
+           <Searcher />
+         </template>
       </template>
       
     </UPageHero>
 
     <!-- Result Section -->
+    <UPageSection
+      id="seleccion-categorias"
+      class="border-t-2 border-white "
+      v-if="firstSearch"
+    >
+      <UStepper ref="stepper" :items="stepperItems">
+        <template #categories>
+          <CategorySelectionSection :stepper />
+        </template>
+        <template #reservation-form>
+          <ReservationFormSection :stepper />
+        </template>
+      </UStepper> 
+    </UPageSection>
 
     <!-- Description Section -->
     <UPageSection
@@ -59,6 +81,12 @@
               a tu manera <br/>
               es realidad
             </p>
+            <u-separator 
+              size="lg" 
+              icon="lucide:square" 
+              class="w-full" 
+              :ui="{icon: 'bg-black rotate-45'}"
+            />
           </div>
         </UPageCard>
         <UPageCard variant="ghost">
@@ -107,37 +135,26 @@
     
 </template>
 
-<script setup lang="ts">
-import type { Testimonial } from '#imports';
+<script setup lang="ts" async>
+import type { Testimonial, City } from '#imports';
+import { useStoreAdminData, useStoreSearchData } from '#imports';
 
-const { getCityById } = useData();
+// stores
+const storeAdminData = useStoreAdminData();
+const storeSearch = useStoreSearchData();
+
+// refs
+const { pending: pendingAdminData, loading: loadingAdminData } = storeToRefs(storeAdminData);
+const { categories } = storeToRefs(storeSearch);
 const { franchise } = useAppConfig();
+const { firstSearch } = useSearch();
 
-const route = useRoute();
-const cityParam = route.params.city;
-const city = cityParam ? getCityById(cityParam as string) : undefined
+// props
+const props = defineProps<{
+    city: City
+}>()
 
-useBaseSEO()
-
-useHead({
-  title: `${franchise.title} | ${city?.name}`,
-  htmlAttrs: {
-      lang: "es",
-  },
-  link: [
-    {
-      rel: 'canonical',
-      href: `${franchise.website}/${cityParam}`
-    }
-  ]
-})
-
-definePageMeta({
-    colorMode: 'dark',
-    middleware: ['validate-city-params']
-})
-
-const testimonios: Testimonial[] | undefined = city?.testimonials;
+const testimonios: Testimonial[] | undefined = props.city?.testimonials;
 
 const testimoniosPageSectionUIConfig = {
   title: 'text-black'
@@ -152,4 +169,20 @@ const testimonioUserUIConfig = {
   name: 'text-black',
 }
 
+const stepperItems = [
+  {
+    slot: 'categories' as const,
+    title: 'Selección de vehículo',
+    description: 'Selecciona un vehículo',
+    icon: 'lucide:car'
+  },
+  {
+    slot: 'reservation-form' as const,
+    title: 'Formulario de solicitud de reserva',
+    description: 'Rellena el formulario para solicitar una reserva',
+    icon: 'lucide:file-text'
+  },
+]
+
+const stepper = useTemplateRef('stepper')
 </script>

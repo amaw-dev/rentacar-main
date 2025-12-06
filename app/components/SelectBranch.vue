@@ -17,12 +17,12 @@
 
 <script setup lang="ts">
 import type { SelectMenuItem } from '@nuxt/ui'
-import dayjs from "dayjs";
+import { today } from '@internationalized/date';
 
-const { branches, reservation } = useAppConfig()
+const { branches, reservation, defaultTimezone } = useAppConfig()
 
-const reservationInitDay: string = dayjs().add(1, 'day').format('YYYY-MM-DD')
-const reservationEndDay: string = dayjs().add(8, 'day').format('YYYY-MM-DD')
+const reservationInitDay: string = today(defaultTimezone).add({days: 1}).toString()
+const reservationEndDay: string = today(defaultTimezone).add({days:8}).toString()
 const reservationInitHour: string = '12:00'
 const reservationEndHour: string = '12:00'
 

@@ -1,0 +1,142 @@
+.categoria {
+    @apply bg-white rounded-lg min-w-[365px] md:col-span-1 relative text-black p-0 sm:p-0 lg:p-0;
+    
+    /* .agotado {
+      opacity: 0.28 !important;
+    }
+    
+    .agotado .text-azul {
+      color: grey !important;
+    }
+    
+    .agotado .anuncio {
+      background-color: ghostwhite;
+    }
+    
+    .agotado h5 {
+      color: grey !important;
+    }
+    
+    .agotado a {
+      background-color: grey !important;
+      border-color: grey !important;
+    } */
+
+    .nombre-modelo {
+      @apply absolute top-5 left-5 bg-black/40 rounded-lg text-white p-1;
+    }
+
+    .contenedor-descripcion-carro {
+      @apply bg-white;
+    }
+
+    .boton-contenedor-descripcion-carro {
+      @apply flex justify-between items-center w-full px-4 py-3 text-left transition-all focus:outline-none text-gray-700 rounded-none bg-white hover:bg-white cursor-pointer;
+    }
+
+    .contenedor-adicionales-carro {
+      @apply bg-white;
+    }
+
+    .boton-contenedor-adicionales-carro {
+      @apply flex justify-between items-center w-full px-4 py-3 text-left transition-all focus:outline-none text-gray-700 rounded-none bg-white hover:bg-white cursor-pointer;
+    }
+
+    .categoria-carro {
+      @apply font-light text-lg leading-tight block;
+    }
+
+    .descripcion-corta {
+      /* @apply roboto-bold text-2xl block; */
+      @apply text-2xl block;
+    }
+
+    .descripcion-larga {
+      @apply text-gray-700;
+    }
+
+    .contenedor-etiquetas {
+        @apply flex flex-wrap justify-center gap-1 mt-3 mb-4;
+    }
+
+    .etiqueta-carro {
+      @apply font-normal text-black px-2 py-1 rounded-full text-xs bg-orange-200;
+    }
+
+    .contenedor-tarifas{
+      @apply grid grid-cols-2 py-4 relative text-gray-700 bg-gray-100;
+    }
+
+    .contenedor-precios-tarifa{
+      @apply flex flex-col items-end pr-5 text-right;
+    }
+
+    .porcentaje-descuento{
+      @apply bg-[#a3f78b] text-black text-xs px-1;
+    }
+
+    .precio-base-diario {
+      @apply text-xs line-through;
+    }
+
+    .precio-diario {
+      /* @apply roboto-bold text-xl */
+      @apply text-xl;
+    }
+
+    .dias-reservados {
+      @apply text-sm;
+    }
+
+    .precio-total {
+      @apply font-bold text-xl whitespace-nowrap;
+    }
+
+    .texto-no-incluye {
+      @apply text-sm;
+    }
+
+    .opcion-seleccionable {
+      @apply flex items-center;
+
+      label,p {
+        @apply text-sm mx-2 text-black;
+      }
+    }
+    
+    .boton-seleccion {
+      @apply w-full justify-center text-white bg-red-600;
+    }
+
+    .form-radio {
+      @apply scheme-light;
+    }
+}
+
+.categoria-no-disponible {
+    background-color: white !important;
+    color: #b7b0b0 !important;
+    text-align: center !important;
+
+    img {
+       opacity: 30%;
+    }
+
+    p, .etiqueta, .contenedor-descripcion-carro {
+      opacity: 50%;
+    }
+
+    .etiqueta-carro {
+      @apply bg-gray-200
+    }
+}
+
+.categoria-agotado {
+  background-color: rgb(70 70 70 / 90%);
+  position: absolute;
+  z-index: 60;
+  border-radius: 8px;
+  color: white;
+  padding: 13px 25px;
+  top: 30%;
+}
