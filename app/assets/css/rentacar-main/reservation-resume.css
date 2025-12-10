@@ -105,10 +105,10 @@
         .discount {
             @apply text-right text-gray-500 text-xs;
 
-            & div:first {
+            & div:first-child {
                 @apply flex items-center justify-end;
 
-                & span:first {
+                & span:first-child {
                     @apply text-xs;
                 }
             }
@@ -125,10 +125,10 @@
         .daily-price {
             @apply text-right font-bold text-xl;
 
-            & div:first {
+            & div:first-child {
                 @apply flex items-center justify-end;
 
-                & span:first {
+                & span:first-child {
                     @apply text-xs;
                 }
             }
