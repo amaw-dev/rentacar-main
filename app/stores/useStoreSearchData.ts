@@ -147,7 +147,6 @@ const useStoreSearchData = defineStore("storeSearchData", () => {
     
     //TODO fix this
     if(categories.value.length == 0){
-      // debugger; 
       return [];
     }
     else return categories.value
@@ -160,7 +159,6 @@ const useStoreSearchData = defineStore("storeSearchData", () => {
       .filter((category: CategoryAvailabilityData) => {
         // filter categories that are not available when selected bogota
         if(pickupLocationCode){
-          // debugger;
           if ( 
             !bogotaBranches.includes(pickupLocationCode) &&
             onlyBogotaCategories.includes(category.categoryCode) 

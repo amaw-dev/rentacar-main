@@ -1,20 +1,16 @@
 <template>
-  <u-page-card class="reservation-resume light">
-    <template #title>
-      <div class="text-xl">Resumen de tu reserva</div>
-      <div class="text-muted">Antes de reservar revisa la información</div>
-    </template>
-    <template #default>
+  <div class="reservation-resume dark">
+      <div class="carrusel-container">
+        <carrusel 
+          :models="categoryModels"
+          :vehicle-models="vehicleCategories[categoryCode]?.modelos"
+          :category="categoryCode"
+        />
+      </div>
       <div class="grid grid-cols-2 gap-2">
         <!-- lado izquierdo -->
         <div class="reservation-data">
-          <div class="carrusel-container">
-            <carrusel 
-              :models="categoryModels"
-              :vehicle-models="vehicleCategories[categoryCode]?.modelos"
-              :category="categoryCode"
-            />
-          </div>
+          
           <div class="category-name" v-text="`Gama ${categoryCode}`"></div>
           <div class="category-description" v-text="categoryDescription"></div>
           <div v-if="hasPicoyPlaca()" class="category-picoyplaca" >
@@ -115,8 +111,7 @@
             </div>
          </div>
       </div>
-    </template>
-  </u-page-card>
+  </div>
 </template>
 
 <script setup lang="ts">

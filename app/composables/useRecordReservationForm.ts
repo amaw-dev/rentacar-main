@@ -123,8 +123,7 @@ export default async function useRecordReservationForm() {
 
     data.value = response;
   } catch (e: any) {
-    const er = e as FetchError;
-    error.value = er.data;
+    error.value = e as FetchError;
   }
 
   return { data, error };

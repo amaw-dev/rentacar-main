@@ -1,19 +1,19 @@
 .reservation-resume {
     @apply scheme-light;
 
+    .carrusel-container {
+        @apply relative mb-3;
+
+        .nombre-modelo {
+            @apply absolute top-5 left-5 bg-black/50 p-2 rounded-lg text-white;
+        }
+    }
+    
     .reservation-data {
         @apply flex flex-col;
 
-        .carrusel-container {
-            @apply relative;
-
-            .nombre-modelo {
-                @apply absolute top-5 left-5 bg-black/50 p-2 rounded-lg text-white;
-            }
-        }
-
         .category-name {
-            @apply font-bold mb-0 mt-2;
+            @apply font-bold mb-0;
         }
     
         .category-description, .category-picoyplaca {
@@ -118,12 +118,12 @@
             @apply text-right;
 
             & span:first-child {
-                @apply bg-[#8ed57a] text-black font-medium rounded-none px-1 py-0.5 text-xs;
+                @apply bg-[#8ed57a] font-medium rounded-none px-1 py-0.5 text-xs;
             }
         }
 
         .daily-price {
-            @apply text-right font-bold text-xl text-black;
+            @apply text-right font-bold text-xl;
 
             & div:first {
                 @apply flex items-center justify-end;

@@ -52,14 +52,7 @@
       class="border-t-2 border-white "
       v-if="firstSearch"
     >
-      <UStepper ref="stepper" :items="stepperItems">
-        <template #categories>
-          <CategorySelectionSection :stepper />
-        </template>
-        <template #reservation-form>
-          <ReservationFormSection :stepper />
-        </template>
-      </UStepper> 
+      <CategorySelectionSection />
     </UPageSection>
 
     <!-- Description Section -->

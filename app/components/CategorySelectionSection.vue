@@ -13,12 +13,46 @@
                         :category
                         :vehicle-category="vehicleCategories[category.categoryCode]"
                         :key="`category-${category.categoryCode}`"
-                        :stepper
                         @selected-category="setSelectedCategory"
                     />
                 </template>
             </template>
         </u-page-grid>
+        <u-slideover 
+            v-model:open="slideoverReservationResume" 
+            title="Resumen de la reserva"
+            description="Antes de reservar revisa la información"
+            :overlay="false"
+            >
+            <template #body>
+                <reservation-resume :category="selectedCategory"></reservation-resume>
+            </template>
+            <template #footer>
+                <u-button label="Cerrar" color="neutral" @click="slideoverReservationResume = false" />
+                    <u-slideover 
+                        v-model:open="slideoverReservationForm" 
+                        title="Datos para reservas"
+                        description="Completa tus datos y finaliza la solicitud de reserva"
+                        :overlay="false"
+                        > 
+                        <u-button label="Siguiente" color="primary"></u-button>
+
+                        <template #body>
+                            <reservation-form ref="reservationFormComponent" @submit="submitForm" />
+                        </template>
+                        
+                        <template #footer>
+                            <u-button 
+                                trailing-icon="i-lucide-chevron-right" 
+                                :loading="isSubmittingForm"
+                                :disabled="isSubmittingForm"
+                                @click="reservationFormComponent.submit()"
+                                >Solicitar reserva</u-button
+                            >
+                        </template>
+                    </u-slideover>
+            </template>
+        </u-slideover>
     </template>
     <template v-else>
         <u-page-grid>
@@ -35,7 +69,8 @@ import {
   PlaceholdersCategoryCard,
   PlaceholdersUnableCategoryCard,
   CategoryCard,
-//   MessageDisplay
+ReservationResume,
+ReservationForm,
 } from "#components";
 
 /** imports */
@@ -52,21 +87,20 @@ const storeForm = useStoreReservationForm();
 
 /** refs */
 const { pending: pendingSearch, selectedCategory, filteredCategories } = storeToRefs(storeSearch);
-const { vehiculo  } = storeToRefs(storeForm);
+const { vehiculo, isSubmittingForm } = storeToRefs(storeForm);
 const { vehicleCategories } = useVehicleCategories();
+const slideoverReservationResume = ref<boolean>(false);
+const slideoverReservationForm = ref<boolean>(false);
+const reservationFormComponent = ref(null);
 
 /** functions */
 function setSelectedCategory(category: ReturnType<typeof useCategory>) {
   vehiculo.value = category.categoryCode.value;
   selectedCategory.value = category;
-  document.getElementById("seleccion-categorias")?.scrollIntoView({
-    behavior: 'smooth'
-  });
+  slideoverReservationResume.value = true;
 }
 
-/** props */
-const props = defineProps<{
-    stepper: HTMLElement
-}>()
+const { submitForm } = storeForm;
+
 
 </script>

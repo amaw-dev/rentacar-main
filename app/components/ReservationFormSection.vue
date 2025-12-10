@@ -12,7 +12,6 @@
     <div class="flex flex-row justify-end gap-2">
       <u-button
         leading-icon="i-lucide-arrow-left"
-        @click="stepper?.prev()"
         color="info"
         >Anterior
       </u-button>
@@ -33,11 +32,6 @@ import { useStoreReservationForm, useStoreSearchData } from "#imports";
 const storeSearch = useStoreSearchData();
 const storeForm = useStoreReservationForm();
 
-/** props */
-const props = defineProps<{
-  stepper: HTMLElement;
-}>();
-
 /** vars */
 const { selectedCategory } = storeToRefs(storeSearch);
 const {
@@ -52,7 +46,6 @@ const {
   numeroVueloIda,
   vehiculo,
   haveFlight,
-  isValidPhone,
   isSubmittingForm,
 } = storeToRefs(storeForm);
 

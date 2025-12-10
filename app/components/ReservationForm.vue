@@ -1,10 +1,11 @@
 <template>
-  <u-page-card class="light">
-    <template #title>
-      <div class="text-xl">Datos para reservar</div>
-      <div class="text-muted">Completa tus datos y finaliza la reserva</div>
-    </template>
-    <template #default>
+  <u-form
+    ref="reservationForm"
+    :state="formState"
+    :schema="validationSchema"
+    @submit="onSubmit"
+    class="flex flex-col gap-3 dark"
+  >
       <div class="grid grid-cols-2 gap-2">
         <u-form-field name="nombreCompleto">
           <u-input
@@ -49,10 +50,8 @@
             defaultCountry="CO"
             :dropdownOptions="phoneDropdownOptions"
             :inputOptions="phoneInputOptions"
-            :styleClasses="phoneFieldClasses"
             :preferred-countries="phonePreferredCountries"
-            @on-input="validatePhone"
-          ></VueTelInput>
+          />
         </u-form-field>
         <u-form-field class="col-span-2" name="politicaPrivacidad">
           <u-switch
@@ -71,8 +70,8 @@
           </u-switch>
         </u-form-field>
       </div>
-    </template>
-  </u-page-card>
+    
+  </u-form>
 </template>
 
 <script setup lang="ts">
@@ -81,24 +80,81 @@ import type {
   ReservationWithFlightFormValidationSchemaType,
 } from "#imports";
 
+/** stores */
+const storeSearch = useStoreSearchData();
+const storeForm = useStoreReservationForm();
+
+/** refs */
+const { selectedCategory } = storeToRefs(storeSearch);
 const {
-  validatePhone,
+  nombreCompleto,
+  apellidos,
+  identificacion,
+  tipoIdentificacion,
+  telefono,
+  email,
+  politicaPrivacidad,
+  aerolinea,
+  numeroVueloIda,
+  vehiculo,
+  haveFlight,
+} = storeToRefs(storeForm);
+
+/** vars */
+const {
   phoneDropdownOptions,
   phoneInputOptions,
-  phoneFieldClasses,
   phonePreferredCountries,
-  isValidPhone,
 } = usePhoneField();
 
-const props = defineProps<{
-  formState:
-    | ReservationFormValidationSchemaType
-    | ReservationWithFlightFormValidationSchemaType;
-}>();
 
-const identificationTypeOptions = ref([
+const identificationTypeOptions = [
   { value: "Cedula Ciudadania", label: "Cédula" },
   { value: "Pasaporte", label: "Pasaporte" },
   { value: "Cedula Extranjeria", label: "Extranjería" },
-]);
+];
+
+const baseForm = {
+  nombreCompleto,
+  apellidos,
+  identificacion,
+  tipoIdentificacion,
+  telefono,
+  email,
+  politicaPrivacidad,
+  vehiculo,
+};
+
+const reservationFormState = reactive(baseForm);
+const reservationWithFlightFormState = reactive({
+  ...baseForm,
+  aerolinea,
+  numeroVueloIda,
+});
+
+const formState = ref(
+  haveFlight.value ? reservationWithFlightFormState : reservationFormState
+);
+const validationSchema = ref(
+  haveFlight.value
+    ? ReservationWithFlightFormValidationSchema
+    : ReservationFormValidationSchema
+);
+
+const reservationForm = ref(null);
+
+
+
+/** emits */
+const emit = defineEmits(['submit']);
+const submit = () => {
+  reservationForm.value.submit();
+}
+defineExpose({submit});
+
+/** functions */
+const onSubmit = (event) => {
+  emit('submit', event.data)
+}
+
 </script>
