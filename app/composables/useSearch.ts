@@ -154,8 +154,8 @@ export default function useSearch() {
   
   const searchLinkParams = computed(() => ({
     referido: referido.value,
-    lugar_recogida: lugarRecogida.value,
-    lugar_devolucion: lugarDevolucion.value,
+    lugar_recogida: lugarRecogida.value?.toLowerCase(),
+    lugar_devolucion: lugarDevolucion.value?.toLowerCase(),
     fecha_recogida: fechaRecogida.value,
     fecha_devolucion: fechaDevolucion.value,
     hora_recogida: horaRecogida.value,
