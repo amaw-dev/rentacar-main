@@ -92,10 +92,10 @@
                         variant="ghost" 
                         class="w-full" 
                         :min-value="minPickupDate"
-                        disabled
+                        @click="pickupDateCalendarOpen = true"
                     >
                         <template #trailing>
-                            <u-popover>
+                            <u-popover v-model:open="pickupDateCalendarOpen">
                                 <u-button
                                     color="neutral"
                                     variant="link"
@@ -142,10 +142,10 @@
                         class="w-full" 
                         :min-value="minPickupDate"
                         :max-value="maxReturnDate"
-                        disabled
+                        @click="returnDateCalendarOpen = true"
                     >
                         <template #trailing>
-                            <u-popover>
+                            <u-popover v-model:open="returnDateCalendarOpen">
                                 <u-button
                                     color="neutral"
                                     variant="link"
@@ -283,8 +283,8 @@ const {
     animateSearchButton,
 } = useSearch()
 
-/** consts */
-const smAndSmaller = breakpoints.smallerOrEqual('sm') // sm and larger
+const pickupDateCalendarOpen = ref<boolean>(false);
+const returnDateCalendarOpen = ref<boolean>(false);
 
 </script>
 
