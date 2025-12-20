@@ -41,10 +41,11 @@ export default function useSearch() {
     selectedPickupHour
   } = storeToRefs(storeForm);
 
-  const { error: errorSearchResponse } = storeToRefs(storeSearchData);
+  const { error: errorSearchResponse, categoriesAvailabilityData } = storeToRefs(storeSearchData);
   
   const firstSearch = ref<boolean>(true);
   const stopWatching = ref<boolean>(false);
+  const animateSearchButton = ref<boolean>(false);
   // noAvailableCategories.value = false;
   
   // functions
@@ -111,6 +112,18 @@ export default function useSearch() {
     horaRecogida,
     (newPickupHour) => (horaDevolucion.value = newPickupHour)
   );
+
+  watch([
+    lugarRecogida,
+    lugarDevolucion,
+    fechaRecogida,
+    fechaDevolucion,
+    horaRecogida,
+    horaDevolucion
+  ], () => {
+    categoriesAvailabilityData.value=null;
+    animateSearchButton.value = true;
+  });
 
   const defaultLugarRecogida: BranchData | undefined = searchBranchByCity(city) ?? searchBranchByCode(lugarRecogida.value ?? '') ?? searchBranchByCity('bogota');
   const defaultLugarDevolucion: BranchData | undefined = searchBranchByCity(city) ?? searchBranchByCode(lugarDevolucion.value ?? '') ?? searchBranchByCity('bogota');

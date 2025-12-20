@@ -234,9 +234,9 @@
         <div class="col-span-2">
             <u-button
                 :to="{name: searchLinkName, params: searchLinkParams}"
-                :disabled="pendingSearching"
+                :disabled="pendingSearching || !animateSearchButton"
                 :loading="pendingSearching"
-                class="search-button"
+                :class="{'search-button': true, 'animate-pulse': animateSearchButton}"
 
             >
                 BUSCAR VEHÍCULOS
@@ -279,6 +279,7 @@ const {
     returnHourOptions,
     searchLinkName,
     searchLinkParams,
+    animateSearchButton,
 } = useSearch()
 
 /** consts */
