@@ -36,7 +36,6 @@
             <u-button 
                 type="submit"
                 class="w-full bg-red-600 disabled:bg-red-600 hover:bg-red-700 cursor-pointer text-white font-bold justify-center"
-                @click.prevent="() => false"
                 disabled
             >
                 BUSCAR VEHÍCULOS
@@ -45,40 +44,6 @@
     </u-form>
 </template>
 
-<script setup lang="ts" async>
-import { 
-    SearcherFormValidationSchema,
-    useStoreAdminData,
-    useStoreSearchData,
-    useStoreReservationForm
-} from '#imports';
-
-const storeReservationForm = useStoreReservationForm();
-const storeAdminData = useStoreAdminData();
-const storeSearchData = useStoreSearchData();
-
-const {
-    lugarRecogida,
-    lugarDevolucion,
-    horaRecogida,
-    horaDevolucion,
-    referido,
-    minPickupDate,
-    maxReturnDate,
-    selectedPickupDate,
-    selectedReturnDate,
-} = storeToRefs(storeReservationForm)
-const { pending: pendingSearching } = storeToRefs(storeSearchData);
-const { sortedBranches, pending: pendingAdminData } = storeToRefs(storeAdminData);
-
-const {
-    pickupHourOptions,
-    returnHourOptions,
-} = useSearch()
-
+<script setup lang="ts">
 const progress = ref(null);
 </script>
-
-<style scoped>
-
-</style>
