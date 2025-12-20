@@ -36,6 +36,12 @@ const useStoreSearchData = defineStore("storeSearchData", () => {
     "out_of_schedule_return_hour_error"
   ];
 
+  const noMonthlyCategories: string[] = [
+    'FU',
+    'FL',
+    'GL'
+  ];
+
   const search = async () => {
     error.value = null;
     pending.value = true;
@@ -50,8 +56,8 @@ const useStoreSearchData = defineStore("storeSearchData", () => {
         error.value = errorResponse.value;
       }
       else {
-        categoriesAvailabilityData.value = categoriesAdminData.value?.filter((categoryAdmin: CategoryData) => 
-          categoryAdmin.identification != "FU" && categoryAdmin.identification != "FL" && categoryAdmin.identification != "GL"
+        categoriesAvailabilityData.value = categoriesAdminData?.filter((categoryAdmin: CategoryData) => 
+          !(categoryAdmin.identification in noMonthlyCategories)
         ) // filter out categories FU, FL and GL when have monthly reservation
         .map((categoryAdmin: CategoryData) => 
           // create a category availability object for each category
