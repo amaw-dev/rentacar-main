@@ -1,5 +1,21 @@
 <template>
-    <USelectMenu
+    <!-- si es móvil usar select nativo -->
+    <template v-if="smAndSmaller">
+        <select
+          v-model="selectedBranch"
+          class="w-full rounded-xl bg-white text-black py-6 px-2"
+          @change="() => (selectedBranch) ? goToReservationPage(selectedBranch) : null"
+          >
+          <option value="null">Elige una ciudad</option>
+          <option
+            v-for="branch in branches"
+            :value="branch.code"
+            v-text="branch.name"
+          ></option>
+        </select>
+    </template>
+    <template v-else>
+      <USelectMenu
         :search-input="{
             placeholder: 'Buscar...',
         }"

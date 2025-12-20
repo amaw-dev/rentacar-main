@@ -272,7 +272,8 @@ const {
     selectedReturnDate,
 } = storeToRefs(storeReservationForm)
 const { pending: pendingSearching } = storeToRefs(storeSearchData);
-const { sortedBranches, pending: pendingAdminData } = storeToRefs(storeAdminData);
+const { sortedBranches } = storeToRefs(storeAdminData);
+const { smAndSmaller } = useResponsive();
 
 const {
     pickupHourOptions,
