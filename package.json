@@ -4,21 +4,21 @@
   "private": true,
   "scripts": {
     "build": "nuxt build --dotenv .env.prod",
+    "build:ci": "cross-env NODE_OPTIONS=--max-old-space-size=4096 nuxt build --dotenv .env.prod",
+    "build:lite": "cross-env PRERENDER_LIMIT=true PRERENDER_CONCURRENCY=1 NODE_OPTIONS=--max-old-space-size=4096 nuxt build --dotenv .env.prod",
+    "postbuild": "cp .env.prod .output/server/.env",
     "dev": "nuxt dev --dotenv .env.local",
     "generate": "nuxt generate --dotenv .env.prod",
     "preview": "nuxt preview --dotenv .env.local",
     "postinstall": "nuxt prepare",
+    "clean": "rm -rf .nuxt .output node_modules/.cache && echo cleaned",
     "firebase:preview": "sh -c 'pnpm run build && firebase hosting:channel:deploy ${1:-preview} --expires ${2:-10m}' --",
     "firebase:emulate": "pnpm run build && firebase emulators:start",
     "firebase:deploy": "pnpm run build && firebase deploy"
   },
   "dependencies": {
-    "@iconify-json/circle-flags": "^1.2.10",
-    "@iconify-json/ic": "^1.2.4",
-    "@iconify-json/logos": "^1.2.9",
-    "@iconify-json/lucide": "^1.2.70",
+    "@iconify-json/lucide": "^1.2.80",
     "@internationalized/date": "^3.10.0",
-    "@nuxt/image": "1.11.0",
     "@nuxt/ui": "^4.2.1",
     "@nuxtjs/seo": "3.2.2",
     "@nuxtjs/tailwindcss": "6.14.0",
@@ -63,5 +63,8 @@
     "ignoredBuiltDependencies": [
       "sharp"
     ]
+  },
+  "devDependencies": {
+    "cross-env": "^10.1.0"
   }
 }
