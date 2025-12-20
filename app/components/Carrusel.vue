@@ -6,7 +6,8 @@
       prev-icon="lucide:chevron-left"
       next-icon="lucide:chevron-right"
       arrows
-      :ui="{ 
+      :ui="{
+        viewport: 'rounded-t-lg',
         dots: 'bottom-5', 
         arrows: 'hidden lg:block',
         prev: 'translate-x-[200%] cursor-pointer rounded-xl h-12 border-0', 

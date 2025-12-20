@@ -1,9 +1,8 @@
 <template>
   <u-page-card
     orientation="vertical"
-    reverse
     class="categoria"
-    :ui="{ container: 'p-0 sm:p-0 lg:p-0', description: 'p-0', body: 'w-full' }"
+    :ui="{ container: 'p-0 sm:p-0 lg:p-0', description: 'mt-0 p-0', body: 'w-full' }"
   >
     <template #title>
       <div class="carrusel">
@@ -22,6 +21,7 @@
           class="boton-contenedor-descripcion-carro group"
           size="xl"
           :ui="{
+            base: 'rounded-none',
             trailingIcon:
               'group-data-[state=open]:rotate-180 transition-transform duration-200',
           }"
@@ -39,7 +39,7 @@
           </template>
         <template #trailing>
           <ChevronDownIcon cls="size-5" />
-          </template>
+        </template>
         </UButton>
         <template #content>
           <div>
@@ -403,6 +403,7 @@
           class="boton-contenedor-adicionales-carro group"
           size="xl"
           :ui="{
+            base: 'rounded-none',
             trailingIcon:
               'group-data-[state=open]:rotate-180 transition-transform duration-200 bg-black',
           }"
@@ -576,7 +577,7 @@
         </template>
       </UCollapsible>
 
-      <div class="con-borde-difuminado-top bg-white p-4">
+      <div class="seccion-boton-seleccion">
         <UButton 
           class="boton-seleccion"
           @click.prevent="goNextStep()"
@@ -618,7 +619,6 @@ const emit = defineEmits<{
 /** stores */
 const { haveTotalInsurance, haveMonthlyReservation, selectedMonthlyMileage } =
   storeToRefs(useStoreReservationForm());
-// const { goToNext } = useStoreStepper();
 
 /** category composable */
 const category: ReturnType<typeof useCategory> = useCategory(props.category);
@@ -671,7 +671,6 @@ function goNextStep() {
   if (haveMonthlyReservation.value)
     selectedMonthlyMileage.value = withMileage.value;
   emit("selectedCategory", category);
-  props.stepper?.next()
 }
 
 const questionButtonUIConfig = {

@@ -1,5 +1,5 @@
 <template>
-  <div class="reservation-resume dark">
+  <div class="reservation-resume">
       <div class="carrusel-container">
         <carrusel 
           :models="categoryModels"

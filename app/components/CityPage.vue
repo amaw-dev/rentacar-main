@@ -20,7 +20,7 @@
             <div class="font-bold uppercase">ALQUILER</div>
             <div>DE CARROS EN</div>
           </div>
-          <div>
+          <div class="flex flex-row justify-center gap-3">
             {{ city?.name }}
             <LocationIcon cls="text-red-600 size-10" />
           </div>
@@ -29,30 +29,26 @@
       </template>
       <template #body>
         <div class="text-center justify-items-center">
-          <div class="mb-4 text-white text-3xl">Consulta disponibilidad y precios</div>
+          <div class="mb-4 text-white text-3xl">
+            Consulta disponibilidad y precios
+          </div>
           <p class="text-white text-lg">
-            Elige ciudades, fechas y horarios y renta un vehículo por
-            días, semanas o el tiempo que necesites
+            Elige ciudades, fechas y horarios y renta un vehículo por días,
+            semanas o el tiempo que necesites
           </p>
         </div>
       </template>
       <template #default>
         <!-- Buscador -->
-         <template v-if="pendingAdminData">
-          <PlaceholdersSearcher />
-         </template>
-         <template v-else>
-           <Searcher />
-         </template>
+        <Searcher />
       </template>
-      
     </UPageHero>
 
     <!-- Result Section -->
     <UPageSection
       id="seleccion-categorias"
-      class="border-t-2 border-white "
-      v-if="firstSearch"
+      class="border-t-2 border-white"
+      v-if="pendingSearch || filteredCategories.length > 0"
     >
       <CategorySelectionSection />
     </UPageSection>
@@ -75,10 +71,10 @@
               a tu manera <br />
               es realidad
             </p>
-            <u-separator 
-              size="lg" 
-              icon="lucide:square" 
-              class="w-full" 
+            <u-separator
+              size="lg"
+              icon="lucide:square"
+              class="w-full"
               :ui="{ icon: 'bg-black rotate-45' }"
             />
           </div>
@@ -92,10 +88,10 @@
       </UPageGrid>
     </UPageSection>
 
-     <!-- Testimonials Section -->
-      <UPageSection 
+    <!-- Testimonials Section -->
+    <UPageSection
       id="testimonios"
-      orientation="vertical" 
+      orientation="vertical"
       class="bg-white text-black"
       title="Lo que dicen nuestros clientes"
       :description="`Descubre por qué somos la opción preferida para alquilar carros en ${city?.name}. Nuestros clientes destacan nuestra atención, precios competitivos y la facilidad para explorar.`"
@@ -103,19 +99,19 @@
     >
       <template #default>
         <UPageGrid>
-          <UPageCard 
+          <UPageCard
             v-for="testimonio in testimonios"
             :description="testimonio.quote"
             variant="solid"
             :ui="testimonioPageCardUIConfig"
           >
             <template #title>
-                <UUser 
-                  size="3xl" 
-                  v-bind="testimonio.user" 
-                  :ui="testimonioUserUIConfig"
-                  loading="lazy"
-                />
+              <UUser
+                size="3xl"
+                v-bind="testimonio.user"
+                :ui="testimonioUserUIConfig"
+                loading="lazy"
+              />
             </template>
             <template #footer>
               <div class="flex flex-row space-x-2">
@@ -133,6 +129,10 @@
   </UPage>
 </template>
 
+<script setup lang="ts">
+/** types */
+import type { Testimonial, City } from "#imports";
+
 /** imports */
 import { defineAsyncComponent } from "vue";
 import {
@@ -146,7 +146,10 @@ const storeSearch = useStoreSearchData();
 
 /** refs */
 const { franchise } = useAppConfig();
-const { firstSearch } = useSearch();
+const {
+  pending: pendingSearch,
+  filteredCategories,
+} = storeToRefs(storeSearch);
 
 /** props */
 const props = defineProps<{

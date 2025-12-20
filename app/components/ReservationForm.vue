@@ -4,7 +4,7 @@
     :state="formState"
     :schema="validationSchema"
     @submit="onSubmit"
-    class="flex flex-col gap-3 dark"
+    class="scheme-dark"
   >
       <div class="grid grid-cols-2 gap-2">
         <u-form-field name="nombreCompleto">

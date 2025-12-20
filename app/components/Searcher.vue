@@ -245,12 +245,12 @@
     </u-form>
 </template>
 
-<script setup lang="ts" async>
+<script setup lang="ts">
+/** imports */
 import { 
-    SearcherFormValidationSchema,
     useStoreAdminData,
     useStoreSearchData,
-    useStoreReservationForm
+    useStoreReservationForm,
 } from '#imports';
 import { IconsCalendarIcon as CalendarIcon } from '#components' 
 

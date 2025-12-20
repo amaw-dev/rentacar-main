@@ -46,7 +46,7 @@ const useStoreSearchData = defineStore("storeSearchData", () => {
     error.value = null;
     pending.value = true;
     categoriesAvailabilityData.value = null;
-    
+
     const { data, error: errorResponse } = await useFetchCategoriesAvailabilityData();
 
     // if monthly reservation is selected
