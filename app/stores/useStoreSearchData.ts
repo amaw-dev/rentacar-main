@@ -83,8 +83,8 @@ const useStoreSearchData = defineStore("storeSearchData", () => {
       if (data.value) {
         categoriesAvailabilityData.value = data.value;
       } else if (errorResponse.value) {
-        error.value = errorResponse.value;
         categoriesAvailabilityData.value = [];
+        createErrorMessage(errorResponse.value);
       }
     }
     
