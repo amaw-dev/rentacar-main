@@ -1,11 +1,9 @@
 import {
   type CategoryData,
   type BranchData,
-  type PageConfigData,
 } from "#imports";
 
-export default interface ReservasApiData extends Response {
+export default interface ReservasApiData {
   categories: CategoryData[];
-  page_config: PageConfigData;
   branches: BranchData[];
 }
