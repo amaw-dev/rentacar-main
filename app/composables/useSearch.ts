@@ -206,6 +206,7 @@ export default function useSearch() {
     removePickupLocation,
     firstSearch, 
     stopWatching, 
+    animateSearchButton,
     // noAvailableCategories, 
     searchLinkName, 
     searchLinkParams,
