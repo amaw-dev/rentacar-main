@@ -125,6 +125,8 @@ import {
   toDatetime,
   createCurrentDateObject
 } from "#imports";
+import { defineAsyncComponent } from 'vue'
+const Carrusel = defineAsyncComponent(() => import('./Carrusel.vue'))
 
 /** types */
 import type { ReservationResumeProps } from "#imports";

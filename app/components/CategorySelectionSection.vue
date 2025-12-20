@@ -43,12 +43,14 @@
                         
                         <template #footer>
                             <u-button 
-                                trailing-icon="i-lucide-chevron-right" 
                                 :loading="isSubmittingForm"
                                 :disabled="isSubmittingForm"
                                 @click="reservationFormComponent.submit()"
-                                >Solicitar reserva</u-button
-                            >
+              >Solicitar reserva
+              <template #trailing>
+                <ChevronRightIcon cls="size-5" />
+              </template>
+            </u-button>
                         </template>
                     </u-slideover>
             </template>
@@ -71,6 +73,7 @@ import {
   CategoryCard,
 ReservationResume,
 ReservationForm,
+  IconsChevronRightIcon as ChevronRightIcon
 } from "#components";
 
 /** imports */

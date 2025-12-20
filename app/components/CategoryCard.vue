@@ -21,7 +21,6 @@
         <UButton
           class="boton-contenedor-descripcion-carro group"
           size="xl"
-          trailing-icon="i-lucide-chevron-down"
           :ui="{
             trailingIcon:
               'group-data-[state=open]:rotate-180 transition-transform duration-200',
@@ -37,6 +36,9 @@
                 {{ vehicleCategory?.descripcion_corta }}
               </span>
             </span>
+          </template>
+        <template #trailing>
+          <ChevronDownIcon cls="size-5" />
           </template>
         </UButton>
         <template #content>
@@ -128,11 +130,14 @@
                   <UButton
                     variant="ghost"
                     size="xs"
-                    icon="lucide:circle-question-mark"
                     alt="info"
                     class="cursor-pointer"
                     :ui="questionButtonUIConfig"
-                  ></UButton>
+                  >
+                    <template #leading>
+                      <CircleQuestionIcon cls="size-4" />
+                    </template>
+                  </UButton>
 
                   <template #body>
                     <p class="text-sm mb-4">
@@ -191,11 +196,14 @@
                   <UButton
                     variant="ghost"
                     size="xs"
-                    icon="lucide:circle-question-mark"
                     alt="info"
                     class="cursor-pointer"
                     :ui="questionButtonUIConfig"
-                  ></UButton>
+                  >
+                    <template #leading>
+                      <CircleQuestionIcon cls="size-4" />
+                    </template>
+                  </UButton>
 
                   <template #body>
                     <p class="text-sm mb-4">
@@ -258,12 +266,15 @@
                   <UButton
                     variant="ghost"
                     size="xs"
-                    icon="lucide:circle-question-mark"
                     alt="info"
                     class="cursor-pointer"
                     aria-label="informacion sobre kilometraje"
                     :ui="questionButtonUIConfig"
-                  />
+                  >
+                    <template #leading>
+                      <CircleQuestionIcon cls="size-4" />
+                    </template>
+                  </UButton>
 
                   <template #body>
                     <p class="text-sm mb-4">
@@ -302,12 +313,15 @@
                   <UButton
                     variant="ghost"
                     size="xs"
-                    icon="lucide:circle-question-mark"
                     alt="info"
                     class="cursor-pointer"
                     aria-label="informacion sobre kilometraje"
                     :ui="questionButtonUIConfig"
-                  />
+                  >
+                    <template #leading>
+                      <CircleQuestionIcon cls="size-4" />
+                    </template>
+                  </UButton>
 
                   <template #body>
                     <p class="text-sm mb-4">
@@ -347,12 +361,15 @@
                     color="neutral"
                     variant="ghost"
                     size="xs"
-                    icon="lucide:circle-question-mark"
                     alt="info"
                     class="cursor-pointer"
                     aria-label="informacion sobre kilometraje"
                     :ui="questionButtonUIConfig"
-                  />
+                  >
+                    <template #leading>
+                      <CircleQuestionIcon cls="size-4" />
+                    </template>
+                  </UButton>
 
                   <template #body>
                     <p class="text-sm mb-4">
@@ -385,12 +402,14 @@
         <UButton
           class="boton-contenedor-adicionales-carro group"
           size="xl"
-          trailing-icon="i-lucide-chevron-down"
           :ui="{
             trailingIcon:
               'group-data-[state=open]:rotate-180 transition-transform duration-200 bg-black',
           }"
         >
+          <template #trailing>
+            <ChevronDownIcon cls="size-5" />
+          </template>
           <template #leading>
             <!-- Contenedor del texto centrado horizontalmente -->
             <span class="flex-1 text-center">
@@ -417,11 +436,14 @@
                   <UButton
                     variant="ghost"
                     size="xs"
-                    icon="lucide:circle-question-mark"
                     alt="info"
                     class="cursor-pointer"
                     :ui="questionButtonUIConfig"
-                  ></UButton>
+                  >
+                    <template #leading>
+                      <CircleQuestionIcon cls="size-4" />
+                    </template>
+                  </UButton>
 
                   <template #body>
                     <p class="text-sm mb-4">
@@ -457,11 +479,14 @@
                   <UButton
                     variant="ghost"
                     size="xs"
-                    icon="lucide:circle-question-mark"
                     alt="info"
                     class="cursor-pointer"
                     :ui="questionButtonUIConfig"
-                  ></UButton>
+                  >
+                    <template #leading>
+                      <CircleQuestionIcon cls="size-4" />
+                    </template>
+                  </UButton>
 
                   <template #body>
                     <p class="text-sm mb-4">
@@ -503,11 +528,14 @@
                   <UButton
                     variant="ghost"
                     size="xs"
-                    icon="lucide:circle-question-mark"
                     alt="info"
                     class="cursor-pointer"
                     :ui="questionButtonUIConfig"
-                  ></UButton>
+                  >
+                    <template #leading>
+                      <CircleQuestionIcon cls="size-4" />
+                    </template>
+                  </UButton>
 
                   <template #body>
                     <p class="text-sm mb-4">
@@ -550,10 +578,12 @@
 
       <div class="con-borde-difuminado-top bg-white p-4">
         <UButton 
-          trailing-icon="i-lucide-arrow-right" 
           class="boton-seleccion"
           @click.prevent="goNextStep()"
           >
+          <template #trailing>
+            <ChevronRightIcon cls="size-5" />
+          </template>
           Solicitar este vehículo
         </UButton>
       </div>
@@ -564,6 +594,13 @@
 <script setup lang="ts">
 /** imports */
 import { useStoreReservationForm, useCategory } from "#imports";
+import { 
+  IconsCircleQuestionIcon as CircleQuestionIcon,
+  IconsChevronDownIcon as ChevronDownIcon,
+  IconsChevronRightIcon as ChevronRightIcon
+} from '#components';
+import { defineAsyncComponent } from 'vue'
+const Carrusel = defineAsyncComponent(() => import('./Carrusel.vue'))
 
 /** types */
 import type { CategoryProps } from "#imports";

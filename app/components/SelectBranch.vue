@@ -5,13 +5,16 @@
         }"
         size="xl"
         placeholder="Elige una ciudad"
-        icon="ic:baseline-location-on"
-        trailing-icon="ic:baseline-keyboard-arrow-down"
         :items 
         class="w-full rounded-xl bg-white text-black"
         :ui="{leadingIcon: 'bg-red-500', base: ['py-6']}"
     >
-
+        <template #leading>
+          <LocationIcon cls="text-red-600 size-5" />
+        </template>
+        <template #trailing>
+          <ChevronDownIcon cls="size-4" />
+        </template>
     </USelectMenu>
 </template>
 
@@ -19,7 +22,14 @@
 import type { SelectMenuItem } from '@nuxt/ui'
 import { today } from '@internationalized/date';
 
-const { branches, reservation, defaultTimezone } = useAppConfig()
+/** components */
+import {
+  IconsLocationIcon as LocationIcon,
+  IconsChevronDownIcon as ChevronDownIcon,
+} from "#components";
+
+/** consts */
+const { branches, reservation, defaultTimezone } = useAppConfig();
 
 const reservationInitDay: string = today(defaultTimezone).add({days: 1}).toString()
 const reservationEndDay: string = today(defaultTimezone).add({days:8}).toString()

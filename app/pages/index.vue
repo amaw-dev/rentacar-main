@@ -3,12 +3,14 @@
         <!-- Hero Section -->
         <UPageHero orientation="horizontal">
           <template #headline>
-            <div class="space-x-2 text-white text-center">
-              <UIcon name="ic:round-star" class="bg-white size-5"></UIcon>
-              <UIcon name="ic:round-star" class="bg-white size-5"></UIcon>
-              <UIcon name="ic:round-star" class="bg-white size-5"></UIcon>
-              <UIcon name="ic:round-star" class="bg-white size-5"></UIcon>
-              <UIcon name="ic:round-star" class="bg-white size-5"></UIcon>
+        <div
+          class="flex flex-row justify-center space-x-2 text-white text-center"
+        >
+          <StarIcon cls="size-5" />
+          <StarIcon cls="size-5" />
+          <StarIcon cls="size-5" />
+          <StarIcon cls="size-5" />
+          <StarIcon cls="size-5" />
               <span>4.9 reviews</span>
             </div>
           </template>
@@ -100,32 +102,44 @@
                   <UPageFeature
                     title="RESERVA PREVIA"
                     description="(más anticipación más descuento)"
-                    icon="ic:baseline-location-on"
                     :ui="requisitosPageFeatureUIConfig"
-                  />
+              >
+                <template #leading>
+                  <LocationIcon cls="text-red-600 size-5" />
+                </template>
+              </UPageFeature>
                 </li>
                 <li>
                   <UPageFeature
                     title="DOCUMENTO DE IDENTIDAD"
                     description="(18+ Cédula o pasaporte original)"
-                    icon="ic:baseline-location-on"
                     :ui="requisitosPageFeatureUIConfig"
-                  />
+              >
+                <template #leading>
+                  <LocationIcon cls="text-red-600 size-5" />
+                </template>
+              </UPageFeature>
                 </li>
                 <li>
                   <UPageFeature
                     title="TARJETA DE CRÉDITO"
                     description="(Única forma de pago)"
-                    icon="ic:baseline-location-on"
                     :ui="requisitosPageFeatureUIConfig"
-                  />
+              >
+                <template #leading>
+                  <LocationIcon cls="text-red-600 size-5" />
+                </template>
+              </UPageFeature>
                 </li>
                 <li>
                   <UPageFeature
                     title="LICENCIA DE CONDUCIR"
-                    icon="ic:baseline-location-on"
                     :ui="requisitosPageFeatureUIConfig"
-                  />
+              >
+                <template #leading>
+                  <LocationIcon cls="text-red-600 size-5" />
+                </template>
+              </UPageFeature>
                 </li>
               </ul>
             </div>
@@ -273,11 +287,13 @@
                     />
                 </template>
                 <template #footer>
-                  <UIcon name="ic:round-star" class="bg-yellow-500 size-6"></UIcon>
-                  <UIcon name="ic:round-star" class="bg-yellow-500 size-6"></UIcon>
-                  <UIcon name="ic:round-star" class="bg-yellow-500 size-6"></UIcon>
-                  <UIcon name="ic:round-star" class="bg-yellow-500 size-6"></UIcon>
-                  <UIcon name="ic:round-star" class="bg-yellow-500 size-6"></UIcon>
+              <div class="flex flex-row">
+                <StarIcon cls="text-yellow-500 size-6" />
+                <StarIcon cls="text-yellow-500 size-6" />
+                <StarIcon cls="text-yellow-500 size-6" />
+                <StarIcon cls="text-yellow-500 size-6" />
+                <StarIcon cls="text-yellow-500 size-6" />
+              </div>
                 </template>
               </UPageCard>
             </UPageGrid>
@@ -306,8 +322,15 @@
 </template>
 
 <script lang="ts" setup>
-import type { FAQPage } from 'schema-dts'
-import type { Testimonial } from '#imports';
+/** types */
+import type { FAQPage } from "schema-dts";
+import type { Testimonial } from "#imports";
+
+/** components */
+import {
+  IconsStarIcon as StarIcon,
+  IconsLocationIcon as LocationIcon,
+} from "#components";
 
 const { faqs, franchise } = useAppConfig();
 

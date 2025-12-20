@@ -29,7 +29,6 @@
                         data-testid="pickup-location-test"
                         :items="sortedBranches"
                         :search-input="{
-                            icon: 'lucide:search',
                             placeholder: 'Buscar sucursal',
                             autofocus: false,
                         }"
@@ -65,7 +64,6 @@
                         class="w-full" 
                         :items="sortedBranches"
                         :search-input="{
-                            icon: 'lucide:search',
                             placeholder: 'Buscar sucursal',
                             autofocus: false,
                         }"
@@ -102,10 +100,13 @@
                                     color="neutral"
                                     variant="link"
                                     size="sm"
-                                    icon="i-lucide-calendar"
                                     aria-label="Seleccione una día de recogida"
                                     class="px-0"
-                                />
+                                >
+                                    <template #leading>
+                                        <CalendarIcon cls="size-4" />
+                                    </template>
+                                </u-button> 
                                 <template #content>
                                     <u-calendar 
                                         v-model="selectedPickupDate" 
@@ -149,10 +150,13 @@
                                     color="neutral"
                                     variant="link"
                                     size="sm"
-                                    icon="i-lucide-calendar"
                                     aria-label="Seleccione una día de devolución"
                                     class="px-0"
-                                />
+                                >
+                                    <template #leading>
+                                        <CalendarIcon cls="size-4" />
+                                    </template>
+                                </u-button> 
                                 <template #content>
                                     <u-calendar 
                                         v-model="selectedReturnDate" 
@@ -248,11 +252,7 @@ import {
     useStoreSearchData,
     useStoreReservationForm
 } from '#imports';
-
-import { breakpointsTailwind, useBreakpoints } from '@vueuse/core'
-
-const breakpoints = useBreakpoints(breakpointsTailwind)
-
+import { IconsCalendarIcon as CalendarIcon } from '#components' 
 
 /** stores */
 const storeReservationForm = useStoreReservationForm();

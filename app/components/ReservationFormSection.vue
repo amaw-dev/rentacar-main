@@ -11,17 +11,21 @@
     </u-page-grid>
     <div class="flex flex-row justify-end gap-2">
       <u-button
-        leading-icon="i-lucide-arrow-left"
         color="info"
         >Anterior
+        <template #leading>
+          <ChevronLeftIcon cls="size-5" />
+        </template>
       </u-button>
       <u-button 
-        trailing-icon="i-lucide-chevron-right" 
         type="submit"
         :loading="isSubmittingForm"
         :disabled="isSubmittingForm"
-        >Solicitar reserva</u-button
-      >
+        >Solicitar reserva
+        <template #trailing>
+          <ChevronRightIcon cls="size-5" />
+        </template>
+      </u-button>
     </div>
   </u-form>
 </template>
@@ -29,6 +33,10 @@
 <script setup lang="ts">
 /** stores */
 import { useStoreReservationForm, useStoreSearchData } from "#imports";
+import {
+  IconsChevronLeftIcon as ChevronLeftIcon,
+  IconsChevronRightIcon as ChevronRightIcon,
+} from '#components'
 const storeSearch = useStoreSearchData();
 const storeForm = useStoreReservationForm();
 

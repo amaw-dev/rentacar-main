@@ -12,11 +12,13 @@
       <UButton 
         class="boton-contenedor-descripcion-carro group"
         size="xl"
-        trailing-icon="i-lucide-chevron-down"
         :ui="{
           trailingIcon: 'group-data-[state=open]:rotate-180 transition-transform duration-200'
         }"
       >
+        <template #trailing>
+          <ChevronDownIcon cls="size-5" />
+        </template>
         <template #leading>
           <span class="text-left text-gray-700">
             <span class="categoria-carro">
@@ -73,6 +75,10 @@ const categoryID: string = `category-${categoryCode}`;
 const contentID: string = `content-${categoryID}`;
 const aditionalID: string = `aditional-${categoryID}`;
 const iconID: string = `icon-${categoryID}`;
+
+import { defineAsyncComponent } from 'vue'
+const Carrusel = defineAsyncComponent(() => import('../Carrusel.vue'))
+import ChevronDownIcon from '~/components/Icons/ChevronDownIcon.vue'
 
 
 

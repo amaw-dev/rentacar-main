@@ -3,12 +3,14 @@
     <!-- Hero Section -->
     <UPageHero orientation="horizontal">
       <template #headline>
-        <div class="space-x-2 text-white text-center">
-          <UIcon name="ic:round-star" class="bg-white size-5"></UIcon>
-          <UIcon name="ic:round-star" class="bg-white size-5"></UIcon>
-          <UIcon name="ic:round-star" class="bg-white size-5"></UIcon>
-          <UIcon name="ic:round-star" class="bg-white size-5"></UIcon>
-          <UIcon name="ic:round-star" class="bg-white size-5"></UIcon>
+        <div
+          class="flex flex-row space-x-2 text-white text-center justify-center"
+        >
+          <StarIcon cls="size-5" />
+          <StarIcon cls="size-5" />
+          <StarIcon cls="size-5" />
+          <StarIcon cls="size-5" />
+          <StarIcon cls="size-5" />
           <span>4.9 reviews</span>
         </div>
       </template>
@@ -20,7 +22,7 @@
           </div>
           <div>
             {{ city?.name }}
-            <UIcon name="ic:baseline-location-on" class="bg-red-600"></UIcon>
+            <LocationIcon cls="text-red-600 size-10" />
           </div>
           <div class="italic">COLOMBIA</div>
         </div>
@@ -114,11 +116,13 @@
                 />
             </template>
             <template #footer>
-              <UIcon name="ic:round-star" class="bg-yellow-500 size-6"></UIcon>
-              <UIcon name="ic:round-star" class="bg-yellow-500 size-6"></UIcon>
-              <UIcon name="ic:round-star" class="bg-yellow-500 size-6"></UIcon>
-              <UIcon name="ic:round-star" class="bg-yellow-500 size-6"></UIcon>
-              <UIcon name="ic:round-star" class="bg-yellow-500 size-6"></UIcon>
+              <div class="flex flex-row space-x-2">
+                <StarIcon cls="text-yellow-500 size-6" />
+                <StarIcon cls="text-yellow-500 size-6" />
+                <StarIcon cls="text-yellow-500 size-6" />
+                <StarIcon cls="text-yellow-500 size-6" />
+                <StarIcon cls="text-yellow-500 size-6" />
+              </div>
             </template>
           </UPageCard>
         </UPageGrid>
@@ -128,9 +132,12 @@
     
 </template>
 
-<script setup lang="ts" async>
-import type { Testimonial, City } from '#imports';
-import { useStoreAdminData, useStoreSearchData } from '#imports';
+/** imports */
+import { defineAsyncComponent } from "vue";
+import {
+  IconsStarIcon as StarIcon,
+  IconsLocationIcon as LocationIcon,
+} from "#components";
 
 // stores
 const storeAdminData = useStoreAdminData();
@@ -159,23 +166,15 @@ const testimonioPageCardUIConfig = {
 }
 
 const testimonioUserUIConfig = {
-  name: 'text-black',
-}
+  name: "text-black",
+};
 
-const stepperItems = [
-  {
-    slot: 'categories' as const,
-    title: 'Selección de vehículo',
-    description: 'Selecciona un vehículo',
-    icon: 'lucide:car'
-  },
-  {
-    slot: 'reservation-form' as const,
-    title: 'Formulario de solicitud de reserva',
-    description: 'Rellena el formulario para solicitar una reserva',
-    icon: 'lucide:file-text'
-  },
-]
+const Searcher = defineAsyncComponent(() => import("./Searcher.vue"));
+const PlaceholdersSearcher = defineAsyncComponent(
+  () => import("./Placeholders/Searcher.vue")
+);
+const LazyImagesCiudadesChica = defineAsyncComponent(
+  () => import("./Images/Ciudades/Chica.vue")
+);
 
-const stepper = useTemplateRef('stepper')
 </script>

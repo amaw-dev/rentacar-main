@@ -82,7 +82,6 @@
             <p class="font-bold text-2xl">¿Chateamos?</p>
             <p>Estamos a un mensaje de distancia</p>
             <UButton 
-              icon="logos:whatsapp-icon" 
               size="xl" 
               class="text-white"
               label="Whatsapp"
@@ -90,6 +89,9 @@
               :external="true"
               :to="franchise.whatsapp"
             >
+              <template #leading>
+                <WhatsappIcon cls="size-5" />
+              </template>
             </UButton>
           </div>
           <div class="space-y-2">
@@ -97,13 +99,15 @@
             <p>LLamanos y Hablamos!</p>
             <UButton 
               color="info" 
-              icon="lucide:phone" 
               size="xl" 
               class="text-white"
               :external="true"
               :label="franchise.phone"
               :to="`tel:${franchise.phone}`"
             >
+              <template #leading>
+                <PhoneIcon cls="size-5" />
+              </template>
             </UButton>
           </div>
         </div>
@@ -153,5 +157,9 @@ const items = computed<NavigationMenuItem[]>(() => [
 
 const { cities } = useData();
 const { franchise } = useAppConfig();
+import { 
+  IconsWhatsappIcon as WhatsappIcon,
+  IconsPhoneIcon as PhoneIcon,
+} from '#components'
 
 </script>
