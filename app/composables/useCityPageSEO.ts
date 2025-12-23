@@ -21,11 +21,6 @@ export const useCityPageSEO = () => {
     ]
     })
 
-    definePageMeta({
-        colorMode: 'dark',
-        middleware: ['validate-city-params']
-    })
-
     return {
         city
     }
