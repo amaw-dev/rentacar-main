@@ -18,7 +18,7 @@
           </div>
           <div class="pickup-info">
             <div class="pickup-location">
-              <div class="pickup-location-label">Lugar recogida</div>
+              <div class="pickup-location-label">Recogida:</div>
               <div class="pickup-location-text" v-text="selectedPickupLocation?.name"></div>
             </div>
             <div class="pickup-date">
@@ -33,7 +33,7 @@
 
           <div class="return-info">
             <div class="return-location">
-              <div class="return-location-label">Lugar Entrega</div>
+              <div class="return-location-label">Entrega:</div>
               <div class="return-location-text" v-text="selectedReturnLocation?.name"></div>
             </div>
             <div class="return-date">
@@ -43,6 +43,29 @@
             <div class="return-hour">
               <div class="return-hour-label">Hora</div>
               <div class="return-hour-text" v-text="formattedReturnHour"></div>
+            </div>
+          </div>
+
+          <div class="renting">
+            <div class="renting-label">Alquiler:</div>
+            <div class="renting-item">
+              {{ selectedDays }} {{ (selectedDays > 1) ? 'días' : 'día' }}
+              <span v-if="hasExtraHours() && extraHoursQuantity">
+                + {{ extraHoursQuantity }} {{ (extraHoursQuantity > 1) ? 'Horas extras' : 'Hora extra'  }}
+              </span>
+            </div>
+            <div v-if="selectedMonthlyMileage == '1k_kms'" class="renting-item">
+              Kilometraje 1.000 kms
+            </div>
+            <div v-if="selectedMonthlyMileage == '2k_kms'" class="renting-item">
+              Kilometraje 2.000 kms
+            </div>
+            <div v-if="selectedMonthlyMileage == '3k_kms'" class="renting-item">
+              Kilometraje 3.000 kms
+            </div>
+            <div v-else class="renting-item">Kilometraje ilimitado</div>
+            <div class="renting-item">
+              {{ haveTotalInsurance ? "Con Seguro total" : "Con Seguro básico"}}
             </div>
           </div>
         </div>
@@ -78,36 +101,44 @@
                 {{ currencyReturnFee }}
               </div>
             </div>
+            
+            
+            <div v-if="hasAdditionalServices" class="extra-services">
+              <div class="extra-services-label">Adicionales</div>
+              <div class="extra-services-text">
+                <div v-if="withExtraDriver" class="extra-service">
+                  <div class="extra-service-label">Conductor Adicional</div>
+                  <div class="extra-service-text">
+                    <span>$</span>
+                    {{ currencyExtraDriverPrice }}
+                  </div>
+                </div>
+                <div v-if="withBabySeat" class="extra-service">
+                  <div class="extra-service-label">Silla para bebé</div>
+                  <div class="extra-service-text">
+                    <span>$</span>
+                    {{ currencyBabySeatPrice }}
+                  </div>
+                </div>
+                <div v-if="withWash" class="extra-service">
+                  <div class="extra-service-label">Lavado</div>
+                  <div class="extra-service-text">
+                    <span>$</span>
+                    {{ currencyWashPrice }}
+                  </div>
+                </div>
+              </div>
+            </div>
+            
             <div class="total-price">
-              <div class="total-price-label"></div>
-              <div class="total-price-text"></div>
+              <div class="total-price-label">Total a pagar:</div>
+              <div class="total-price-text">
+                <span>$</span>
+                {{ currencyTotalPrice }}
+              </div>
             </div>
             <div class="not-included">
               No incluye IVA ni tasa admin
-            </div>
-            <div class="included">
-              <div class="included-label">El valor incluye:</div>
-              <ul class="included-text">
-                <li v-if="selectedMonthlyMileage == '1k_kms'" class="mileage">
-                  1.000 kms
-                </li>
-                <li v-if="selectedMonthlyMileage == '2k_kms'" class="mileage">
-                  2.000 kms
-                </li>
-                <li v-if="selectedMonthlyMileage == '3k_kms'" class="mileage">
-                  3.000 kms
-                </li>
-                <li v-else class="unlimited-km">Kms ilimitado</li>
-                <li class="coverage">
-                  {{ haveTotalInsurance ? "Seguro total" : "Seguro básico"}}
-                </li>
-              </ul>
-            </div>
-            <div v-if="hasAdditionalServices" class="additional-services">
-              <div class="additional-services-label">Adicionales seleccionados:</div>
-              <div v-if="withExtraDriver">Conductor add</div>
-              <div v-if="withBabySeat">Silla para bebé</div>
-              <div v-if="withWash">Lavado</div>
             </div>
          </div>
       </div>
@@ -120,10 +151,6 @@ import {
   useStoreReservationForm,
   useStoreSearchData,
   useVehicleCategories,
-  formatHumanDate,
-  formatHumanTime,
-  toDatetime,
-  createCurrentDateObject
 } from "#imports";
 import { defineAsyncComponent } from 'vue'
 const Carrusel = defineAsyncComponent(() => import('./Carrusel.vue'))
@@ -149,6 +176,9 @@ const {
   currencyTotalPrice,
   currencyDailyBasePrice,
   currencyDailyPrice,
+  currencyExtraDriverPrice,
+  currencyBabySeatPrice,
+  currencyWashPrice,
   numberDays,
   hasPicoyPlaca,
   hasDiscount,
@@ -164,10 +194,6 @@ const {
 const {
     selectedPickupLocation,
     selectedReturnLocation,
-    selectedPickupDate,
-    selectedReturnDate,
-    selectedPickupHour,
-    selectedReturnHour,
     selectedMonthlyMileage,
     selectedDays,
     haveTotalInsurance,
