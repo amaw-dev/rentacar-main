@@ -24,24 +24,22 @@
     
             @apply my-2 text-sm;
     
-            .pickup-location {
-                &-label {
-                    @apply text-muted text-start;
-                }
-    
-                &-text {
-                    @apply font-bold text-start;
-                }
+            .pickup-location-label {
+                @apply text-muted text-start;
+            }
+
+            .pickup-location-text {
+                @apply font-bold text-start;
             }
     
             .pickup-date {
                 @apply flex flex-row gap-1;
     
-                &-label {
+                .pickup-date-label {
                     @apply text-muted text-start;
                 }
     
-                &-text {
+                .pickup-date-text {
                     @apply font-bold;
                 }
             }
@@ -49,11 +47,11 @@
             .pickup-hour {
                 @apply flex flex-row gap-1;
     
-                &-label {
+                .pickup-hour-label {
                     @apply text-muted text-start;
                 }
     
-                &-text {
+                .pickup-hour-text {
                     @apply font-bold;
                 }
             }
@@ -63,11 +61,11 @@
             @apply mb-3 text-sm;
     
             .return-location {
-                &-label {
+                .return-location-label {
                     @apply text-muted text-start;
                 }
     
-                &-text {
+                .return-location-text {
                     @apply font-bold text-start;
                 }
             }
@@ -75,11 +73,11 @@
             .return-date {
                 @apply flex flex-row gap-1;
     
-                &-label {
+                .return-date-label {
                     @apply text-muted text-start;
                 }
     
-                &-text {
+                .return-date-text {
                     @apply font-bold;
                 }
             }
@@ -87,13 +85,25 @@
             .return-hour {
                 @apply flex flex-row gap-1;
     
-                &-label {
+                .return-hour-label {
                     @apply text-muted text-start;
                 }
     
-                &-text {
+                .return-hour-text {
                     @apply font-bold text-start;
                 }
+            }
+        }
+
+        .renting {
+            @apply text-sm;
+
+            .renting-label {
+                @apply font-bold;
+            }
+
+            .renting-item {
+                @apply text-muted
             }
         }
     }
@@ -105,10 +115,10 @@
         .discount {
             @apply text-end text-gray-500 text-xs;
 
-            & div:first-child {
+            div:first-child {
                 @apply flex items-center justify-end;
 
-                & span:first-child {
+                span:first-child {
                     @apply text-xs;
                 }
             }
@@ -117,56 +127,60 @@
         .discount-percentage {
             @apply text-end;
 
-            & span:first-child {
-                @apply bg-green-500 font-medium rounded-none px-1 py-0.5 text-xs;
+            span {
+                @apply light:bg-yellow-500 dark:bg-green-500 font-medium rounded-none px-1 py-0.5 text-xs;
             }
         }
 
         .daily-price {
-            @apply text-end font-bold text-xl;
+            @apply text-end font-bold;
 
-            & div:first-child {
+            div:first-child {
                 @apply flex items-center justify-end;
 
-                & span:first-child {
+                span:first-child {
                     @apply text-xs;
                 }
             }
         }
 
         .extra-hours {
-            &-label {
+            .extra-hours-label {
                 @apply text-end mt-3;
             }
-            &-text {
+            .extra-hours-text {
                 @apply text-end flex items-center justify-end -mr-[0.75]; /* TODO revisar si esta bien esto */
 
-                & span:first-child {
+                span {
                     @apply text-xs;
                 }
             }
         }
         
         .return-fee {
-            &-label {
+            .return-fee-label {
                 @apply text-end;
             }
-            &-text {
+            .return-fee-text {
                 @apply text-end flex items-center justify-end -mr-[0.75]; /* TODO revisar si esta bien esto */
 
-                & span:first-child {
+                span:first-child {
                     @apply text-xs;
                 }
             }
         }
 
         .total-price {
-            &-label {
+            .total-price-label {
                 @apply text-end font-bold mt-3;
             }
 
-            &-text {
-                @apply text-end font-bold text-2xl mb-0
+            .total-price-text {
+                @apply text-end font-bold text-2xl mb-0;
+
+                span:first-child {
+                    @apply text-lg;
+                }
             }
         }
 
@@ -177,11 +191,11 @@
         .included {
             @apply text-end;
             
-            &-label {
+            .included-label {
                 @apply text-end mt-4 font-bold;
             }
 
-            &-text {
+            .included-text {
                 @apply ps-3 leading-tight text-end list-none;
 
                 .mileage, .unlimited-km, .coverage  {
@@ -192,10 +206,10 @@
             }
         }
 
-        .additional-services {
+        .extra-services {
             @apply text-end mt-2;
 
-            &-label {
+            .extra-services-label {
                 @apply font-bold;
             }
         }
