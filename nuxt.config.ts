@@ -1,7 +1,5 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import tailwindcss from "@tailwindcss/vite";
-import { readFileSync } from 'fs';
-import { join } from 'path';
 
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
@@ -10,11 +8,31 @@ export default defineNuxtConfig({
 
   devtools: { enabled: true },
 
-  modules: ['@nuxtjs/seo', '@nuxt/ui', '@pinia/nuxt', '@pinia/colada-nuxt', '@nuxt/image', 'nuxt-llms'],
+  modules: ['@nuxtjs/seo', '@nuxt/ui', '@pinia/nuxt', 'nuxt-llms'],
 
   imports: {
     autoImport: true,
-    dirs: ["utils/**"],
+    dirs: ["utils/**", 'stores/**'],
+  },
+
+  runtimeConfig: {
+    public: {
+      rentacarFranchise: "alquilatucarro",
+      rentacarApiReservasDataEndpoint: "",
+      rentacarApiReservasFormRecordEndpoint: "",
+      rentacarApiReservasCategoriesAvailabilityEndpoint: "",
+      isTest: process.env.NODE_ENV === "test",
+    },
+  },
+
+  pinia: {
+    storesDirs: ["stores/**"]
+  },
+
+  postcss: {
+    plugins: {
+      'postcss-nested': {} // Habilita postcss-nested
+    }
   },
 
   ogImage: {
@@ -25,6 +43,9 @@ export default defineNuxtConfig({
     plugins: [
       tailwindcss(),
     ],
+    optimizeDeps: {
+      include: ['@vueuse/core']
+    }
   },
 
   nitro: {

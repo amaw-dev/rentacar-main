@@ -1,45 +1,88 @@
 <template>
-    <USelectMenu
+    <!-- si es móvil usar select nativo -->
+    <template v-if="smAndSmaller">
+        <select
+          v-model="selectedBranch"
+          class="w-full rounded-xl bg-white text-black py-6 px-2"
+          @change="() => (selectedBranch) ? goToReservationPage(selectedBranch) : null"
+          >
+          <option value="null">Elige una ciudad</option>
+          <option
+            v-for="branch in branches"
+            :value="branch.code"
+            v-text="branch.name"
+          ></option>
+        </select>
+    </template>
+    <template v-else>
+      <USelectMenu
         :search-input="{
-            placeholder: 'Buscar...',
+          placeholder: 'Buscar...',
         }"
         size="xl"
         placeholder="Elige una ciudad"
-        icon="ic:baseline-location-on"
-        trailing-icon="ic:baseline-keyboard-arrow-down"
-        :items 
+        :items
         class="w-full rounded-xl bg-white text-black"
-        :ui="{leadingIcon: 'bg-red-500', base: ['py-6']}"
-    >
-
-    </USelectMenu>
+        :ui="{ leadingIcon: 'bg-red-500', base: ['py-6'] }"
+      >
+        <template #leading>
+          <LocationIcon cls="text-red-600 size-5" />
+        </template>
+        <template #trailing>
+          <ChevronDownIcon cls="size-4" />
+        </template>
+      </USelectMenu>
+    </template>
 </template>
 
 <script setup lang="ts">
-import type { SelectMenuItem } from '@nuxt/ui'
-import dayjs from "dayjs";
+/** types */
+import type { SelectMenuItem } from "@nuxt/ui";
+import type { BranchData } from "#imports";
 
-const { branches, reservation } = useAppConfig()
+/** imports */
+import { today } from "@internationalized/date";
 
-const reservationInitDay: string = dayjs().add(1, 'day').format('YYYY-MM-DD')
-const reservationEndDay: string = dayjs().add(8, 'day').format('YYYY-MM-DD')
-const reservationInitHour: string = '12:00'
-const reservationEndHour: string = '12:00'
+/** components */
+import {
+  IconsLocationIcon as LocationIcon,
+  IconsChevronDownIcon as ChevronDownIcon,
+} from "#components";
 
-const createReservationURL = (branchCode: string) => `${reservation.website}/lr/${branchCode}/ld/${branchCode}/fr/${reservationInitDay}/fd/${reservationEndDay}/hr/${reservationInitHour}/hd/${reservationEndHour}`;
+/** consts */
+const { branches, reservation, defaultTimezone } = useAppConfig();
+
+const reservationInitDay: string = today(defaultTimezone)
+  .add({ days: 1 })
+  .toString();
+const reservationEndDay: string = today(defaultTimezone)
+  .add({ days: 8 })
+  .toString();
+const reservationInitHour: string = "12:00";
+const reservationEndHour: string = "12:00";
+
+const { smAndSmaller } = useResponsive();
+
+const items: SelectMenuItem[] = branches.map((branch: BranchData) => ({
+  label: branch.name,
+  value: branch.code,
+  onSelect: () => goToReservationPage(branch.code),
+}));
+
+/** refs */
+const selectedBranch = ref<BranchData['code'] | null>(null)
+
+/** functions */
+const goToReservationPage = async (branchCode: string) =>
+  await navigateTo(createReservationURL(branchCode), {
+    external: true,
+    open: {
+      target: "_blank",
+    },
+  });
+
+const createReservationURL = (branchCode: string) =>
+  `${reservation.website}/lr/${branchCode}/ld/${branchCode}/fr/${reservationInitDay}/fd/${reservationEndDay}/hr/${reservationInitHour}/hd/${reservationEndHour}`;
 // https://reservatuauto.com/lr/AAPEI/ld/AAPEI/fr/2025-11-08/fd/2025-11-15/hr/12:00/hd/12:00
 
-const items: SelectMenuItem[] = branches.map((branch) => ({
-    label: branch.name,
-    value: branch.code,
-    onSelect: async () => await navigateTo(createReservationURL(branch.code), { 
-        external: true, open: {
-            target: '_blank',
-        } 
-    })
-}))
 </script>
-
-<style scoped>
-
-</style>

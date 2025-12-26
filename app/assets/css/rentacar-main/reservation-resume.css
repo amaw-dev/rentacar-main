@@ -1,0 +1,217 @@
+.reservation-resume {
+    @apply scheme-dark;
+
+    .carrusel-container {
+        @apply relative mb-3;
+
+        .nombre-modelo {
+            @apply absolute top-5 left-5 bg-black/50 p-2 rounded-lg text-white;
+        }
+    }
+    
+    .reservation-data {
+        @apply flex flex-col;
+
+        .category-name {
+            @apply font-bold mb-0;
+        }
+    
+        .category-description, .category-picoyplaca {
+            @apply lowercase leading-tight;
+        }
+    
+        .pickup-info {
+    
+            @apply my-2 text-sm;
+    
+            .pickup-location-label {
+                @apply text-muted text-start;
+            }
+
+            .pickup-location-text {
+                @apply font-bold text-start;
+            }
+    
+            .pickup-date {
+                @apply flex flex-row gap-1;
+    
+                .pickup-date-label {
+                    @apply text-muted text-start;
+                }
+    
+                .pickup-date-text {
+                    @apply font-bold;
+                }
+            }
+    
+            .pickup-hour {
+                @apply flex flex-row gap-1;
+    
+                .pickup-hour-label {
+                    @apply text-muted text-start;
+                }
+    
+                .pickup-hour-text {
+                    @apply font-bold;
+                }
+            }
+        }
+    
+        .return-info {
+            @apply mb-3 text-sm;
+    
+            .return-location {
+                .return-location-label {
+                    @apply text-muted text-start;
+                }
+    
+                .return-location-text {
+                    @apply font-bold text-start;
+                }
+            }
+    
+            .return-date {
+                @apply flex flex-row gap-1;
+    
+                .return-date-label {
+                    @apply text-muted text-start;
+                }
+    
+                .return-date-text {
+                    @apply font-bold;
+                }
+            }
+    
+            .return-hour {
+                @apply flex flex-row gap-1;
+    
+                .return-hour-label {
+                    @apply text-muted text-start;
+                }
+    
+                .return-hour-text {
+                    @apply font-bold text-start;
+                }
+            }
+        }
+
+        .renting {
+            @apply text-sm;
+
+            .renting-label {
+                @apply font-bold;
+            }
+
+            .renting-item {
+                @apply text-muted
+            }
+        }
+    }
+
+
+    .prices {
+        @apply flex flex-col flex-1 pl-0 text-sm;
+
+        .discount {
+            @apply text-end text-gray-500 text-xs;
+
+            div:first-child {
+                @apply flex items-center justify-end;
+
+                span:first-child {
+                    @apply text-xs;
+                }
+            }
+        }
+
+        .discount-percentage {
+            @apply text-end;
+
+            span {
+                @apply light:bg-yellow-500 dark:bg-green-500 font-medium rounded-none px-1 py-0.5 text-xs;
+            }
+        }
+
+        .daily-price {
+            @apply text-end font-bold;
+
+            div:first-child {
+                @apply flex items-center justify-end;
+
+                span:first-child {
+                    @apply text-xs;
+                }
+            }
+        }
+
+        .extra-hours {
+            .extra-hours-label {
+                @apply text-end mt-3;
+            }
+            .extra-hours-text {
+                @apply text-end flex items-center justify-end -mr-[0.75]; /* TODO revisar si esta bien esto */
+
+                span {
+                    @apply text-xs;
+                }
+            }
+        }
+        
+        .return-fee {
+            .return-fee-label {
+                @apply text-end;
+            }
+            .return-fee-text {
+                @apply text-end flex items-center justify-end -mr-[0.75]; /* TODO revisar si esta bien esto */
+
+                span:first-child {
+                    @apply text-xs;
+                }
+            }
+        }
+
+        .total-price {
+            .total-price-label {
+                @apply text-end font-bold mt-3;
+            }
+
+            .total-price-text {
+                @apply text-end font-bold text-2xl mb-0;
+
+                span:first-child {
+                    @apply text-lg;
+                }
+            }
+        }
+
+        .not-included {
+            @apply text-end text-[xx-small] mb-2;
+        }
+
+        .included {
+            @apply text-end;
+            
+            .included-label {
+                @apply text-end mt-4 font-bold;
+            }
+
+            .included-text {
+                @apply ps-3 leading-tight text-end list-none;
+
+                .mileage, .unlimited-km, .coverage  {
+                   @apply text-current text-end;     
+                }
+                
+                
+            }
+        }
+
+        .extra-services {
+            @apply text-end mt-2;
+
+            .extra-services-label {
+                @apply font-bold;
+            }
+        }
+    }
+}

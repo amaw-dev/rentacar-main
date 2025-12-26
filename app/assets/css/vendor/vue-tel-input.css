@@ -1,0 +1,16 @@
+@import "vue-tel-input/vue-tel-input.css";
+
+.vti__dropdown-list {
+  z-index: 999;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+  list-style: none;
+  max-height: 200px;
+  overflow-y: scroll;
+  position: absolute;
+  left: -1px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  width: 390px;
+}
