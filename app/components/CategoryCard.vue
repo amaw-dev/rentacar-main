@@ -665,6 +665,12 @@ const {
 
 const { modelos, grupo } = props.vehicleCategory;
 
+/** Product Schema for SEO */
+useProductSchema({
+  category: props.category,
+  vehicleCategory: props.vehicleCategory
+});
+
 /** functions */
 function goNextStep() {
   haveTotalInsurance.value = withTotalCoverage.value;

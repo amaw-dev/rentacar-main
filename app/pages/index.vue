@@ -357,6 +357,9 @@ import {
 
 const { faqs, franchise } = useAppConfig();
 
+useBaseSEO();
+useHomeBreadcrumb();
+
 useSeoMeta({
   ogType: "website",
   ogTitle: franchise.title,

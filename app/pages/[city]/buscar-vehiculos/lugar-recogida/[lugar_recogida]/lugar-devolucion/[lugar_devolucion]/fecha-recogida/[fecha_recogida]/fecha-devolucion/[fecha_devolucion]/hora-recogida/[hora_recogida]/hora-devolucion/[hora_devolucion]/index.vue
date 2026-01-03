@@ -4,13 +4,13 @@
 
 <script setup lang="ts">
 
-import { useSearchByRouteParams, useCityPageSEO } from '#imports';
+import { useSearchByRouteParams, useSearchPageSEO } from '#imports';
 
 definePageMeta({
   middleware: ['validate-search-params', 'validate-city-params']
 });
 
-const { city } = useCityPageSEO();
+const { city } = useSearchPageSEO();
 
 useSearchByRouteParams()
 

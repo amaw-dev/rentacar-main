@@ -1,4 +1,4 @@
-export const useCityPageSEO = () => {
+export const useSearchPageSEO = () => {
     useBaseSEO()
 
     const { getCityById } = useData();
@@ -9,21 +9,20 @@ export const useCityPageSEO = () => {
     const city = cityParam ? getCityById(cityParam as string) : undefined
 
     useHead({
-        title: `${franchise.title} | ${city?.name}`,
+        title: `Buscar Vehículos en ${city?.name} | ${franchise.title}`,
         htmlAttrs: {
             lang: "es",
         },
         link: [
             {
                 rel: 'canonical',
-                href: `${franchise.website}/${cityParam}`
+                href: `${franchise.website}/${cityParam}/buscar-vehiculos`
             }
         ]
     })
 
     if (city) {
-        useCityBreadcrumbs(city.name, cityParam as string)
-        useLocalBusiness(cityParam as string, city.name)
+        useSearchBreadcrumbs(city.name, cityParam as string)
     }
 
     return {
