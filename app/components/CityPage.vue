@@ -6,11 +6,7 @@
         <div
           class="flex flex-row space-x-2 text-white text-center justify-center"
         >
-          <StarIcon cls="size-5" />
-          <StarIcon cls="size-5" />
-          <StarIcon cls="size-5" />
-          <StarIcon cls="size-5" />
-          <StarIcon cls="size-5" />
+          <StarIcon v-for="i in [1,2,3,4,5]" cls="size-5" />
           <span>4.9 reviews</span>
         </div>
       </template>
@@ -115,11 +111,7 @@
             </template>
             <template #footer>
               <div class="flex flex-row space-x-2">
-                <StarIcon cls="text-yellow-500 size-6" />
-                <StarIcon cls="text-yellow-500 size-6" />
-                <StarIcon cls="text-yellow-500 size-6" />
-                <StarIcon cls="text-yellow-500 size-6" />
-                <StarIcon cls="text-yellow-500 size-6" />
+                <StarIcon v-for="i in [1,2,3,4,5]" cls="text-yellow-500 size-6" />
               </div>
             </template>
           </UPageCard>
