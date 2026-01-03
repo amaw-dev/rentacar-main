@@ -45,7 +45,7 @@ export default function useSearch() {
   
   const firstSearch = ref<boolean>(true);
   const stopWatching = ref<boolean>(false);
-  const animateSearchButton = ref<boolean>(false);
+  const animateSearchButton = ref<boolean>(true);
   // noAvailableCategories.value = false;
   
   // functions
@@ -123,6 +123,13 @@ export default function useSearch() {
   ], () => {
     categoriesAvailabilityData.value=null;
     animateSearchButton.value = true;
+  });
+
+  // Desactivar animación cuando los vehículos están desplegados
+  watch(categoriesAvailabilityData, (newValue) => {
+    if (newValue !== null) {
+      animateSearchButton.value = false;
+    }
   });
 
   const defaultLugarRecogida: BranchData | undefined = searchBranchByCity(city) ?? searchBranchByCode(lugarRecogida.value ?? '') ?? searchBranchByCity('bogota');

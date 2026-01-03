@@ -1,14 +1,22 @@
 <template>
-  <div class="min-h-screen bg-gradient-to-r from-blue-950 via-blue-800 to-blue-950 font-sans text-gray-800">
+  <div class="min-h-screen bg-gradient-to-b from-[#000073] via-blue-800 to-blue-900 font-sans text-gray-800">
     <!-- Header -->
     <UHeader
-      class="bg-gradient-to-r from-blue-950 via-blue-700 to-blue-950 shadow-md z-50 py-6 md:py-12 px-6 border-none relative"
+      class="bg-[#000073] z-50 py-6 md:py-12 px-6 border-none relative"
       mode="slideover"
+      :ui="{
+        button: 'text-white hover:text-white',
+        slideover: 'bg-[#000073]'
+      }"
      >
       <template #left>
-        <ImagesCol100 />
-        <ImagesCol224 />
-        <NuxtLink to="/" aria-label="alquilatucarro">
+        <div class="hidden md:block">
+          <ImagesCol100 />
+        </div>
+        <div class="hidden md:block">
+          <ImagesCol224 />
+        </div>
+        <NuxtLink to="/" aria-label="alquilatucarro" class="absolute left-1/2 -translate-x-1/2 md:relative md:left-0 md:translate-x-0">
           <Logo />
         </NuxtLink>
       </template>
