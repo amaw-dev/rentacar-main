@@ -1,0 +1,10 @@
+@import "tailwindcss";
+@import "@nuxt/ui";
+
+/* rentacar-main */
+@import './rentacar-main/base.css';
+@import './rentacar-main/category.css';
+@import './rentacar-main/reservation-resume.css';
+
+/* vendor */
+@import "./vendor/vue-tel-input.css";

@@ -1,0 +1,60 @@
+.mxs {
+    @apply text-xs;
+}
+
+/* Override highlighted text color to white */
+.text-highlighted {
+    color: white !important;
+    --color-highlighted: white !important;
+}
+
+:root {
+    --ui-text-highlighted: white;
+}
+
+.search-button {
+    @apply w-full bg-red-600 hover:bg-red-700 text-white font-bold justify-center;
+}
+
+/* Glow pulse animation for active search button */
+@keyframes glow-pulse {
+    0%, 100% {
+        box-shadow: 0 0 8px rgba(220, 38, 38, 0.6),
+                    0 0 16px rgba(220, 38, 38, 0.4),
+                    0 0 24px rgba(220, 38, 38, 0.2);
+    }
+    50% {
+        box-shadow: 0 0 16px rgba(220, 38, 38, 0.9),
+                    0 0 32px rgba(220, 38, 38, 0.7),
+                    0 0 48px rgba(220, 38, 38, 0.4);
+    }
+}
+
+.search-button-glow {
+    animation: glow-pulse 1.5s ease-in-out infinite;
+}
+
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+    .search-button-glow {
+        animation: none;
+        box-shadow: 0 0 16px rgba(220, 38, 38, 0.7),
+                    0 0 32px rgba(220, 38, 38, 0.5);
+    }
+}
+
+/* UHeader hamburger menu button - force white color */
+header button.lg\:hidden {
+    color: white !important;
+}
+header button.lg\:hidden:hover {
+    color: white !important;
+}
+
+/* UHeader slideover panel - dark background for white text visibility */
+[role="dialog"].bg-default {
+    background-color: #000073 !important;
+}
+[role="dialog"] button {
+    color: white !important;
+}
