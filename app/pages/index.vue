@@ -425,6 +425,9 @@ const testimonios: Testimonial[] = franchise.testimonials;
 // Add AggregateRating schema for testimonials (shows stars in Google SERPs)
 useHomeAggregateRating()
 
+// Add VideoObject schema for promotional video (enables video rich snippets)
+usePromoVideoSchema()
+
 const testimoniosPageSectionUIConfig = {
   title: "text-black",
 };
