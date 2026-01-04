@@ -428,6 +428,9 @@ useHomeAggregateRating()
 // Add VideoObject schema for promotional video (enables video rich snippets)
 usePromoVideoSchema()
 
+// Add Promotion schema for 60% discount offer (promotional rich snippets)
+useEarlyBookingPromotion()
+
 const testimoniosPageSectionUIConfig = {
   title: "text-black",
 };
