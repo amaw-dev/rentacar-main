@@ -15,13 +15,13 @@
         </div>
       </template>
       <template #title>
-        <div class="text-white text-4xl text-center">
-          <div class="">
-            <div class="font-bold uppercase">ALQUILER</div>
-            <div>DE CARROS EN</div>
-          </div>
-          <div class="italic">COLOMBIA</div>
-        </div>
+        <h1 class="text-white text-4xl text-center">
+          <span class="block">
+            <span class="block font-bold uppercase">ALQUILER</span>
+            <span class="block">DE CARROS EN</span>
+          </span>
+          <span class="block italic">COLOMBIA</span>
+        </h1>
       </template>
       <template #body>
         <div class="text-center justify-items-center">
@@ -51,10 +51,10 @@
       class="bg-white text-black"
     >
       <template #title>
-        <div class="text-center">
-          <div class="text-red-700">Hasta 60% de Descuento</div>
-          <div class="text-black text-4xl">Reserva Ahora, Paga Después</div>
-        </div>
+        <h2 class="text-center">
+          <span class="block text-red-700">Hasta 60% de Descuento</span>
+          <span class="block text-black text-4xl">Reserva Ahora, Paga Después</span>
+        </h2>
       </template>
       <template #description>
         <div class="text-black text-center">
@@ -87,12 +87,10 @@
       class="bg-gray-200 text-black"
     >
       <template #title>
-        <div class="text-center lg:text-left">
-          <div class="space-x-2">
-            <span class="text-red-700">Requisitos</span>
-            <span class="text-black">para tu alquiler</span>
-          </div>
-        </div>
+        <h2 class="text-center lg:text-left space-x-2">
+          <span class="text-red-700">Requisitos</span>
+          <span class="text-black">para tu alquiler</span>
+        </h2>
       </template>
       <template #description>
         <div class="text-black justify-items-center">
@@ -168,12 +166,10 @@
       class="bg-white text-black"
     >
       <template #title>
-        <div class="text-center">
-          <div class="space-x-2">
-            <span class="text-red-700">Tipos de Vehículos</span>
-            <span class="text-black">ideales para tu necesidad</span>
-          </div>
-        </div>
+        <h2 class="text-center space-x-2">
+          <span class="text-red-700">Tipos de Vehículos</span>
+          <span class="text-black">ideales para tu necesidad</span>
+        </h2>
       </template>
       <template #description>
         <div class="text-black justify-items-center">
@@ -279,10 +275,14 @@
       id="testimonios"
       orientation="vertical"
       class="bg-white text-black"
-      title="Lo que dicen nuestros clientes"
-      description="Descubre por qué somos la opción preferida para alquilar carros en Colombia. Nuestros clientes destacan nuestra atención, precios competitivos y la facilidad para explorar."
       :ui="testimoniosPageSectionUIConfig"
     >
+      <template #title>
+        <h2 class="text-black">Lo que dicen nuestros clientes</h2>
+      </template>
+      <template #description>
+        <p class="text-black">Descubre por qué somos la opción preferida para alquilar carros en Colombia. Nuestros clientes destacan nuestra atención, precios competitivos y la facilidad para explorar.</p>
+      </template>
       <template #default>
         <UPageGrid>
           <UPageCard
@@ -421,6 +421,15 @@ const categoriasPageCardUIConfig = {
 };
 
 const testimonios: Testimonial[] = franchise.testimonials;
+
+// Add AggregateRating schema for testimonials (shows stars in Google SERPs)
+useHomeAggregateRating()
+
+// Add VideoObject schema for promotional video (enables video rich snippets)
+usePromoVideoSchema()
+
+// Add Promotion schema for 60% discount offer (promotional rich snippets)
+useEarlyBookingPromotion()
 
 const testimoniosPageSectionUIConfig = {
   title: "text-black",

@@ -8,6 +8,10 @@ export const useCityPageSEO = () => {
     const cityParam = route.params.city;
     const city = cityParam ? getCityById(cityParam as string) : undefined
 
+    const cityDescription = city
+        ? `Alquiler de carros en ${city.name} desde $32 USD/día. Reserva online sin anticipos, recoge en aeropuerto o centro. Sedanes, compactos y camionetas disponibles.`
+        : franchise.description;
+
     useHead({
         title: `${franchise.title} | ${city?.name}`,
         htmlAttrs: {
@@ -19,6 +23,12 @@ export const useCityPageSEO = () => {
                 href: `${franchise.website}/${cityParam}`
             }
         ]
+    })
+
+    useSeoMeta({
+        description: cityDescription,
+        ogDescription: cityDescription,
+        twitterDescription: cityDescription,
     })
 
     if (city) {

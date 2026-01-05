@@ -7,10 +7,8 @@
       srcset="
         https://firebasestorage.googleapis.com/v0/b/rentacar-403321.firebasestorage.app/o/rentacar-main%2Falquilatucarro%2Fimg%2Fvideo.webp?alt=media&token=424d037e-4aab-47ef-af6f-0fa0caa24e7f
       "
-      alt="video"
       width="2000"
       height="1620"
-      loading="lazy"
     />
     <!-- video avif movil -->
     <source
@@ -19,10 +17,8 @@
       srcset="
         https://firebasestorage.googleapis.com/v0/b/rentacar-403321.firebasestorage.app/o/rentacar-main%2Falquilatucarro%2Fimg%2Fvideo-movil.avif?alt=media&token=e5cb0fb6-d976-4218-9620-8f2873e2d053
       "
-      alt="video"
       width="333"
       height="270"
-      loading="lazy"
     />
     <!-- video webp -->
     <source
@@ -31,10 +27,8 @@
       srcset="
         https://firebasestorage.googleapis.com/v0/b/rentacar-403321.firebasestorage.app/o/rentacar-main%2Falquilatucarro%2Fimg%2Fvideo.webp?alt=media&token=424d037e-4aab-47ef-af6f-0fa0caa24e7f
       "
-      alt="video"
       width="2000"
       height="1620"
-      loading="lazy"
     />
     <!-- video webp movil -->
     <source
@@ -43,10 +37,8 @@
       srcset="
         https://firebasestorage.googleapis.com/v0/b/rentacar-403321.firebasestorage.app/o/rentacar-main%2Falquilatucarro%2Fimg%2Fvideo-movil.webp?alt=media&token=d43a8380-d542-49b3-beab-e512053d40ac
       "
-      alt="video"
       width="333"
       height="270"
-      loading="lazy"
     />
     <!-- video png -->
     <source
@@ -55,10 +47,8 @@
       srcset="
         https://firebasestorage.googleapis.com/v0/b/rentacar-403321.firebasestorage.app/o/rentacar-main%2Falquilatucarro%2Fimg%2Fvideo.png?alt=media&token=a0fa2d81-0563-4109-954e-2707ad56ae22
       "
-      alt="video"
       width="2000"
       height="1620"
-      loading="lazy"
     />
     <!-- video movil png -->
     <source
@@ -67,19 +57,17 @@
       srcset="
         https://firebasestorage.googleapis.com/v0/b/rentacar-403321.firebasestorage.app/o/rentacar-main%2Falquilatucarro%2Fimg%2Fvideo-movil.png?alt=media&token=4af04e5d-6ae3-43c2-8d24-07acf5397562
       "
-      alt="video"
       width="333"
       height="270"
-      loading="lazy"
     />
     <!-- video defecto -->
     <img
       v-youtube-lazy="videoID"
       src="https://firebasestorage.googleapis.com/v0/b/rentacar-403321.firebasestorage.app/o/rentacar-main%2Falquilatucarro%2Fimg%2Fvideo.png?alt=media&token=a0fa2d81-0563-4109-954e-2707ad56ae22"
-      alt="video"
+      alt="Video promocional de descuentos en alquiler de carros hasta 60% de descuento"
       width="2000"
       height="1620"
-      loading="eager"
+      loading="lazy"
       class="mx-auto"
     />
   </picture>

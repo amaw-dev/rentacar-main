@@ -11,18 +11,18 @@
         </div>
       </template>
       <template #title>
-        <div class="text-white text-center">
-          <div class="text-2xl md:text-3xl">
-            <div class="font-bold uppercase">ALQUILER</div>
-            <div>DE CARROS EN</div>
-          </div>
-          <div class="flex flex-row justify-center items-center gap-2 text-4xl md:text-5xl font-bold uppercase">
+        <h1 class="text-white text-center uppercase">
+          <span class="block text-2xl md:text-3xl">
+            <span class="block font-bold">ALQUILER</span>
+            <span class="block">DE CARROS EN</span>
+          </span>
+          <span class="flex flex-row justify-center items-center gap-2 text-4xl md:text-5xl font-bold">
             <span class="size-8 md:size-10" aria-hidden="true"></span>
             {{ city?.name }}
             <LocationIcon cls="text-red-600 size-8 md:size-10" />
-          </div>
-          <div class="italic text-2xl md:text-3xl font-medium tracking-wide">Colombia</div>
-        </div>
+          </span>
+          <span class="block italic text-2xl md:text-3xl font-medium tracking-wide">Colombia</span>
+        </h1>
       </template>
       <template #body>
         <div class="text-center justify-items-center -mt-4 -mb-4">
@@ -53,7 +53,7 @@
     <UPageSection id="descripcion" class="bg-white text-black">
       <UPageGrid>
         <UPageCard variant="ghost">
-          <LazyImagesCiudadesChica />
+          <LazyImagesCiudadesChica :city-name="city?.name" />
         </UPageCard>
         <UPageCard variant="ghost">
           <div class="flex flex-col gap-2 text-center font-extrabold">
@@ -89,10 +89,14 @@
       id="testimonios"
       orientation="vertical"
       class="bg-white text-black"
-      title="Lo que dicen nuestros clientes"
-      :description="`Descubre por qué somos la opción preferida para alquilar carros en ${city?.name}. Nuestros clientes destacan nuestra atención, precios competitivos y la facilidad para explorar.`"
       :ui="testimoniosPageSectionUIConfig"
     >
+      <template #title>
+        <h2 class="text-black">Lo que dicen nuestros clientes en {{ city?.name }}</h2>
+      </template>
+      <template #description>
+        <p class="text-black">Descubre por qué somos la opción preferida para alquilar carros en {{ city?.name }}. Nuestros clientes destacan nuestra atención, precios competitivos y la facilidad para explorar.</p>
+      </template>
       <template #default>
         <UPageGrid>
           <UPageCard
@@ -153,6 +157,11 @@ const props = defineProps<{
 }>();
 
 const testimonios: Testimonial[] | undefined = props.city?.testimonials;
+
+// Add AggregateRating schema for city-specific testimonials (shows stars in Google SERPs)
+if (props.city?.name && testimonios) {
+  useCityAggregateRating(props.city.name, testimonios)
+}
 
 const testimoniosPageSectionUIConfig = {
   title: "text-black",
