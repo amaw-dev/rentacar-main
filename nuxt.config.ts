@@ -64,6 +64,9 @@ export default defineNuxtConfig({
       }
     },
     routeRules: {
+      // Redirecciones 301 para URLs antiguas que dan 404
+      '/gana': { redirect: { to: '/', statusCode: 301 } },
+      '/gana/**': { redirect: { to: '/', statusCode: 301 } },
       '/_nuxt/**': {
         headers: {
           'Cache-Control': 'public, max-age=31536000, inmutable'
@@ -106,10 +109,12 @@ export default defineNuxtConfig({
 
   site: {
     name: "Alquilatucarro",
+    url: "https://alquilatucarro.com",
   },
 
   sitemap: {
-    sources: [
+    // URLs estáticas - las rutas dinámicas [city] requieren especificación explícita
+    urls: [
       '/',
       '/armenia',
       '/barranquilla',
@@ -132,6 +137,8 @@ export default defineNuxtConfig({
       '/soledad',
       '/cancun',
     ],
+    // Excluir páginas internas del sitemap
+    exclude: ['/blog', '/pendiente', '/sindisponibilidad', '/reservado/**', '/*/buscar-vehiculos/**'],
   },
 
   robots: {

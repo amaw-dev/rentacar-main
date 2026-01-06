@@ -14,7 +14,18 @@
     "clean": "rm -rf .nuxt .output node_modules/.cache && echo cleaned",
     "firebase:preview": "sh -c 'pnpm run build && firebase hosting:channel:deploy ${1:-preview} --expires ${2:-10m}' --",
     "firebase:emulate": "pnpm run build && firebase emulators:start",
-    "firebase:deploy": "pnpm run build && firebase deploy"
+    "firebase:deploy": "pnpm run build && firebase deploy",
+    "scrape:google-docs": "npx tsx scripts/docs-scraper/run.ts",
+    "scrape:google-docs:resume": "npx tsx scripts/docs-scraper/run.ts --resume",
+    "scrape:google-docs:dry-run": "npx tsx scripts/docs-scraper/run.ts --dry-run",
+    "scrape:nngroup": "npx tsx scripts/nngroup-scraper/run.ts",
+    "scrape:nngroup:resume": "npx tsx scripts/nngroup-scraper/run.ts --resume",
+    "scrape:nngroup:dry-run": "npx tsx scripts/nngroup-scraper/run.ts --dry-run",
+    "scrape:ahrefs": "npx tsx scripts/ahrefs-scraper/run.ts",
+    "scrape:ahrefs:resume": "npx tsx scripts/ahrefs-scraper/run.ts --resume",
+    "scrape:ahrefs:dry-run": "npx tsx scripts/ahrefs-scraper/run.ts --dry-run",
+    "scrape:backlinko": "npx tsx scripts/backlinko-scraper/run.ts",
+    "scrape:seo-gaps": "npx tsx scripts/seo-gaps-scraper/download-seo-gaps.ts"
   },
   "dependencies": {
     "@iconify-json/lucide": "^1.2.80",
@@ -65,6 +76,10 @@
     ]
   },
   "devDependencies": {
-    "cross-env": "^10.1.0"
+    "cross-env": "^10.1.0",
+    "playwright": "^1.49.0",
+    "turndown": "^7.2.0",
+    "@types/turndown": "^5.0.5",
+    "tsx": "^4.19.0"
   }
 }

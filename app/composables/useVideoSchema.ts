@@ -21,7 +21,7 @@ export const useVideoSchema = (options: VideoSchemaOptions) => {
         description,
         videoId,
         thumbnailUrl,
-        uploadDate = '2024-01-15', // Default upload date
+        uploadDate = '2024-01-15T00:00:00-05:00', // Default upload date (ISO 8601 with timezone)
         duration = 'PT1M' // Default 1 minute
     } = options
 
@@ -68,7 +68,7 @@ export const usePromoVideoSchema = () => {
         description: 'Obtén hasta un 60% de descuento al reservar con anticipación. Aplica para todas las categorías: compactos, sedanes y camionetas. Reserva sin pago anticipado y asegura los mejores precios por planificar tu viaje con tiempo.',
         videoId: '_MVNhinVYHE',
         thumbnailUrl: 'https://firebasestorage.googleapis.com/v0/b/rentacar-403321.firebasestorage.app/o/rentacar-main%2Falquilatucarro%2Fimg%2Fvideo.webp?alt=media&token=424d037e-4aab-47ef-af6f-0fa0caa24e7f',
-        uploadDate: '2024-01-15',
+        uploadDate: '2024-01-15T00:00:00-05:00',
         duration: 'PT1M'
     })
 }

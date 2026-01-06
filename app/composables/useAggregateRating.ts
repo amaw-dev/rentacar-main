@@ -7,6 +7,7 @@ interface AggregateRatingOptions {
         type: 'Organization' | 'LocalBusiness' | 'AutoRental'
         name: string
         url?: string
+        address?: string // Required for LocalBusiness/AutoRental types
     }
     cityName?: string
 }
@@ -26,8 +27,10 @@ export const useAggregateRating = (options: AggregateRatingOptions) => {
     const ratingValue = 4.9 // Based on displayed rating in UI
 
     // Create the organization being reviewed
+    // Use 'Organization' type for aggregate ratings (doesn't require address)
+    // LocalBusiness/AutoRental types require address field
     const reviewedItem = itemReviewed || {
-        type: 'AutoRental' as const,
+        type: 'Organization' as const,
         name: cityName
             ? `${franchise.shortname} ${cityName}`
             : franchise.shortname,
@@ -94,7 +97,7 @@ export const useHomeAggregateRating = () => {
     return useAggregateRating({
         testimonials: testimonials as Testimonial[],
         itemReviewed: {
-            type: 'AutoRental',
+            type: 'Organization',
             name: franchise.shortname,
             url: franchise.website
         }
@@ -112,7 +115,7 @@ export const useCityAggregateRating = (cityName: string, testimonials: Testimoni
     return useAggregateRating({
         testimonials,
         itemReviewed: {
-            type: 'AutoRental',
+            type: 'Organization',
             name: `${franchise.shortname} ${cityName}`,
             url: `${franchise.website}/${citySlug}`
         },

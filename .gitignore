@@ -29,3 +29,19 @@ logs
 # robots
 _robots.txt
 robots.txt
+
+# Local/personal files (not part of the project)
+.claude/
+.specify/
+advancedrentalcar/
+docs/
+scripts/
+*.zip
+nul
+CLAUDE.md
+GITIGNORE-RULES.txt
+INSTALL-WINDOWS.txt
+nngroup-checkpoint.json
+cleanup-dev-browser.ps1
+alquicarros_gsc/
+alquilame_gsc/
