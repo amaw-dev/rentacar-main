@@ -437,11 +437,12 @@ const testimoniosPageSectionUIConfig = {
 
 const testimonioPageCardUIConfig = {
   root: "border-1 border-gray-100 rounded-lg bg-gray-50 shadow",
-  description: "mt-4",
+  description: "mt-4 text-gray-700",
 };
 
 const testimonioUserUIConfig = {
   name: "text-black",
+  description: "text-gray-600",
 };
 
 </script>
