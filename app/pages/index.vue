@@ -278,7 +278,7 @@
       :ui="testimoniosPageSectionUIConfig"
     >
       <template #title>
-        <h2 class="text-black">Lo que dicen nuestros clientes</h2>
+        <h2 class="text-2xl md:text-3xl text-black">Lo que dicen nuestros clientes</h2>
       </template>
       <template #description>
         <p class="text-black">Descubre por qué somos la opción preferida para alquilar carros en Colombia. Nuestros clientes destacan nuestra atención, precios competitivos y la facilidad para explorar.</p>
@@ -316,7 +316,7 @@
     <!-- FAQ Section -->
     <UPageSection id="faqs" class="faq px-6 text-white">
       <UContainer>
-        <h2 class="text-3xl font-bold text-center mb-8">
+        <h2 class="text-2xl md:text-3xl font-bold text-center mb-8">
           Preguntas Frecuentes
         </h2>
         <p class="text-lg mb-6">
