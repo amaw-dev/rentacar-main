@@ -10,10 +10,17 @@
       }"
      >
       <template #left>
-        <!-- Bandera de Colombia SVG -->
-        <IconsColombiaFlag cls="absolute top-0 left-0 h-12 md:h-24 w-auto -rotate-45 -translate-x-1/4 -translate-y-1/4 md:rotate-0 md:translate-x-0 md:translate-y-0" />
-        <NuxtLink to="/" aria-label="alquilatucarro" class="absolute left-1/2 -translate-x-1/2 md:relative md:left-0 md:translate-x-0">
-          <Logo />
+        <!-- Móvil: Bandera diagonal en esquina + Logo centrado -->
+        <div class="md:hidden">
+          <IconsColombiaFlag cls="absolute top-0 left-0 h-14 w-auto -rotate-45 -translate-x-[40%] -translate-y-[40%]" />
+          <NuxtLink to="/" aria-label="alquilatucarro" class="absolute left-1/2 -translate-x-1/2">
+            <Logo cls="h-8 w-auto" />
+          </NuxtLink>
+        </div>
+        <!-- Desktop: Bandera + Logo juntos como unidad -->
+        <NuxtLink to="/" aria-label="alquilatucarro" class="hidden md:flex items-center gap-3">
+          <IconsColombiaFlag cls="h-6 w-auto" />
+          <Logo cls="h-10 w-auto" />
         </NuxtLink>
       </template>
       <template #body>
