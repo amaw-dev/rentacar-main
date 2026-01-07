@@ -19,7 +19,7 @@
                     </select>
                 </template>
                 <template v-else>
-                    <u-select-menu 
+                    <u-select-menu
                         v-model="lugarRecogida"
                         id="pickup-location"
                         label-key="name"
@@ -31,6 +31,12 @@
                         :search-input="{
                             placeholder: 'Buscar sucursal',
                             autofocus: false,
+                        }"
+                        :ui="{
+                            content: 'bg-white',
+                            input: 'bg-white text-gray-900 placeholder:text-gray-500',
+                            item: 'text-gray-900',
+                            itemLeadingIcon: 'text-gray-500',
                         }"
                         :autofocus="false"
                     />
@@ -54,18 +60,24 @@
                     </select>
                 </template>
                 <template v-else>
-                    <u-select-menu 
+                    <u-select-menu
                         v-model="lugarDevolucion"
                         id="return-location"
                         data-testid="return-location-test"
                         label-key="name"
                         value-key="code"
-                        variant="ghost" 
-                        class="w-full" 
+                        variant="ghost"
+                        class="w-full"
                         :items="sortedBranches"
                         :search-input="{
                             placeholder: 'Buscar sucursal',
                             autofocus: false,
+                        }"
+                        :ui="{
+                            content: 'bg-white',
+                            input: 'bg-white text-gray-900 placeholder:text-gray-500',
+                            item: 'text-gray-900',
+                            itemLeadingIcon: 'text-gray-500',
                         }"
                         :autofocus="false"
                     />
@@ -189,13 +201,17 @@
                 </template>
                 <template v-else>
                     <u-select-menu
-                        v-model="horaRecogida" 
+                        v-model="horaRecogida"
                         value-key="value"
                         label-key="label"
                         class="w-full"
-                        variant="ghost" 
+                        variant="ghost"
                         :autofocus="false"
                         :items="pickupHourOptions"
+                        :ui="{
+                            content: 'bg-white',
+                            item: 'text-gray-900',
+                        }"
                     />
                 </template>
             </u-form-field>
@@ -220,13 +236,17 @@
                     <u-select-menu
                         id="return-hour"
                         name="horaDevolucion"
-                        v-model="horaDevolucion" 
+                        v-model="horaDevolucion"
                         value-key="value"
                         label-key="label"
-                        variant="ghost" 
+                        variant="ghost"
                         class="w-full"
                         :autofocus="false"
                         :items="returnHourOptions"
+                        :ui="{
+                            content: 'bg-white',
+                            item: 'text-gray-900',
+                        }"
                     />
                 </template>
             </u-form-field>
