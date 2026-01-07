@@ -20,7 +20,7 @@
             <span class="block font-bold uppercase">ALQUILER</span>
             <span class="block">DE CARROS EN</span>
           </span>
-          <span class="block italic colombia-sweep">COLOMBIA</span>
+          <span class="block font-bold tracking-wide colombia-sweep">COLOMBIA</span>
         </h1>
       </template>
       <template #body>
