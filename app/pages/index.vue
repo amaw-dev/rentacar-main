@@ -333,10 +333,10 @@
         </p>
         <UAccordion :items="faqs">
           <template #default="{ item }">
-            <div class="text-2xl" v-text="item.label"></div>
+            <div class="text-base font-medium" v-text="item.label"></div>
           </template>
           <template #content="{ item }">
-            <div class="text-xl py-3" v-text="item.content"></div>
+            <div class="text-base py-3" v-text="item.content"></div>
           </template>
         </UAccordion>
       </UContainer>

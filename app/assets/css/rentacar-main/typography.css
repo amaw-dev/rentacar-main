@@ -6,6 +6,28 @@
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
+   Typography Scale Reference (Tailwind classes)
+   --------------------------------------------------------------------------
+
+   | Role              | Desktop      | Mobile       | Tailwind Class      |
+   |-------------------|--------------|--------------|---------------------|
+   | Hero Title        | 72px (5xl+)  | 36px (4xl)   | text-4xl lg:text-7xl|
+   | Section Title     | 30px (3xl)   | 24px (2xl)   | text-2xl md:text-3xl|
+   | Card Title        | 24px (2xl)   | 20px (xl)    | text-xl md:text-2xl |
+   | Subsection        | 20px (xl)    | 18px (lg)    | text-lg md:text-xl  |
+   | Body Large        | 18px (lg)    | 16px (base)  | text-base md:text-lg|
+   | Body Base         | 16px (base)  | 14px (sm)    | text-sm md:text-base|
+   | Body Small        | 14px (sm)    | 12px (xs)    | text-xs md:text-sm  |
+   | Caption           | 12px (xs)    | 12px (xs)    | text-xs             |
+
+   IMPORTANT: Use these sizes consistently across components.
+   - Accordion labels: text-base font-medium
+   - Accordion content: text-base
+   - Testimonial quotes: text-base (gray-700)
+   - User descriptions: text-sm (gray-600)
+   -------------------------------------------------------------------------- */
+
+/* --------------------------------------------------------------------------
    CSS Custom Properties (Variables)
    -------------------------------------------------------------------------- */
 :root {
