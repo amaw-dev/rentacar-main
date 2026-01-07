@@ -167,11 +167,12 @@ header button.lg\:hidden:hover {
     color: #1f2937 !important;
 }
 
-/* Fix dropdown/listbox hover state - text should remain dark on highlighted items */
+/* Fix dropdown/listbox - force white background and dark text for contrast */
 /* Override the highlighted text variable for dropdowns/popovers */
 [data-radix-popper-content-wrapper],
 [role="listbox"],
 [role="menu"] {
+    background-color: white !important;
     --ui-text-highlighted: #1f2937 !important;
     --color-highlighted: #1f2937 !important;
 }
@@ -186,6 +187,17 @@ header button.lg\:hidden:hover {
 [role="menu"] [data-highlighted],
 [role="menu"] .text-highlighted {
     color: #1f2937 !important;
+}
+
+/* Lighter hover background for dropdown options with smooth transition */
+[role="listbox"] [role="option"],
+[role="menu"] [role="menuitem"] {
+    transition: background-color 150ms ease-out !important;
+}
+
+[role="listbox"] [data-highlighted],
+[role="menu"] [data-highlighted] {
+    background-color: #f3f4f6 !important;
 }
 
 /* Global fix for all highlighted text outside header - maximum specificity */
@@ -212,4 +224,23 @@ header [data-highlighted],
 [role="menu"] [role="menuitem"] span,
 [role="menu"] [role="menuitem"][data-highlighted] span {
     color: #1f2937 !important;
+}
+
+/* UModal customization - remove header divider and reduce spacing */
+[role="dialog"] [data-slot="header"] {
+    border-bottom: none !important;
+    padding-bottom: 0 !important;
+    min-height: auto !important;
+    position: relative !important;
+}
+
+/* Position close button higher to differentiate from content */
+[role="dialog"] [data-slot="header"] button {
+    position: absolute !important;
+    top: 0.5rem !important;
+    right: 0.75rem !important;
+}
+
+[role="dialog"] [data-slot="body"] {
+    padding-top: 0.75rem !important;
 }

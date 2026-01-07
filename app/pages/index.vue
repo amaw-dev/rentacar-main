@@ -25,13 +25,13 @@
       </template>
       <template #body>
         <div class="text-center justify-items-center">
-          <div class="mb-4 text-white text-2xl">
+          <div class="mb-4 text-white text-lg font-bold">
             ¿En que ciudad deseas recoger tu carro?
           </div>
           <div class="min-w-80 my-3">
             <SelectBranch />
           </div>
-          <p class="text-white">
+          <p class="text-base text-white">
             Contamos con 27 sedes a nivel nacional y una excelente reputación en
             alquiler de carros y camionetas que se adaptan a tu necesidad y
             presupuesto
@@ -51,9 +51,9 @@
       class="bg-white text-black"
     >
       <template #title>
-        <h2 class="text-center">
+        <h2 class="text-2xl md:text-3xl text-center">
           <span class="block text-red-700">Hasta 60% de Descuento</span>
-          <span class="block text-black text-4xl">Reserva Ahora, Paga Después</span>
+          <span class="block text-black">Reserva Ahora, Paga Después</span>
         </h2>
       </template>
       <template #description>
@@ -87,7 +87,7 @@
       class="bg-gray-200 text-black"
     >
       <template #title>
-        <h2 class="text-center lg:text-left space-x-2">
+        <h2 class="text-2xl md:text-3xl text-center lg:text-left space-x-2">
           <span class="text-red-700">Requisitos</span>
           <span class="text-black">para tu alquiler</span>
         </h2>
@@ -166,7 +166,7 @@
       class="bg-white text-black"
     >
       <template #title>
-        <h2 class="text-center space-x-2">
+        <h2 class="text-2xl md:text-3xl text-center space-x-2">
           <span class="text-red-700">Tipos de Vehículos</span>
           <span class="text-black">ideales para tu necesidad</span>
         </h2>
@@ -193,16 +193,16 @@
               reverse
             >
               <template #footer>
-                <UModal title="Selecciona ciudad">
+                <UModal>
                   <template #body>
-                    <div class="mb-4 text-white text-2xl">
+                    <div class="mb-4 text-white text-lg font-bold">
                       ¿En que ciudad deseas recoger tu carro?
                     </div>
                     <div class="min-w-80 my-3">
                       <SelectBranch />
                     </div>
                   </template>
-                  <UButton color="info" class="text-white"
+                  <UButton color="info" class="text-white px-8 py-3"
                     >Ver disponibilidad</UButton
                   >
                 </UModal>
@@ -220,16 +220,16 @@
               reverse
             >
               <template #footer>
-                <UModal title="Selecciona ciudad">
+                <UModal>
                   <template #body>
-                    <div class="mb-4 text-white text-2xl">
+                    <div class="mb-4 text-white text-lg font-bold">
                       ¿En que ciudad deseas recoger tu carro?
                     </div>
                     <div class="min-w-80 my-3">
                       <SelectBranch />
                     </div>
                   </template>
-                  <UButton color="info" class="text-white"
+                  <UButton color="info" class="text-white px-8 py-3"
                     >Ver disponibilidad</UButton
                   >
                 </UModal>
@@ -247,16 +247,16 @@
               reverse
             >
               <template #footer>
-                <UModal title="Selecciona ciudad">
+                <UModal>
                   <template #body>
-                    <div class="mb-4 text-white text-2xl">
+                    <div class="mb-4 text-white text-lg font-bold">
                       ¿En que ciudad deseas recoger tu carro?
                     </div>
                     <div class="min-w-80 my-3">
                       <SelectBranch />
                     </div>
                   </template>
-                  <UButton color="info" class="text-white"
+                  <UButton color="info" class="text-white px-8 py-3"
                     >Ver disponibilidad</UButton
                   >
                 </UModal>
@@ -319,7 +319,7 @@
         <h2 class="text-2xl md:text-3xl font-bold text-center mb-8">
           Preguntas Frecuentes
         </h2>
-        <p class="text-lg mb-6">
+        <p class="text-base mb-6">
           Ahora es muy fácil alquilar carro en Colombia, ya sea para vacaciones
           o para negocios, por días o por meses, sólo requiere ser mayor de
           edad, tener licencia de conducción y una tarjeta de crédito con cupo
