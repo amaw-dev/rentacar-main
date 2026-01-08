@@ -118,18 +118,20 @@
 
                 <UModal
                   :overlay="false"
+                  :ui="modalUIConfig"
                   title="Seguro Básico"
                   description="Protección Obligatoria"
                 >
                   <UButton
                     variant="ghost"
+                    color="neutral"
                     size="xs"
                     alt="info"
                     class="cursor-pointer"
                     :ui="questionButtonUIConfig"
                   >
                     <template #leading>
-                      <CircleQuestionIcon cls="size-4" />
+                      <InfoQuestionIcon cls="size-2.5 text-gray-400" />
                     </template>
                   </UButton>
 
@@ -184,18 +186,20 @@
 
                 <UModal
                   :overlay="false"
+                  :ui="modalUIConfig"
                   title="Seguro Total"
                   description="Protección Obligatoria"
                 >
                   <UButton
                     variant="ghost"
+                    color="neutral"
                     size="xs"
                     alt="info"
                     class="cursor-pointer"
                     :ui="questionButtonUIConfig"
                   >
                     <template #leading>
-                      <CircleQuestionIcon cls="size-4" />
+                      <InfoQuestionIcon cls="size-2.5 text-gray-400" />
                     </template>
                   </UButton>
 
@@ -256,9 +260,10 @@
 
                 <label :for="oneKmMileageCheckboxID">1000 kms</label>
 
-                <UModal :overlay="false" title="1000 Kilómetros">
+                <UModal :overlay="false" :ui="modalUIConfig" title="1000 Kilómetros">
                   <UButton
                     variant="ghost"
+                    color="neutral"
                     size="xs"
                     alt="info"
                     class="cursor-pointer"
@@ -266,7 +271,7 @@
                     :ui="questionButtonUIConfig"
                   >
                     <template #leading>
-                      <CircleQuestionIcon cls="size-4" />
+                      <InfoQuestionIcon cls="size-2.5 text-gray-400" />
                     </template>
                   </UButton>
 
@@ -303,9 +308,10 @@
 
                 <label :for="twoKmsMileageCheckboxID">2000 kms</label>
 
-                <UModal :overlay="false" title="2000 Kilómetros">
+                <UModal :overlay="false" :ui="modalUIConfig" title="2000 Kilómetros">
                   <UButton
                     variant="ghost"
+                    color="neutral"
                     size="xs"
                     alt="info"
                     class="cursor-pointer"
@@ -313,7 +319,7 @@
                     :ui="questionButtonUIConfig"
                   >
                     <template #leading>
-                      <CircleQuestionIcon cls="size-4" />
+                      <InfoQuestionIcon cls="size-2.5 text-gray-400" />
                     </template>
                   </UButton>
 
@@ -350,7 +356,7 @@
 
                 <label :for="threeKmsMileageCheckboxID">3000 kms</label>
 
-                <UModal :overlay="false" title="2000 Kilómetros">
+                <UModal :overlay="false" :ui="modalUIConfig" title="2000 Kilómetros">
                   <UButton
                     color="neutral"
                     variant="ghost"
@@ -361,7 +367,7 @@
                     :ui="questionButtonUIConfig"
                   >
                     <template #leading>
-                      <CircleQuestionIcon cls="size-4" />
+                      <InfoQuestionIcon cls="size-2.5 text-gray-400" />
                     </template>
                   </UButton>
 
@@ -427,16 +433,17 @@
                   </template>
                 </UCheckbox>
 
-                <UModal :overlay="false" title="Conductor adicional">
+                <UModal :overlay="false" :ui="modalUIConfig" title="Conductor adicional">
                   <UButton
                     variant="ghost"
+                    color="neutral"
                     size="xs"
                     alt="info"
                     class="cursor-pointer"
                     :ui="questionButtonUIConfig"
                   >
                     <template #leading>
-                      <CircleQuestionIcon cls="size-4" />
+                      <InfoQuestionIcon cls="size-2.5 text-gray-400" />
                     </template>
                   </UButton>
 
@@ -470,16 +477,17 @@
                   </template>
                 </UCheckbox>
 
-                <UModal :overlay="false" title="Silla para bebe">
+                <UModal :overlay="false" :ui="modalUIConfig" title="Silla para bebe">
                   <UButton
                     variant="ghost"
+                    color="neutral"
                     size="xs"
                     alt="info"
                     class="cursor-pointer"
                     :ui="questionButtonUIConfig"
                   >
                     <template #leading>
-                      <CircleQuestionIcon cls="size-4" />
+                      <InfoQuestionIcon cls="size-2.5 text-gray-400" />
                     </template>
                   </UButton>
 
@@ -519,16 +527,17 @@
                   <template #label> Lavado del vehículo </template>
                 </UCheckbox>
 
-                <UModal :overlay="false" title="Lavado del Vehículo">
+                <UModal :overlay="false" :ui="modalUIConfig" title="Lavado del Vehículo">
                   <UButton
                     variant="ghost"
+                    color="neutral"
                     size="xs"
                     alt="info"
                     class="cursor-pointer"
                     :ui="questionButtonUIConfig"
                   >
                     <template #leading>
-                      <CircleQuestionIcon cls="size-4" />
+                      <InfoQuestionIcon cls="size-2.5 text-gray-400" />
                     </template>
                   </UButton>
 
@@ -589,8 +598,8 @@
 <script setup lang="ts">
 /** imports */
 import { useStoreReservationForm, useCategory } from "#imports";
-import { 
-  IconsCircleQuestionIcon as CircleQuestionIcon,
+import {
+  IconsInfoQuestionIcon as InfoQuestionIcon,
   IconsChevronDownIcon as ChevronDownIcon,
   IconsChevronRightIcon as ChevronRightIcon
 } from '#components';
@@ -674,7 +683,15 @@ function goNextStep() {
 }
 
 const questionButtonUIConfig = {
-  leadingIcon: 'bg-gray-600'
+  leadingIcon: 'text-gray-400'
+};
+
+const modalUIConfig = {
+  content: 'bg-white',
+  header: 'bg-white',
+  title: 'text-gray-900',
+  description: 'text-gray-600',
+  body: 'text-gray-800 bg-white'
 };
 
 </script>

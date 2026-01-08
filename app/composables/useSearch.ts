@@ -59,18 +59,18 @@ export default function useSearch() {
     if (horaRecogida.value != horaDevolucion.value) {
       createMessage({
         type: "info",
-        title: "Cambio de hora",
+        title: "Tarifa adicional por horas extras",
         message:
-          "Usar Horas adicionales puede incrementar el precio de alquiler.",
+          "El tiempo extra de uso puede incrementar el precio total del alquiler",
       });
     }
 
     if (lugarRecogida.value != lugarDevolucion.value) {
       createMessage({
         type: "info",
-        title: "Cambio de sede",
+        title: "Tarifa adicional por traslado",
         message:
-          "Devolverlo en otra sede puede incrementar el precio de alquiler",
+          "Devolverlo en otra sede o ciudad puede incrementar el precio de alquiler",
       });
     }
 

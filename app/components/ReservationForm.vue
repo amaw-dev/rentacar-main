@@ -12,6 +12,7 @@
             v-model="formState.nombreCompleto"
             class="w-full"
             placeholder="Nombres*"
+            :ui="inputUi"
           ></u-input>
         </u-form-field>
         <u-form-field name="apellidos">
@@ -19,6 +20,7 @@
             v-model="formState.apellidos"
             class="w-full"
             placeholder="Apellidos*"
+            :ui="inputUi"
           ></u-input>
         </u-form-field>
         <u-form-field name="tipoIdentificacion">
@@ -27,6 +29,7 @@
             class="w-full"
             placeholder="ID Tipo*"
             :items="identificationTypeOptions"
+            :ui="selectUi"
           ></u-select>
         </u-form-field>
         <u-form-field name="identificacion">
@@ -34,6 +37,7 @@
             v-model="formState.identificacion"
             class="w-full"
             placeholder="ID Número*"
+            :ui="inputUi"
           ></u-input>
         </u-form-field>
         <u-form-field class="col-span-2" name="email">
@@ -41,6 +45,7 @@
             v-model="formState.email"
             class="w-full"
             placeholder="Email*"
+            :ui="inputUi"
           ></u-input>
         </u-form-field>
         <u-form-field class="col-span-2" name="telefono">
@@ -54,20 +59,21 @@
           />
         </u-form-field>
         <u-form-field class="col-span-2" name="politicaPrivacidad">
-          <u-switch
+          <u-checkbox
             v-model="formState.politicaPrivacidad"
-            class="w-full"
+            color="neutral"
             label="He leído y estoy de acuerdo con los términos y condiciones como de la política de tratamiento de la información"
+            :ui="{
+              label: '!text-black text-sm',
+              base: 'bg-gray-100 border border-gray-400 rounded',
+            }"
+          />
+          <nuxt-link
+            class="underline text-gray-600 text-sm ml-6"
+            to="https://www.alquilatucarro.com/tratamiento-datos-alquilatucarro.pdf"
+            external
+            >Ver políticas</nuxt-link
           >
-            <template #description>
-              <nuxt-link
-                class="underline"
-                to="https://www.alquilatucarro.com/tratamiento-datos-alquilatucarro.pdf"
-                external
-                >Ver políticas</nuxt-link
-              >
-            </template>
-          </u-switch>
         </u-form-field>
       </div>
     
@@ -113,6 +119,16 @@ const identificationTypeOptions = [
   { value: "Pasaporte", label: "Pasaporte" },
   { value: "Cedula Extranjeria", label: "Extranjería" },
 ];
+
+const inputUi = {
+  base: 'bg-gray-100 border border-gray-300 text-black py-3',
+};
+
+const selectUi = {
+  base: 'bg-gray-100 border border-gray-300 py-3',
+  value: '!text-black',
+  placeholder: '!text-gray-500',
+};
 
 const baseForm = {
   nombreCompleto,

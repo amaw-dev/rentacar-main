@@ -10,6 +10,10 @@ export default defineNuxtConfig({
 
   modules: ['@nuxtjs/seo', '@nuxt/ui', '@pinia/nuxt', 'nuxt-llms'],
 
+  colorMode: {
+    preference: 'dark',
+  },
+
   imports: {
     autoImport: true,
     dirs: ["utils/**", 'stores/**'],

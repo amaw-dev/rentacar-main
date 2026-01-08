@@ -45,25 +45,48 @@
     <u-slideover
       v-model:open="slideoverReservationResume"
       title="Resumen de la reserva"
-      description="Antes de reservar revisa la información"
+      description="Antes de continuar revisa la información"
       :overlay="false"
+      :close="{ color: 'neutral', variant: 'outline', class: 'text-gray-700 border-gray-300 hover:bg-gray-100' }"
+      :ui="{
+        content: 'bg-white',
+        header: 'bg-white',
+        title: 'text-gray-900 text-2xl font-bold',
+        description: 'text-gray-600',
+        body: 'bg-white text-gray-900',
+        footer: 'bg-white gap-2',
+        close: 'absolute top-4 end-4 z-10',
+      }"
     >
       <template #body>
         <reservation-resume :category="selectedCategory"></reservation-resume>
       </template>
       <template #footer>
         <u-button
-          label="Cerrar"
+          label="Volver"
           color="neutral"
+          variant="solid"
+          size="xl"
+          class="flex-1 py-4 justify-center bg-gray-200 !text-black hover:bg-gray-300"
           @click="slideoverReservationResume = false"
         />
         <u-slideover
           v-model:open="slideoverReservationForm"
           title="Datos para reservas"
-          description="Completa tus datos y finaliza la solicitud de reserva"
+          description="Completa tus datos y solicita la reserva"
           :overlay="false"
+          :close="{ color: 'neutral', variant: 'outline', class: 'text-gray-700 border-gray-300 hover:bg-gray-100' }"
+          :ui="{
+            content: 'bg-white',
+            header: 'bg-white',
+            title: 'text-gray-900 text-2xl font-bold',
+            description: 'text-gray-600',
+            body: 'bg-white text-gray-900',
+            footer: 'bg-white gap-2',
+            close: 'absolute top-4 end-4 z-10',
+          }"
         >
-          <u-button label="Siguiente" color="primary"></u-button>
+          <u-button label="Siguiente" color="primary" size="xl" class="flex-1 py-4 justify-center"></u-button>
 
           <template #body>
             <reservation-form
@@ -74,6 +97,17 @@
 
           <template #footer>
             <u-button
+              label="Volver"
+              color="neutral"
+              variant="solid"
+              size="xl"
+              class="flex-1 py-4 justify-center bg-gray-200 !text-black hover:bg-gray-300"
+              @click="slideoverReservationForm = false"
+            />
+            <u-button
+              color="primary"
+              size="xl"
+              class="flex-1 py-4 justify-center"
               :loading="isSubmittingForm"
               :disabled="isSubmittingForm"
               @click="reservationFormComponent.submit()"

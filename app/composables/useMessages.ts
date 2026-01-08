@@ -9,7 +9,14 @@ export default function useMessages(){
             description: message.message,
             duration: 20000,
             progress: false,
-            icon: 'lucide:info',
+            icon: 'lucide:alert-triangle',
+            color: 'neutral',
+            ui: {
+                root: 'bg-white text-gray-900',
+                icon: 'text-amber-500',
+                title: 'text-gray-900 text-base font-semibold',
+                description: 'text-gray-600',
+            }
         });
     }
 

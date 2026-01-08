@@ -71,9 +71,9 @@
           <template v-for="(footerLink, index) in franchise.footerLinks">
             <NuxtLink
               :to="footerLink.link"
-              v-text="footerLink.label"
               class="underline hover:no-underline"
             >
+              {{ footerLink.label }}
             </NuxtLink>
             <span class="hidden md:block" v-if="index != franchise.footerLinks.length - 1">|</span>
           </template>

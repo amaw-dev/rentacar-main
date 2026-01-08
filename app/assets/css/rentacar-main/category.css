@@ -64,11 +64,27 @@
     }
 
     .contenedor-tarifas{
-      @apply grid grid-cols-2 py-4 relative text-gray-800 bg-gray-100;
+      @apply grid grid-cols-2 py-4 relative text-gray-800 rounded-b-lg;
+    }
+
+    /* Fondo degradado sutil: blanco → gris claro → blanco */
+    .contenedor-tarifas.sutil-fondo {
+      background: linear-gradient(to right, white, #ededed 50%, white);
     }
 
     .contenedor-precios-tarifa{
       @apply flex flex-col items-end pr-5 text-right;
+    }
+
+    /* Línea vertical difuminada entre las dos columnas */
+    .contenedor-precios-tarifa.con-borde-difuminado {
+      @apply relative min-h-[100px];
+    }
+
+    .contenedor-precios-tarifa.con-borde-difuminado::after {
+      content: '';
+      @apply absolute top-0 right-0 bottom-0 w-px pointer-events-none;
+      background: linear-gradient(to bottom, transparent, #d1d5db 30%, #d1d5db 70%, transparent);
     }
 
     .porcentaje-descuento{
