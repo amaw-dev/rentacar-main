@@ -372,6 +372,39 @@ header [data-highlighted],
     padding-top: 0.75rem !important;
 }
 
+/* USlideover footer - remove top border and any visual separator */
+[role="dialog"] [data-slot="footer"] {
+    border: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+    background-color: white !important;
+    margin-top: 0 !important;
+    padding-top: 1rem !important;
+}
+
+[role="dialog"] [data-slot="footer"]::before,
+[role="dialog"] [data-slot="footer"]::after {
+    display: none !important;
+    content: none !important;
+}
+
+/* Also check the body for bottom border */
+[role="dialog"] [data-slot="body"] {
+    border: none !important;
+    box-shadow: none !important;
+    background-color: white !important;
+    margin-bottom: 0 !important;
+}
+
+/* Ensure content wrapper has no separator */
+[role="dialog"] [data-slot="content"] {
+    background-color: white !important;
+}
+
+[role="dialog"] [data-slot="content"] > * {
+    border: none !important;
+}
+
 /* UPageSection - Symmetric vertical padding for all sections */
 /* Use > (direct child) to avoid affecting internal containers in UCarousel etc */
 section[id] > [data-slot="container"] {

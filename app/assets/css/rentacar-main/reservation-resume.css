@@ -5,105 +5,48 @@
         @apply relative mb-3;
 
         .nombre-modelo {
-            @apply absolute top-5 left-5 bg-black/50 p-2 rounded-lg text-white;
+            @apply absolute top-5 left-5 bg-black/75 rounded-lg text-white text-xs py-1 px-3;
         }
     }
     
     .reservation-data {
-        @apply flex flex-col;
+        @apply flex flex-col text-sm text-black;
 
         .category-name {
-            @apply font-bold mb-0;
+            @apply mb-0 text-2xl;
         }
-    
+
         .category-description, .category-picoyplaca {
             @apply lowercase leading-tight;
         }
-    
+
         .pickup-info {
-    
-            @apply my-2 text-sm;
-    
+            @apply my-2;
+
             .pickup-location-label {
-                @apply text-muted text-start;
+                @apply font-bold;
             }
 
-            .pickup-location-text {
-                @apply font-bold text-start;
-            }
-    
-            .pickup-date {
+            .pickup-date, .pickup-hour {
                 @apply flex flex-row gap-1;
-    
-                .pickup-date-label {
-                    @apply text-muted text-start;
-                }
-    
-                .pickup-date-text {
-                    @apply font-bold;
-                }
-            }
-    
-            .pickup-hour {
-                @apply flex flex-row gap-1;
-    
-                .pickup-hour-label {
-                    @apply text-muted text-start;
-                }
-    
-                .pickup-hour-text {
-                    @apply font-bold;
-                }
             }
         }
-    
+
         .return-info {
-            @apply mb-3 text-sm;
-    
-            .return-location {
-                .return-location-label {
-                    @apply text-muted text-start;
-                }
-    
-                .return-location-text {
-                    @apply font-bold text-start;
-                }
+            @apply mb-3;
+
+            .return-location-label {
+                @apply font-bold;
             }
-    
-            .return-date {
+
+            .return-date, .return-hour {
                 @apply flex flex-row gap-1;
-    
-                .return-date-label {
-                    @apply text-muted text-start;
-                }
-    
-                .return-date-text {
-                    @apply font-bold;
-                }
-            }
-    
-            .return-hour {
-                @apply flex flex-row gap-1;
-    
-                .return-hour-label {
-                    @apply text-muted text-start;
-                }
-    
-                .return-hour-text {
-                    @apply font-bold text-start;
-                }
             }
         }
 
         .renting {
-            @apply text-sm;
-
             .renting-label {
                 @apply font-bold;
-            }
-
-            .renting-item {
-                @apply text-muted
             }
         }
     }

@@ -71,8 +71,8 @@
         </div>
         <!-- lado derecho -->
          <div class="prices">
-            <div class="text-right text-sm">Tarifa Diaria</div>
-            <div class="text-right text-xs line-through text-black" v-if="hasDiscount()">
+            <div class="text-right text-sm font-bold">Tarifa Diaria</div>
+            <div class="text-right text-sm line-through text-black" v-if="hasDiscount()">
               $ {{ currencyDailyBasePrice }}
             </div>
             <div class="text-right">
@@ -81,31 +81,26 @@
             <div class="text-right text-sm">
               $ {{ currencyDailyPrice }}
             </div>
-            <div v-if="hasExtraHours()" class="extra-hours">
-              <div class="extra-hours-label">{{ extraHoursQuantity }} Horas extras</div>
-              <div class="extra-hours-text">
-                <span>$</span>
-                {{ currencyExtraHoursPrice }}
+            <div v-if="hasExtraHours() || hasReturnFee()" class="text-right mt-3">
+              <div class="font-bold">Otras tarifas</div>
+              <div v-if="hasExtraHours()">
+                {{ extraHoursQuantity }} Horas: $ {{ currencyExtraHoursPrice }}
               </div>
-            </div>
-            <div v-if="hasReturnFee()" class="return-fee">
-              <div class="return-fee-label">Retorno otra sede</div>
-              <div class="return-fee-text">
-                <span>$</span>
-                {{ currencyReturnFee }}
+              <div v-if="hasReturnFee()">
+                Traslado: $ {{ currencyReturnFee }}
               </div>
             </div>
             
             
-            <div v-if="hasAdditionalServices" class="text-right">
-              <div class="font-bold">Adicionales</div>
+            <div class="text-right mt-3">
+              <div v-if="withExtraDriver || withBabySeat || withWash" class="font-bold">Adicionales</div>
               <div v-if="withExtraDriver">Conductor: $ {{ currencyExtraDriverPrice }}</div>
               <div v-if="withBabySeat">Silla bebé: $ {{ currencyBabySeatPrice }}</div>
               <div v-if="withWash">Lavado: $ {{ currencyWashPrice }}</div>
             </div>
             
             <div class="text-right mt-3">
-              <div class="text-sm">Total a pagar:</div>
+              <div class="text-sm font-bold">Total a pagar</div>
               <div class="!text-xl">
                 $ {{ currencyTotalPrice }}
               </div>

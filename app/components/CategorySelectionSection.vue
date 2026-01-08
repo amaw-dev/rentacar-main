@@ -54,7 +54,7 @@
         title: 'text-gray-900 text-2xl font-bold',
         description: 'text-gray-600',
         body: 'bg-white text-gray-900',
-        footer: 'bg-white gap-2',
+        footer: 'bg-white gap-2 border-t-0',
         close: 'absolute top-4 end-4 z-10',
       }"
     >
@@ -82,7 +82,7 @@
             title: 'text-gray-900 text-2xl font-bold',
             description: 'text-gray-600',
             body: 'bg-white text-gray-900',
-            footer: 'bg-white gap-2',
+            footer: 'bg-white gap-2 border-t-0',
             close: 'absolute top-4 end-4 z-10',
           }"
         >
