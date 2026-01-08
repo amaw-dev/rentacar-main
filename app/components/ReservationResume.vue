@@ -14,7 +14,7 @@
           <div class="category-name" v-text="`Gama ${categoryCode}`"></div>
           <div class="category-description" v-text="categoryDescription"></div>
           <div v-if="hasPicoyPlaca()" class="category-picoyplaca" >
-            <u-badge color="primary" variant="outline">sin pico y placa</u-badge>
+            <span class="inline-block px-2 py-0.5 text-xs border border-blue-500 text-blue-600 rounded-full">sin pico y placa</span>
           </div>
           <div class="pickup-info">
             <div class="pickup-location">

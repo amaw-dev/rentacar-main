@@ -13,13 +13,13 @@
   </div>
   <template v-if="!pendingSearch">
     <div v-if="filteredCategories.length > 0 && !noAvailableCategories" class="text-white text-center">
-      <div class="text-3xl">¡Vehículos Disponibles!</div>
-      <div class="text-lg">
-        Carros disponibles en {{city?.name}} para el {{ humanFormattedPickupDate }}.
-        ¡No te quedes sin el tuyo, Reserva ahora y congela el precio!
+      <div class="text-lg md:text-xl font-bold">¡Vehículos Disponibles!</div>
+      <div class="text-sm md:text-base">
+        <span>En <span class="text-yellow-400 font-semibold">{{city?.name}}</span> para el <span class="text-yellow-400 font-semibold">{{ humanFormattedPickupDate }}</span>.</span>
+        <span class="block md:inline"> ¡No te quedes sin el tuyo, Reserva ahora!</span>
       </div>
     </div>
-    <u-page-grid>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       <template v-for="category in filteredCategories">
         <template
           v-if="
@@ -41,7 +41,7 @@
           />
         </template>
       </template>
-    </u-page-grid>
+    </div>
     <u-slideover
       v-model:open="slideoverReservationResume"
       title="Resumen de la reserva"
@@ -88,11 +88,11 @@
     </u-slideover>
   </template>
   <template v-else>
-    <u-page-grid>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       <placeholders-category-card />
       <placeholders-category-card class="hidden md:block" />
       <placeholders-category-card class="hidden lg:block" />
-    </u-page-grid>
+    </div>
   </template>
 </template>
 

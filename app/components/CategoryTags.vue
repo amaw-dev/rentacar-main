@@ -1,7 +1,7 @@
 <template>
     <span class="space-x-1">
-        <UBadge v-if="hasPicoyPlaca()" class="etiqueta-carro">sin pico y placa</UBadge>
-        <UBadge v-for="tags in categoryTags[categoryCode]" class="etiqueta-carro" v-text="tags"></UBadge>
+        <span v-if="hasPicoyPlaca()" class="etiqueta-carro">sin pico y placa</span>
+        <span v-for="tag in categoryTags[categoryCode]" :key="tag" class="etiqueta-carro" v-text="tag"></span>
     </span>
 </template>
 

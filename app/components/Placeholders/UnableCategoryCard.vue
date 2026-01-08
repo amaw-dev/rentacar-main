@@ -23,7 +23,7 @@
           <span class="text-left text-gray-700">
             <span class="categoria-carro">
                 Grupo {{ categoryCode }}
-                <UBadge color="error" variant="subtle">no disponible</UBadge>
+                <span class="inline-block px-2 py-0.5 text-xs bg-red-100 text-red-600 rounded-full">no disponible</span>
             </span>
             <span class="descripcion-corta">
                 {{ vehicleCategory?.descripcion_corta }}
@@ -38,14 +38,12 @@
           <div class="px-4 py-0 text-sm">
               <p class="descripcion-larga" v-text="vehicleCategory?.descripcion_larga"></p>
               <div id="etiquetas" class="contenedor-etiquetas">
-                  <UBadge
-                    color="info"
-                    variant="outline"
-                    v-for="(tag) in vehicleCategory?.tags"
+                  <span
+                    v-for="tag in vehicleCategory?.tags"
                     :key="`tag-${tag}`"
                     v-text="tag"
                     class="etiqueta-carro"
-                  ></UBadge>
+                  ></span>
 
               </div>
           </div>

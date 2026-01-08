@@ -4,9 +4,13 @@
     <UHeader
       class="bg-[#000073] z-50 py-4 md:py-6 px-6 border-none relative"
       mode="slideover"
+      :toggle="{
+        color: 'white',
+        size: 'xl',
+        class: 'text-white absolute right-4 top-4'
+      }"
       :ui="{
         root: 'gap-4',
-        button: 'text-white hover:text-white',
         slideover: 'bg-[#000073]'
       }"
      >
@@ -38,7 +42,7 @@
 
     <!-- Enlaces ciudades -->
     <section id="sedes" class="bg-blue-700 text-white text-center py-12 lg:py-20">
-      <UContainer class="space-y-6">
+      <div class="max-w-7xl mx-auto px-4 space-y-6">
         <div>
           <NuxtLink to="/" aria-label="alquilatucarro">
             <Logo cls="h-10 w-auto mx-auto" />
@@ -48,33 +52,33 @@
         <div >
           Estamos presentes en más de 19 ciudades de Colombia como Bogotá, Medellín, Cali y Cartagena. Explora cada destino y reserva en la sede que más te convenga.
         </div>
-        <div class="flex flex-wrap justify-center gap-3">
-          <UButton 
-            v-for="city in cities" 
-            :to="city.link" 
-            class="text-white justify-center bg-blue-600 hover:bg-blue-800 rounded-lg py-1 w-fit"
+        <div class="flex flex-col md:flex-row md:flex-wrap justify-center gap-1 md:gap-3">
+          <UButton
+            v-for="city in cities"
+            :to="city.link"
+            class="text-white justify-center bg-blue-600 hover:bg-blue-800 rounded-lg py-3 w-full md:w-fit font-normal"
           >
-            Alquiler de carros en {{ city.name }}
+            Alquiler de carros en <span class="font-bold">{{ city.name }}</span>
           </UButton>
         </div>
-      </UContainer>
+      </div>
     </section>
 
     <!-- Enlaces -->
-    <section class="text-white py-4 lg:py-6">
-      <UContainer>
-        <div class="flex flex-col md:flex-row items-center justify-center space-x-4">
+    <section class="bg-[#000073] text-white py-8 lg:py-6">
+      <div class="max-w-7xl mx-auto px-4">
+        <div class="flex flex-col md:flex-row items-center justify-center gap-2 md:gap-4">
           <template v-for="(footerLink, index) in franchise.footerLinks">
-            <NuxtLink 
+            <NuxtLink
               :to="footerLink.link"
               v-text="footerLink.label"
-              class="hover:underline"
+              class="underline hover:no-underline"
             >
             </NuxtLink>
             <span class="hidden md:block" v-if="index != franchise.footerLinks.length - 1">|</span>
           </template>
         </div>
-      </UContainer>
+      </div>
     </section>
 
     <!-- Footer -->
@@ -86,16 +90,16 @@
 
     <!-- Widget chat -->
     <UModal
-      title="¿Chateamos?"
+      :ui="{ content: 'bg-white', close: 'bg-black text-white rounded-full' }"
     >
       <template #body>
-        <div class="text-center space-y-6">
-          <div class="space-y-2">
-            <p class="font-bold text-2xl">¿Chateamos?</p>
-            <p>Estamos a un mensaje de distancia</p>
-            <UButton 
-              size="xl" 
-              class="text-white"
+        <div class="text-center space-y-10 pb-4 md:pb-6">
+          <div>
+            <p class="font-bold text-2xl text-black">¡Escríbenos!</p>
+            <p class="text-gray-600">Estamos a un mensaje de distancia</p>
+            <UButton
+              size="xl"
+              class="bg-[#25D366] hover:bg-[#128C7E] text-white mt-3"
               label="Whatsapp"
               target="_blank"
               :external="true"
@@ -106,13 +110,13 @@
               </template>
             </UButton>
           </div>
-          <div class="space-y-2">
-            <p class="font-bold text-2xl">¿Charlamos?</p>
-            <p>LLamanos y Hablamos!</p>
-            <UButton 
-              color="info" 
-              size="xl" 
-              class="text-white"
+          <div>
+            <p class="font-bold text-2xl text-black">¡Llámanos!</p>
+            <p class="text-gray-600">Hablemos por llamada local</p>
+            <UButton
+              color="info"
+              size="xl"
+              class="text-white mt-3"
               :external="true"
               :label="franchise.phone"
               :to="`tel:${franchise.phone}`"
@@ -127,7 +131,7 @@
       <UButton
         icon="lucide:message-circle-plus"
         square
-        class="fixed bottom-4 right-4 z-50 rounded-full animate-bounce text-white"
+        class="fixed bottom-4 right-4 md:bottom-8 z-50 rounded-full text-white"
         size="2xl"
         color="primary"
       />
@@ -145,31 +149,31 @@ const items = computed<NavigationMenuItem[]>(() => [
     label: 'Requisitos',
     to: '/#requisitos',
     active: route.path.startsWith('#requisitos'),
-    class: "text-white",
+    class: "text-white hover:text-white hover:bg-white/10",
   },
   {
     label: 'Sedes',
     to: '/#sedes',
     active: route.path.startsWith('#sedes'),
-    class: "text-highlighted",
+    class: "text-white hover:text-white hover:bg-white/10",
   },
   {
     label: 'Blog',
     to: '/blog',
     active: route.path.startsWith('/blog'),
-    class: "text-highlighted",
+    class: "text-white hover:text-white hover:bg-white/10",
   },
   {
     label: 'Preguntas frecuentes',
     to: '/#faqs',
     active: route.path.startsWith('#faqs'),
-    class: "text-highlighted",
+    class: "text-white hover:text-white hover:bg-white/10",
   },
 ])
 
 const { cities } = useData();
 const { franchise } = useAppConfig();
-import { 
+import {
   IconsWhatsappIcon as WhatsappIcon,
   IconsPhoneIcon as PhoneIcon,
 } from '#components'

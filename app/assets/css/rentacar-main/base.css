@@ -162,10 +162,66 @@ header button.lg\:hidden:hover {
     color: #1f2937 !important;
 }
 
-/* Ensure date input segments are visible */
+/* Bold text for selected city in select-menu */
+.hero-section .bg-white [data-slot="value"],
+.hero-section .bg-white button > span:first-child,
+.hero-section .bg-white select {
+    font-weight: 600 !important;
+}
+
+/* Align select-menu content to the left */
+.hero-section .bg-white button[data-slot="base"] {
+    justify-content: flex-start !important;
+    text-align: left !important;
+}
+
+.hero-section .bg-white [data-slot="container"],
+.hero-section .bg-white [data-slot="wrapper"] {
+    text-align: left !important;
+}
+
+.hero-section .bg-white button {
+    justify-content: flex-start !important;
+}
+
+.hero-section .bg-white [data-slot="value"] {
+    text-align: left !important;
+    margin-right: auto !important;
+}
+
+/* Compact select-menu and date inputs on desktop */
+@media (min-width: 640px) {
+    .hero-section .bg-white button[data-slot="base"],
+    .hero-section .bg-white [data-slot="base"]:not(button) {
+        padding-top: 0.375rem !important;
+        padding-bottom: 0.375rem !important;
+    }
+}
+
+/* Ensure date input segments are visible and bold */
 .hero-section .bg-white [data-segment],
-.hero-section .bg-white [class*="segment"] {
+.hero-section .bg-white [class*="segment"],
+.hero-section .bg-white input[type="date"] {
     color: #1f2937 !important;
+    font-weight: 600 !important;
+}
+
+/* Force date input segments to display horizontally */
+.hero-section .bg-white [data-slot="base"] {
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+}
+
+.hero-section .bg-white [data-segment] {
+    display: inline-block !important;
+    width: auto !important;
+    min-width: 1.25rem !important;
+    padding: 0 !important;
+}
+
+.hero-section .bg-white [data-segment="year"] {
+    min-width: 2.5rem !important;
 }
 
 /* Fix dropdown/listbox - force white background and dark text for contrast */
@@ -227,6 +283,76 @@ header [data-highlighted],
     color: #1f2937 !important;
 }
 
+/* UCalendar light theme - applied via .calendar-light class */
+.calendar-light {
+    /* Override all Nuxt UI color variables for light theme */
+    --ui-bg: white !important;
+    --ui-bg-elevated: #f9fafb !important;
+    --ui-bg-accented: #f3f4f6 !important;
+    --ui-bg-inverted: #1f2937 !important;
+    --ui-border: #e5e7eb !important;
+    --ui-border-accented: #d1d5db !important;
+    --ui-text: #1f2937 !important;
+    --ui-text-muted: #6b7280 !important;
+    --ui-text-dimmed: #9ca3af !important;
+    --ui-text-highlighted: #111827 !important;
+    --ui-text-inverted: white !important;
+    background-color: white !important;
+}
+
+.calendar-light * {
+    --ui-bg: white !important;
+    --ui-text: #1f2937 !important;
+    --ui-text-muted: #6b7280 !important;
+    --ui-text-dimmed: #374151 !important;
+}
+
+/* Calendar buttons - dark text on light background */
+.calendar-light button {
+    color: #1f2937 !important;
+    background-color: transparent !important;
+}
+
+.calendar-light button:hover {
+    background-color: #f3f4f6 !important;
+}
+
+/* Calendar SVG icons */
+.calendar-light svg {
+    color: #374151 !important;
+}
+
+/* Calendar header text */
+.calendar-light [role="heading"],
+.calendar-light span {
+    color: #1f2937 !important;
+}
+
+/* Calendar day names (L, M, X, J, V, S, D) */
+.calendar-light [role="columnheader"] {
+    color: #16a34a !important;
+}
+
+/* Calendar grid */
+.calendar-light [role="grid"] {
+    background-color: white !important;
+}
+
+/* Calendar day cells */
+.calendar-light [role="gridcell"] button {
+    color: #1f2937 !important;
+}
+
+.calendar-light [role="gridcell"] button:hover {
+    background-color: #f3f4f6 !important;
+}
+
+/* Days outside current month */
+.calendar-light [data-outside-view] button,
+.calendar-light [data-disabled] button {
+    color: #9ca3af !important;
+}
+
 /* UModal customization - remove header divider and reduce spacing */
 [role="dialog"] [data-slot="header"] {
     border-bottom: none !important;
@@ -247,18 +373,38 @@ header [data-highlighted],
 }
 
 /* UPageSection - Symmetric vertical padding for all sections */
-section[id] [data-slot="container"] {
+/* Use > (direct child) to avoid affecting internal containers in UCarousel etc */
+section[id] > [data-slot="container"] {
     padding-top: 3rem !important;
     padding-bottom: 3rem !important;
 }
+
+/* Category selection section - minimal top padding to reduce gap with search button */
+/* Use > (direct child) to avoid affecting internal containers in UCarousel etc */
+#seleccion-categorias > [data-slot="container"] {
+    padding-top: 0 !important;
+    gap: 1rem !important;
+}
 @media (min-width: 640px) {
-    section[id] [data-slot="container"] {
+    #seleccion-categorias > [data-slot="container"] {
+        padding-top: 0 !important;
+        gap: 1.25rem !important;
+    }
+}
+@media (min-width: 1024px) {
+    #seleccion-categorias > [data-slot="container"] {
+        padding-top: 1.5rem !important;
+        gap: 1.5rem !important;
+    }
+}
+@media (min-width: 640px) {
+    section[id] > [data-slot="container"] {
         padding-top: 3.5rem !important;
         padding-bottom: 3.5rem !important;
     }
 }
 @media (min-width: 1024px) {
-    section[id] [data-slot="container"] {
+    section[id] > [data-slot="container"] {
         padding-top: 4rem !important;
         padding-bottom: 4rem !important;
     }
