@@ -88,7 +88,7 @@
               IVA: $ {{ ivaFeePriceTooltip }} <br />
               Total: $ {{ actualTotalPriceTooltip }} <br />
             </template>
-            <ULink raw class="precio-total"> $ {{ currencyTotalPrice }}</ULink>
+            <ULink raw class="precio-total"> $ <span v-once>{{currencyTotalPrice}}</span></ULink>
           </UTooltip>
 
           <!-- <div class="font-bold text-xl" style="white-space: nowrap;" v-text="currencyTotalPrice"></div> -->
