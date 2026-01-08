@@ -42,7 +42,7 @@
 
     <!-- Enlaces ciudades -->
     <section id="sedes" class="bg-blue-700 text-white text-center py-12 lg:py-20">
-      <UContainer class="space-y-6">
+      <div class="max-w-7xl mx-auto px-4 space-y-6">
         <div>
           <NuxtLink to="/" aria-label="alquilatucarro">
             <Logo cls="h-10 w-auto mx-auto" />
@@ -61,12 +61,12 @@
             Alquiler de carros en <span class="font-bold">{{ city.name }}</span>
           </UButton>
         </div>
-      </UContainer>
+      </div>
     </section>
 
     <!-- Enlaces -->
     <section class="bg-[#000073] text-white py-8 lg:py-6">
-      <UContainer>
+      <div class="max-w-7xl mx-auto px-4">
         <div class="flex flex-col md:flex-row items-center justify-center gap-2 md:gap-4">
           <template v-for="(footerLink, index) in franchise.footerLinks">
             <NuxtLink
@@ -78,7 +78,7 @@
             <span class="hidden md:block" v-if="index != franchise.footerLinks.length - 1">|</span>
           </template>
         </div>
-      </UContainer>
+      </div>
     </section>
 
     <!-- Footer -->
@@ -173,7 +173,7 @@ const items = computed<NavigationMenuItem[]>(() => [
 
 const { cities } = useData();
 const { franchise } = useAppConfig();
-import { 
+import {
   IconsWhatsappIcon as WhatsappIcon,
   IconsPhoneIcon as PhoneIcon,
 } from '#components'

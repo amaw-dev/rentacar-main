@@ -6,12 +6,12 @@
         <div
           class="flex flex-row items-center justify-center space-x-0.5 text-white text-center"
         >
-          <StarIcon cls="size-4" />
-          <StarIcon cls="size-4" />
-          <StarIcon cls="size-4" />
-          <StarIcon cls="size-4" />
-          <StarIcon cls="size-4" />
-          <span class="ml-2">4.9 reviews</span>
+          <StarIcon cls="w-2.5 h-2.5 md:w-4 md:h-4" />
+          <StarIcon cls="w-2.5 h-2.5 md:w-4 md:h-4" />
+          <StarIcon cls="w-2.5 h-2.5 md:w-4 md:h-4" />
+          <StarIcon cls="w-2.5 h-2.5 md:w-4 md:h-4" />
+          <StarIcon cls="w-2.5 h-2.5 md:w-4 md:h-4" />
+          <span class="ml-2 text-xs md:text-base">4.9 reviews</span>
         </div>
       </template>
       <template #title>
@@ -98,49 +98,33 @@
             En {{ franchise.shortname }} tu experiencia es sin complicaciones...
           </div>
           <ul class="flex flex-col gap-4">
-            <li>
-              <UPageFeature
-                title="RESERVA PREVIA"
-                description="(más anticipación más descuento)"
-                :ui="requisitosPageFeatureUIConfig"
-              >
-                <template #leading>
-                  <LocationIcon cls="text-red-600 size-5" />
-                </template>
-              </UPageFeature>
+            <li class="flex items-start gap-2">
+              <LocationIcon cls="text-red-600 size-5 mt-0.5" />
+              <div>
+                <div class="font-bold text-black">RESERVA PREVIA</div>
+                <div class="text-black text-sm">(más anticipación más descuento)</div>
+              </div>
             </li>
-            <li>
-              <UPageFeature
-                title="DOCUMENTO DE IDENTIDAD"
-                description="(18+ Cédula o pasaporte original)"
-                :ui="requisitosPageFeatureUIConfig"
-              >
-                <template #leading>
-                  <LocationIcon cls="text-red-600 size-5" />
-                </template>
-              </UPageFeature>
+            <li class="flex items-start gap-2">
+              <LocationIcon cls="text-red-600 size-5 mt-0.5" />
+              <div>
+                <div class="font-bold text-black">DOCUMENTO DE IDENTIDAD</div>
+                <div class="text-black text-sm">(18+ Cédula o pasaporte original)</div>
+              </div>
             </li>
-            <li>
-              <UPageFeature
-                title="TARJETA DE CRÉDITO"
-                description="(Única forma de pago)"
-                :ui="requisitosPageFeatureUIConfig"
-              >
-                <template #leading>
-                  <LocationIcon cls="text-red-600 size-5" />
-                </template>
-              </UPageFeature>
+            <li class="flex items-start gap-2">
+              <LocationIcon cls="text-red-600 size-5 mt-0.5" />
+              <div>
+                <div class="font-bold text-black">TARJETA DE CRÉDITO</div>
+                <div class="text-black text-sm">(Única forma de pago)</div>
+              </div>
             </li>
-            <li>
-              <UPageFeature
-                title="LICENCIA DE CONDUCIR"
-                description="(física y vigente)"
-                :ui="requisitosPageFeatureUIConfig"
-              >
-                <template #leading>
-                  <LocationIcon cls="text-red-600 size-5" />
-                </template>
-              </UPageFeature>
+            <li class="flex items-start gap-2">
+              <LocationIcon cls="text-red-600 size-5 mt-0.5" />
+              <div>
+                <div class="font-bold text-black">LICENCIA DE CONDUCIR</div>
+                <div class="text-black text-sm">(física y vigente)</div>
+              </div>
             </li>
           </ul>
         </div>
@@ -241,54 +225,37 @@
     </UPageSection>
 
     <!-- Testimonials Section -->
-    <UPageSection
-      id="testimonios"
-      orientation="vertical"
-      class="bg-gray-200 text-black"
-      :ui="testimoniosPageSectionUIConfig"
-    >
-      <template #title>
-        <h2 class="text-2xl md:text-3xl text-center space-x-2">
+    <section id="testimonios" class="bg-gray-200 text-black py-12 md:py-20 px-4 md:px-8">
+      <div class="max-w-7xl mx-auto">
+        <h2 class="text-2xl md:text-3xl text-center space-x-2 mb-4">
           <span class="text-red-700">Testimonios</span>
           <span class="text-black">que comparten nuestros clientes</span>
         </h2>
-      </template>
-      <template #description>
-        <p class="text-black">Descubre por qué somos la opción preferida para alquilar carros en Colombia. Nuestros clientes destacan nuestra atención, precios competitivos y la facilidad para explorar.</p>
-      </template>
-      <template #default>
-        <UPageGrid>
-          <UPageCard
+        <p class="text-black text-center mb-8">Descubre por qué somos la opción preferida para alquilar carros en Colombia. Nuestros clientes destacan nuestra atención, precios competitivos y la facilidad para explorar.</p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div
             v-for="testimonio in testimonios"
-            :description="testimonio.quote"
-            variant="solid"
-            :ui="testimonioPageCardUIConfig"
+            :key="testimonio.user.name"
+            class="border border-gray-100 rounded-lg bg-gray-50 shadow p-6"
           >
-            <template #title>
-              <UUser
-                size="3xl"
-                v-bind="testimonio.user"
-                :ui="testimonioUserUIConfig"
-                loading="lazy"
-              />
-            </template>
-            <template #footer>
-              <div class="flex flex-row">
-                <StarIcon cls="text-yellow-500 size-6" />
-                <StarIcon cls="text-yellow-500 size-6" />
-                <StarIcon cls="text-yellow-500 size-6" />
-                <StarIcon cls="text-yellow-500 size-6" />
-                <StarIcon cls="text-yellow-500 size-6" />
-              </div>
-            </template>
-          </UPageCard>
-        </UPageGrid>
-      </template>
-    </UPageSection>
+            <UUser
+              size="3xl"
+              v-bind="testimonio.user"
+              :ui="testimonioUserUIConfig"
+              loading="lazy"
+            />
+            <p class="mt-4 text-gray-700">{{ testimonio.quote }}</p>
+            <div class="flex flex-row mt-4">
+              <StarIcon v-for="i in [1,2,3,4,5]" :key="i" cls="text-yellow-500 size-6" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- FAQ Section -->
     <UPageSection id="faqs" class="bg-white text-black">
-      <UContainer class="px-1 sm:px-2 lg:px-6">
+      <div class="max-w-7xl mx-auto px-1 sm:px-2 lg:px-6">
         <h2 class="text-2xl md:text-3xl font-bold text-center mb-8 space-x-2">
           <span class="text-red-700">Preguntas Frecuentes</span>
           <span class="text-black">sobre alquiler de carros</span>
@@ -304,7 +271,7 @@
             <div class="text-base text-gray-600 py-3 bg-gray-50 px-4 rounded-lg" v-text="item.content"></div>
           </template>
         </UAccordion>
-      </UContainer>
+      </div>
     </UPageSection>
   </UPage>
 </template>
@@ -373,22 +340,8 @@ definePageMeta({
   colorMode: "dark",
 });
 
-const requisitosPageFeatureUIConfig = {
-  leadingIcon: "bg-red-600",
-  title: "text-black",
-  description: "text-black mt-0",
-  container: "gap-0",
-};
-
 const categoriasPageSectionUIConfig = {
   body: "mt-4 sm:mt-6",
-};
-
-const categoriasPageCardUIConfig = {
-  root: "flex flex-col",
-  body: "order-2",
-  footer: "order-3 mx-auto",
-  container: "order-1",
 };
 
 const testimonios: Testimonial[] = franchise.testimonials;
@@ -401,15 +354,6 @@ usePromoVideoSchema()
 
 // Add Promotion schema for 60% discount offer (promotional rich snippets)
 useEarlyBookingPromotion()
-
-const testimoniosPageSectionUIConfig = {
-  title: "text-black",
-};
-
-const testimonioPageCardUIConfig = {
-  root: "border-1 border-gray-100 rounded-lg bg-gray-50 shadow",
-  description: "mt-4 text-gray-700",
-};
 
 const testimonioUserUIConfig = {
   name: "text-black",

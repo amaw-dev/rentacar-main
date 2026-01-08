@@ -19,7 +19,7 @@
         ¡No te quedes sin el tuyo, Reserva ahora y congela el precio!
       </div>
     </div>
-    <u-page-grid>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       <template v-for="category in filteredCategories">
         <template
           v-if="
@@ -41,7 +41,7 @@
           />
         </template>
       </template>
-    </u-page-grid>
+    </div>
     <u-slideover
       v-model:open="slideoverReservationResume"
       title="Resumen de la reserva"
@@ -88,11 +88,11 @@
     </u-slideover>
   </template>
   <template v-else>
-    <u-page-grid>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       <placeholders-category-card />
       <placeholders-category-card class="hidden md:block" />
       <placeholders-category-card class="hidden lg:block" />
-    </u-page-grid>
+    </div>
   </template>
 </template>
 

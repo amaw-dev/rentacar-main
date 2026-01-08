@@ -7,24 +7,24 @@
       >
       <template #headline>
         <div
-          class="flex flex-row space-x-0.5 text-white text-center justify-center items-center -mt-8"
+          class="flex flex-row space-x-0.5 text-white text-center justify-center items-center text-sm"
         >
-          <StarIcon v-for="i in [1,2,3,4,5]" cls="size-5" />
-          <span>4.9 reviews</span>
+          <StarIcon v-for="i in [1,2,3,4,5]" cls="w-2.5 h-2.5 md:w-4 md:h-4" />
+          <span class="ml-2">4.9 reviews</span>
         </div>
       </template>
       <template #title>
-        <h1 class="text-white text-center uppercase">
+        <h1 class="text-white text-center uppercase font-bold">
           <span class="block text-2xl md:text-3xl lg:text-4xl">
-            <span class="block font-bold">ALQUILER</span>
+            <span class="block">ALQUILER</span>
             <span class="block">DE CARROS EN</span>
           </span>
-          <span class="flex flex-row justify-center items-baseline gap-2 text-4xl md:text-5xl lg:text-7xl font-bold">
+          <span class="flex flex-row justify-center items-baseline gap-2 text-4xl md:text-5xl lg:text-7xl lg:whitespace-nowrap">
             <span class="size-8 md:size-10 lg:size-14" aria-hidden="true"></span>
             {{ city?.name }}
             <LocationIcon cls="text-red-600 size-8 md:size-10 lg:size-14 translate-y-1" />
           </span>
-          <span class="block text-2xl md:text-3xl lg:text-4xl font-bold tracking-wide colombia-sweep">Colombia</span>
+          <span class="block text-2xl md:text-3xl lg:text-4xl tracking-wide colombia-sweep">Colombia</span>
         </h1>
       </template>
       <template #body>
@@ -49,11 +49,21 @@
               Elige ciudades, fechas y horarios y renta un vehículo por días, semanas o el tiempo que necesites
             </p>
           </div>
-          <Searcher />
+          <ClientOnly>
+            <Searcher />
+            <template #fallback>
+              <PlaceholdersSearcher />
+            </template>
+          </ClientOnly>
         </div>
         <!-- Buscador solo en mobile/tablet -->
         <div class="lg:hidden">
-          <Searcher />
+          <ClientOnly>
+            <Searcher />
+            <template #fallback>
+              <PlaceholdersSearcher />
+            </template>
+          </ClientOnly>
         </div>
       </template>
     </UPageHero>
@@ -69,82 +79,66 @@
     </UPageSection>
 
     <!-- Description Section -->
-    <UPageSection id="descripcion" class="bg-white text-black descripcion-section">
-      <UPageGrid>
-        <UPageCard variant="ghost">
+    <section id="descripcion" class="bg-white text-black py-4 md:py-12 px-4 md:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-0 md:gap-8">
+        <div class="md:self-start flex justify-center">
           <LazyImagesCiudadesChica :city-name="city?.name" />
-        </UPageCard>
-        <UPageCard variant="ghost">
-          <div class="flex flex-col gap-2 text-center font-extrabold">
-            <div class="text-red-600 text-3xl">
-              En {{ franchise.shortname }}
-            </div>
-            <div class="text-red-600 text-5xl" v-text="city?.name"></div>
-            <p class="text-black text-4xl">
-              la libertad <br />
-              de moverte <br />
-              a tu manera <br />
-              es realidad
-            </p>
-            <u-separator
-              size="lg"
-              icon="lucide:square"
-              class="w-full"
-              :ui="{ icon: 'bg-black rotate-45' }"
-            />
+        </div>
+        <div class="flex flex-col gap-0 text-center font-extrabold">
+          <div class="text-red-600 text-xl md:text-3xl">
+            En {{ franchise.shortname }}
           </div>
-        </UPageCard>
-        <UPageCard variant="ghost">
+          <div class="text-red-600 text-3xl md:text-5xl" v-text="city?.name"></div>
+          <p class="text-black text-2xl md:text-4xl mb-0">
+            la libertad <br />
+            de moverte <br />
+            a tu manera <br />
+            es realidad
+          </p>
+          <div class="flex items-center w-full my-2 md:my-4">
+            <div class="flex-grow border-t border-gray-300"></div>
+            <div class="mx-4 w-3 h-3 bg-black rotate-45"></div>
+            <div class="flex-grow border-t border-gray-300"></div>
+          </div>
+        </div>
+        <div>
           <p
             class="text-black text-center font-semibold"
             v-text="city?.description"
           ></p>
-        </UPageCard>
-      </UPageGrid>
-    </UPageSection>
+        </div>
+      </div>
+    </section>
 
     <!-- Testimonials Section -->
-    <UPageSection
-      id="testimonios"
-      orientation="vertical"
-      class="bg-white text-black"
-      :ui="testimoniosPageSectionUIConfig"
-    >
-      <template #title>
-        <h2 class="text-2xl md:text-3xl text-black">Lo que dicen nuestros clientes en {{ city?.name }}</h2>
-      </template>
-      <template #description>
-        <p class="text-black">Descubre por qué somos la opción preferida para alquilar carros en {{ city?.name }}. Nuestros clientes destacan nuestra atención, precios competitivos y la facilidad para explorar.</p>
-      </template>
-      <template #default>
-        <UPageGrid>
-          <UPageCard
+    <section id="testimonios" class="bg-white text-black py-12 md:py-20 px-4 md:px-8">
+      <div class="max-w-7xl mx-auto">
+        <h2 class="text-2xl md:text-3xl text-black text-center mb-4">Lo que dicen nuestros clientes en {{ city?.name }}</h2>
+        <p class="text-black text-center mb-8">Descubre por qué somos la opción preferida para alquilar carros en {{ city?.name }}. Nuestros clientes destacan nuestra atención, precios competitivos y la facilidad para explorar.</p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div
             v-for="testimonio in testimonios"
-            :description="testimonio.quote"
-            variant="solid"
-            :ui="testimonioPageCardUIConfig"
+            :key="testimonio.user.name"
+            class="border border-gray-100 rounded-lg bg-gray-50 shadow p-6"
           >
-            <template #title>
-              <UUser
-                size="3xl"
-                v-bind="testimonio.user"
-                :ui="testimonioUserUIConfig"
-                loading="lazy"
-              >
-                <template #avatar>
-                    <ImagesAvatar :avatar="testimonio.user.avatar" />
-                </template>
-              </UUser>
-            </template>
-            <template #footer>
-              <div class="flex flex-row space-x-2">
-                <StarIcon v-for="i in [1,2,3,4,5]" cls="text-yellow-500 size-6" />
-              </div>
-            </template>
-          </UPageCard>
-        </UPageGrid>
-      </template>
-    </UPageSection>
+            <UUser
+              size="3xl"
+              v-bind="testimonio.user"
+              :ui="testimonioUserUIConfig"
+              loading="lazy"
+            >
+              <template #avatar>
+                <ImagesAvatar :avatar="testimonio.user.avatar" />
+              </template>
+            </UUser>
+            <p class="mt-4 text-gray-700">{{ testimonio.quote }}</p>
+            <div class="flex flex-row space-x-2 mt-4">
+              <StarIcon v-for="i in [1,2,3,4,5]" :key="i" cls="text-yellow-500 size-6" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   </UPage>
 </template>
 
@@ -181,15 +175,6 @@ const testimonios: Testimonial[] | undefined = props.city?.testimonials;
 if (props.city?.name && testimonios) {
   useCityAggregateRating(props.city.name, testimonios)
 }
-
-const testimoniosPageSectionUIConfig = {
-  title: "text-black",
-};
-
-const testimonioPageCardUIConfig = {
-  root: "border-1 border-gray-100 rounded-lg bg-gray-50 shadow",
-  description: "mt-4 text-gray-700",
-};
 
 const testimonioUserUIConfig = {
   name: "text-black",

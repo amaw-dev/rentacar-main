@@ -1,20 +1,16 @@
 <template>
-  <u-page-card
-    orientation="vertical"
-    class="categoria"
-    :ui="{ container: 'p-0 sm:p-0 lg:p-0', description: 'mt-0 p-0', body: 'w-full' }"
-  >
-    <template #title>
-      <div class="carrusel">
+  <div class="categoria flex flex-col">
+    <!-- Carrusel -->
+    <div class="carrusel">
         <Carrusel
           :models="categoryModels"
           :vehicleModels="modelos"
           :category="categoryCode"
         />
       </div>
-    </template>
 
-    <template #description>
+    <!-- Contenido principal -->
+    <div class="w-full">
       <!-- descripcion categoria -->
       <UCollapsible class="contenedor-descripcion-carro">
         <UButton
@@ -49,14 +45,12 @@
                 v-text="vehicleCategory?.descripcion_larga"
               ></p>
               <div id="etiquetas" class="contenedor-etiquetas">
-                <UBadge
-                  color="info"
-                  variant="outline"
+                <span
                   v-for="tag in vehicleCategory?.tags"
                   :key="`tag-${tag}`"
                   v-text="tag"
                   class="etiqueta-carro"
-                ></UBadge>
+                ></span>
               </div>
             </div>
           </div>
@@ -588,8 +582,8 @@
           Solicitar este vehículo
         </UButton>
       </div>
-    </template>
-  </u-page-card>
+    </div>
+  </div>
 </template>
 
 <script setup lang="ts">

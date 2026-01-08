@@ -25,6 +25,12 @@ export default defineAppConfig({
         },
       },
     },
+    formField: {
+      slots: {
+        label: "block font-normal text-default text-sm pl-1",
+        container: "mt-0.5 relative",
+      },
+    },
   },
   organization: {
     name: "AMAW SAS",

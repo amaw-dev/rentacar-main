@@ -5,10 +5,10 @@
     @submit="submitForm"
     class="flex flex-col gap-3"
   >
-    <u-page-grid class="items-start lg:grid-cols-2 lg:gap-30">
+    <div class="grid grid-cols-1 lg:grid-cols-2 lg:gap-30 items-start">
       <ReservationResume :category="selectedCategory" :show-button="false" />
       <ReservationForm :form-state />
-    </u-page-grid>
+    </div>
     <div class="flex flex-row justify-end gap-2">
       <u-button
         color="info"
