@@ -60,7 +60,7 @@
     }
 
     .etiqueta-carro {
-      @apply font-normal text-black px-2 py-1 rounded-full text-xs bg-orange-200;
+      @apply font-normal text-black px-2 py-1 rounded-full text-xs bg-white border border-gray-300;
     }
 
     .contenedor-tarifas{
@@ -101,15 +101,15 @@
     }
 
     .dias-reservados {
-      @apply text-sm;
+      @apply text-sm mt-2;
     }
 
     .precio-total {
-      @apply font-bold text-xl whitespace-nowrap;
+      @apply text-xl whitespace-nowrap;
     }
 
     .texto-no-incluye {
-      @apply text-sm;
+      @apply text-[10px] text-gray-500;
     }
 
     .opcion-seleccionable {
@@ -130,7 +130,7 @@
     }
     
     .form-radio {
-      @apply scheme-light;
+      @apply scheme-light accent-black;
     }
 }
 

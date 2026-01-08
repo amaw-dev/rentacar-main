@@ -34,7 +34,7 @@
             </span>
           </template>
         <template #trailing>
-          <ChevronDownIcon cls="size-5" />
+          <ChevronDownIcon cls="size-7" />
         </template>
         </UButton>
         <template #content>
@@ -117,7 +117,6 @@
                 <label :for="basicCoverageCheckboxID">Seguro Básico</label>
 
                 <UModal
-                  :overlay="false"
                   :ui="modalUIConfig"
                   title="Seguro Básico"
                   description="Protección Obligatoria"
@@ -185,7 +184,6 @@
                 <label :for="totalCoverageCheckboxID">Seguro Total</label>
 
                 <UModal
-                  :overlay="false"
                   :ui="modalUIConfig"
                   title="Seguro Total"
                   description="Protección Obligatoria"
@@ -260,7 +258,7 @@
 
                 <label :for="oneKmMileageCheckboxID">1000 kms</label>
 
-                <UModal :overlay="false" :ui="modalUIConfig" title="1000 Kilómetros">
+                <UModal :ui="modalUIConfig" title="1000 Kilómetros">
                   <UButton
                     variant="ghost"
                     color="neutral"
@@ -308,7 +306,7 @@
 
                 <label :for="twoKmsMileageCheckboxID">2000 kms</label>
 
-                <UModal :overlay="false" :ui="modalUIConfig" title="2000 Kilómetros">
+                <UModal :ui="modalUIConfig" title="2000 Kilómetros">
                   <UButton
                     variant="ghost"
                     color="neutral"
@@ -356,7 +354,7 @@
 
                 <label :for="threeKmsMileageCheckboxID">3000 kms</label>
 
-                <UModal :overlay="false" :ui="modalUIConfig" title="2000 Kilómetros">
+                <UModal :ui="modalUIConfig" title="2000 Kilómetros">
                   <UButton
                     color="neutral"
                     variant="ghost"
@@ -409,7 +407,7 @@
           }"
         >
           <template #trailing>
-            <ChevronDownIcon cls="size-5" />
+            <ChevronDownIcon cls="size-7" />
           </template>
           <template #leading>
             <!-- Contenedor del texto centrado horizontalmente -->
@@ -426,6 +424,7 @@
               <div class="flex">
                 <UCheckbox
                   v-model="withExtraDriver"
+                  color="neutral"
                   class="opcion-seleccionable"
                 >
                   <template #label>
@@ -433,7 +432,7 @@
                   </template>
                 </UCheckbox>
 
-                <UModal :overlay="false" :ui="modalUIConfig" title="Conductor adicional">
+                <UModal :ui="modalUIConfig" title="Conductor adicional">
                   <UButton
                     variant="ghost"
                     color="neutral"
@@ -471,13 +470,13 @@
 
             <div class="flex items-center justify-between">
               <div class="flex">
-                <UCheckbox v-model="withBabySeat" class="opcion-seleccionable">
+                <UCheckbox v-model="withBabySeat" color="neutral" class="opcion-seleccionable">
                   <template #label>
                     Silla para bebe {{ getFormattedDays }}
                   </template>
                 </UCheckbox>
 
-                <UModal :overlay="false" :ui="modalUIConfig" title="Silla para bebe">
+                <UModal :ui="modalUIConfig" title="Silla para bebe">
                   <UButton
                     variant="ghost"
                     color="neutral"
@@ -523,11 +522,11 @@
 
             <div class="flex items-center justify-between">
               <div class="flex">
-                <UCheckbox v-model="withWash" class="opcion-seleccionable">
+                <UCheckbox v-model="withWash" color="neutral" class="opcion-seleccionable">
                   <template #label> Lavado del vehículo </template>
                 </UCheckbox>
 
-                <UModal :overlay="false" :ui="modalUIConfig" title="Lavado del Vehículo">
+                <UModal :ui="modalUIConfig" title="Lavado del Vehículo">
                   <UButton
                     variant="ghost"
                     color="neutral"
@@ -691,7 +690,8 @@ const modalUIConfig = {
   header: 'bg-white',
   title: 'text-gray-900',
   description: 'text-gray-600',
-  body: 'text-gray-800 bg-white'
+  body: 'text-gray-800 bg-white',
+  close: 'bg-black text-white rounded-full'
 };
 
 </script>
