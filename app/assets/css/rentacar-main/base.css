@@ -373,18 +373,38 @@ header [data-highlighted],
 }
 
 /* UPageSection - Symmetric vertical padding for all sections */
-section[id] [data-slot="container"] {
+/* Use > (direct child) to avoid affecting internal containers in UCarousel etc */
+section[id] > [data-slot="container"] {
     padding-top: 3rem !important;
     padding-bottom: 3rem !important;
 }
+
+/* Category selection section - minimal top padding to reduce gap with search button */
+/* Use > (direct child) to avoid affecting internal containers in UCarousel etc */
+#seleccion-categorias > [data-slot="container"] {
+    padding-top: 0 !important;
+    gap: 1rem !important;
+}
 @media (min-width: 640px) {
-    section[id] [data-slot="container"] {
+    #seleccion-categorias > [data-slot="container"] {
+        padding-top: 0 !important;
+        gap: 1.25rem !important;
+    }
+}
+@media (min-width: 1024px) {
+    #seleccion-categorias > [data-slot="container"] {
+        padding-top: 1.5rem !important;
+        gap: 1.5rem !important;
+    }
+}
+@media (min-width: 640px) {
+    section[id] > [data-slot="container"] {
         padding-top: 3.5rem !important;
         padding-bottom: 3.5rem !important;
     }
 }
 @media (min-width: 1024px) {
-    section[id] [data-slot="container"] {
+    section[id] > [data-slot="container"] {
         padding-top: 4rem !important;
         padding-bottom: 4rem !important;
     }

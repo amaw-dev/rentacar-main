@@ -62,4 +62,3 @@ props.vehicleModels?.forEach((model: VehicleCategoryModel, i) => {
 });
 </script>
 
-<style scoped></style>

@@ -72,8 +72,8 @@
     <!-- Result Section -->
     <UPageSection
       id="seleccion-categorias"
-      class="border-t-2 border-white"
       v-if="pendingSearch || filteredCategories.length > 0"
+      :ui="{ container: 'pt-0' }"
     >
       <CategorySelectionSection />
     </UPageSection>

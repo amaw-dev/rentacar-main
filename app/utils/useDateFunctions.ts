@@ -53,6 +53,9 @@ export function toDatetime(date: DateObject, time: TimeObject){
  */
 export function formatHumanDate(date: DateObject){
     return new DateFormatter('es-CO', {
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric',
         timeZone: defaultTimezone
     }).format(date.toDate(defaultTimezone))
 }
