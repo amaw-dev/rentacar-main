@@ -70,7 +70,7 @@
             ¿En que ciudad deseas recoger tu carro?
           </div>
           <div class="min-w-80 my-3">
-            <SelectBranch></SelectBranch>
+            <SelectBranch variant="gray" />
           </div>
         </div>
       </template>
@@ -164,6 +164,7 @@
       id="categorias"
       orientation="vertical"
       class="bg-white text-black"
+      :ui="categoriasPageSectionUIConfig"
     >
       <template #title>
         <h2 class="text-2xl md:text-3xl text-center space-x-2">
@@ -173,7 +174,7 @@
       </template>
       <template #description>
         <div class="text-black justify-items-center">
-          <p class="mb-4">
+          <p>
             Cada estilo de vida tiene su vehículo perfecto. Ya sea la agilidad
             para la ciudad, la comodidad para los viajes largos o la potencia
             para la aventura, tenemos la llave para tus necesidades. <br />
@@ -182,91 +183,59 @@
         </div>
       </template>
       <template #default>
-        <UPageGrid>
-          <template #default>
-            <UPageCard
-              title="COMPACTO"
-              description="Practicidad urbana con estilo. La agilidad que necesitas en la ciudad"
-              variant="ghost"
-              :ui="categoriasPageCardUIConfig"
-              orientation="vertical"
-              reverse
-            >
-              <template #footer>
-                <UModal>
-                  <template #body>
-                    <div class="mb-4 text-white text-lg font-bold">
-                      ¿En que ciudad deseas recoger tu carro?
-                    </div>
-                    <div class="min-w-80 my-3">
-                      <SelectBranch />
-                    </div>
-                  </template>
-                  <UButton color="info" class="text-white px-8 py-3"
-                    >Ver disponibilidad</UButton
-                  >
-                </UModal>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-4 md:mt-0">
+          <!-- Compacto -->
+          <div class="flex flex-col items-center text-center">
+            <ImagesCategoriasCompacto />
+            <h3 class="font-bold text-black text-lg mt-0">COMPACTO</h3>
+            <p class="text-black mt-2">Practicidad urbana con estilo. La agilidad que necesitas en la ciudad</p>
+            <UModal class="mt-4" :ui="{ content: 'bg-white', close: 'bg-black text-white rounded-full' }">
+              <template #body>
+                <div class="mb-4 text-black text-lg">
+                  ¿En que ciudad<br>deseas recoger tu carro?
+                </div>
+                <div class="min-w-80 my-3">
+                  <SelectBranch variant="gray" />
+                </div>
               </template>
-              <template #default>
-                <ImagesCategoriasCompacto />
+              <UButton class="bg-[#000073] hover:bg-[#000090] text-white px-8 py-3">Ver disponibilidad</UButton>
+            </UModal>
+          </div>
+          <!-- Sedan -->
+          <div class="flex flex-col items-center text-center">
+            <ImagesCategoriasSedan />
+            <h3 class="font-bold text-black text-lg mt-0">SEDAN</h3>
+            <p class="text-black mt-2">Confort y espacio. Disfruta cada viaje con la máxima comodidad</p>
+            <UModal class="mt-4" :ui="{ content: 'bg-white', close: 'bg-black text-white rounded-full' }">
+              <template #body>
+                <div class="mb-4 text-black text-lg">
+                  ¿En que ciudad<br>deseas recoger tu carro?
+                </div>
+                <div class="min-w-80 my-3">
+                  <SelectBranch variant="gray" />
+                </div>
               </template>
-            </UPageCard>
-            <UPageCard
-              title="SEDAN"
-              description="Confort y espacio. Disfruta cada viaje con la máxima comodidad"
-              variant="ghost"
-              :ui="categoriasPageCardUIConfig"
-              orientation="vertical"
-              reverse
-            >
-              <template #footer>
-                <UModal>
-                  <template #body>
-                    <div class="mb-4 text-white text-lg font-bold">
-                      ¿En que ciudad deseas recoger tu carro?
-                    </div>
-                    <div class="min-w-80 my-3">
-                      <SelectBranch />
-                    </div>
-                  </template>
-                  <UButton color="info" class="text-white px-8 py-3"
-                    >Ver disponibilidad</UButton
-                  >
-                </UModal>
+              <UButton class="bg-[#000073] hover:bg-[#000090] text-white px-8 py-3">Ver disponibilidad</UButton>
+            </UModal>
+          </div>
+          <!-- Camioneta -->
+          <div class="flex flex-col items-center text-center">
+            <ImagesCategoriasSUV />
+            <h3 class="font-bold text-black text-lg mt-0">CAMIONETA</h3>
+            <p class="text-black mt-2">Robustez y tamaño. Capacidad para dominar cualquier camino</p>
+            <UModal class="mt-4" :ui="{ content: 'bg-white', close: 'bg-black text-white rounded-full' }">
+              <template #body>
+                <div class="mb-4 text-black text-lg">
+                  ¿En que ciudad<br>deseas recoger tu carro?
+                </div>
+                <div class="min-w-80 my-3">
+                  <SelectBranch variant="gray" />
+                </div>
               </template>
-              <template #default>
-                <ImagesCategoriasSedan />
-              </template>
-            </UPageCard>
-            <UPageCard
-              title="CAMIONETA"
-              description="Robustez y tamaño. Capacidad para dominar cualquier camino"
-              variant="ghost"
-              :ui="categoriasPageCardUIConfig"
-              orientation="vertical"
-              reverse
-            >
-              <template #footer>
-                <UModal>
-                  <template #body>
-                    <div class="mb-4 text-white text-lg font-bold">
-                      ¿En que ciudad deseas recoger tu carro?
-                    </div>
-                    <div class="min-w-80 my-3">
-                      <SelectBranch />
-                    </div>
-                  </template>
-                  <UButton color="info" class="text-white px-8 py-3"
-                    >Ver disponibilidad</UButton
-                  >
-                </UModal>
-              </template>
-              <template #default>
-                <ImagesCategoriasSUV />
-              </template>
-            </UPageCard>
-          </template>
-        </UPageGrid>
+              <UButton class="bg-[#000073] hover:bg-[#000090] text-white px-8 py-3">Ver disponibilidad</UButton>
+            </UModal>
+          </div>
+        </div>
       </template>
     </UPageSection>
 
@@ -274,11 +243,14 @@
     <UPageSection
       id="testimonios"
       orientation="vertical"
-      class="bg-white text-black"
+      class="bg-gray-200 text-black"
       :ui="testimoniosPageSectionUIConfig"
     >
       <template #title>
-        <h2 class="text-2xl md:text-3xl text-black">Lo que dicen nuestros clientes</h2>
+        <h2 class="text-2xl md:text-3xl text-center space-x-2">
+          <span class="text-red-700">Testimonios</span>
+          <span class="text-black">que comparten nuestros clientes</span>
+        </h2>
       </template>
       <template #description>
         <p class="text-black">Descubre por qué somos la opción preferida para alquilar carros en Colombia. Nuestros clientes destacan nuestra atención, precios competitivos y la facilidad para explorar.</p>
@@ -314,29 +286,21 @@
     </UPageSection>
 
     <!-- FAQ Section -->
-    <UPageSection id="faqs" class="faq px-6 text-white">
-      <UContainer>
-        <h2 class="text-2xl md:text-3xl font-bold text-center mb-8">
-          Preguntas Frecuentes
+    <UPageSection id="faqs" class="bg-white text-black">
+      <UContainer class="px-1 sm:px-2 lg:px-6">
+        <h2 class="text-2xl md:text-3xl font-bold text-center mb-8 space-x-2">
+          <span class="text-red-700">Preguntas Frecuentes</span>
+          <span class="text-black">resolvemos tus dudas</span>
         </h2>
-        <p class="text-base mb-6">
-          Ahora es muy fácil alquilar carro en Colombia, ya sea para vacaciones
-          o para negocios, por días o por meses, sólo requiere ser mayor de
-          edad, tener licencia de conducción y una tarjeta de crédito con cupo
-          disponible no lo piense mas, con un alquiler de carros para viajar en
-          Colombia le sera mas fácil trasladarse por la ciudades, conocer
-          hermosos lugares y disfrutar de nuestra gastronomía y la gente amable
-          de cada región, ALQUILATUCARRO RENTA AUTOS COLOMBIA, le ofrece
-          variedad de vehículos y precios que se adaptan a sus necesidades, la
-          calidad de nuestros coches y la atención de nuestro personal es
-          inigualable compruébelo reservando ahora mismo
+        <p class="text-base text-center mb-6">
+          Encuentra respuestas a las consultas más comunes sobre nuestro servicio de alquiler. Si tienes otra pregunta, contáctanos directamente.
         </p>
-        <UAccordion :items="faqs">
+        <UAccordion :items="faqs" :ui="faqAccordionUIConfig">
           <template #default="{ item }">
-            <div class="text-base font-medium" v-text="item.label"></div>
+            <div class="text-base font-medium text-gray-800 px-4" v-text="item.label"></div>
           </template>
           <template #content="{ item }">
-            <div class="text-base py-3" v-text="item.content"></div>
+            <div class="text-base text-gray-600 py-3 bg-gray-50 px-4 rounded-lg" v-text="item.content"></div>
           </template>
         </UAccordion>
       </UContainer>
@@ -414,10 +378,15 @@ const requisitosPageFeatureUIConfig = {
   description: "text-black",
 };
 
+const categoriasPageSectionUIConfig = {
+  body: "mt-4 sm:mt-6",
+};
+
 const categoriasPageCardUIConfig = {
-  title: "text-center text-black",
-  description: "text-center text-black",
-  footer: "mx-auto",
+  root: "flex flex-col",
+  body: "order-2",
+  footer: "order-3 mx-auto",
+  container: "order-1",
 };
 
 const testimonios: Testimonial[] = franchise.testimonials;
@@ -443,6 +412,12 @@ const testimonioPageCardUIConfig = {
 const testimonioUserUIConfig = {
   name: "text-black",
   description: "text-gray-600",
+};
+
+const faqAccordionUIConfig = {
+  item: "bg-gray-200 rounded-lg mb-2 px-2 pb-2 border-none",
+  body: "border-none",
+  trailingIcon: "mr-2",
 };
 
 </script>

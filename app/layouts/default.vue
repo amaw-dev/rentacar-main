@@ -48,13 +48,13 @@
         <div >
           Estamos presentes en más de 19 ciudades de Colombia como Bogotá, Medellín, Cali y Cartagena. Explora cada destino y reserva en la sede que más te convenga.
         </div>
-        <div class="flex flex-wrap justify-center gap-3">
-          <UButton 
-            v-for="city in cities" 
-            :to="city.link" 
-            class="text-white justify-center bg-blue-600 hover:bg-blue-800 rounded-lg py-1 w-fit"
+        <div class="flex flex-col md:flex-row md:flex-wrap justify-center gap-1 md:gap-3">
+          <UButton
+            v-for="city in cities"
+            :to="city.link"
+            class="text-white justify-center bg-blue-600 hover:bg-blue-800 rounded-lg py-3 w-full md:w-fit font-normal"
           >
-            Alquiler de carros en {{ city.name }}
+            Alquiler de carros en <span class="font-bold">{{ city.name }}</span>
           </UButton>
         </div>
       </UContainer>
