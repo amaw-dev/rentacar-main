@@ -205,13 +205,7 @@ const useStoreReservationForm = defineStore("reservationForm", () => {
       if(dataRecord.value.reservationStatus == "Pendiente")
         navigateTo({path: "/pendiente"});
       else if(dataRecord.value.reservationStatus == "Confirmado"){
-        navigateTo({
-          path: "/reservado",
-          query: {
-            reserveCode: dataRecord.value.reserveCode,
-            reservationStatus: dataRecord.value.reservationStatus,
-          },
-        });
+        navigateTo({path: `/reservado/${dataRecord.value.reserveCode}`});
       }
         
       return;

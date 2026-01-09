@@ -83,23 +83,24 @@ const { smAndSmaller } = useResponsive();
 const items: SelectMenuItem[] = branches.map((branch: BranchData) => ({
   label: branch.name,
   value: branch.code,
-  onSelect: () => goToReservationPage(branch.code),
+  onSelect: () => goToReservationPage(branch),
 }));
 
 /** refs */
 const selectedBranch = ref<BranchData['code'] | null>(null)
 
 /** functions */
-const goToReservationPage = async (branchCode: string) =>
-  await navigateTo(createReservationURL(branchCode), {
+const goToReservationPage = async (branch: BranchData) =>
+  await navigateTo(createReservationURL(branch), {
     external: true,
     open: {
       target: "_blank",
     },
   });
 
-const createReservationURL = (branchCode: string) =>
-  `${reservation.website}/lr/${branchCode}/ld/${branchCode}/fr/${reservationInitDay}/fd/${reservationEndDay}/hr/${reservationInitHour}/hd/${reservationEndHour}`;
-// https://reservatuauto.com/lr/AAPEI/ld/AAPEI/fr/2025-11-08/fd/2025-11-15/hr/12:00/hd/12:00
+const createReservationURL = (branch: BranchData) =>
+  `${reservation.website}/${branch.city}/buscar-vehiculos/lugar-recogida/${branch.code.toLowerCase()}/lugar-devolucion/${branch.code.toLowerCase()}/fecha-recogida/${reservationInitDay}/fecha-devolucion/${reservationEndDay}/hora-recogida/${reservationInitHour}/hora-devolucion/${reservationEndHour}`;
+
+  // https://alquilatucarro.com/cali/buscar-vehiculos/lugar-recogida/aakal/lugar-devolucion/aakal/fecha-recogida/2026-01-10/fecha-devolucion/2026-01-17/hora-recogida/12:00/hora-devolucion/12:00
 
 </script>

@@ -74,7 +74,7 @@ export default function useSearch() {
       });
     }
 
-    // haveMonthlyReservation.value = selectedDays.value == 30;
+    haveMonthlyReservation.value = selectedDays.value == 30;
     haveTotalInsurance.value = false;
 
     firstSearch.value = false;

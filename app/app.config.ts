@@ -47,7 +47,7 @@ export default defineAppConfig({
     otherbrands: ["Alquilame", "Alquicarros"],
   },
   reservation: {
-    website: "https://reservatucarro.com",
+    website: "https://alquilatucarro.com",
   },
   franchise: {
     name: "alquilatucarro.com",
