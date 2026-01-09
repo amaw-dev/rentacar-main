@@ -53,3 +53,5 @@ alquilame_gsc/
 /.playwright-mcp/
 /hooks/*.db
 /hooks/__pycache__/
+tailwind/
+clouds-animation.html
