@@ -34,7 +34,7 @@
         'select-branch-critical hidden sm:flex w-full rounded-xl text-black border border-gray-400',
         variant === 'gray' ? 'bg-gray-200' : 'bg-white'
       ]"
-      :ui="{ leadingIcon: 'bg-red-500', base: ['py-6'], placeholder: 'text-black' }"
+      :ui="{ leadingIcon: 'text-red-600', base: ['py-6'], placeholder: 'text-black' }"
     >
       <template #leading>
         <LocationIcon cls="text-red-600 size-5" />

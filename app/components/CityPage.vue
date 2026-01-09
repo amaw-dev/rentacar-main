@@ -119,7 +119,7 @@
           <div
             v-for="testimonio in testimonios"
             :key="testimonio.user.name"
-            class="border border-gray-100 rounded-lg bg-gray-50 shadow p-6"
+            class="border border-gray-100 rounded-lg bg-gray-50 shadow-sm p-5 md:p-6 hover:shadow-lg hover:-translate-y-1 transition-all duration-200"
           >
             <UUser
               size="3xl"

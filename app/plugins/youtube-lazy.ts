@@ -6,7 +6,7 @@ import type { DirectiveBinding } from 'vue';
 export default defineNuxtPlugin((nuxtApp) => {
   nuxtApp.vueApp.directive('youtube-lazy', {
     mounted(el: HTMLImageElement, binding: DirectiveBinding<string>) {
-      el.style.cursor = 'pointer'; // Opcional: Cambia el cursor para indicar que es clickable
+      // Note: cursor-pointer class should be added in template to avoid hydration mismatch
 
       const loadVideo = () => {
         const videoId = binding.value;

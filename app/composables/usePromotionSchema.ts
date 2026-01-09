@@ -25,12 +25,10 @@ export const usePromotionSchema = (options: PromotionSchemaOptions) => {
         eligibleRegion = 'CO'
     } = options
 
-    // Calculate valid dates (default: current month + 3 months)
-    const now = new Date()
-    const defaultValidFrom = validFrom || now.toISOString().split('T')[0]
-    const futureDate = new Date(now)
-    futureDate.setMonth(futureDate.getMonth() + 3)
-    const defaultValidThrough = validThrough || futureDate.toISOString().split('T')[0]
+    // Use fixed dates to avoid hydration mismatch between server/client
+    // For Schema.org, only server-rendered value matters (for crawlers)
+    const defaultValidFrom = validFrom || '2026-01-01'
+    const defaultValidThrough = validThrough || '2026-12-31'
 
     const regions = Array.isArray(eligibleRegion) ? eligibleRegion : [eligibleRegion]
 

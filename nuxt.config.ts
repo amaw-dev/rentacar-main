@@ -10,6 +10,14 @@ export default defineNuxtConfig({
 
   modules: ['@nuxtjs/seo', '@nuxt/ui', '@pinia/nuxt', 'nuxt-llms'],
 
+  // Configuración SEO - controla cómo se generan los títulos
+  site: {
+    url: 'https://alquilatucarro.com',
+    name: 'Alquilatucarro',
+    description: 'Alquila carros en Bogotá, Medellín, Cali y 14 ciudades más.',
+    defaultLocale: 'es',
+  },
+
   colorMode: {
     preference: 'dark',
   },
@@ -49,6 +57,10 @@ export default defineNuxtConfig({
     ],
     optimizeDeps: {
       include: ['@vueuse/core']
+    },
+    define: {
+      // Enable detailed hydration mismatch warnings in production
+      __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: true
     }
   },
 
@@ -68,9 +80,6 @@ export default defineNuxtConfig({
       }
     },
     routeRules: {
-      // Redirecciones 301 para URLs antiguas que dan 404
-      '/gana': { redirect: { to: '/', statusCode: 301 } },
-      '/gana/**': { redirect: { to: '/', statusCode: 301 } },
       '/_nuxt/**': {
         headers: {
           'Cache-Control': 'public, max-age=31536000, inmutable'
@@ -105,6 +114,9 @@ export default defineNuxtConfig({
         '/palmira',
         '/soledad',
         '/cancun',
+        '/gana',
+        '/gana/terminos-condiciones',
+        '/gana/politicas-privacidad',
       ]
     }
   },

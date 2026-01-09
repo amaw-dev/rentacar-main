@@ -2,17 +2,20 @@
   <div class="min-h-screen bg-gradient-to-b from-[#000073] via-blue-800 to-blue-900 font-sans text-gray-800">
     <!-- Header -->
     <UHeader
+      v-model:open="mobileMenuOpen"
       class="bg-[#000073] z-50 py-4 md:py-6 px-6 border-none relative"
       mode="slideover"
       :toggle="{
         color: 'white',
         size: 'xl',
-        class: 'text-white absolute right-4 top-4',
+        class: 'absolute right-4 top-4',
         'aria-label': 'Abrir menú de navegación'
       }"
       :ui="{
         root: 'gap-4',
-        slideover: 'bg-[#000073]'
+        content: 'bg-white',
+        header: 'bg-white relative',
+        body: 'bg-white'
       }"
      >
       <template #left>
@@ -30,7 +33,24 @@
         </NuxtLink>
       </template>
       <template #body>
-        <UNavigationMenu color="neutral" orientation="vertical" :items="items" />
+        <!-- Botón cerrar manual (UHeader slideover no incluye uno nativo) -->
+        <UButton
+          icon="lucide:x"
+          color="neutral"
+          variant="solid"
+          size="sm"
+          class="absolute top-4 right-4 bg-black text-white rounded-full hover:bg-gray-800"
+          aria-label="Cerrar menú"
+          @click="mobileMenuOpen = false"
+        />
+        <UNavigationMenu
+          orientation="vertical"
+          :items="mobileItems"
+          :ui="{
+            link: 'text-lg py-3 font-medium',
+            linkLabel: 'text-lg'
+          }"
+        />
       </template>
       <template #right>
         <div class="hidden lg:block">
@@ -59,7 +79,7 @@
           <UButton
             v-for="city in cities"
             :to="city.link"
-            class="text-white justify-center bg-blue-600 hover:bg-blue-800 rounded-lg py-3 w-full md:w-fit font-normal"
+            class="text-white justify-center bg-blue-600 hover:bg-blue-800 rounded-lg py-3 w-full md:w-fit font-normal transition-colors"
           >
             Alquiler de carros en <span class="font-bold">{{ city.name }}</span>
           </UButton>
@@ -102,7 +122,7 @@
             <p class="text-gray-600">Estamos a un mensaje de distancia</p>
             <UButton
               size="xl"
-              class="bg-[#25D366] hover:bg-[#128C7E] text-white mt-3"
+              class="bg-[#25D366] hover:bg-[#128C7E] text-white mt-3 transition-colors"
               label="Whatsapp"
               target="_blank"
               :external="true"
@@ -148,6 +168,10 @@ import type { NavigationMenuItem } from '@nuxt/ui'
 
 const route = useRoute();
 
+// Estado del menú móvil slideover
+const mobileMenuOpen = ref(false);
+
+// Items para menú desktop (texto blanco sobre fondo azul)
 const items = computed<NavigationMenuItem[]>(() => [
   {
     label: 'Requisitos',
@@ -172,6 +196,30 @@ const items = computed<NavigationMenuItem[]>(() => [
     to: '/#faqs',
     active: route.path.startsWith('#faqs'),
     class: "text-white hover:text-white hover:bg-white/10",
+  },
+])
+
+// Items para menú móvil (texto oscuro sobre fondo blanco)
+const mobileItems = computed<NavigationMenuItem[]>(() => [
+  {
+    label: 'Requisitos',
+    to: '/#requisitos',
+    active: route.path.startsWith('#requisitos'),
+  },
+  {
+    label: 'Sedes',
+    to: '/#sedes',
+    active: route.path.startsWith('#sedes'),
+  },
+  {
+    label: 'Blog',
+    to: '/blog',
+    active: route.path.startsWith('/blog'),
+  },
+  {
+    label: 'Preguntas frecuentes',
+    to: '/#faqs',
+    active: route.path.startsWith('#faqs'),
   },
 ])
 

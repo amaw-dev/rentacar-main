@@ -1,6 +1,16 @@
 export default defineAppConfig({
   defaultTimezone: "America/Bogota",
   ui: {
+    slideover: {
+      slots: {
+        close: 'absolute top-4 end-4 bg-black text-white rounded-full hover:bg-gray-700',
+      },
+    },
+    header: {
+      slots: {
+        close: 'bg-black text-white rounded-full hover:bg-gray-700',
+      },
+    },
     pageSection: {
       slots: {
         container:
@@ -53,9 +63,9 @@ export default defineAppConfig({
     name: "alquilatucarro.com",
     shortname: "alquilatucarro",
     website: "https://alquilatucarro.com",
-    title: "ALQUILER DE CARROS EN COLOMBIA desde USD $32 ALQUILATUCARRO",
+    title: "Alquiler de Carros en Colombia desde $32/día",
     description:
-      "Los mejores precios en alquiler de carros y alquiler de camionetas en varias zonas del país. Reserva Ahora! Tenemos variedad de carros nuevos renovando nuestra flota cada 2 años. Alquiler de carros en Bogotá, Medellín, Barranquilla, Cali, Cartagena, Bucaramanga, Ibagué, Manizales, Cúcuta, Santa Marta, Pereira, Montería y Villavicencio.",
+      "Alquila carros en Bogotá, Medellín, Cali y 14 ciudades más. Hasta 60% descuento por reserva anticipada. Sin pago previo. Flota renovada cada 2 años.",
     logo: "https://firebasestorage.googleapis.com/v0/b/rentacar-403321.firebasestorage.app/o/rentacar-main%2Falquilatucarro%2Fimg%2Flogo.png?alt=media&token=975cfe04-c619-44bc-964a-e6231ca92dfe",
     oglogo:
       "https://firebasestorage.googleapis.com/v0/b/rentacar-403321.firebasestorage.app/o/rentacar-main%2Falquilatucarro%2Fimg%2Fog-logo.png?alt=media&token=609ec027-6040-466d-9364-d933f67d1e5f",
@@ -74,8 +84,8 @@ export default defineAppConfig({
     ],
     footerLinks: [
       {
-        link: "https://storage.googleapis.com/alquilatucarro/rentacar-landing/2023/pdf/POL%C3%8DTICA%20DE%20PRIVACIDAD.pdf",
-        label: "Términos y condiciones",
+        link: "/politica-privacidad",
+        label: "Política de privacidad",
       },
       {
         link: "https://storage.googleapis.com/alquilatucarro/rentacar-landing/2023/pdf/tratamiento-datos-alquilatucarro.pdf",
@@ -86,7 +96,7 @@ export default defineAppConfig({
         label: "Quejas y reclamos",
       },
       {
-        link: "https://www.alquilatucarro.com/gana/",
+        link: "/gana",
         label: "Gana comisiones",
       },
       {

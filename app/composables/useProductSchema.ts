@@ -88,9 +88,9 @@ export const useProductSchema = (options: ProductSchemaOptions) => {
 }
 
 function getNextMonthDate(): string {
-    const date = new Date()
-    date.setMonth(date.getMonth() + 1)
-    return date.toISOString().split('T')[0] as string
+    // Use fixed date to avoid hydration mismatch between server/client
+    // For Schema.org, only server-rendered value matters (for crawlers)
+    return '2026-12-31'
 }
 
 export const useCarSchema = (options: ProductSchemaOptions) => {
