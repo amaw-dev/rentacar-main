@@ -71,7 +71,7 @@
             @apply text-end;
 
             span {
-                @apply light:bg-yellow-500 dark:bg-green-500 font-medium rounded-none px-1 py-0.5 text-xs;
+                @apply light:bg-yellow-500 dark:bg-green-700 font-medium rounded-none px-1 py-0.5 text-xs;
             }
         }
 

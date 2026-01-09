@@ -80,9 +80,6 @@ export default defineNuxtConfig({
       }
     },
     routeRules: {
-      // Redirecciones 301 para URLs antiguas que dan 404
-      '/gana': { redirect: { to: '/', statusCode: 301 } },
-      '/gana/**': { redirect: { to: '/', statusCode: 301 } },
       '/_nuxt/**': {
         headers: {
           'Cache-Control': 'public, max-age=31536000, inmutable'
@@ -117,6 +114,9 @@ export default defineNuxtConfig({
         '/palmira',
         '/soledad',
         '/cancun',
+        '/gana',
+        '/gana/terminos-condiciones',
+        '/gana/politicas-privacidad',
       ]
     }
   },

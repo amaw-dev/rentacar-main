@@ -68,7 +68,7 @@
       width="2000"
       height="1620"
       loading="lazy"
-      class="mx-auto"
+      class="mx-auto cursor-pointer"
     />
   </picture>
 </template>
