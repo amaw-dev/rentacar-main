@@ -57,10 +57,10 @@
             <div v-if="selectedMonthlyMileage == '1k_kms'" class="renting-item">
               Kilometraje 1.000 kms
             </div>
-            <div v-if="selectedMonthlyMileage == '2k_kms'" class="renting-item">
+            <div v-else-if="selectedMonthlyMileage == '2k_kms'" class="renting-item">
               Kilometraje 2.000 kms
             </div>
-            <div v-if="selectedMonthlyMileage == '3k_kms'" class="renting-item">
+            <div v-else-if="selectedMonthlyMileage == '3k_kms'" class="renting-item">
               Kilometraje 3.000 kms
             </div>
             <div v-else class="renting-item">Kilometraje ilimitado</div>
