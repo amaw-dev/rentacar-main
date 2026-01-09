@@ -80,12 +80,16 @@ header button.lg\:hidden:hover {
     color: white !important;
 }
 
-/* UHeader slideover panel - dark background for white text visibility */
-[role="dialog"].bg-default {
-    background-color: #000073 !important;
+/* UHeader slideover panel - white background with dark text */
+/* Note: Close button uses data-slot="close" */
+header [role="dialog"] {
+    background-color: white !important;
 }
-[role="dialog"] button {
-    color: white !important;
+header [role="dialog"] [data-slot="close"] {
+    color: #1f2937 !important;
+}
+header [role="dialog"] [data-slot="close"]:hover {
+    background-color: #f3f4f6 !important;
 }
 
 /* City Page - Reduce hero section internal container padding */
@@ -109,6 +113,40 @@ header button.lg\:hidden:hover {
     #descripcion div[class*="max-w-"][class*="mx-auto"] {
         padding-top: 1.5rem !important;
         padding-bottom: 3rem !important;
+    }
+}
+
+/* Animated gradient background - blue to cyan shift */
+.bg-animated-gradient {
+    background: linear-gradient(
+        135deg,
+        #000073 0%,
+        #0891b2 25%,
+        #000073 50%,
+        #0891b2 75%,
+        #000073 100%
+    );
+    background-size: 300% 300%;
+    animation: gradient-shift 12s ease infinite;
+}
+
+@keyframes gradient-shift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+    .bg-animated-gradient {
+        animation: none;
+        background: linear-gradient(to bottom, #000073, #1e40af, #1e3a8a);
     }
 }
 
@@ -366,6 +404,20 @@ header [data-highlighted],
     position: absolute !important;
     top: 0.5rem !important;
     right: 0.75rem !important;
+}
+
+/* UHeader slideover close button - black circle with white X (matches UModal style) */
+header [role="dialog"] [data-slot="close"] {
+    background-color: black !important;
+    color: white !important;
+    border-radius: 9999px !important;
+}
+header [role="dialog"] [data-slot="close"]:hover {
+    background-color: #374151 !important;
+}
+/* Also target the icon inside the close button */
+header [role="dialog"] [data-slot="close"] svg {
+    color: white !important;
 }
 
 [role="dialog"] [data-slot="body"] {

@@ -51,10 +51,10 @@
       class="bg-white text-black"
     >
       <template #title>
-        <h2 class="text-2xl md:text-3xl text-center">
+        <div class="text-2xl md:text-3xl text-center">
           <span class="block text-red-700">Hasta 60% de Descuento</span>
           <span class="block text-black">Reserva Ahora, Paga Después</span>
-        </h2>
+        </div>
       </template>
       <template #description>
         <div class="text-black text-center">
@@ -62,16 +62,6 @@
           para todas las categorías: compactos, sedanes y camionetas. Reserva
           sin pago anticipado y asegura los mejores precios por planificar tu
           viaje con tiempo
-        </div>
-      </template>
-      <template #body>
-        <div class="text-center justify-items-center">
-          <div class="font-bold text-lg">
-            ¿En que ciudad deseas recoger tu carro?
-          </div>
-          <div class="min-w-80 my-3">
-            <SelectBranch variant="gray" />
-          </div>
         </div>
       </template>
       <template #default>
@@ -87,10 +77,10 @@
       class="bg-gray-200 text-black"
     >
       <template #title>
-        <h2 class="text-2xl md:text-3xl text-center space-x-2">
+        <div class="text-2xl md:text-3xl text-center space-x-2">
           <span class="text-red-700">Requisitos</span>
           <span class="text-black">para tu alquiler</span>
-        </h2>
+        </div>
       </template>
       <template #description>
         <div class="text-black justify-items-center">
@@ -129,16 +119,6 @@
           </ul>
         </div>
       </template>
-      <template #body>
-        <div class="text-center justify-items-center">
-          <div class="font-bold text-lg">
-            ¿En que ciudad deseas recoger tu carro?
-          </div>
-          <div class="min-w-80 my-3">
-            <SelectBranch />
-          </div>
-        </div>
-      </template>
       <template #default>
         <ImagesPersona />
       </template>
@@ -152,10 +132,10 @@
       :ui="categoriasPageSectionUIConfig"
     >
       <template #title>
-        <h2 class="text-2xl md:text-3xl text-center space-x-2">
+        <div class="text-2xl md:text-3xl text-center space-x-2">
           <span class="text-red-700">Tipos de Vehículos</span>
           <span class="text-black">ideales para tu necesidad</span>
-        </h2>
+        </div>
       </template>
       <template #description>
         <div class="text-black justify-items-center">
@@ -183,7 +163,7 @@
                   <SelectBranch variant="gray" />
                 </div>
               </template>
-              <UButton class="bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded-xl font-bold uppercase transition-colors">Ver disponibilidad</UButton>
+              <UButton class="bg-green-700 hover:bg-green-800 text-white px-8 py-3 rounded-xl font-bold uppercase transition-colors">Ver disponibilidad</UButton>
             </UModal>
           </div>
           <!-- Sedan -->
@@ -200,7 +180,7 @@
                   <SelectBranch variant="gray" />
                 </div>
               </template>
-              <UButton class="bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded-xl font-bold uppercase transition-colors">Ver disponibilidad</UButton>
+              <UButton class="bg-green-700 hover:bg-green-800 text-white px-8 py-3 rounded-xl font-bold uppercase transition-colors">Ver disponibilidad</UButton>
             </UModal>
           </div>
           <!-- Camioneta -->
@@ -217,7 +197,7 @@
                   <SelectBranch variant="gray" />
                 </div>
               </template>
-              <UButton class="bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded-xl font-bold uppercase transition-colors">Ver disponibilidad</UButton>
+              <UButton class="bg-green-700 hover:bg-green-800 text-white px-8 py-3 rounded-xl font-bold uppercase transition-colors">Ver disponibilidad</UButton>
             </UModal>
           </div>
         </div>
@@ -236,7 +216,7 @@
           <div
             v-for="testimonio in testimonios"
             :key="testimonio.user.name"
-            class="border border-gray-100 rounded-lg bg-gray-50 shadow p-6"
+            class="border border-gray-100 rounded-lg bg-gray-50 shadow-sm p-5 md:p-6 hover:shadow-lg hover:-translate-y-1 transition-all duration-200"
           >
             <UUser
               size="3xl"
@@ -256,14 +236,14 @@
     <!-- FAQ Section -->
     <UPageSection id="faqs" class="bg-white text-black">
       <div class="max-w-7xl mx-auto px-1 sm:px-2 lg:px-6">
-        <h2 class="text-2xl md:text-3xl font-bold text-center mb-8 space-x-2">
+        <h2 class="text-2xl md:text-3xl font-bold text-center mb-6 space-x-2">
           <span class="text-red-700">Preguntas Frecuentes</span>
           <span class="text-black">sobre alquiler de carros</span>
         </h2>
-        <p class="text-base text-center mb-6">
+        <p class="text-base text-center mb-4">
           Encuentra respuestas a las consultas más comunes sobre nuestro servicio de alquiler. Si tienes otra pregunta, contáctanos directamente.
         </p>
-        <UAccordion :items="faqs" :ui="faqAccordionUIConfig">
+        <UAccordion :items="faqs" :ui="faqAccordionUIConfig" class="max-w-4xl mx-auto">
           <template #default="{ item }">
             <div class="text-base font-medium text-gray-800 px-4" v-text="item.label"></div>
           </template>
@@ -361,9 +341,9 @@ const testimonioUserUIConfig = {
 };
 
 const faqAccordionUIConfig = {
-  item: "bg-gray-200 rounded-lg mb-2 px-2 pb-2 border-none",
-  body: "border-none",
-  trailingIcon: "mr-2",
+  item: "bg-gray-200 rounded-lg mb-2 px-2 pb-2 !border-0 !border-b-0",
+  body: "!border-none",
+  trailingIcon: "mr-2 transition-transform duration-200",
 };
 
 </script>
