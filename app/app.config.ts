@@ -85,7 +85,7 @@ export default defineAppConfig({
     footerLinks: [
       {
         link: "/politica-privacidad",
-        label: "Términos y condiciones",
+        label: "Política de privacidad",
       },
       {
         link: "https://storage.googleapis.com/alquilatucarro/rentacar-landing/2023/pdf/tratamiento-datos-alquilatucarro.pdf",
@@ -96,7 +96,7 @@ export default defineAppConfig({
         label: "Quejas y reclamos",
       },
       {
-        link: "https://www.alquilatucarro.com/gana/",
+        link: "/gana",
         label: "Gana comisiones",
       },
       {
