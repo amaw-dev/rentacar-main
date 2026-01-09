@@ -7,7 +7,8 @@
       :toggle="{
         color: 'white',
         size: 'xl',
-        class: 'text-white absolute right-4 top-4'
+        class: 'text-white absolute right-4 top-4',
+        'aria-label': 'Abrir menú de navegación'
       }"
       :ui="{
         root: 'gap-4',
@@ -38,7 +39,9 @@
       </template>
     </UHeader>
 
-    <slot></slot>
+    <main>
+      <slot></slot>
+    </main>
 
     <!-- Enlaces ciudades -->
     <section id="sedes" class="bg-blue-700 text-white text-center py-12 lg:py-20">
@@ -134,6 +137,7 @@
         class="fixed bottom-4 right-4 md:bottom-8 z-50 rounded-full text-white"
         size="2xl"
         color="primary"
+        aria-label="Abrir chat de contacto"
       />
     </UModal>
   </div>
