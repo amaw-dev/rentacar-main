@@ -113,7 +113,6 @@ export default defineNuxtConfig({
         '/floridablanca',
         '/palmira',
         '/soledad',
-        '/cancun',
         '/gana',
         '/gana/terminos-condiciones',
         '/gana/politicas-privacidad',
@@ -151,7 +150,6 @@ export default defineNuxtConfig({
       '/floridablanca',
       '/palmira',
       '/soledad',
-      '/cancun',
     ],
     // Excluir páginas internas del sitemap
     exclude: ['/blog', '/pendiente', '/sindisponibilidad', '/reservado/**', '/*/buscar-vehiculos/**'],
@@ -180,7 +178,6 @@ export default defineNuxtConfig({
       '/floridablanca',
       '/palmira',
       '/soledad',
-      '/cancun',
     ],
     sitemap: "/sitemap.xml"
   },
@@ -288,11 +285,6 @@ export default defineNuxtConfig({
             title: 'Soledad',
             description: '¿Planeas visitar Soledad? En Alquilatucarro Soledad puedes reservar en línea sin anticipos y recoger directamente en el Aeropuerto Ernesto Cortissoz (Barranquilla). Aprovecha descuentos de hasta el 60% por reserva anticipada y elige entre carros compactos, sedanes o camionetas para recorrer lugares como el Malecón del Río, el Parque Sagrado Corazón o el Museo del Carnaval. Nuestra sede en Soledad te ofrece precios bajos y disponibilidad inmediata los 7 días de la semana. ¡Alquila fácil, sin trámites largos y comienza tu aventura en el municipio más poblado del Atlántico, vibrante y carnavalero!',
             href: '/soledad',
-          },
-          {
-            title: 'Cancún',
-            description: '¿Planeas visitar Cancún? En Alquilatucarro Cancún puedes reservar en línea sin anticipos y recoger directamente en el Aeropuerto Internacional de Cancún. Aprovecha descuentos de hasta el 60% por reserva anticipada y elige entre carros compactos, sedanes o camionetas para recorrer lugares como las playas del Caribe, Chichén Itzá o Xcaret. Nuestra sede en Cancún te ofrece precios bajos y disponibilidad inmediata los 7 días de la semana. ¡Alquila fácil, sin trámites largos y comienza tu aventura en el paraíso maya del Caribe mexicano!',
-            href: '/cancun',
           },
         ],
       },
