@@ -84,12 +84,12 @@ export default defineAppConfig({
     ],
     footerLinks: [
       {
-        link: "/politica-privacidad",
-        label: "Política de privacidad",
+        link: "/terminos-condiciones",
+        label: "Términos y condiciones",
       },
       {
-        link: "https://storage.googleapis.com/alquilatucarro/rentacar-landing/2023/pdf/tratamiento-datos-alquilatucarro.pdf",
-        label: "Política de tratamiento de datos personales",
+        link: "/politica-privacidad",
+        label: "Política de privacidad",
       },
       {
         link: "https://docs.google.com/forms/d/e/1FAIpQLSe5NLCil5hQNqsdPhwDM3DYe3wbGiUyr-2VK4RBTYE3YQbcug/viewform",

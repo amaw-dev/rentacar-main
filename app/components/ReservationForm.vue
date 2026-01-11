@@ -68,12 +68,18 @@
               base: 'bg-gray-100 border border-gray-400 rounded',
             }"
           />
-          <nuxt-link
-            class="underline text-gray-600 text-sm ml-6"
-            to="https://www.alquilatucarro.com/tratamiento-datos-alquilatucarro.pdf"
-            external
-            >Ver políticas</nuxt-link
-          >
+          <div class="ml-6 text-sm space-x-3">
+            <nuxt-link
+              class="underline text-gray-600"
+              to="/terminos-condiciones"
+              target="_blank"
+            >Términos</nuxt-link>
+            <nuxt-link
+              class="underline text-gray-600"
+              to="/politica-privacidad"
+              target="_blank"
+            >Privacidad</nuxt-link>
+          </div>
         </u-form-field>
       </div>
     
