@@ -151,6 +151,10 @@ import {
   useStoreReservationForm,
   useCategory,
   useVehicleCategories,
+  useRoute,
+  watch,
+  nextTick,
+  computed,
 } from "#imports";
 
 /** stores */
@@ -169,6 +173,43 @@ const { vehicleCategories } = useVehicleCategories();
 const slideoverReservationResume = ref<boolean>(false);
 const slideoverReservationForm = ref<boolean>(false);
 const reservationFormComponent = ref(null);
+
+/** query params para deep-linking:
+ * ?resumen=CODIGO  → abre resumen de reserva
+ * ?reservar=CODIGO → abre formulario de datos directamente
+ */
+const route = useRoute();
+const resumenParam = computed(() => route.query.resumen as string | undefined);
+const reservarParam = computed(() => route.query.reservar as string | undefined);
+const codigoCategoria = computed(() => resumenParam.value || reservarParam.value);
+const abrirFormularioDirecto = computed(() => !!reservarParam.value);
+
+// Auto-abrir slideover cuando se carguen las categorías y exista el param
+watch(
+  [filteredCategories, codigoCategoria],
+  ([categories, codigo]) => {
+    if (!codigo || categories.length === 0) return;
+
+    const categoryData = categories.find(c => c.categoryCode === codigo);
+    if (!categoryData || !vehicleCategories[codigo]) return;
+
+    // Seleccionar categoría
+    const category = useCategory(categoryData, vehicleCategories[codigo]);
+    vehiculo.value = category.categoryCode.value;
+    selectedCategory.value = category;
+
+    // Abrir slideover correspondiente
+    nextTick(() => {
+      slideoverReservationResume.value = true;
+      if (abrirFormularioDirecto.value) {
+        nextTick(() => {
+          slideoverReservationForm.value = true;
+        });
+      }
+    });
+  },
+  { immediate: true }
+);
 
 /** functions */
 function setSelectedCategory(category: ReturnType<typeof useCategory>) {
