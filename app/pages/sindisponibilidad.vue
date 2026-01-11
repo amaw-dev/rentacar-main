@@ -48,6 +48,7 @@ const { franchise } = useAppConfig()
 const store = useStoreReservationForm()
 
 const searchUrl = computed(() => {
+  const city = store.selectedPickupLocation?.city || 'bogota'
   const lugar_recogida = store.lugarRecogida || 'bog'
   const lugar_devolucion = store.lugarDevolucion || lugar_recogida
   const fecha_recogida = store.fechaRecogida || ''
@@ -55,7 +56,7 @@ const searchUrl = computed(() => {
   const hora_recogida = store.horaRecogida || '12:00'
   const hora_devolucion = store.horaDevolucion || '12:00'
 
-  return `/categoria/${lugar_recogida}/${lugar_devolucion}/${fecha_recogida}/${fecha_devolucion}/${hora_recogida}/${hora_devolucion}`
+  return `/${city}/buscar-vehiculos/lugar-recogida/${lugar_recogida}/lugar-devolucion/${lugar_devolucion}/fecha-recogida/${fecha_recogida}/fecha-devolucion/${fecha_devolucion}/hora-recogida/${hora_recogida}/hora-devolucion/${hora_devolucion}`
 })
 
 useHead({
