@@ -9,7 +9,7 @@ export const UserInformationFormValidationSchema = v.object({
   apellidos: v.pipe(v.string("Escribe tus apellidos"), v.minLength(1)),
   tipoIdentificacion: v.string("Selecciona una identificación"),
   identificacion: v.pipe(
-    v.string("Escribe tu número de identificación"),
+    v.string("Escribe tu identificación"),
     v.minLength(5, "La identificación debe tener más de 5 caracteres")
   ),
   telefono: v.pipe(
