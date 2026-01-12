@@ -98,32 +98,36 @@ export default function useSearch() {
   };
   
   /** watchers */
+
+  // Watchers de sincronización pickup → return (flush: 'sync' evita cascada)
+  // Se ejecutan sincrónicamente antes del siguiente tick de Vue
   watch(
     lugarRecogida,
-    (newPickupLocation) => (lugarDevolucion.value = newPickupLocation)
-  );
-  
-  watch(fechaRecogida, (newPickupDate): void => {
-    if(selectedPickupDate.value)
-      fechaDevolucion.value = selectedPickupDate.value.copy().add({days: 7}).toString() ?? null
-  });
-  
-  watch(
-    horaRecogida,
-    (newPickupHour) => (horaDevolucion.value = newPickupHour)
+    (newPickupLocation) => (lugarDevolucion.value = newPickupLocation),
+    { flush: 'sync' }
   );
 
-  watch([
-    lugarRecogida,
-    lugarDevolucion,
-    fechaRecogida,
-    fechaDevolucion,
+  watch(fechaRecogida, (newPickupDate): void => {
+    if (selectedPickupDate.value)
+      fechaDevolucion.value = selectedPickupDate.value.copy().add({ days: 7 }).toString() ?? null
+  }, { flush: 'sync' });
+
+  watch(
     horaRecogida,
-    horaDevolucion
-  ], () => {
-    categoriesAvailabilityData.value=null;
-    animateSearchButton.value = true;
-  });
+    (newPickupHour) => (horaDevolucion.value = newPickupHour),
+    { flush: 'sync' }
+  );
+
+  // Watcher debounced para resetear disponibilidad
+  // Agrupa múltiples cambios rápidos en una sola ejecución (50ms)
+  watchDebounced(
+    [lugarRecogida, lugarDevolucion, fechaRecogida, fechaDevolucion, horaRecogida, horaDevolucion],
+    () => {
+      categoriesAvailabilityData.value = null;
+      animateSearchButton.value = true;
+    },
+    { debounce: 50 }
+  );
 
   // Desactivar animación cuando los vehículos están desplegados
   watch(categoriesAvailabilityData, (newValue) => {
