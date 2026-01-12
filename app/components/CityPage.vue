@@ -110,6 +110,27 @@
       </div>
     </section>
 
+    <!-- FAQ Section -->
+    <UPageSection id="faqs" class="bg-gray-100 text-black">
+      <div class="max-w-7xl mx-auto px-1 sm:px-2 lg:px-6">
+        <h2 class="text-2xl md:text-3xl font-bold text-center mb-6 space-x-2">
+          <span class="text-red-700">Preguntas Frecuentes</span>
+          <span class="text-black">sobre alquiler en {{ city?.name }}</span>
+        </h2>
+        <p class="text-base text-center mb-4">
+          Resolvemos tus dudas más comunes sobre el alquiler de carros en {{ city?.name }}.
+        </p>
+        <UAccordion :items="cityFAQs" :ui="faqAccordionUIConfig" class="max-w-4xl mx-auto">
+          <template #default="{ item }">
+            <div class="text-base font-medium text-gray-800 px-4" v-text="item.label"></div>
+          </template>
+          <template #content="{ item }">
+            <div class="text-base text-gray-600 py-3 bg-gray-50 px-4 rounded-lg" v-text="item.content"></div>
+          </template>
+        </UAccordion>
+      </div>
+    </UPageSection>
+
     <!-- Testimonials Section -->
     <section id="testimonios" class="bg-white text-black py-12 md:py-20 px-4 md:px-8">
       <div class="max-w-7xl mx-auto">
@@ -176,9 +197,18 @@ if (props.city?.name && testimonios) {
   useCityAggregateRating(props.city.name, testimonios)
 }
 
+// Get city-specific FAQs for UI display
+const cityFAQs = props.city?.name ? useCityFAQs(props.city.name) : []
+
 const testimonioUserUIConfig = {
   name: "text-black",
   description: "text-gray-600",
+};
+
+const faqAccordionUIConfig = {
+  item: "bg-white rounded-lg mb-2 px-2 pb-2 !border-0 !border-b-0",
+  body: "!border-none",
+  trailingIcon: "mr-2 transition-transform duration-200",
 };
 
 const Searcher = defineAsyncComponent(() => import("./Searcher.vue"));
