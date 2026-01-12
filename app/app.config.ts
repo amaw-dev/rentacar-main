@@ -1411,11 +1411,11 @@ export default defineAppConfig({
       ],
     },
     {
-      id: "santamarta",
+      id: "santa-marta",
       name: "Santa Marta",
       description:
         "¿Planeas visitar Santa Marta? En Santa Marta puedes reservar en línea sin anticipos y recoger directamente en el Aeropuerto Simón Bolívar. Aprovecha descuentos de hasta el 60% por reserva anticipada y elige entre carros compactos, sedanes o camionetas para recorrer lugares como el Parque Tayrona, la Quinta de San Pedro Alejandrino o Taganga. Nuestra sede en Santa Marta te ofrece precios bajos y disponibilidad inmediata los 7 días de la semana. ¡Alquila fácil, sin trámites largos y comienza tu aventura en la Bahía Más Linda de América!",
-      link: "/santamarta",
+      link: "/santa-marta",
       testimonials: [
         {
           user: {

@@ -10,7 +10,7 @@
           'select-branch-critical w-full rounded-xl text-black py-6 pl-10 pr-12 border border-gray-400 appearance-none',
           variant === 'gray' ? 'bg-gray-200' : 'bg-white'
         ]"
-        @change="() => (selectedBranch) ? goToReservationPage(selectedBranch) : null"
+        @change="handleMobileChange"
       >
         <option value="null">Elige una ciudad</option>
         <option
@@ -88,6 +88,15 @@ const items: SelectMenuItem[] = branches.map((branch: BranchData) => ({
 const selectedBranch = ref<BranchData['code'] | null>(null)
 
 /** functions */
+const handleMobileChange = () => {
+  if (selectedBranch.value && selectedBranch.value !== 'null') {
+    const branch = (branches as BranchData[]).find((b: BranchData) => b.code === selectedBranch.value);
+    if (branch) {
+      goToReservationPage(branch);
+    }
+  }
+};
+
 const goToReservationPage = async (branch: BranchData) =>
   await navigateTo(createReservationURL(branch), {
     external: true,
@@ -97,7 +106,7 @@ const goToReservationPage = async (branch: BranchData) =>
   });
 
 const createReservationURL = (branch: BranchData) =>
-  `${reservation.website}/${branch.city}/buscar-vehiculos/lugar-recogida/${branch.code.toLowerCase()}/lugar-devolucion/${branch.code.toLowerCase()}/fecha-recogida/${reservationInitDay}/fecha-devolucion/${reservationEndDay}/hora-recogida/${reservationInitHour}/hora-devolucion/${reservationEndHour}`;
+  `/${branch.city}/buscar-vehiculos/lugar-recogida/${branch.code.toLowerCase()}/lugar-devolucion/${branch.code.toLowerCase()}/fecha-recogida/${reservationInitDay}/fecha-devolucion/${reservationEndDay}/hora-recogida/${reservationInitHour}/hora-devolucion/${reservationEndHour}`;
 
   // https://alquilatucarro.com/cali/buscar-vehiculos/lugar-recogida/aakal/lugar-devolucion/aakal/fecha-recogida/2026-01-10/fecha-devolucion/2026-01-17/hora-recogida/12:00/hora-devolucion/12:00
 
