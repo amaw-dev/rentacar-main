@@ -70,8 +70,9 @@
           />
           <nuxt-link
             class="underline text-gray-600 text-sm ml-6"
-            to="https://www.alquilatucarro.com/tratamiento-datos-alquilatucarro.pdf"
+            to="https://storage.googleapis.com/alquilatucarro/rentacar-landing/2023/pdf/tratamiento-datos-alquilatucarro.pdf"
             external
+            target="_blank"
             >Ver políticas</nuxt-link
           >
         </u-form-field>
