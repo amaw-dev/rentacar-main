@@ -1,4 +1,4 @@
-import type { AutoRental, PostalAddress, Brand, OpeningHoursSpecification } from 'schema-dts'
+import type { AutoRental, PostalAddress, Brand, OpeningHoursSpecification, SearchAction, EntryPoint } from 'schema-dts'
 
 export const useBaseSEO = () => {
 
@@ -26,7 +26,15 @@ export const useBaseSEO = () => {
 
     useSchemaOrg([
         defineWebSite({
-            inLanguage: "es"
+            inLanguage: "es",
+            potentialAction: <SearchAction>{
+                '@type': 'SearchAction',
+                target: <EntryPoint>{
+                    '@type': 'EntryPoint',
+                    urlTemplate: `${franchise.website}/{search_term_string}`
+                },
+                'query-input': 'required name=search_term_string'
+            }
         }),
         defineWebPage({
             title: organization.name,

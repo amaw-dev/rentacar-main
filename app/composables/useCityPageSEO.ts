@@ -48,6 +48,9 @@ export const useCityPageSEO = () => {
     if (city) {
         useCityBreadcrumbs(city.name, cityParam as string)
         // LocalBusiness removido: modelo de negocio es agregador digital, no sedes físicas
+
+        // FAQPage schema para rich snippets en SERPs
+        useCityFAQSchema(city.name)
     }
 
     return {
