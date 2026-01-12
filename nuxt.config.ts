@@ -8,7 +8,16 @@ export default defineNuxtConfig({
 
   devtools: { enabled: true },
 
-  modules: ['@nuxtjs/seo', '@nuxt/ui', '@pinia/nuxt', 'nuxt-llms'],
+  modules: ['@nuxtjs/seo', '@nuxt/ui', '@pinia/nuxt', 'nuxt-llms', 'nuxt-vitalizer'],
+
+  // Optimización Core Web Vitals - elimina CSS render-blocking
+  vitalizer: {
+    // Remueve el stylesheet entry.*.css que bloquea el render
+    // Los estilos ya están inlineados durante SSR en Nuxt 4
+    disableStylesheets: 'entry',
+    // Remueve prefetch links para mejorar FCP
+    disablePrefetchLinks: true,
+  },
 
   // Configuración SEO - controla cómo se generan los títulos
   site: {
