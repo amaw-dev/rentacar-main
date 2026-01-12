@@ -138,6 +138,188 @@ const citySpecificFAQs: Record<string, FAQ[]> = {
             label: '¿Qué lugares puedo visitar con carro desde Barranquilla?',
             content: 'Destinos recomendados: Cartagena (2h), Santa Marta y Parque Tayrona (2h), Puerto Colombia y sus playas (30min), y Usiacurí, pueblo artesanal (1h).'
         }
+    ],
+    'Santa Marta': [
+        {
+            label: '¿Dónde puedo recoger mi carro en Santa Marta?',
+            content: 'Ofrecemos entrega en el Aeropuerto Simón Bolívar y en nuestra sede del centro. El aeropuerto está a 20 minutos del centro histórico y las playas.'
+        },
+        {
+            label: '¿Qué vehículo recomiendan para Santa Marta?',
+            content: 'Un compacto con aire acondicionado es ideal para la ciudad y playas cercanas. Para visitar el Parque Tayrona o Minca, recomendamos camioneta por los caminos de montaña.'
+        },
+        {
+            label: '¿Cuánto cuesta alquilar un carro en Santa Marta?',
+            content: 'Los precios en Santa Marta inician desde $110.000 COP/día para compactos. En temporada alta (diciembre-enero, Semana Santa) los precios pueden variar. Reserva con anticipación para mejores tarifas.'
+        },
+        {
+            label: '¿Puedo entrar al Parque Tayrona con carro?',
+            content: 'Puedes llegar en carro hasta el parqueadero de El Zaino (entrada principal) o Calabazo. Desde allí el acceso es a pie o en transporte interno del parque. El carro queda seguro en los parqueaderos.'
+        },
+        {
+            label: '¿Hay pico y placa en Santa Marta?',
+            content: 'Santa Marta no tiene restricción de pico y placa para vehículos particulares. Puedes circular libremente cualquier día de la semana por toda la ciudad.'
+        },
+        {
+            label: '¿Qué lugares puedo visitar con carro desde Santa Marta?',
+            content: 'Destinos imperdibles: Parque Tayrona (45min), Minca y sus cascadas (45min), Taganga (15min), Palomino (1.5h), y Cartagena (4h). Un carro te da libertad para explorar la Sierra Nevada.'
+        }
+    ],
+    'Pereira': [
+        {
+            label: '¿Dónde puedo recoger mi carro en Pereira?',
+            content: 'Contamos con entrega en el Aeropuerto Internacional Matecaña y en nuestra sede del centro. El aeropuerto está a 15 minutos del centro de la ciudad.'
+        },
+        {
+            label: '¿Qué vehículo recomiendan para el Eje Cafetero?',
+            content: 'Un sedán es ideal para recorrer el Eje Cafetero con comodidad. Si planeas visitar fincas cafeteras por caminos destapados o el Valle del Cocora, una camioneta te dará mejor desempeño.'
+        },
+        {
+            label: '¿Cuánto cuesta alquilar un carro en Pereira?',
+            content: 'Los precios en Pereira inician desde $105.000 COP/día para compactos. Reservando con anticipación puedes obtener hasta 60% de descuento. Ofrecemos tarifas especiales para recorrer el Eje Cafetero.'
+        },
+        {
+            label: '¿Aplica pico y placa en Pereira?',
+            content: 'Sí, Pereira tiene pico y placa según el último dígito de la placa de lunes a viernes. Te informamos la restricción al entregar el vehículo. Los fines de semana y festivos no hay restricción.'
+        },
+        {
+            label: '¿Puedo visitar Salento y el Valle del Cocora con el carro?',
+            content: 'Sí, Salento está a 45 minutos de Pereira. Puedes llegar en carro hasta el pueblo y tomar un Willys al Valle del Cocora, o si tienes camioneta, subir directamente. La ruta es pavimentada hasta Salento.'
+        },
+        {
+            label: '¿Qué lugares puedo visitar con carro desde Pereira?',
+            content: 'Destinos del Eje Cafetero: Salento y Valle del Cocora (45min), Filandia (40min), Santa Rosa de Cabal y termales (30min), Manizales (1h), y Armenia (45min). Paisaje Cultural Cafetero Patrimonio UNESCO.'
+        }
+    ],
+    'Bucaramanga': [
+        {
+            label: '¿Dónde puedo recoger mi carro en Bucaramanga?',
+            content: 'Ofrecemos entrega en el Aeropuerto Palonegro y en nuestra sede de Floridablanca. El aeropuerto está a 30 minutos del centro de Bucaramanga por autopista.'
+        },
+        {
+            label: '¿Qué vehículo recomiendan para Bucaramanga y alrededores?',
+            content: 'Un sedán es ideal para la ciudad y viajes a pueblos cercanos. Para San Gil y deportes extremos o el Cañón del Chicamocha, recomendamos camioneta por las carreteras de montaña.'
+        },
+        {
+            label: '¿Cuánto cuesta alquilar un carro en Bucaramanga?',
+            content: 'Los precios en Bucaramanga inician desde $100.000 COP/día para compactos. Reservando con anticipación puedes obtener hasta 60% de descuento. Ideal para recorrer Santander.'
+        },
+        {
+            label: '¿Aplica pico y placa en Bucaramanga?',
+            content: 'Sí, Bucaramanga tiene pico y placa rotativo según el último dígito de la placa. Te informamos la restricción al entregar el vehículo. Los fines de semana puedes circular sin restricción.'
+        },
+        {
+            label: '¿Cómo llego al Cañón del Chicamocha en carro?',
+            content: 'El Cañón del Chicamocha está a 1 hora de Bucaramanga por la vía a San Gil. La carretera es pavimentada con vistas espectaculares. Puedes parar en el Parque Nacional del Chicamocha (Panachi).'
+        },
+        {
+            label: '¿Qué lugares puedo visitar con carro desde Bucaramanga?',
+            content: 'Destinos de aventura: San Gil y deportes extremos (2h), Barichara pueblo patrimonio (2.5h), Cañón del Chicamocha (1h), y Girón pueblo colonial (15min). Santander es el destino de aventura de Colombia.'
+        }
+    ],
+    'Armenia': [
+        {
+            label: '¿Dónde puedo recoger mi carro en Armenia?',
+            content: 'Contamos con entrega en el Aeropuerto El Edén y en nuestra sede del centro. El aeropuerto está a 15 minutos del centro de Armenia.'
+        },
+        {
+            label: '¿Qué vehículo recomiendan para recorrer el Eje Cafetero?',
+            content: 'Un sedán ofrece comodidad para las carreteras del Quindío. Si planeas visitar fincas cafeteras por caminos rurales o subir al Valle del Cocora, una camioneta es mejor opción.'
+        },
+        {
+            label: '¿Cuánto cuesta alquilar un carro en Armenia?',
+            content: 'Los precios en Armenia inician desde $100.000 COP/día para compactos. Con reserva anticipada puedes obtener hasta 60% de descuento. Perfecta base para explorar el Eje Cafetero.'
+        },
+        {
+            label: '¿Hay pico y placa en Armenia?',
+            content: 'Armenia tiene pico y placa rotativo pero con horarios limitados. Te informamos la restricción vigente al entregar el vehículo. La mayoría de destinos turísticos están fuera del área urbana.'
+        },
+        {
+            label: '¿Puedo visitar el Parque del Café con el carro?',
+            content: 'Sí, el Parque del Café está a 20 minutos de Armenia con amplio parqueadero. También puedes visitar PANACA (30min) y el Parque Los Arrieros en el mismo día.'
+        },
+        {
+            label: '¿Qué lugares puedo visitar con carro desde Armenia?',
+            content: 'Destinos del Quindío: Salento y Valle del Cocora (40min), Filandia (30min), Parque del Café (20min), Buenavista mirador (25min), y fincas cafeteras. Todo el Paisaje Cultural Cafetero a tu alcance.'
+        }
+    ],
+    'Manizales': [
+        {
+            label: '¿Dónde puedo recoger mi carro en Manizales?',
+            content: 'Ofrecemos entrega en el Aeropuerto La Nubia y en nuestra sede del centro. El aeropuerto está a 15 minutos del centro de la ciudad.'
+        },
+        {
+            label: '¿Qué vehículo recomiendan para Manizales?',
+            content: 'Manizales es ciudad de montaña con calles empinadas. Un carro con buen torque es importante. Para visitar el Nevado del Ruiz o termales por carreteras rurales, recomendamos camioneta.'
+        },
+        {
+            label: '¿Cuánto cuesta alquilar un carro en Manizales?',
+            content: 'Los precios en Manizales inician desde $105.000 COP/día para compactos. Reservando con anticipación obtienes hasta 60% de descuento. Ideal para explorar Caldas y el Eje Cafetero.'
+        },
+        {
+            label: '¿Aplica pico y placa en Manizales?',
+            content: 'Sí, Manizales tiene pico y placa según el último dígito de la placa en días hábiles. Te informamos la restricción al entregar el vehículo. Fines de semana y festivos sin restricción.'
+        },
+        {
+            label: '¿Puedo subir al Nevado del Ruiz en carro?',
+            content: 'Puedes llegar en carro hasta el sector de Las Brisas (4.050 msnm). El acceso al Parque Nacional requiere registro previo. Recomendamos camioneta y salir temprano para evitar neblina.'
+        },
+        {
+            label: '¿Qué lugares puedo visitar con carro desde Manizales?',
+            content: 'Destinos de Caldas: Nevado del Ruiz (2h), Termales de Santa Rosa (1.5h), Salamina pueblo patrimonio (2h), Recinto del Pensamiento (20min), y Chinchiná zona cafetera (30min).'
+        }
+    ],
+    'Villavicencio': [
+        {
+            label: '¿Dónde puedo recoger mi carro en Villavicencio?',
+            content: 'Contamos con entrega en el Aeropuerto Vanguardia y en nuestra sede del centro. El aeropuerto está a 10 minutos del centro de la ciudad.'
+        },
+        {
+            label: '¿Qué vehículo recomiendan para los Llanos?',
+            content: 'Un sedán es suficiente para Villavicencio y vías principales. Si planeas explorar fincas llaneras, rutas rurales o ir hacia Caño Cristales (La Macarena), una camioneta 4x4 es indispensable.'
+        },
+        {
+            label: '¿Cuánto cuesta alquilar un carro en Villavicencio?',
+            content: 'Los precios en Villavicencio inician desde $95.000 COP/día para compactos. Con reserva anticipada puedes obtener hasta 60% de descuento. Puerta de entrada a los Llanos Orientales.'
+        },
+        {
+            label: '¿Hay pico y placa en Villavicencio?',
+            content: 'Villavicencio no tiene restricción de pico y placa para vehículos particulares. Puedes circular libremente cualquier día de la semana por toda la ciudad y el departamento.'
+        },
+        {
+            label: '¿Cómo es la vía Bogotá-Villavicencio?',
+            content: 'La vía Bogotá-Villavicencio es moderna y pavimentada (2.5h). Pasas por el túnel de Buenavista. Recomendamos viajar de día para disfrutar el paisaje del piedemonte llanero.'
+        },
+        {
+            label: '¿Qué lugares puedo visitar con carro desde Villavicencio?',
+            content: 'Destinos llaneros: Bioparque Los Ocarros (15min), Puerto López y el Obelisco (1h), Caño Cristales en La Macarena (requiere vuelo), fincas con coleo y mamona. Vive la cultura llanera.'
+        }
+    ],
+    'Valledupar': [
+        {
+            label: '¿Dónde puedo recoger mi carro en Valledupar?',
+            content: 'Ofrecemos entrega en el Aeropuerto Alfonso López Pumarejo y en nuestra sede del centro. El aeropuerto está a 5 minutos del centro de la ciudad.'
+        },
+        {
+            label: '¿Qué vehículo recomiendan para Valledupar?',
+            content: 'Un compacto con buen aire acondicionado es ideal para el clima cálido de Valledupar. Para visitar la Sierra Nevada o pueblos indígenas, recomendamos camioneta por los caminos rurales.'
+        },
+        {
+            label: '¿Cuánto cuesta alquilar un carro en Valledupar?',
+            content: 'Los precios en Valledupar inician desde $95.000 COP/día para compactos. Reservando con anticipación obtienes hasta 60% de descuento. Durante el Festival Vallenato los precios pueden variar.'
+        },
+        {
+            label: '¿Hay pico y placa en Valledupar?',
+            content: 'Valledupar no tiene restricción de pico y placa para vehículos particulares. Puedes circular libremente cualquier día de la semana por toda la ciudad.'
+        },
+        {
+            label: '¿Puedo visitar el Río Guatapurí con carro?',
+            content: 'Sí, el Río Guatapurí atraviesa la ciudad y hay varios balnearios accesibles en carro. El más famoso es el Balneario Hurtado a 10 minutos del centro. Ideal para refrescarse del calor.'
+        },
+        {
+            label: '¿Qué lugares puedo visitar con carro desde Valledupar?',
+            content: 'Destinos del Cesar: Río Guatapurí y balnearios (10min), Manaure Balcón del Cesar (1h), Pueblo Bello y Sierra Nevada (1.5h), La Mina pueblo patrimonio (2h). Cuna del vallenato y naturaleza.'
+        }
     ]
 }
 
