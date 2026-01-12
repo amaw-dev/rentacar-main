@@ -68,13 +68,18 @@
               base: 'bg-gray-100 border border-gray-400 rounded',
             }"
           />
-          <nuxt-link
-            class="underline text-gray-600 text-sm ml-6"
-            to="https://storage.googleapis.com/alquilatucarro/rentacar-landing/2023/pdf/tratamiento-datos-alquilatucarro.pdf"
-            external
-            target="_blank"
-            >Ver políticas</nuxt-link
-          >
+          <div class="ml-6 text-sm space-x-3">
+            <nuxt-link
+              class="underline text-gray-600"
+              to="/terminos-condiciones"
+              target="_blank"
+            >Términos</nuxt-link>
+            <nuxt-link
+              class="underline text-gray-600"
+              to="/politica-privacidad"
+              target="_blank"
+            >Privacidad</nuxt-link>
+          </div>
         </u-form-field>
       </div>
     
@@ -86,6 +91,11 @@ import type {
   ReservationFormValidationSchemaType,
   ReservationWithFlightFormValidationSchemaType,
 } from "#imports";
+
+// Lazy load vue-tel-input (solo se carga cuando se renderiza el formulario)
+const VueTelInput = defineAsyncComponent(() =>
+  import('vue-tel-input').then(m => m.VueTelInput)
+);
 
 /** stores */
 const storeSearch = useStoreSearchData();
