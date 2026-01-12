@@ -110,6 +110,26 @@
       </div>
     </section>
 
+    <!-- Delivery Points Section -->
+    <section v-if="cityBranches.length > 0" id="puntos-entrega" class="bg-gray-50 text-black py-8 md:py-12 px-4 md:px-8">
+      <div class="max-w-4xl mx-auto text-center">
+        <h2 class="text-2xl md:text-3xl font-bold mb-6">
+          <span class="text-red-700">Puntos de entrega</span>
+          <span class="text-black">en {{ city?.name }}</span>
+        </h2>
+        <div class="flex flex-wrap justify-center gap-3 md:gap-4">
+          <div
+            v-for="branch in cityBranches"
+            :key="branch.code"
+            class="flex items-center gap-2 bg-white px-4 py-3 rounded-lg shadow-sm"
+          >
+            <LocationIcon cls="text-red-600 size-5" />
+            <span class="font-medium text-gray-800">{{ branch.name }}</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- FAQ Section -->
     <UPageSection id="faqs" class="bg-gray-100 text-black">
       <div class="max-w-7xl mx-auto px-1 sm:px-2 lg:px-6">
@@ -179,7 +199,7 @@ const storeSearch = useStoreSearchData();
 
 
 /** refs */
-const { franchise } = useAppConfig();
+const { franchise, branches } = useAppConfig();
 const {
   pending: pendingSearch,
   filteredCategories,
@@ -189,6 +209,15 @@ const {
 const props = defineProps<{
   city: City;
 }>();
+
+// Filter branches for current city (handle ID mapping inconsistencies)
+const cityIdMapping: Record<string, string> = {
+  'santamarta': 'santa-marta',
+};
+const branchCityId = cityIdMapping[props.city?.id] || props.city?.id;
+const cityBranches = computed(() =>
+  branches.filter((branch: { city: string }) => branch.city === branchCityId)
+);
 
 const testimonios: Testimonial[] | undefined = props.city?.testimonials;
 
