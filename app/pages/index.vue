@@ -307,20 +307,7 @@ useSchemaOrg([
 useHead({
   link: [
     { rel: "canonical", href: franchise.website },
-    {
-      rel: "preload",
-      as: "image",
-      href: "https://firebasestorage.googleapis.com/v0/b/rentacar-403321.firebasestorage.app/o/rentacar-main%2Falquilatucarro%2Fimg%2Ffamilia.avif?alt=media&token=a14e3f1c-428e-40b2-ad1e-0d724579e487",
-      media: "(min-width: 768px)",
-      fetchpriority: "high",
-    },
-    {
-      rel: "preload",
-      as: "image",
-      href: "https://firebasestorage.googleapis.com/v0/b/rentacar-403321.firebasestorage.app/o/rentacar-main%2Falquilatucarro%2Fimg%2Ffamilia-movil.avif?alt=media&token=09ef76e8-4f99-4188-8d9a-57e13e198c4b",
-      media: "(max-width: 767px)",
-      fetchpriority: "high",
-    },
+    // Preloads de imagen hero movidos a nuxt.config.ts para estar en HTML inicial
   ],
 });
 

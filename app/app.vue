@@ -10,13 +10,9 @@ import { es } from '@nuxt/ui/locale'
 const toaster =  { expand: true, position: "top-center", duration: 10000 }
 useBaseSEO();
 
-// Critical CSS inline para prevenir FOUC + Resource hints para LCP
+// Critical CSS inline para prevenir FOUC
+// Preconnect movido a nuxt.config.ts para estar en HTML inicial
 useHead({
-  link: [
-    // Preconnect a Firebase Storage (mejora LCP ~200-400ms)
-    { rel: "preconnect", href: "https://firebasestorage.googleapis.com", crossorigin: "" },
-    { rel: "dns-prefetch", href: "https://firebasestorage.googleapis.com" },
-  ],
   style: [
     {
       key: "critical-fouc",

@@ -10,6 +10,34 @@ export default defineNuxtConfig({
 
   modules: ['@nuxtjs/seo', '@nuxt/ui', '@pinia/nuxt', 'nuxt-llms'],
 
+  // Optimización LCP: preloads en HTML inicial (antes de JS)
+  app: {
+    head: {
+      link: [
+        // Preconnect a Firebase Storage (crítico para LCP)
+        { rel: 'preconnect', href: 'https://firebasestorage.googleapis.com', crossorigin: '' },
+        // Preload imagen hero mobile (LCP en móviles)
+        {
+          rel: 'preload',
+          as: 'image',
+          type: 'image/avif',
+          href: 'https://firebasestorage.googleapis.com/v0/b/rentacar-403321.firebasestorage.app/o/rentacar-main%2Falquilatucarro%2Fimg%2Ffamilia-movil.avif?alt=media&token=09ef76e8-4f99-4188-8d9a-57e13e198c4b',
+          media: '(max-width: 767px)',
+          fetchpriority: 'high',
+        },
+        // Preload imagen hero desktop (LCP en escritorio)
+        {
+          rel: 'preload',
+          as: 'image',
+          type: 'image/avif',
+          href: 'https://firebasestorage.googleapis.com/v0/b/rentacar-403321.firebasestorage.app/o/rentacar-main%2Falquilatucarro%2Fimg%2Ffamilia.avif?alt=media&token=a14e3f1c-428e-40b2-ad1e-0d724579e487',
+          media: '(min-width: 768px)',
+          fetchpriority: 'high',
+        },
+      ],
+    },
+  },
+
   // Configuración SEO - controla cómo se generan los títulos
   site: {
     url: 'https://alquilatucarro.com',
