@@ -92,12 +92,17 @@ jobs:
       - name: Determine version bump
         id: version
         run: |
-          # Get latest tag
-          LATEST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "v0.0.0")
+          TAG_PREFIX="alquilatucarro-v"
+
+          # Get latest tag matching our prefix
+          LATEST_TAG=$(git tag -l "${TAG_PREFIX}*" --sort=-v:refname | head -1)
+          if [ -z "$LATEST_TAG" ]; then
+            LATEST_TAG="${TAG_PREFIX}0.0.0"
+          fi
           echo "Latest tag: $LATEST_TAG"
 
-          # Extract version numbers
-          VERSION=${LATEST_TAG#v}
+          # Extract version numbers (remove prefix first)
+          VERSION=${LATEST_TAG#$TAG_PREFIX}
           MAJOR=$(echo $VERSION | cut -d. -f1)
           MINOR=$(echo $VERSION | cut -d. -f2)
           PATCH=$(echo $VERSION | cut -d. -f3)
@@ -120,7 +125,7 @@ jobs:
             BUMP="patch"
           fi
 
-          NEW_VERSION="v${MAJOR}.${MINOR}.${PATCH}"
+          NEW_VERSION="${TAG_PREFIX}${MAJOR}.${MINOR}.${PATCH}"
           echo "New version: $NEW_VERSION ($BUMP)"
 
           echo "new_version=$NEW_VERSION" >> $GITHUB_OUTPUT
