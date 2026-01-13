@@ -184,6 +184,54 @@ const reservarParam = computed(() => route.query.reservar as string | undefined)
 const codigoCategoria = computed(() => resumenParam.value || reservarParam.value);
 const abrirFormularioDirecto = computed(() => !!reservarParam.value);
 
+// Flag para evitar loops cuando actualizamos la URL programáticamente
+const isUpdatingFromUrl = ref(false);
+
+// Actualizar URL cuando cambia el estado de los slideovers
+function updateUrlParams(resumen?: string, reservar?: string) {
+  if (!import.meta.client) return;
+
+  const url = new URL(window.location.href);
+
+  if (reservar) {
+    url.searchParams.delete('resumen');
+    url.searchParams.set('reservar', reservar);
+  } else if (resumen) {
+    url.searchParams.delete('reservar');
+    url.searchParams.set('resumen', resumen);
+  } else {
+    url.searchParams.delete('resumen');
+    url.searchParams.delete('reservar');
+  }
+
+  window.history.replaceState({}, '', url.toString());
+}
+
+// Limpiar URL cuando se cierra el slideover de resumen
+watch(slideoverReservationResume, (isOpen) => {
+  if (isUpdatingFromUrl.value) return;
+
+  if (!isOpen) {
+    updateUrlParams(undefined, undefined);
+  }
+});
+
+// Sincronizar URL con estado del slideover de formulario
+watch(slideoverReservationForm, (isOpen) => {
+  if (isUpdatingFromUrl.value) return;
+  if (!vehiculo.value) return;
+
+  const codigo = vehiculo.value;
+  if (isOpen) {
+    updateUrlParams(undefined, codigo);
+  } else {
+    // Volver a resumen si el slideover de resumen sigue abierto
+    if (slideoverReservationResume.value) {
+      updateUrlParams(codigo, undefined);
+    }
+  }
+});
+
 // Auto-abrir slideover cuando se carguen las categorías y exista el param
 watch(
   [filteredCategories, codigoCategoria],
@@ -192,6 +240,9 @@ watch(
 
     const categoryData = categories.find(c => c.categoryCode === codigo);
     if (!categoryData || !vehicleCategories[codigo]) return;
+
+    // Marcar que estamos actualizando desde la URL
+    isUpdatingFromUrl.value = true;
 
     // Seleccionar categoría
     const category = useCategory(categoryData, vehicleCategories[codigo]);
@@ -204,6 +255,15 @@ watch(
       if (abrirFormularioDirecto.value) {
         nextTick(() => {
           slideoverReservationForm.value = true;
+          // Resetear flag después de que todo esté abierto
+          nextTick(() => {
+            isUpdatingFromUrl.value = false;
+          });
+        });
+      } else {
+        // Resetear flag
+        nextTick(() => {
+          isUpdatingFromUrl.value = false;
         });
       }
     });
@@ -216,6 +276,8 @@ function setSelectedCategory(category: ReturnType<typeof useCategory>) {
   vehiculo.value = category.categoryCode.value;
   selectedCategory.value = category;
   slideoverReservationResume.value = true;
+  // Actualizar URL con el código de la categoría
+  updateUrlParams(category.categoryCode.value, undefined);
 }
 
 const { submitForm } = storeForm;
