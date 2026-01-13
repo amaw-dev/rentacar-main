@@ -30,6 +30,7 @@
   "dependencies": {
     "@iconify-json/lucide": "^1.2.80",
     "@internationalized/date": "^3.10.0",
+    "@nuxt/content": "^3.10.0",
     "@nuxt/ui": "^4.2.1",
     "@nuxtjs/seo": "3.2.2",
     "@nuxtjs/tailwindcss": "6.14.0",
@@ -39,6 +40,7 @@
     "@unhead/schema-org": "^2.0.19",
     "@valibot/i18n": "^1.0.0",
     "@vueuse/core": "13.9.0",
+    "better-sqlite3": "^12.6.0",
     "firebase-admin": "^13.5.0",
     "firebase-functions": "^6.6.0",
     "js-confetti": "^0.13.1",
@@ -66,6 +68,7 @@
     "onlyBuiltDependencies": [
       "@firebase/util",
       "@parcel/watcher",
+      "better-sqlite3",
       "esbuild",
       "protobufjs",
       "sharp",
@@ -76,10 +79,10 @@
     ]
   },
   "devDependencies": {
+    "@types/turndown": "^5.0.5",
     "cross-env": "^10.1.0",
     "playwright": "^1.49.0",
-    "turndown": "^7.2.0",
-    "@types/turndown": "^5.0.5",
-    "tsx": "^4.19.0"
+    "tsx": "^4.19.0",
+    "turndown": "^7.2.0"
   }
 }

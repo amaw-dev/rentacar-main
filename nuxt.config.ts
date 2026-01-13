@@ -8,13 +8,33 @@ export default defineNuxtConfig({
 
   devtools: { enabled: true },
 
-  modules: ['@nuxtjs/seo', '@nuxt/ui', '@pinia/nuxt', 'nuxt-llms', 'nuxt-vitalizer'],
+  // CSS crítico inline para prevenir FOUC
+  app: {
+    head: {
+      style: [
+        {
+          // CSS crítico que se inyecta inline en el <head> antes de cualquier stylesheet
+          children: `
+            /* Prevenir banderas/logos gigantes antes de CSS */
+            header svg { max-height: 3.5rem !important; max-width: 10rem !important; }
+            /* Ocultar bandera móvil en desktop y viceversa (antes de Tailwind) */
+            @media (min-width: 768px) { header .md\\:hidden { display: none !important; } }
+            @media (max-width: 767px) { header .hidden { display: none !important; } }
+            /* H1 tracking-tight */
+            .hero-section h1 { letter-spacing: -0.025em !important; }
+          `,
+        },
+      ],
+    },
+  },
 
-  // Optimización Core Web Vitals - elimina CSS render-blocking
+  modules: ['@nuxtjs/seo', '@nuxt/ui', '@pinia/nuxt', 'nuxt-llms', 'nuxt-vitalizer', '@nuxt/content'],
+
+  // Optimización Core Web Vitals
   vitalizer: {
-    // Remueve el stylesheet entry.*.css que bloquea el render
-    // Los estilos ya están inlineados durante SSR en Nuxt 4
-    disableStylesheets: 'entry',
+    // NOTA: disableStylesheets: 'entry' causaba FOUC en páginas de ciudad
+    // Los estilos no se inlinean correctamente durante SSR
+    disableStylesheets: false,
     // Remueve prefetch links para mejorar FCP
     disablePrefetchLinks: true,
   },

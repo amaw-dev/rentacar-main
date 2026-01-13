@@ -1,11 +1,40 @@
+/* ============================================
+   CRITICAL CSS - Previene FOUC en hero section
+   Estos estilos deben coincidir con los de Nuxt UI
+   ============================================ */
+
+/* H1 - Forzar tracking-tight desde el inicio */
+.hero-section h1 {
+    letter-spacing: -0.025em !important; /* tracking-tight */
+}
+
+/* Form fields - Forzar tamaño xl desde el inicio */
+.hero-section [data-slot="label"] {
+    font-size: 0.75rem !important; /* text-xs para size xl */
+    line-height: 1rem !important;
+}
+
+/* UFormField size xl - altura mínima consistente */
+.hero-section .bg-white {
+    min-height: 4.5rem;
+}
+
+/* Header SVGs - prevenir FOUC de banderas/logos enormes */
+header svg {
+    max-height: 3.5rem !important; /* h-14 máximo */
+    width: auto !important;
+}
+
+/* ============================================ */
+
 .mxs {
     @apply text-xs;
 }
 
 /* Override highlighted text color to white - only for header/navigation */
 header .text-highlighted,
-.hero-section h1 .text-highlighted,
-.hero-section h2 .text-highlighted {
+.hero-section h1.text-highlighted,
+.hero-section h2.text-highlighted {
     color: white !important;
     --color-highlighted: white !important;
 }
