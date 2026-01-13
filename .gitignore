@@ -55,3 +55,25 @@ alquilame_gsc/
 /hooks/__pycache__/
 tailwind/
 clouds-animation.html
+clouds-animation-*.html
+preview-autos.html
+style-on-wrist-section.html
+
+# Screenshots de debugging
+fouc*.png
+
+# Imágenes sueltas en raíz (pruebas)
+/*.png
+/*.webp
+/*.avif
+/*.svg
+
+# Notas personales
+seoconjuntas-herramientas.md
+xiaomi-typography-study.md
+
+# Duplicado de public (usar public/ en raíz)
+app/public/
+
+# Imágenes temporales de categorías
+public/img/categorias-nuevas/
