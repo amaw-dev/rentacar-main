@@ -35,7 +35,8 @@
                 >
               </div>
               <div class="p-6 md:w-1/2 flex flex-col justify-center">
-                <span class="inline-block px-3 py-1 text-xs font-semibold text-red-700 bg-red-100 rounded-full w-fit mb-3">
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-semibold text-red-700 bg-red-100 rounded-full w-fit mb-3">
+                  <UIcon :name="getCategoryIcon(featuredPost.category)" class="size-3.5" />
                   {{ formatCategory(featuredPost.category) }}
                 </span>
                 <h3 class="text-xl md:text-2xl font-bold text-gray-900 group-hover:text-red-700 transition-colors">
@@ -44,21 +45,46 @@
                 <p class="text-gray-600 mt-3 line-clamp-3">
                   {{ featuredPost.description }}
                 </p>
-                <div class="flex items-center mt-4 text-sm text-gray-500">
-                  <time :datetime="featuredPost.date">{{ formatDate(featuredPost.date) }}</time>
-                  <span class="mx-2">·</span>
-                  <span>{{ featuredPost.readingTime }} min de lectura</span>
+                <div class="flex items-center gap-4 mt-4 text-sm text-gray-500">
+                  <span class="inline-flex items-center gap-1.5">
+                    <UIcon name="i-lucide-calendar" class="size-4" />
+                    <time :datetime="featuredPost.date">{{ formatDate(featuredPost.date) }}</time>
+                  </span>
+                  <span class="inline-flex items-center gap-1.5">
+                    <UIcon name="i-lucide-clock" class="size-4" />
+                    {{ featuredPost.readingTime }} min
+                  </span>
                 </div>
               </div>
             </article>
           </NuxtLink>
         </div>
 
-        <!-- All Posts -->
-        <h2 class="text-xl font-bold text-gray-800 mb-6">Todos los Artículos</h2>
-        <div v-if="posts && posts.length > 0" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Category Filters -->
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
+          <h2 class="text-xl font-bold text-gray-800">Todos los Artículos</h2>
+          <div class="flex flex-wrap gap-2">
+            <button
+              v-for="cat in categories"
+              :key="cat.value"
+              @click="setCategory(cat.value)"
+              :class="[
+                'inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-medium transition-all',
+                selectedCategory === cat.value
+                  ? 'bg-red-700 text-white'
+                  : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-200'
+              ]"
+            >
+              <UIcon :name="cat.icon" class="size-4" />
+              {{ cat.label }}
+            </button>
+          </div>
+        </div>
+
+        <!-- Posts Grid -->
+        <div v-if="filteredPosts && filteredPosts.length > 0" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           <NuxtLink
-            v-for="post in posts"
+            v-for="post in filteredPosts"
             :key="post.path"
             :to="post.path"
             class="group"
@@ -71,7 +97,8 @@
                   class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
                   loading="lazy"
                 >
-                <span class="absolute top-3 left-3 px-3 py-1 text-xs font-semibold text-white bg-red-700 rounded-full">
+                <span class="absolute top-3 left-3 inline-flex items-center gap-1.5 px-3 py-1 text-xs font-semibold text-white bg-red-700 rounded-full">
+                  <UIcon :name="getCategoryIcon(post.category)" class="size-3.5" />
                   {{ formatCategory(post.category) }}
                 </span>
               </div>
@@ -82,10 +109,15 @@
                 <p class="text-gray-600 mt-2 text-sm line-clamp-2 flex-grow">
                   {{ post.description }}
                 </p>
-                <div class="flex items-center mt-4 text-xs text-gray-500">
-                  <time :datetime="post.date">{{ formatDate(post.date) }}</time>
-                  <span class="mx-2">·</span>
-                  <span>{{ post.readingTime }} min</span>
+                <div class="flex items-center gap-3 mt-4 text-xs text-gray-500">
+                  <span class="inline-flex items-center gap-1">
+                    <UIcon name="i-lucide-calendar" class="size-3.5" />
+                    <time :datetime="post.date">{{ formatDate(post.date) }}</time>
+                  </span>
+                  <span class="inline-flex items-center gap-1">
+                    <UIcon name="i-lucide-clock" class="size-3.5" />
+                    {{ post.readingTime }} min
+                  </span>
                 </div>
               </div>
             </article>
@@ -94,7 +126,18 @@
 
         <!-- Empty State -->
         <div v-else class="text-center py-12">
-          <p class="text-gray-600">Próximamente encontrarás contenido sobre alquiler de carros en Colombia.</p>
+          <UIcon name="i-lucide-file-search" class="size-12 text-gray-400 mx-auto mb-4" />
+          <p v-if="selectedCategory" class="text-gray-600">
+            No hay artículos en la categoría <strong>{{ formatCategory(selectedCategory) }}</strong>.
+          </p>
+          <p v-else class="text-gray-600">Próximamente encontrarás contenido sobre alquiler de carros en Colombia.</p>
+          <button
+            v-if="selectedCategory"
+            @click="setCategory('')"
+            class="mt-4 text-red-700 hover:text-red-800 font-medium"
+          >
+            Ver todos los artículos
+          </button>
         </div>
       </div>
     </section>
@@ -123,6 +166,29 @@
 import type { BlogPost } from '~/utils/types/type/BlogPost'
 
 const { franchise } = useAppConfig()
+const route = useRoute()
+const router = useRouter()
+
+// Category filter options
+const categories = [
+  { value: '', label: 'Todos', icon: 'i-lucide-layout-grid' },
+  { value: 'guias', label: 'Guías', icon: 'i-lucide-book-open' },
+  { value: 'rutas', label: 'Rutas', icon: 'i-lucide-route' },
+  { value: 'destinos', label: 'Destinos', icon: 'i-lucide-map-pin' },
+  { value: 'tips', label: 'Tips', icon: 'i-lucide-lightbulb' }
+]
+
+// Selected category from route query
+const selectedCategory = computed(() => {
+  return (route.query.categoria as string) || ''
+})
+
+// Set category filter
+function setCategory(category: string) {
+  router.push({
+    query: category ? { categoria: category } : {}
+  })
+}
 
 // Query all blog posts
 const { data: allPosts } = await useAsyncData('blog-posts', () =>
@@ -144,6 +210,12 @@ const posts = computed(() => {
   return allPosts.value.filter(p => p.path !== featured?.path)
 })
 
+// Filter posts by category
+const filteredPosts = computed(() => {
+  if (!selectedCategory.value) return posts.value
+  return posts.value.filter(p => p.category === selectedCategory.value)
+})
+
 // Format date to Spanish
 function formatDate(dateStr: string): string {
   return new Date(dateStr).toLocaleDateString('es-CO', {
@@ -162,6 +234,17 @@ function formatCategory(category: string): string {
     rutas: 'Rutas'
   }
   return categories[category] || category
+}
+
+// Get category icon
+function getCategoryIcon(category: string): string {
+  const icons: Record<string, string> = {
+    guias: 'i-lucide-book-open',
+    destinos: 'i-lucide-map-pin',
+    tips: 'i-lucide-lightbulb',
+    rutas: 'i-lucide-route'
+  }
+  return icons[category] || 'i-lucide-file-text'
 }
 
 // SEO

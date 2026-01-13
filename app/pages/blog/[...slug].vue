@@ -1,5 +1,13 @@
 <template>
   <UPage v-if="post">
+    <!-- Reading Progress Bar -->
+    <div class="fixed top-0 left-0 right-0 h-1 bg-gray-200 z-50">
+      <div
+        class="h-full bg-red-700 transition-all duration-150 ease-out"
+        :style="{ width: `${readingProgress}%` }"
+      />
+    </div>
+
     <!-- Hero Image -->
     <div class="relative w-full h-64 md:h-96 overflow-hidden">
       <img
@@ -11,7 +19,8 @@
       <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent" />
       <div class="absolute bottom-0 left-0 right-0 p-6 md:p-12">
         <div class="max-w-4xl mx-auto">
-          <span class="inline-block px-3 py-1 text-xs font-semibold text-white bg-red-700 rounded-full mb-4">
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-semibold text-white bg-red-700 rounded-full mb-4">
+            <UIcon :name="getCategoryIcon(post.category)" class="size-3.5" />
             {{ formatCategory(post.category) }}
           </span>
           <h1 class="text-2xl md:text-4xl font-bold text-white mb-4">
@@ -27,8 +36,14 @@
               >
               <span>{{ post.author.name }}</span>
             </div>
-            <time :datetime="post.date">{{ formatDate(post.date) }}</time>
-            <span>{{ post.readingTime }} min de lectura</span>
+            <span class="inline-flex items-center gap-1.5">
+              <UIcon name="i-lucide-calendar" class="size-4" />
+              <time :datetime="post.date">{{ formatDate(post.date) }}</time>
+            </span>
+            <span class="inline-flex items-center gap-1.5">
+              <UIcon name="i-lucide-clock" class="size-4" />
+              {{ post.readingTime }} min de lectura
+            </span>
           </div>
         </div>
       </div>
@@ -39,7 +54,7 @@
       <div class="max-w-7xl mx-auto px-4 md:px-8">
         <div class="flex flex-col lg:flex-row gap-8">
           <!-- Main Content -->
-          <article class="lg:w-2/3 prose prose-lg prose-gray max-w-none">
+          <article ref="articleRef" class="lg:w-2/3 prose prose-lg prose-gray max-w-none">
             <ContentRenderer :value="post" />
           </article>
 
@@ -85,6 +100,41 @@
                 </div>
               </div>
 
+              <!-- Share Buttons (Desktop) -->
+              <div class="hidden lg:block bg-gray-50 rounded-xl p-6">
+                <h3 class="font-bold text-gray-900 mb-4">Compartir</h3>
+                <div class="flex gap-3">
+                  <button
+                    @click="shareWhatsApp"
+                    class="flex items-center justify-center w-10 h-10 bg-green-500 hover:bg-green-600 text-white rounded-full transition-colors"
+                    aria-label="Compartir en WhatsApp"
+                  >
+                    <UIcon name="i-lucide-message-circle" class="size-5" />
+                  </button>
+                  <button
+                    @click="shareFacebook"
+                    class="flex items-center justify-center w-10 h-10 bg-blue-600 hover:bg-blue-700 text-white rounded-full transition-colors"
+                    aria-label="Compartir en Facebook"
+                  >
+                    <UIcon name="i-lucide-facebook" class="size-5" />
+                  </button>
+                  <button
+                    @click="shareTwitter"
+                    class="flex items-center justify-center w-10 h-10 bg-black hover:bg-gray-800 text-white rounded-full transition-colors"
+                    aria-label="Compartir en X"
+                  >
+                    <UIcon name="i-lucide-twitter" class="size-5" />
+                  </button>
+                  <button
+                    @click="copyLink"
+                    class="flex items-center justify-center w-10 h-10 bg-gray-600 hover:bg-gray-700 text-white rounded-full transition-colors"
+                    aria-label="Copiar enlace"
+                  >
+                    <UIcon :name="linkCopied ? 'i-lucide-check' : 'i-lucide-link'" class="size-5" />
+                  </button>
+                </div>
+              </div>
+
               <!-- CTA -->
               <div class="bg-red-700 rounded-xl p-6 text-white">
                 <h3 class="font-bold mb-2">¿Listo para reservar?</h3>
@@ -98,6 +148,46 @@
               </div>
             </div>
           </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- Author Bio -->
+    <section class="bg-white py-8 px-4 md:px-8 border-t border-gray-200">
+      <div class="max-w-4xl mx-auto">
+        <div class="bg-gray-50 rounded-2xl p-6 md:p-8">
+          <div class="flex flex-col sm:flex-row items-center sm:items-start gap-6">
+            <img
+              :src="post.author.avatar"
+              :alt="post.author.name"
+              class="w-20 h-20 rounded-full object-cover"
+              loading="lazy"
+            >
+            <div class="text-center sm:text-left flex-1">
+              <h3 class="text-lg font-bold text-gray-900">{{ post.author.name }}</h3>
+              <p class="text-gray-600 mt-2 text-sm">
+                Somos tu mejor opción para alquilar carros en Colombia. Con presencia en más de 27 ciudades,
+                ofrecemos el mejor servicio sin anticipos y sin complicaciones. Nuestro equipo te acompaña
+                en cada paso de tu viaje.
+              </p>
+              <div class="mt-4 flex flex-col sm:flex-row items-center gap-3">
+                <NuxtLink
+                  to="/"
+                  class="inline-flex items-center gap-2 bg-red-700 hover:bg-red-800 text-white px-5 py-2.5 rounded-lg font-medium transition-colors"
+                >
+                  <UIcon name="i-lucide-car" class="size-4" />
+                  Reservar un Carro
+                </NuxtLink>
+                <NuxtLink
+                  to="/blog"
+                  class="inline-flex items-center gap-2 text-gray-600 hover:text-red-700 font-medium transition-colors"
+                >
+                  <UIcon name="i-lucide-book-open" class="size-4" />
+                  Más artículos
+                </NuxtLink>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -144,6 +234,41 @@
         </NuxtLink>
       </div>
     </section>
+
+    <!-- Mobile Share Buttons (Floating) -->
+    <div class="lg:hidden fixed bottom-4 left-1/2 -translate-x-1/2 z-40">
+      <div class="flex items-center gap-2 bg-white rounded-full shadow-lg px-4 py-2 border border-gray-200">
+        <span class="text-xs text-gray-500 font-medium mr-1">Compartir</span>
+        <button
+          @click="shareWhatsApp"
+          class="flex items-center justify-center w-9 h-9 bg-green-500 hover:bg-green-600 text-white rounded-full transition-colors"
+          aria-label="Compartir en WhatsApp"
+        >
+          <UIcon name="i-lucide-message-circle" class="size-4" />
+        </button>
+        <button
+          @click="shareFacebook"
+          class="flex items-center justify-center w-9 h-9 bg-blue-600 hover:bg-blue-700 text-white rounded-full transition-colors"
+          aria-label="Compartir en Facebook"
+        >
+          <UIcon name="i-lucide-facebook" class="size-4" />
+        </button>
+        <button
+          @click="shareTwitter"
+          class="flex items-center justify-center w-9 h-9 bg-black hover:bg-gray-800 text-white rounded-full transition-colors"
+          aria-label="Compartir en X"
+        >
+          <UIcon name="i-lucide-twitter" class="size-4" />
+        </button>
+        <button
+          @click="copyLink"
+          class="flex items-center justify-center w-9 h-9 bg-gray-600 hover:bg-gray-700 text-white rounded-full transition-colors"
+          aria-label="Copiar enlace"
+        >
+          <UIcon :name="linkCopied ? 'i-lucide-check' : 'i-lucide-link'" class="size-4" />
+        </button>
+      </div>
+    </div>
   </UPage>
 
   <!-- 404 -->
@@ -191,6 +316,40 @@ const { data: relatedPosts } = await useAsyncData(`related-${slug.value}`, async
     .all()
 })
 
+// Reading progress
+const articleRef = ref<HTMLElement | null>(null)
+const readingProgress = ref(0)
+
+function updateReadingProgress() {
+  if (!articleRef.value) return
+
+  const articleTop = articleRef.value.offsetTop
+  const articleHeight = articleRef.value.offsetHeight
+  const windowHeight = window.innerHeight
+  const scrollY = window.scrollY
+
+  // Calculate progress based on how much of the article is scrolled past
+  const start = articleTop - windowHeight
+  const end = articleTop + articleHeight - windowHeight
+
+  if (scrollY <= start) {
+    readingProgress.value = 0
+  } else if (scrollY >= end) {
+    readingProgress.value = 100
+  } else {
+    readingProgress.value = Math.round(((scrollY - start) / (end - start)) * 100)
+  }
+}
+
+onMounted(() => {
+  window.addEventListener('scroll', updateReadingProgress, { passive: true })
+  updateReadingProgress()
+})
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', updateReadingProgress)
+})
+
 // Format date
 function formatDate(dateStr: string): string {
   return new Date(dateStr).toLocaleDateString('es-CO', {
@@ -209,6 +368,56 @@ function formatCategory(category: string): string {
     rutas: 'Rutas'
   }
   return categories[category] || category
+}
+
+// Get category icon
+function getCategoryIcon(category: string): string {
+  const icons: Record<string, string> = {
+    guias: 'i-lucide-book-open',
+    destinos: 'i-lucide-map-pin',
+    tips: 'i-lucide-lightbulb',
+    rutas: 'i-lucide-route'
+  }
+  return icons[category] || 'i-lucide-file-text'
+}
+
+// Share functions
+const linkCopied = ref(false)
+
+function getShareUrl(): string {
+  if (import.meta.client) {
+    return window.location.href
+  }
+  return `${franchise.website}/blog/${slug.value}`
+}
+
+function shareWhatsApp() {
+  const url = getShareUrl()
+  const text = encodeURIComponent(`${post.value?.title} - ${url}`)
+  window.open(`https://wa.me/?text=${text}`, '_blank')
+}
+
+function shareFacebook() {
+  const url = encodeURIComponent(getShareUrl())
+  window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank', 'width=600,height=400')
+}
+
+function shareTwitter() {
+  const url = encodeURIComponent(getShareUrl())
+  const text = encodeURIComponent(post.value?.title || '')
+  window.open(`https://twitter.com/intent/tweet?url=${url}&text=${text}`, '_blank', 'width=600,height=400')
+}
+
+async function copyLink() {
+  try {
+    await navigator.clipboard.writeText(getShareUrl())
+    linkCopied.value = true
+    setTimeout(() => {
+      linkCopied.value = false
+    }, 2000)
+  } catch (err) {
+    console.error('Failed to copy link:', err)
+  }
 }
 
 // SEO - only if post exists

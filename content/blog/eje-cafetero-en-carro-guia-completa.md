@@ -1,12 +1,12 @@
 ---
-title: "Eje Cafetero en Carro: Guía Completa de Ruta 2025"
+title: "Eje Cafetero en Carro: Guía Completa de Ruta 2026"
 description: "Descubre la mejor ruta para recorrer el Eje Cafetero en carro. Itinerarios de 3, 5 y 7 días por Pereira, Armenia y Manizales. Alquila tu carro hoy."
 image: /img/blog/eje-cafetero.webp
 alt: Paisaje del Eje Cafetero con montañas verdes y plantaciones de café
 author:
   name: Alquilatucarro
   avatar: https://firebasestorage.googleapis.com/v0/b/rentacar-403321.firebasestorage.app/o/rentacar-main%2Falquilatucarro%2Fimg%2Flogo.png?alt=media
-date: 2025-01-12
+date: 2026-01-13
 category: destinos
 tags:
   - eje cafetero
@@ -17,8 +17,6 @@ tags:
 readingTime: 10
 featured: false
 ---
-
-# Eje Cafetero en Carro: Guía Completa de Ruta 2025
 
 El **Eje Cafetero** es una de las regiones más hermosas de Colombia, declarada Patrimonio de la Humanidad por la UNESCO. Recorrerlo en carro te permite descubrir a tu propio ritmo los paisajes montañosos, pueblos coloridos y fincas cafeteras que hacen de esta zona un destino único en el mundo.
 

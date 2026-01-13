@@ -176,7 +176,7 @@ export default defineNuxtConfig({
         // Blog
         '/blog',
         '/blog/requisitos-alquilar-carro-colombia',
-        '/blog/pico-y-placa-colombia-2025',
+        '/blog/pico-y-placa-colombia-2026',
         '/blog/tipos-carros-alquilar-cual-elegir',
         '/blog/rutas-carro-desde-bogota',
         '/blog/eje-cafetero-en-carro-guia-completa',
@@ -221,7 +221,7 @@ export default defineNuxtConfig({
       // Blog - prioridad media-alta
       { loc: '/blog', changefreq: 'weekly', priority: 0.8 },
       { loc: '/blog/requisitos-alquilar-carro-colombia', changefreq: 'monthly', priority: 0.7 },
-      { loc: '/blog/pico-y-placa-colombia-2025', changefreq: 'monthly', priority: 0.7 },
+      { loc: '/blog/pico-y-placa-colombia-2026', changefreq: 'monthly', priority: 0.7 },
       { loc: '/blog/tipos-carros-alquilar-cual-elegir', changefreq: 'monthly', priority: 0.7 },
       { loc: '/blog/rutas-carro-desde-bogota', changefreq: 'monthly', priority: 0.7 },
       { loc: '/blog/eje-cafetero-en-carro-guia-completa', changefreq: 'monthly', priority: 0.7 },
