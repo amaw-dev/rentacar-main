@@ -3,6 +3,9 @@
     xmlns="http://www.w3.org/2000/svg"
     :class="cls"
     viewBox="0 0 300 200"
+    width="36"
+    height="24"
+    style="max-height: 3.5rem; max-width: 5.25rem;"
     aria-label="Bandera de Colombia"
     role="img"
   >

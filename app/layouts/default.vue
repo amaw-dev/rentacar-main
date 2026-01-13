@@ -21,7 +21,7 @@
       <template #left>
         <!-- Móvil: Bandera diagonal en esquina + Logo centrado -->
         <div class="md:hidden">
-          <IconsColombiaFlag cls="absolute top-0 left-0 h-14 w-auto -rotate-45 -translate-x-[40%] -translate-y-[40%]" />
+          <IconsColombiaFlagCorner cls="absolute top-0 left-0 w-32 h-32 -translate-x-[10%] -translate-y-[10%]" />
           <NuxtLink to="/" aria-label="alquilatucarro" class="absolute left-1/2 -translate-x-1/2">
             <Logo cls="h-8 w-auto" />
           </NuxtLink>

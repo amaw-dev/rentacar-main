@@ -1,41 +1,42 @@
 <template>
     <u-form 
-        class="mx-auto h-full w-full md:w-3/6 lg:w-4/6 grid grid-cols-2 grid-rows-5 gap-2 light"
+        class="w-full mx-auto md:w-3/6 lg:w-4/6 grid grid-cols-2 auto-rows-min gap-2 light"
     >
-        <div class="col-span-2 bg-white rounded p-3">
-            <u-form-field name="lugarRecogida" label="Lugar de recogida">
+        <div class="col-span-2 bg-white rounded-xl p-2 shadow-sm">
+            <u-form-field name="lugarRecogida" label="Lugar de recogida" size="xl">
                 <u-progress class="w-full py-3" v-model="progress" />
             </u-form-field>
         </div>
-        <div class="col-span-2 bg-white rounded p-3">
-            <u-form-field name="lugarDevolucion" label="Lugar de devolución">
+        <div class="col-span-2 bg-white rounded-xl p-2 shadow-sm">
+            <u-form-field name="lugarDevolucion" label="Lugar de devolución" size="xl">
                 <u-progress class="w-full py-3" v-model="progress" />
             </u-form-field>
         </div>
-        <div class="bg-white rounded p-3">
-            <u-form-field name="fechaRecogida" label="Día de recogida">
+        <div class="bg-white rounded-xl p-2 shadow-sm">
+            <u-form-field name="fechaRecogida" label="Día de recogida" size="xl">
                 <u-progress class="w-full py-3" v-model="progress" />
             </u-form-field>
         </div>
-        <div class="bg-white rounded p-3">
-            <u-form-field name="fechaDevolucion" label="Día de devolución">
+        <div class="bg-white rounded-xl p-2 shadow-sm">
+            <u-form-field name="fechaDevolucion" label="Día de devolución" size="xl">
                 <u-progress class="w-full py-3" v-model="progress" />
             </u-form-field>
         </div>
-        <div class="bg-white rounded p-3">
-            <u-form-field name="horaRecogida" label="Hora de recogida">
+        <div class="bg-white rounded-xl p-2 shadow-sm">
+            <u-form-field name="horaRecogida" label="Hora de recogida" size="xl">
                 <u-progress class="w-full py-3" v-model="progress" />
             </u-form-field>
         </div>
-        <div class="bg-white rounded p-3">
-            <u-form-field label="Hora de devolución">
+        <div class="bg-white rounded-xl p-2 shadow-sm">
+            <u-form-field label="Hora de devolución" size="xl">
                 <u-progress class="w-full py-3" v-model="progress" />
             </u-form-field>
         </div>
         <div class="col-span-2">
-            <u-button 
+            <u-button
                 type="submit"
-                class="w-full bg-red-600 disabled:bg-red-600 hover:bg-red-700 cursor-pointer text-white font-bold justify-center"
+                class="search-button"
+                size="xl"
                 disabled
             >
                 BUSCAR VEHÍCULOS
