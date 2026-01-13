@@ -1,7 +1,7 @@
 ---
 title: "Pico y Placa en Colombia 2025: Guía Completa por Ciudad"
 description: "Horarios actualizados de pico y placa en Bogotá, Medellín, Cali, Barranquilla y todas las ciudades de Colombia. Evita multas conociendo las restricciones."
-image: https://firebasestorage.googleapis.com/v0/b/rentacar-403321.firebasestorage.app/o/rentacar-main%2Falquilatucarro%2Fimg%2Fblog%2Fpico-y-placa.webp?alt=media
+image: /img/blog/pico-y-placa.webp
 alt: Señal de tránsito de pico y placa en Colombia
 author:
   name: Alquilatucarro

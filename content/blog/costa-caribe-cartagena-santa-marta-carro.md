@@ -1,7 +1,7 @@
 ---
 title: "Costa Caribe en Carro: Ruta Cartagena a Santa Marta 2025"
 description: "Guía completa para recorrer la costa caribe colombiana en carro. Ruta Cartagena-Barranquilla-Santa Marta, playas, Parque Tayrona y más. Alquila tu carro hoy."
-image: https://firebasestorage.googleapis.com/v0/b/rentacar-403321.firebasestorage.app/o/rentacar-main%2Falquilatucarro%2Fimg%2Fblog%2Fcosta-caribe.webp?alt=media
+image: /img/blog/costa-caribe.webp
 alt: Vista panorámica de la costa caribe colombiana con carretera bordeando el mar
 author:
   name: Alquilatucarro

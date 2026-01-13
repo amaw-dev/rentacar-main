@@ -1,7 +1,7 @@
 ---
 title: "Viajar en Carro con Niños en Colombia: Guía Completa"
 description: "Tips esenciales para viajar con niños en carro por Colombia: sillas de bebé, entretenimiento, paradas y seguridad. Planifica tu viaje familiar hoy."
-image: https://firebasestorage.googleapis.com/v0/b/rentacar-403321.firebasestorage.app/o/rentacar-main%2Falquilatucarro%2Fimg%2Fblog%2Fviajar-ninos.webp?alt=media
+image: /img/blog/viajar-ninos.webp
 alt: Familia feliz viajando en carro por carretera colombiana
 author:
   name: Alquilatucarro

@@ -1,7 +1,7 @@
 ---
 title: "Eje Cafetero en Carro: Guía Completa de Ruta 2025"
 description: "Descubre la mejor ruta para recorrer el Eje Cafetero en carro. Itinerarios de 3, 5 y 7 días por Pereira, Armenia y Manizales. Alquila tu carro hoy."
-image: https://firebasestorage.googleapis.com/v0/b/rentacar-403321.firebasestorage.app/o/rentacar-main%2Falquilatucarro%2Fimg%2Fblog%2Feje-cafetero.webp?alt=media
+image: /img/blog/eje-cafetero.webp
 alt: Paisaje del Eje Cafetero con montañas verdes y plantaciones de café
 author:
   name: Alquilatucarro
