@@ -173,6 +173,15 @@ export default defineNuxtConfig({
         '/gana',
         '/gana/terminos-condiciones',
         '/gana/politicas-privacidad',
+        // Blog
+        '/blog',
+        '/blog/requisitos-alquilar-carro-colombia',
+        '/blog/pico-y-placa-colombia-2025',
+        '/blog/tipos-carros-alquilar-cual-elegir',
+        '/blog/rutas-carro-desde-bogota',
+        '/blog/eje-cafetero-en-carro-guia-completa',
+        '/blog/costa-caribe-cartagena-santa-marta-carro',
+        '/blog/viajar-carro-con-ninos-colombia',
       ]
     }
   },
@@ -209,8 +218,17 @@ export default defineNuxtConfig({
       { loc: '/floridablanca', changefreq: 'monthly', priority: 0.8 },
       { loc: '/palmira', changefreq: 'monthly', priority: 0.8 },
       { loc: '/soledad', changefreq: 'monthly', priority: 0.8 },
+      // Blog - prioridad media-alta
+      { loc: '/blog', changefreq: 'weekly', priority: 0.8 },
+      { loc: '/blog/requisitos-alquilar-carro-colombia', changefreq: 'monthly', priority: 0.7 },
+      { loc: '/blog/pico-y-placa-colombia-2025', changefreq: 'monthly', priority: 0.7 },
+      { loc: '/blog/tipos-carros-alquilar-cual-elegir', changefreq: 'monthly', priority: 0.7 },
+      { loc: '/blog/rutas-carro-desde-bogota', changefreq: 'monthly', priority: 0.7 },
+      { loc: '/blog/eje-cafetero-en-carro-guia-completa', changefreq: 'monthly', priority: 0.7 },
+      { loc: '/blog/costa-caribe-cartagena-santa-marta-carro', changefreq: 'monthly', priority: 0.7 },
+      { loc: '/blog/viajar-carro-con-ninos-colombia', changefreq: 'monthly', priority: 0.7 },
     ],
-    exclude: ['/blog', '/pendiente', '/sindisponibilidad', '/reservado/**', '/*/buscar-vehiculos/**'],
+    exclude: ['/pendiente', '/sindisponibilidad', '/reservado/**', '/*/buscar-vehiculos/**'],
   },
 
   robots: {
@@ -236,6 +254,8 @@ export default defineNuxtConfig({
       '/floridablanca',
       '/palmira',
       '/soledad',
+      '/blog',
+      '/blog/*',
     ],
     sitemap: "/sitemap.xml"
   },

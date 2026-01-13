@@ -22,7 +22,7 @@
         <div v-if="featuredPost" class="mb-12">
           <h2 class="text-xl font-bold text-gray-800 mb-6">Artículo Destacado</h2>
           <NuxtLink
-            :to="featuredPost._path"
+            :to="featuredPost.path"
             class="block group"
           >
             <article class="bg-white rounded-xl shadow-md overflow-hidden md:flex hover:shadow-xl transition-shadow duration-300">
@@ -59,8 +59,8 @@
         <div v-if="posts && posts.length > 0" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           <NuxtLink
             v-for="post in posts"
-            :key="post._path"
-            :to="post._path"
+            :key="post.path"
+            :to="post.path"
             class="group"
           >
             <article class="bg-white rounded-xl shadow-sm overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-200 h-full flex flex-col">
@@ -126,9 +126,9 @@ const { franchise } = useAppConfig()
 
 // Query all blog posts
 const { data: allPosts } = await useAsyncData('blog-posts', () =>
-  queryContent<BlogPost>('blog')
-    .sort({ date: -1 })
-    .find()
+  queryCollection<BlogPost>('blog')
+    .order('date', 'DESC')
+    .all()
 )
 
 // Get featured post (first featured=true or most recent)
@@ -141,7 +141,7 @@ const featuredPost = computed(() => {
 const posts = computed(() => {
   if (!allPosts.value) return []
   const featured = featuredPost.value
-  return allPosts.value.filter(p => p._path !== featured?._path)
+  return allPosts.value.filter(p => p.path !== featured?.path)
 })
 
 // Format date to Spanish

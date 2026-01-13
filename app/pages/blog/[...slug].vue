@@ -109,8 +109,8 @@
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
           <NuxtLink
             v-for="related in relatedPosts"
-            :key="related._path"
-            :to="related._path"
+            :key="related.path"
+            :to="related.path"
             class="group"
           >
             <article class="bg-white rounded-xl shadow-sm overflow-hidden hover:shadow-lg transition-shadow">
@@ -176,16 +176,19 @@ const slug = computed(() => {
 
 // Fetch the blog post
 const { data: post } = await useAsyncData(`blog-${slug.value}`, () =>
-  queryContent<BlogPost>('blog', slug.value).findOne()
+  queryCollection<BlogPost>('blog')
+    .path(`/blog/${slug.value}`)
+    .first()
 )
 
 // Fetch related posts (same category, excluding current)
 const { data: relatedPosts } = await useAsyncData(`related-${slug.value}`, async () => {
   if (!post.value) return []
-  return queryContent<BlogPost>('blog')
-    .where({ category: post.value.category, _path: { $ne: post.value._path } })
+  return queryCollection<BlogPost>('blog')
+    .where('category', '=', post.value.category)
+    .where('path', '!=', post.value.path)
     .limit(3)
-    .find()
+    .all()
 })
 
 // Format date
