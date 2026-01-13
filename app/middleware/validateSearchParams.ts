@@ -57,7 +57,8 @@ export default defineNuxtRouteMiddleware((to, from) => {
       name: to.name,
       params: {
         ...to.params,
-      }
+      },
+      query: to.query,
     });
 
   }
@@ -93,7 +94,8 @@ export default defineNuxtRouteMiddleware((to, from) => {
         name: to.name,
         params: {
           ...to.params
-        }
+        },
+        query: to.query,
       });
 
   }
@@ -114,11 +116,12 @@ export default defineNuxtRouteMiddleware((to, from) => {
       name: to.name,
       params: {
         ...to.params
-      }
+      },
+      query: to.query,
     });
 
   }
-  
+
   // Si la validación pasa, continúa con la navegación
   // Aquí no es necesario hacer nada, ya que si no retornas nada, la navegación continúa
 })
