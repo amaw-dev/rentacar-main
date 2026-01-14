@@ -22,13 +22,14 @@ export default function useSearchByRouteParams() {
   const { doSearch } = useSearch();
   
   const route = useRoute();
+
   lugarRecogida.value = (route.params.lugar_recogida?.toString())?.toUpperCase() as string;
   lugarDevolucion.value = (route.params.lugar_devolucion?.toString())?.toUpperCase() as string;
   fechaRecogida.value = route.params.fecha_recogida as string;
   fechaDevolucion.value = route.params.fecha_devolucion as string;
   horaRecogida.value = route.params.hora_recogida as string;
   horaDevolucion.value = route.params.hora_devolucion as string;
-  
+
   onMounted(() => {
     doSearch();
   });

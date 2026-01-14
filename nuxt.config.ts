@@ -8,44 +8,33 @@ export default defineNuxtConfig({
 
   devtools: { enabled: true },
 
-  // CSS crítico inline para prevenir FOUC
+  // Configuración de app: CSS crítico inline + preloads para LCP
   app: {
     head: {
+      // CSS crítico - balance entre tamaño y prevención de FOUC
       style: [
         {
-          // CSS crítico que se inyecta inline en el <head> antes de cualquier stylesheet
           children: `
-            /* Prevenir banderas/logos gigantes antes de CSS */
+            *, *::before, *::after { box-sizing: border-box; }
+            body { margin: 0; font-family: system-ui, -apple-system, sans-serif; }
+            img { max-width: 100%; height: auto; display: block; }
+            picture { display: block; }
+            svg { max-width: 100%; height: auto; }
             header svg { max-height: 3.5rem !important; max-width: 10rem !important; }
-            /* Ocultar bandera móvil en desktop y viceversa (antes de Tailwind) */
+            .w-2\\.5 { width: 0.625rem; } .h-2\\.5 { height: 0.625rem; }
+            .mx-auto { margin-left: auto; margin-right: auto; }
             @media (min-width: 768px) { header .md\\:hidden { display: none !important; } }
             @media (max-width: 767px) { header .hidden { display: none !important; } }
-            /* H1 tracking-tight */
-            .hero-section h1 { letter-spacing: -0.025em !important; }
+            .bg-white { background-color: #fff; }
+            .text-white { color: #fff; }
+            .text-black { color: #000; }
           `,
         },
       ],
-    },
-  },
-
-  modules: ['@nuxtjs/seo', '@nuxt/ui', '@pinia/nuxt', 'nuxt-llms', 'nuxt-vitalizer', '@nuxt/content'],
-
-  // Optimización Core Web Vitals
-  vitalizer: {
-    // NOTA: disableStylesheets: 'entry' causaba FOUC en páginas de ciudad
-    // Los estilos no se inlinean correctamente durante SSR
-    disableStylesheets: false,
-    // Remueve prefetch links para mejorar FCP
-    disablePrefetchLinks: true,
-  },
-
-  // Optimización LCP: preloads en HTML inicial (antes de JS)
-  app: {
-    head: {
+      // Preload imagen LCP - solo AVIF (97%+ soporte en móviles modernos)
       link: [
-        // Preconnect a Firebase Storage (crítico para LCP)
         { rel: 'preconnect', href: 'https://firebasestorage.googleapis.com', crossorigin: '' },
-        // Preload imagen hero mobile (LCP en móviles)
+        // Mobile AVIF
         {
           rel: 'preload',
           as: 'image',
@@ -54,7 +43,7 @@ export default defineNuxtConfig({
           media: '(max-width: 767px)',
           fetchpriority: 'high',
         },
-        // Preload imagen hero desktop (LCP en escritorio)
+        // Desktop AVIF
         {
           rel: 'preload',
           as: 'image',
@@ -67,7 +56,18 @@ export default defineNuxtConfig({
     },
   },
 
-  // Configuración SEO - controla cómo se generan los títulos
+  modules: ['@nuxtjs/seo', '@nuxt/ui', '@pinia/nuxt', 'nuxt-llms', 'nuxt-vitalizer', '@nuxt/content'],
+
+  // Optimización Core Web Vitals
+  vitalizer: {
+    // Diferir stylesheets para eliminar render-blocking CSS
+    // Requiere CSS crítico inline suficiente para evitar FOUC
+    disableStylesheets: 'entry',
+    // Remueve prefetch links para mejorar FCP
+    disablePrefetchLinks: true,
+  },
+
+  // Configuración SEO
   site: {
     url: 'https://alquilatucarro.com',
     name: 'Alquilatucarro',
@@ -187,11 +187,6 @@ export default defineNuxtConfig({
   },
 
   css: ['~/assets/css/main.css'],
-
-  site: {
-    name: "Alquilatucarro",
-    url: "https://alquilatucarro.com",
-  },
 
   sitemap: {
     urls: [
