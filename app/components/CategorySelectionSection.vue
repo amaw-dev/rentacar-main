@@ -62,49 +62,52 @@
         <reservation-resume :category="selectedCategory"></reservation-resume>
       </template>
       <template #footer>
-        <!-- Share Capsule -->
-        <div class="w-full flex justify-center mb-3">
-          <div class="flex items-center gap-2 bg-gray-100 rounded-full px-4 py-2">
-            <span class="text-sm text-gray-600 font-medium">Compartir</span>
-            <button
-              @click="shareWhatsApp"
-              class="flex items-center justify-center w-9 h-9 bg-green-500 hover:bg-green-600 text-white rounded-full transition-colors"
-              aria-label="Compartir en WhatsApp"
-            >
-              <UIcon name="i-lucide-message-circle" class="size-4" />
-            </button>
-            <button
-              @click="shareFacebook"
-              class="flex items-center justify-center w-9 h-9 bg-blue-600 hover:bg-blue-700 text-white rounded-full transition-colors"
-              aria-label="Compartir en Facebook"
-            >
-              <UIcon name="i-lucide-facebook" class="size-4" />
-            </button>
-            <button
-              @click="shareTwitter"
-              class="flex items-center justify-center w-9 h-9 bg-black hover:bg-gray-800 text-white rounded-full transition-colors"
-              aria-label="Compartir en X"
-            >
-              <UIcon name="i-lucide-twitter" class="size-4" />
-            </button>
-            <button
-              @click="copyReservationLink"
-              class="flex items-center justify-center w-9 h-9 bg-gray-500 hover:bg-gray-600 text-white rounded-full transition-colors"
-              aria-label="Copiar enlace"
-            >
-              <UIcon :name="linkCopied ? 'i-lucide-check' : 'i-lucide-link'" class="size-4" />
-            </button>
+        <div class="w-full flex flex-col gap-3">
+          <!-- Share Capsule -->
+          <div class="flex justify-center">
+            <div class="flex items-center gap-2 bg-gray-100 rounded-full px-4 py-2">
+              <span class="text-sm text-gray-600 font-medium">Compartir</span>
+              <button
+                @click="shareWhatsApp"
+                class="flex items-center justify-center w-9 h-9 bg-green-500 hover:bg-green-600 text-white rounded-full transition-colors"
+                aria-label="Compartir en WhatsApp"
+              >
+                <UIcon name="i-lucide-message-circle" class="size-4" />
+              </button>
+              <button
+                @click="shareFacebook"
+                class="flex items-center justify-center w-9 h-9 bg-blue-600 hover:bg-blue-700 text-white rounded-full transition-colors"
+                aria-label="Compartir en Facebook"
+              >
+                <UIcon name="i-lucide-facebook" class="size-4" />
+              </button>
+              <button
+                @click="shareTwitter"
+                class="flex items-center justify-center w-9 h-9 bg-black hover:bg-gray-800 text-white rounded-full transition-colors"
+                aria-label="Compartir en X"
+              >
+                <UIcon name="i-lucide-twitter" class="size-4" />
+              </button>
+              <button
+                @click="copyReservationLink"
+                class="flex items-center justify-center w-9 h-9 bg-gray-500 hover:bg-gray-600 text-white rounded-full transition-colors"
+                aria-label="Copiar enlace"
+              >
+                <UIcon :name="linkCopied ? 'i-lucide-check' : 'i-lucide-link'" class="size-4" />
+              </button>
+            </div>
           </div>
-        </div>
-        <u-button
-          label="Volver"
-          color="neutral"
-          variant="solid"
-          size="xl"
-          class="flex-1 py-4 justify-center bg-gray-200 !text-black hover:bg-gray-300"
-          @click="slideoverReservationResume = false"
-        />
-        <u-slideover
+          <!-- Action Buttons -->
+          <div class="flex gap-2">
+            <u-button
+              label="Volver"
+              color="neutral"
+              variant="solid"
+              size="xl"
+              class="flex-1 py-4 justify-center bg-gray-200 !text-black hover:bg-gray-300"
+              @click="slideoverReservationResume = false"
+            />
+            <u-slideover
           v-model:open="slideoverReservationForm"
           title="Datos para reservas"
           description="Completa tus datos y solicita la reserva"
@@ -156,6 +159,8 @@
             </u-button>
           </template>
         </u-slideover>
+          </div>
+        </div>
       </template>
     </u-slideover>
   </template>
