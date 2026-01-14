@@ -68,7 +68,7 @@
                   <li v-for="link in post.body.toc.links" :key="link.id">
                     <a
                       :href="`#${link.id}`"
-                      class="text-sm text-gray-600 hover:text-red-700 transition-colors"
+                      class="text-sm text-gray-600 hover:text-red-700 underline underline-offset-2 transition-colors"
                     >
                       {{ link.text }}
                     </a>
@@ -76,7 +76,7 @@
                       <li v-for="child in link.children" :key="child.id">
                         <a
                           :href="`#${child.id}`"
-                          class="text-xs text-gray-500 hover:text-red-700 transition-colors"
+                          class="text-xs text-gray-500 hover:text-red-700 underline underline-offset-2 transition-colors"
                         >
                           {{ child.text }}
                         </a>
@@ -227,7 +227,7 @@
       <div class="max-w-4xl mx-auto text-center">
         <NuxtLink
           to="/blog"
-          class="inline-flex items-center gap-2 text-red-700 hover:text-red-800 font-medium transition-colors"
+          class="inline-flex items-center gap-2 px-6 py-3 bg-gray-200 hover:bg-gray-300 text-black font-medium rounded-lg transition-colors"
         >
           <span>&larr;</span>
           <span>Volver al Blog</span>
@@ -518,6 +518,12 @@ definePageMeta({
   color: rgb(17, 24, 39);
   margin-top: 2rem;
   margin-bottom: 1rem;
+  text-decoration: none;
+  border-bottom: none;
+}
+
+.prose h2:target {
+  scroll-margin-top: 5rem;
 }
 
 .prose h3 {
