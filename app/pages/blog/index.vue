@@ -26,11 +26,11 @@
             class="block group"
           >
             <article class="bg-white rounded-xl shadow-md overflow-hidden md:flex hover:shadow-xl transition-shadow duration-300">
-              <div class="md:w-1/2">
+              <div class="md:w-1/2 aspect-video md:aspect-auto overflow-hidden">
                 <img
                   :src="featuredPost.image"
                   :alt="featuredPost.alt"
-                  class="w-full h-64 md:h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                   loading="eager"
                 >
               </div>
@@ -89,12 +89,12 @@
             :to="post.path"
             class="group"
           >
-            <article class="bg-white rounded-xl shadow-sm overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-200 h-full flex flex-col">
-              <div class="relative overflow-hidden">
+            <article class="bg-white rounded-xl shadow-sm overflow-hidden hover:shadow-lg transition-shadow duration-200 h-full flex flex-col">
+              <div class="relative overflow-hidden aspect-video">
                 <img
                   :src="post.image"
                   :alt="post.alt"
-                  class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                   loading="lazy"
                 >
                 <span class="absolute top-3 left-3 inline-flex items-center gap-1.5 px-3 py-1 text-xs font-semibold text-white bg-red-700 rounded-full">
