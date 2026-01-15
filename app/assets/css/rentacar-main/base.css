@@ -180,6 +180,7 @@ header [role="dialog"] [data-slot="close"]:hover {
 }
 
 /* Colombia text color sweep animation */
+/* PERF: animation-delay 1s defers animation until after LCP to avoid render blocking */
 .colombia-sweep {
     background-image: linear-gradient(90deg,
         white 0%,
@@ -196,6 +197,7 @@ header [role="dialog"] [data-slot="close"]:hover {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     animation: colombia-color-sweep 4s linear infinite;
+    animation-delay: 1s;
 }
 
 @keyframes colombia-color-sweep {
