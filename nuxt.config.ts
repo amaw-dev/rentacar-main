@@ -8,6 +8,12 @@ export default defineNuxtConfig({
 
   devtools: { enabled: true },
 
+  // Component Islands: renderiza componentes estáticos sin hidratación Vue
+  // Reduce JavaScript en el cliente para mejorar LCP
+  experimental: {
+    componentIslands: true,
+  },
+
   // Configuración de app: CSS crítico inline + preloads para LCP
   app: {
     head: {

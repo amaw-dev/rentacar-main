@@ -1,27 +1,12 @@
 <template>
   <UPage>
-    <!-- Hero Section -->
+    <!-- Hero Section - Server Components para reducir JS hydration -->
     <UPageHero orientation="horizontal">
       <template #headline>
-        <div
-          class="flex flex-row items-center justify-center space-x-0.5 text-white text-center"
-        >
-          <StarIcon cls="w-2.5 h-2.5 md:w-4 md:h-4" />
-          <StarIcon cls="w-2.5 h-2.5 md:w-4 md:h-4" />
-          <StarIcon cls="w-2.5 h-2.5 md:w-4 md:h-4" />
-          <StarIcon cls="w-2.5 h-2.5 md:w-4 md:h-4" />
-          <StarIcon cls="w-2.5 h-2.5 md:w-4 md:h-4" />
-          <span class="ml-2 text-xs md:text-base">4.9 reviews</span>
-        </div>
+        <HeroHeadline />
       </template>
       <template #title>
-        <div class="hero-h1-critical text-white text-4xl text-center font-bold">
-          <span class="block">
-            <span class="block uppercase">ALQUILER</span>
-            <span class="block">DE CARROS EN</span>
-          </span>
-          <span class="block tracking-wide colombia-sweep">COLOMBIA</span>
-        </div>
+        <HeroTitle />
       </template>
       <template #body>
         <div class="text-center justify-items-center">
@@ -31,11 +16,7 @@
           <div class="min-w-80 my-3">
             <SelectBranch />
           </div>
-          <p class="text-base text-white">
-            Contamos con 27 sedes a nivel nacional y una excelente reputación en
-            alquiler de carros y camionetas que se adaptan a tu necesidad y
-            presupuesto
-          </p>
+          <HeroDescription />
         </div>
       </template>
       <template #default>
