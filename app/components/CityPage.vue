@@ -120,7 +120,7 @@
     <section v-if="cityBranches.length > 0" id="puntos-entrega" class="bg-gray-50 text-black py-8 md:py-12 px-4 md:px-8">
       <div class="max-w-5xl mx-auto text-center">
         <h2 class="text-2xl md:text-3xl font-bold mb-6">
-          <span class="text-red-700">Puntos de entrega</span> <span class="text-black">en {{ city?.name }}</span>
+          <span class="text-red-700">Puntos de entrega</span> <span class="text-black">para alquiler de carros en {{ city?.name }}</span>
         </h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           <div
@@ -148,7 +148,7 @@
         <div class="max-w-4xl mx-auto">
           <h2 class="text-2xl md:text-3xl font-bold text-center mb-6">
             <span class="text-red-700">Explora {{ city?.name }}</span>
-            <span class="text-black"> en carro</span>
+            <span class="text-black"> con tu carro de alquiler</span>
           </h2>
           <p class="text-gray-700 text-base md:text-lg leading-relaxed text-justify">
             {{ expandedContent.intro }}
@@ -160,7 +160,7 @@
       <section id="destinos" class="bg-gray-50 text-black py-8 md:py-12 px-4 md:px-8">
         <div class="max-w-6xl mx-auto">
           <h2 class="text-2xl md:text-3xl font-bold text-center mb-8">
-            <span class="text-red-700">Destinos populares</span>
+            <span class="text-red-700">Destinos para recorrer con carro rentado</span>
             <span class="text-black"> desde {{ city?.name }}</span>
           </h2>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -186,7 +186,7 @@
         <div class="max-w-4xl mx-auto">
           <h2 class="text-2xl md:text-3xl font-bold text-center mb-8">
             <span class="text-red-700">Consejos</span>
-            <span class="text-black"> para conducir en {{ city?.name }}</span>
+            <span class="text-black"> para alquilar carro en {{ city?.name }}</span>
           </h2>
           <div class="space-y-6">
             <div class="flex items-start gap-4">
@@ -224,7 +224,7 @@
       <section id="mejor-temporada" class="bg-gray-50 text-black py-8 md:py-12 px-4 md:px-8">
         <div class="max-w-4xl mx-auto text-center">
           <h2 class="text-2xl md:text-3xl font-bold mb-6">
-            <span class="text-red-700">Mejor época</span> <span class="text-black">para viajar a {{ city?.name }}</span>
+            <span class="text-red-700">Mejor época</span> <span class="text-black">para alquilar carro y viajar a {{ city?.name }}</span>
           </h2>
           <p class="text-gray-700 text-base md:text-lg leading-relaxed">
             {{ expandedContent.bestSeason }}
@@ -262,8 +262,8 @@
     <UPageSection id="faqs" class="bg-gray-100 text-black">
       <div class="max-w-7xl mx-auto px-1 sm:px-2 lg:px-6">
         <h2 class="text-2xl md:text-3xl font-bold text-center mb-6 space-x-2">
-          <span class="text-red-700">Preguntas Frecuentes</span>
-          <span class="text-black">sobre alquiler en {{ city?.name }}</span>
+          <span class="text-red-700">Preguntas frecuentes</span>
+          <span class="text-black">sobre alquiler de carros en {{ city?.name }}</span>
         </h2>
         <p class="text-base text-center mb-4">
           Resolvemos tus dudas más comunes sobre el alquiler de carros en {{ city?.name }}.
@@ -283,7 +283,7 @@
     <section id="testimonios" class="bg-white text-black py-12 md:py-20 px-4 md:px-8">
       <div class="max-w-7xl mx-auto">
         <h2 class="text-2xl md:text-3xl font-bold text-center mb-4">
-          <span class="text-red-700">Testimonios de nuestros clientes</span> <span class="text-black">en {{ city?.name }}</span>
+          <span class="text-red-700">Opiniones de clientes que rentaron carros</span> <span class="text-black">en {{ city?.name }}</span>
         </h2>
         <p class="text-black text-center mb-8">Descubre por qué somos la opción preferida para alquilar carros en {{ city?.name }}. Nuestros clientes destacan nuestra atención, precios competitivos y la facilidad para explorar.</p>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
