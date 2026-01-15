@@ -219,7 +219,7 @@
             >
               <div class="flex items-start justify-between mb-3">
                 <h3 class="text-xl font-bold text-gray-900">{{ destination.name }}</h3>
-                <span class="text-sm font-medium text-red-600 bg-red-50 px-3 py-1 rounded-full whitespace-nowrap">
+                <span class="text-sm font-medium text-gray-700 bg-gray-100 px-3 py-1 rounded-full whitespace-nowrap">
                   {{ destination.time }}
                 </span>
               </div>

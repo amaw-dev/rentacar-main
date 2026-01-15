@@ -7,48 +7,53 @@
     class="scheme-dark"
   >
       <div class="grid grid-cols-2 gap-2">
-        <u-form-field name="nombreCompleto">
+        <u-form-field name="nombreCompleto" label="Nombres">
           <u-input
             v-model="formState.nombreCompleto"
             class="w-full"
             placeholder="Nombres*"
+            aria-label="Nombres"
             :ui="inputUi"
           ></u-input>
         </u-form-field>
-        <u-form-field name="apellidos">
+        <u-form-field name="apellidos" label="Apellidos">
           <u-input
             v-model="formState.apellidos"
             class="w-full"
             placeholder="Apellidos*"
+            aria-label="Apellidos"
             :ui="inputUi"
           ></u-input>
         </u-form-field>
-        <u-form-field name="tipoIdentificacion">
+        <u-form-field name="tipoIdentificacion" label="Tipo de identificación">
           <u-select
             v-model="formState.tipoIdentificacion"
             class="w-full"
             placeholder="ID Tipo*"
+            aria-label="Tipo de identificación"
             :items="identificationTypeOptions"
             :ui="selectUi"
           ></u-select>
         </u-form-field>
-        <u-form-field name="identificacion">
+        <u-form-field name="identificacion" label="Número de identificación">
           <u-input
             v-model="formState.identificacion"
             class="w-full"
             placeholder="ID Número*"
+            aria-label="Número de identificación"
             :ui="inputUi"
           ></u-input>
         </u-form-field>
-        <u-form-field class="col-span-2" name="email">
+        <u-form-field class="col-span-2" name="email" label="Correo electrónico">
           <u-input
             v-model="formState.email"
             class="w-full"
             placeholder="Email*"
+            aria-label="Correo electrónico"
             :ui="inputUi"
           ></u-input>
         </u-form-field>
-        <u-form-field class="col-span-2" name="telefono">
+        <u-form-field class="col-span-2" name="telefono" label="Teléfono">
           <VueTelInput
             v-model="formState.telefono"
             mode="international"
