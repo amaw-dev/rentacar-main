@@ -116,6 +116,54 @@
       </div>
     </section>
 
+    <!-- Benefits Section (adds ~100 words for SEO) -->
+    <section id="ventajas" class="bg-gray-50 text-black py-8 md:py-12 px-4 md:px-8">
+      <div class="max-w-5xl mx-auto">
+        <h2 class="text-2xl md:text-3xl font-bold text-center mb-8">
+          <span class="text-red-700">Ventajas de alquilar carro</span>
+          <span class="text-black"> en {{ city?.name }}</span>
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="flex items-start gap-4 bg-white p-5 rounded-lg shadow-sm">
+            <div class="flex-shrink-0 w-12 h-12 bg-red-100 rounded-full flex items-center justify-center">
+              <span class="text-2xl">💰</span>
+            </div>
+            <div>
+              <h3 class="font-bold text-gray-900 mb-1">Precios transparentes</h3>
+              <p class="text-gray-600 text-sm">Sin cargos ocultos ni sorpresas. El precio que ves incluye seguro básico, impuestos y kilometraje ilimitado para recorrer {{ city?.name }} y sus alrededores.</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-4 bg-white p-5 rounded-lg shadow-sm">
+            <div class="flex-shrink-0 w-12 h-12 bg-red-100 rounded-full flex items-center justify-center">
+              <span class="text-2xl">🚗</span>
+            </div>
+            <div>
+              <h3 class="font-bold text-gray-900 mb-1">Flota variada</h3>
+              <p class="text-gray-600 text-sm">Desde económicos hasta SUVs y camionetas. Encuentra el vehículo perfecto para tu viaje en {{ city?.name }}, ya sea por negocios, turismo o familia.</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-4 bg-white p-5 rounded-lg shadow-sm">
+            <div class="flex-shrink-0 w-12 h-12 bg-red-100 rounded-full flex items-center justify-center">
+              <span class="text-2xl">📍</span>
+            </div>
+            <div>
+              <h3 class="font-bold text-gray-900 mb-1">Entrega flexible</h3>
+              <p class="text-gray-600 text-sm">Recoge y devuelve tu carro en diferentes puntos de {{ city?.name }}. Aeropuerto, centro de la ciudad o donde te resulte más cómodo.</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-4 bg-white p-5 rounded-lg shadow-sm">
+            <div class="flex-shrink-0 w-12 h-12 bg-red-100 rounded-full flex items-center justify-center">
+              <span class="text-2xl">⭐</span>
+            </div>
+            <div>
+              <h3 class="font-bold text-gray-900 mb-1">Atención personalizada</h3>
+              <p class="text-gray-600 text-sm">Soporte en español las 24 horas. Te asesoramos sobre rutas, destinos y todo lo que necesites saber para moverte en {{ city?.name }}.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Delivery Points Section -->
     <section v-if="cityBranches.length > 0" id="puntos-entrega" class="bg-gray-50 text-black py-8 md:py-12 px-4 md:px-8">
       <div class="max-w-5xl mx-auto text-center">
