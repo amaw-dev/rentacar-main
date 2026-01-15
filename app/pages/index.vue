@@ -46,7 +46,10 @@
         </div>
       </template>
       <template #default>
-        <LazyImagesVideo hydrate-on-visible />
+        <!-- CLS fix: reservar espacio con aspect-ratio antes de que cargue la imagen -->
+        <div class="w-full aspect-[100/81]">
+          <LazyImagesVideo hydrate-on-visible />
+        </div>
       </template>
     </UPageSection>
 
@@ -101,7 +104,10 @@
         </div>
       </template>
       <template #default>
-        <LazyImagesPersona hydrate-on-visible />
+        <!-- CLS fix: reservar espacio con aspect-ratio antes de que cargue la imagen -->
+        <div class="w-full aspect-[100/81]">
+          <LazyImagesPersona hydrate-on-visible />
+        </div>
       </template>
     </UPageSection>
 
@@ -132,7 +138,10 @@
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-4 md:mt-0">
           <!-- Compacto -->
           <div class="flex flex-col items-center text-center">
-            <LazyImagesCategoriasCompacto hydrate-on-visible />
+            <!-- CLS fix: reservar espacio con aspect-ratio (800x300) -->
+            <div class="w-full aspect-[8/3]">
+              <LazyImagesCategoriasCompacto hydrate-on-visible />
+            </div>
             <h3 class="font-bold text-black text-lg mt-0">COMPACTO</h3>
             <p class="text-black mt-2">Practicidad urbana con estilo. La agilidad que necesitas en la ciudad</p>
             <LazyUModal hydrate-on-interaction class="mt-4" :ui="{ content: 'bg-white', close: 'bg-black text-white rounded-full' }">
@@ -149,7 +158,10 @@
           </div>
           <!-- Sedan -->
           <div class="flex flex-col items-center text-center">
-            <LazyImagesCategoriasSedan hydrate-on-visible />
+            <!-- CLS fix: reservar espacio con aspect-ratio (800x300) -->
+            <div class="w-full aspect-[8/3]">
+              <LazyImagesCategoriasSedan hydrate-on-visible />
+            </div>
             <h3 class="font-bold text-black text-lg mt-0">SEDAN</h3>
             <p class="text-black mt-2">Confort y espacio. Disfruta cada viaje con la máxima comodidad</p>
             <LazyUModal hydrate-on-interaction class="mt-4" :ui="{ content: 'bg-white', close: 'bg-black text-white rounded-full' }">
@@ -166,7 +178,10 @@
           </div>
           <!-- Camioneta -->
           <div class="flex flex-col items-center text-center">
-            <LazyImagesCategoriasSUV hydrate-on-visible />
+            <!-- CLS fix: reservar espacio con aspect-ratio (800x300) -->
+            <div class="w-full aspect-[8/3]">
+              <LazyImagesCategoriasSUV hydrate-on-visible />
+            </div>
             <h3 class="font-bold text-black text-lg mt-0">CAMIONETA</h3>
             <p class="text-black mt-2">Robustez y tamaño. Capacidad para dominar cualquier camino</p>
             <LazyUModal hydrate-on-interaction class="mt-4" :ui="{ content: 'bg-white', close: 'bg-black text-white rounded-full' }">
@@ -210,7 +225,7 @@
             </div>
             <p class="mt-4 text-gray-700">{{ testimonio.quote }}</p>
             <div class="flex flex-row mt-4">
-              <StarIcon v-for="i in [1,2,3,4,5]" :key="i" cls="text-yellow-500 size-6" />
+              <StarIcon v-for="i in [1,2,3,4,5]" :key="i" cls="text-yellow-500 w-5 h-5" />
             </div>
           </div>
         </div>

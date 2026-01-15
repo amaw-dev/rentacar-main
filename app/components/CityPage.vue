@@ -352,7 +352,7 @@
             </UUser>
             <p class="mt-4 text-gray-700">{{ testimonio.quote }}</p>
             <div class="flex flex-row space-x-2 mt-4">
-              <StarIcon v-for="i in [1,2,3,4,5]" :key="i" cls="text-yellow-500 size-6" />
+              <StarIcon v-for="i in [1,2,3,4,5]" :key="i" cls="text-yellow-500 w-5 h-5" />
             </div>
           </div>
         </div>
