@@ -9,7 +9,7 @@
         <div
           class="flex flex-row space-x-0.5 text-white text-center justify-center items-center text-sm"
         >
-          <StarIcon v-for="i in [1,2,3,4,5]" cls="w-2.5 h-2.5 md:w-4 md:h-4" />
+          <StarIcon v-for="i in [1,2,3,4,5]" :key="i" cls="w-2.5 h-2.5 md:w-4 md:h-4" />
           <span class="ml-2">4.9 reviews</span>
         </div>
       </template>

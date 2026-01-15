@@ -20,26 +20,21 @@
       </div>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      <template v-for="category in filteredCategories">
-        <template
+      <template v-for="category in filteredCategories" :key="`cat-${category.categoryCode}`">
+        <placeholders-unable-category-card
           v-if="
             category.estimatedTotalAmount == 999999999 &&
             vehicleCategories[category.categoryCode]
           "
-        >
-          <placeholders-unable-category-card
-            :category
-            :vehicleCategory="vehicleCategories[category.categoryCode]"
-          />
-        </template>
-        <template v-else-if="vehicleCategories[category.categoryCode]">
-          <category-card
-            :category
-            :vehicle-category="vehicleCategories[category.categoryCode]"
-            :key="`category-${category.categoryCode}`"
-            @selected-category="setSelectedCategory"
-          />
-        </template>
+          :category
+          :vehicleCategory="vehicleCategories[category.categoryCode]"
+        />
+        <category-card
+          v-else-if="vehicleCategories[category.categoryCode]"
+          :category
+          :vehicle-category="vehicleCategories[category.categoryCode]"
+          @selected-category="setSelectedCategory"
+        />
       </template>
     </div>
     <u-slideover

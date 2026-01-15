@@ -78,6 +78,7 @@
         <div class="flex flex-col md:flex-row md:flex-wrap justify-center gap-1 md:gap-3">
           <UButton
             v-for="city in cities"
+            :key="city.id"
             :to="getCityReservationURL(city)"
             :external="true"
             target="_blank"
@@ -93,7 +94,7 @@
     <section class="bg-[#000073] text-white py-8 lg:py-6">
       <div class="max-w-7xl mx-auto px-4">
         <div class="flex flex-col md:flex-row items-center justify-center gap-2 md:gap-4">
-          <template v-for="(footerLink, index) in franchise.footerLinks">
+          <template v-for="(footerLink, index) in franchise.footerLinks" :key="`footer-${index}`">
             <NuxtLink
               :to="footerLink.link"
               class="underline hover:no-underline"

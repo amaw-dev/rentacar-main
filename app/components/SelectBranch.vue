@@ -15,6 +15,7 @@
         <option value="null">Elige una ciudad</option>
         <option
           v-for="branch in branches"
+          :key="branch.code"
           :value="branch.code"
           v-text="branch.name"
         ></option>
