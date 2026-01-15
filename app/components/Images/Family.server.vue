@@ -38,6 +38,7 @@
       alt="Familia disfrutando de un viaje en carro alquilado en Colombia"
       width="760"
       height="616"
+      sizes="(max-width: 767px) 100vw, 50vw"
       loading="eager"
       decoding="async"
       fetchpriority="high"
