@@ -9,15 +9,17 @@
                     v-if="lugarRecogida"
                     id="pickup-location-mobile"
                     v-model="lugarRecogida"
+                    aria-label="Lugar de recogida"
                     class="w-full sm:hidden"
                 >
                     <option
                         v-for="branch in sortedBranches"
+                        :key="branch.code"
                         v-text="branch.name"
                         :value="branch.code"
                     ></option>
                 </select>
-                <select v-else disabled class="w-full sm:hidden text-gray-400">
+                <select v-else disabled class="w-full sm:hidden text-gray-400" aria-label="Lugar de recogida">
                     <option>Cargando...</option>
                 </select>
                 <!-- Desktop: u-select-menu (CSS: hidden sm:block) -->
@@ -51,15 +53,17 @@
                     v-if="lugarDevolucion"
                     id="return-location-mobile"
                     v-model="lugarDevolucion"
+                    aria-label="Lugar de devolución"
                     class="w-full sm:hidden"
                 >
                     <option
                         v-for="branch in sortedBranches"
+                        :key="branch.code"
                         v-text="branch.name"
                         :value="branch.code"
                     ></option>
                 </select>
-                <select v-else disabled class="w-full sm:hidden text-gray-400">
+                <select v-else disabled class="w-full sm:hidden text-gray-400" aria-label="Lugar de devolución">
                     <option>Cargando...</option>
                 </select>
                 <!-- Desktop: u-select-menu (CSS: hidden sm:block) -->
@@ -91,8 +95,10 @@
                 <!-- Móvil: input nativo (CSS: sm:hidden) -->
                 <input
                     type="date"
+                    id="pickup-date-mobile"
                     name="pickup-date-mobile"
                     v-model="selectedPickupDate"
+                    aria-label="Día de recogida"
                     class="w-full sm:hidden"
                     :min="minPickupDate.toString()"
                 >
@@ -139,8 +145,10 @@
                 <!-- Móvil: input nativo (CSS: sm:hidden) -->
                 <input
                     type="date"
+                    id="return-date-mobile"
                     name="return-date-mobile"
                     v-model="selectedReturnDate"
+                    aria-label="Día de devolución"
                     class="w-full sm:hidden"
                     :min="minPickupDate.toString()"
                     :max="maxReturnDate?.toString()"
@@ -191,10 +199,12 @@
                 <select
                     id="pickup-hour-mobile"
                     v-model="horaRecogida"
+                    aria-label="Hora de recogida"
                     class="w-full sm:hidden"
                 >
                     <option
                         v-for="hour in pickupHourOptions"
+                        :key="hour.value"
                         v-text="hour.label"
                         :value="hour.value"
                     ></option>
@@ -221,10 +231,12 @@
                 <select
                     id="return-hour-mobile"
                     v-model="horaDevolucion"
+                    aria-label="Hora de devolución"
                     class="w-full sm:hidden"
                 >
                     <option
                         v-for="hour in returnHourOptions"
+                        :key="hour.value"
                         v-text="hour.label"
                         :value="hour.value"
                     ></option>
