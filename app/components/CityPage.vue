@@ -373,6 +373,7 @@ import {
 } from "#components";
 import { useCityExpandedContent, hasCityExpandedContent } from "~/composables/useCityContent";
 import { useRelatedCities } from "~/composables/useCityRelations";
+import { useCityProductSchema } from "~/composables/useCityProductSchema";
 
 /** stores */
 const storeSearch = useStoreSearchData();
@@ -411,6 +412,11 @@ const relatedCities = props.city?.id ? useRelatedCities(props.city.id) : [];
 // Add AggregateRating schema for city-specific testimonials (shows stars in Google SERPs)
 if (props.city?.name && testimonios) {
   useCityAggregateRating(props.city.name, testimonios)
+}
+
+// Add Product Schema for SEO (shows vehicle offers in Google SERPs)
+if (props.city?.name && props.city?.id) {
+  useCityProductSchema(props.city.name, props.city.id)
 }
 
 // Get city-specific FAQs for UI display
