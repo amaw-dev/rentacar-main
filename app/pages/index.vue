@@ -65,7 +65,7 @@
         </div>
       </template>
       <template #default>
-        <ImagesVideo />
+        <LazyImagesVideo hydrate-on-visible />
       </template>
     </UPageSection>
 
@@ -120,7 +120,7 @@
         </div>
       </template>
       <template #default>
-        <ImagesPersona />
+        <LazyImagesPersona hydrate-on-visible />
       </template>
     </UPageSection>
 
@@ -151,10 +151,10 @@
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-4 md:mt-0">
           <!-- Compacto -->
           <div class="flex flex-col items-center text-center">
-            <ImagesCategoriasCompacto />
+            <LazyImagesCategoriasCompacto hydrate-on-visible />
             <h3 class="font-bold text-black text-lg mt-0">COMPACTO</h3>
             <p class="text-black mt-2">Practicidad urbana con estilo. La agilidad que necesitas en la ciudad</p>
-            <UModal class="mt-4" :ui="{ content: 'bg-white', close: 'bg-black text-white rounded-full' }">
+            <LazyUModal hydrate-on-interaction class="mt-4" :ui="{ content: 'bg-white', close: 'bg-black text-white rounded-full' }">
               <template #body>
                 <div class="mb-4 text-black text-lg">
                   ¿En que ciudad<br>deseas recoger tu carro?
@@ -164,14 +164,14 @@
                 </div>
               </template>
               <UButton class="bg-green-700 hover:bg-green-800 text-white px-8 py-3 rounded-xl font-bold uppercase transition-colors">Ver disponibilidad</UButton>
-            </UModal>
+            </LazyUModal>
           </div>
           <!-- Sedan -->
           <div class="flex flex-col items-center text-center">
-            <ImagesCategoriasSedan />
+            <LazyImagesCategoriasSedan hydrate-on-visible />
             <h3 class="font-bold text-black text-lg mt-0">SEDAN</h3>
             <p class="text-black mt-2">Confort y espacio. Disfruta cada viaje con la máxima comodidad</p>
-            <UModal class="mt-4" :ui="{ content: 'bg-white', close: 'bg-black text-white rounded-full' }">
+            <LazyUModal hydrate-on-interaction class="mt-4" :ui="{ content: 'bg-white', close: 'bg-black text-white rounded-full' }">
               <template #body>
                 <div class="mb-4 text-black text-lg">
                   ¿En que ciudad<br>deseas recoger tu carro?
@@ -181,14 +181,14 @@
                 </div>
               </template>
               <UButton class="bg-green-700 hover:bg-green-800 text-white px-8 py-3 rounded-xl font-bold uppercase transition-colors">Ver disponibilidad</UButton>
-            </UModal>
+            </LazyUModal>
           </div>
           <!-- Camioneta -->
           <div class="flex flex-col items-center text-center">
-            <ImagesCategoriasSUV />
+            <LazyImagesCategoriasSUV hydrate-on-visible />
             <h3 class="font-bold text-black text-lg mt-0">CAMIONETA</h3>
             <p class="text-black mt-2">Robustez y tamaño. Capacidad para dominar cualquier camino</p>
-            <UModal class="mt-4" :ui="{ content: 'bg-white', close: 'bg-black text-white rounded-full' }">
+            <LazyUModal hydrate-on-interaction class="mt-4" :ui="{ content: 'bg-white', close: 'bg-black text-white rounded-full' }">
               <template #body>
                 <div class="mb-4 text-black text-lg">
                   ¿En que ciudad<br>deseas recoger tu carro?
@@ -198,7 +198,7 @@
                 </div>
               </template>
               <UButton class="bg-green-700 hover:bg-green-800 text-white px-8 py-3 rounded-xl font-bold uppercase transition-colors">Ver disponibilidad</UButton>
-            </UModal>
+            </LazyUModal>
           </div>
         </div>
       </template>
@@ -218,12 +218,15 @@
             :key="testimonio.user.name"
             class="border border-gray-100 rounded-lg bg-gray-50 shadow-sm p-5 md:p-6 hover:shadow-lg transition-shadow duration-200"
           >
-            <UUser
-              size="3xl"
-              v-bind="testimonio.user"
-              :ui="testimonioUserUIConfig"
-              loading="lazy"
-            />
+            <!-- CLS fix: reservar espacio para avatar (48x48 = size 3xl) -->
+            <div class="min-h-[48px]">
+              <UUser
+                size="3xl"
+                v-bind="testimonio.user"
+                :ui="testimonioUserUIConfig"
+                loading="lazy"
+              />
+            </div>
             <p class="mt-4 text-gray-700">{{ testimonio.quote }}</p>
             <div class="flex flex-row mt-4">
               <StarIcon v-for="i in [1,2,3,4,5]" :key="i" cls="text-yellow-500 size-6" />
@@ -243,14 +246,14 @@
         <p class="text-base text-center mb-4">
           Encuentra respuestas a las consultas más comunes sobre nuestro servicio de alquiler. Si tienes otra pregunta, contáctanos directamente.
         </p>
-        <UAccordion :items="faqs" :ui="faqAccordionUIConfig" class="max-w-4xl mx-auto">
+        <LazyUAccordion hydrate-on-interaction :items="faqs" :ui="faqAccordionUIConfig" class="max-w-4xl mx-auto">
           <template #default="{ item }">
             <div class="text-base font-medium text-gray-800 px-4" v-text="item.label"></div>
           </template>
           <template #content="{ item }">
             <div class="text-base text-gray-600 py-3 bg-gray-50 px-4 rounded-lg" v-text="item.content"></div>
           </template>
-        </UAccordion>
+        </LazyUAccordion>
       </div>
     </UPageSection>
   </UPage>
