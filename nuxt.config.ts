@@ -8,9 +8,23 @@ export default defineNuxtConfig({
 
   devtools: { enabled: true },
 
-  // CSS crítico inline para prevenir FOUC
+  modules: ['@nuxtjs/seo', '@nuxt/ui', '@pinia/nuxt', 'nuxt-llms', 'nuxt-vitalizer', '@nuxt/content'],
+
+  // Optimización Core Web Vitals
+  vitalizer: {
+    // NOTA: disableStylesheets: 'entry' causaba FOUC en páginas de ciudad
+    // Los estilos no se inlinean correctamente durante SSR
+    disableStylesheets: false,
+    // Remueve prefetch links para mejorar FCP
+    disablePrefetchLinks: true,
+  },
+
+  // Configuración de app: CSS crítico, preloads y atributos HTML
   app: {
     head: {
+      htmlAttrs: {
+        lang: 'es',
+      },
       style: [
         {
           // CSS crítico que se inyecta inline en el <head> antes de cualquier stylesheet
@@ -25,23 +39,6 @@ export default defineNuxtConfig({
           `,
         },
       ],
-    },
-  },
-
-  modules: ['@nuxtjs/seo', '@nuxt/ui', '@pinia/nuxt', 'nuxt-llms', 'nuxt-vitalizer', '@nuxt/content'],
-
-  // Optimización Core Web Vitals
-  vitalizer: {
-    // NOTA: disableStylesheets: 'entry' causaba FOUC en páginas de ciudad
-    // Los estilos no se inlinean correctamente durante SSR
-    disableStylesheets: false,
-    // Remueve prefetch links para mejorar FCP
-    disablePrefetchLinks: true,
-  },
-
-  // Optimización LCP: preloads en HTML inicial (antes de JS)
-  app: {
-    head: {
       link: [
         // Preconnect a Firebase Storage (crítico para LCP)
         { rel: 'preconnect', href: 'https://firebasestorage.googleapis.com', crossorigin: '' },
@@ -73,6 +70,7 @@ export default defineNuxtConfig({
     name: 'Alquilatucarro',
     description: 'Alquila carros en Bogotá, Medellín, Cali y 14 ciudades más.',
     defaultLocale: 'es',
+    currentLocale: 'es',
   },
 
   colorMode: {
@@ -118,6 +116,12 @@ export default defineNuxtConfig({
     define: {
       // Enable detailed hydration mismatch warnings in production
       __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: true
+    },
+    // Fix para timeout de vite-node al cargar módulos
+    // https://github.com/nuxt/nuxt/issues/32789
+    // https://github.com/nuxt/nuxt/pull/32874
+    viteNode: {
+      requestTimeout: 180000, // 3 minutos (aumentado desde 60s por defecto)
     }
   },
 
