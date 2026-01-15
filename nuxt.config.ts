@@ -41,6 +41,32 @@ export default defineNuxtConfig({
             .via-blue-800 { --tw-gradient-via: #1e40af; --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-via), var(--tw-gradient-to, transparent); }
             .to-blue-900 { --tw-gradient-to: #1e3a8a; }
             .bg-\\[\\#000073\\] { background-color: #000073; }
+            /* Critical: UPageHero layout - previene CLS en Desktop */
+            /* Container: flex-col en mobile, grid en desktop */
+            main [data-slot="container"] {
+              display: flex;
+              flex-direction: column;
+              gap: 2rem;
+              max-width: 80rem;
+              margin-left: auto;
+              margin-right: auto;
+              padding-left: 1rem;
+              padding-right: 1rem;
+            }
+            @media (min-width: 640px) {
+              main [data-slot="container"] { padding-left: 1.5rem; padding-right: 1.5rem; gap: 4rem; }
+            }
+            @media (min-width: 1024px) {
+              main [data-slot="container"] {
+                display: grid;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                align-items: center;
+                padding-left: 2rem;
+                padding-right: 2rem;
+              }
+              /* order-last para imagen en desktop - CRÍTICO para CLS */
+              .lg\\:order-last { order: 9999; }
+            }
           `,
         },
       ],
