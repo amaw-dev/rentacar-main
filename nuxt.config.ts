@@ -28,6 +28,13 @@ export default defineNuxtConfig({
             .bg-white { background-color: #fff; }
             .text-white { color: #fff; }
             .text-black { color: #000; }
+            /* Critical: Layout background para LCP inmediato */
+            .min-h-screen { min-height: 100vh; }
+            .bg-gradient-to-b { background-image: linear-gradient(to bottom, var(--tw-gradient-stops)); }
+            .from-\\[\\#000073\\] { --tw-gradient-from: #000073; --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, transparent); }
+            .via-blue-800 { --tw-gradient-via: #1e40af; --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-via), var(--tw-gradient-to, transparent); }
+            .to-blue-900 { --tw-gradient-to: #1e3a8a; }
+            .bg-\\[\\#000073\\] { background-color: #000073; }
           `,
         },
       ],
