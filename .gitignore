@@ -77,3 +77,9 @@ app/public/
 
 # Imágenes temporales de categorías
 public/img/categorias-nuevas/
+
+# Configuración local de Claude Code
+.mcp.json
+
+# Scripts locales de Windows
+*.ps1
