@@ -48,29 +48,35 @@ export default defineNuxtConfig({
             .via-blue-800 { --tw-gradient-via: #1e40af; --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-via), var(--tw-gradient-to, transparent); }
             .to-blue-900 { --tw-gradient-to: #1e3a8a; }
             .bg-\\[\\#000073\\] { background-color: #000073; }
-            /* Critical: UPageHero layout - previene CLS en Desktop */
-            /* Container: flex-col en mobile, grid en desktop */
-            main [data-slot="container"] {
-              display: flex;
-              flex-direction: column;
-              gap: 2rem;
-              max-width: 80rem;
-              margin-left: auto;
-              margin-right: auto;
-              padding-left: 1rem;
-              padding-right: 1rem;
-            }
+            /* Critical: Nuxt UI grid classes - previene CLS en Desktop */
+            .flex { display: flex; }
+            .flex-col { flex-direction: column; }
+            .gap-8 { gap: 2rem; }
+            .items-center { align-items: center; }
+            .relative { position: relative; }
+            .isolate { isolation: isolate; }
+            /* Hero container padding */
+            .py-8 { padding-top: 2rem; padding-bottom: 2rem; }
+            .px-4 { padding-left: 1rem; padding-right: 1rem; }
+            /* Max-width container */
+            .max-w-\\(--ui-container\\), .max-w-7xl { max-width: 80rem; }
             @media (min-width: 640px) {
-              main [data-slot="container"] { padding-left: 1.5rem; padding-right: 1.5rem; gap: 4rem; }
+              .sm\\:py-16 { padding-top: 4rem; padding-bottom: 4rem; }
+              .sm\\:px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
+              .sm\\:gap-y-16 { row-gap: 4rem; }
             }
             @media (min-width: 1024px) {
-              main [data-slot="container"] {
-                display: grid;
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-                align-items: center;
-                padding-left: 2rem;
-                padding-right: 2rem;
-              }
+              /* UPage wrapper grid */
+              .lg\\:grid { display: grid; }
+              .lg\\:grid-cols-10 { grid-template-columns: repeat(10, minmax(0, 1fr)); }
+              .lg\\:gap-10 { gap: 2.5rem; }
+              /* Hero section span full width in UPage grid */
+              .lg\\:col-span-10 { grid-column: span 10 / span 10; }
+              /* Hero container grid */
+              .lg\\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+              .lg\\:items-center { align-items: center; }
+              .lg\\:py-24 { padding-top: 6rem; padding-bottom: 6rem; }
+              .lg\\:px-8 { padding-left: 2rem; padding-right: 2rem; }
               /* order-last para imagen en desktop - CRÍTICO para CLS */
               .lg\\:order-last { order: 9999; }
             }
