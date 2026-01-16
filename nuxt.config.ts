@@ -171,7 +171,7 @@ export default defineNuxtConfig({
   vitalizer: {
     // Diferir stylesheets para eliminar render-blocking CSS
     // Requiere CSS crítico inline suficiente para evitar FOUC
-    disableStylesheets: 'entry',
+    // TEMP DISABLED: disableStylesheets: 'entry',
     // Remueve prefetch links para mejorar FCP
     disablePrefetchLinks: true,
   },
