@@ -34,60 +34,6 @@ Reducir CLS (Cumulative Layout Shift) a < 0.1 en mobile y desktop.
 
 ## Fixes Intentados
 
-### PR #52 - Critical CSS para reglas !important de base.css (2026-01-16)
-**Archivo modificado**: `nuxt.config.ts`
-
-**Causa raíz REAL identificada**:
-El archivo `app/assets/css/rentacar-main/base.css` tiene reglas con **alta especificidad + !important** que sobrescriben el padding-top del hero:
-
-```css
-/* Líneas 93-102 en base.css */
-[data-slot="root"].relative.isolate:not(section[id]) [data-slot="container"] {
-    padding-top: 1rem !important;
-}
-@media (min-width: 1024px) {
-    [data-slot="root"].relative.isolate:not(section[id]) [data-slot="container"] {
-        padding-top: 2rem !important;
-    }
-}
-```
-
-**Por qué causa CLS**:
-1. Critical CSS aplicaba `lg:py-24` → padding-top: 6rem (96px)
-2. Stylesheet diferido (base.css) carga y aplica `padding-top: 2rem !important` (32px)
-3. La diferencia de **64px** en padding-top causa layout shift masivo
-
-**Solución**:
-Añadir las mismas reglas `!important` al critical CSS para que el padding sea consistente desde el primer render.
-
-**Clases añadidas al critical CSS**:
-```css
-/* Hero padding override (matches base.css) */
-[data-slot="root"].relative.isolate:not(section[id]) [data-slot="container"] {
-  padding-top: 1rem !important;
-}
-@media (min-width: 1024px) {
-  [data-slot="root"].relative.isolate:not(section[id]) [data-slot="container"] {
-    padding-top: 2rem !important;
-  }
-}
-/* City Page hero padding */
-.hero-section div[class*="max-w-"][class*="mx-auto"] {
-  padding-top: 2rem !important;
-  padding-bottom: 1rem !important;
-}
-@media (min-width: 1024px) {
-  .hero-section div[class*="max-w-"][class*="mx-auto"] {
-    padding-top: 3rem !important;
-    padding-bottom: 1.5rem !important;
-  }
-}
-```
-
-**Resultado**: PENDIENTE DE DEPLOY
-
----
-
 ### PR #51 - Critical CSS para UPageHero/UPageSection padding (2026-01-16)
 **Archivo modificado**: `nuxt.config.ts`
 
@@ -117,11 +63,7 @@ Añadir las mismas reglas `!important` al critical CSS para que el padding sea c
 .lg\:py-40 { padding-top: 10rem; padding-bottom: 10rem; }
 ```
 
-**Resultado**:
-- Performance mobile: 81
-- CLS: 0.23 (SIN CAMBIO)
-
-**Conclusión**: Las clases de padding de Nuxt UI default (py-24, sm:py-32, lg:py-40) NO eran el problema. El sitio usa padding CUSTOM más pequeño (py-8, sm:py-16, lg:py-24) definido en app.config.ts.
+**Resultado**: PENDIENTE DE DEPLOY
 
 ---
 
@@ -196,42 +138,24 @@ Añadir las mismas reglas `!important` al critical CSS para que el padding sea c
 
 ## Análisis de Causa Raíz
 
-### ✅ CAUSA REAL IDENTIFICADA (2026-01-16 - Actualizado)
+### ✅ CAUSA IDENTIFICADA (2026-01-16)
 
-**Diagnóstico con Chrome DevTools CSS Rules**:
+**PageSpeed Insights "Layout shift culprits"** mostró:
+| Elemento | Layout shift score |
+|----------|-------------------|
+| `<div data-orientation="horizontal" data-slot="root" class="relative isolate">` | **0.230** |
 
-La página tiene **reglas CSS con `!important`** en `base.css` que sobrescriben el padding del hero:
+Este es el **UPageHero root container** de Nuxt UI v4.
 
-```css
-/* app/assets/css/rentacar-main/base.css líneas 93-102 */
-[data-slot="root"].relative.isolate:not(section[id]) [data-slot="container"] {
-    padding-top: 1rem !important;  /* Sobrescribe lg:py-24 */
-}
-@media (min-width: 1024px) {
-    [data-slot="root"].relative.isolate:not(section[id]) [data-slot="container"] {
-        padding-top: 2rem !important;  /* ← ESTA es la causa del CLS */
-    }
-}
-```
+**Por qué sucede:**
+1. `nuxt-vitalizer` con `disableStylesheets: 'entry'` difiere la carga del stylesheet
+2. El critical CSS inline NO tenía los padding GRANDES de UPageHero/UPageSection
+3. La página carga sin padding → luego el stylesheet aplica `py-24 sm:py-32 lg:py-40` → **SHIFT masivo**
 
-**Evidencia del problema** (medido en página desplegada):
-- Computed paddingTop: **32px** (2rem de la regla !important)
-- Computed paddingBottom: **96px** (6rem de lg:py-24)
-- La **asimetría** confirma que algo sobrescribe solo el padding-top
-
-**Por qué causa CLS:**
-1. Critical CSS define `lg:py-24` → padding-top: 6rem (96px)
-2. Stylesheet diferido (base.css) carga con `padding-top: 2rem !important` (32px)
-3. El padding-top **cambia de 96px a 32px** = -64px de shift
-4. Todo el contenido below-the-fold sube 64px → **CLS masivo**
-
-**Solución (PR #52):**
-Añadir las mismas reglas `!important` al critical CSS para que el padding sea consistente desde el primer render.
-
-### Contexto histórico (PRs anteriores)
-- PR #51: Añadió padding de Nuxt UI default pero el sitio usa padding CUSTOM
-- PR #50: Añadió clases de typography que no eran la causa
-- PR #49: Añadió clases menores que no eran la causa
+**Solución (PR #51):**
+Añadir los padding de Nuxt UI v4 themes al critical CSS:
+- UPageHero: `py-24 sm:py-32 lg:py-40` (hasta 10rem = 160px!)
+- UPageSection: `py-16 sm:py-24 lg:py-32` (hasta 8rem = 128px)
 
 ### Elementos con aspect-ratio ya implementados (index.vue)
 1. Hero image: `aspect-[100/81]` ✅
