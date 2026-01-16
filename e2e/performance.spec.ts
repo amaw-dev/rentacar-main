@@ -14,11 +14,12 @@ test.describe('Rendimiento y Core Web Vitals', () => {
     // Log del tiempo para monitoreo (útil para detectar degradación)
     console.log(`⏱️  Tiempo de carga homepage: ${loadTime}ms`);
 
-    // Umbral relajado de 5s para desarrollo local con WSL2
-    // Variabilidad observada: 2100-3000ms (warm) y 6000-10000ms (cold start)
-    // Nitro build varía 10x (539ms - 5093ms) haciendo tiempos estrictos imposibles
-    // 5s detecta problemas reales (bugs) sin falsos positivos por variabilidad del sistema
-    expect(loadTime).toBeLessThan(5000);
+    // Umbrales diferentes por entorno para balance entre detección y confiabilidad
+    // CI: 3s (estricto, entorno controlado sin WSL2)
+    // Local: 5s (realista, incluye variabilidad de WSL2 y cold start)
+    // Rationale: Nitro build varía 10x (539ms-5093ms), cold start 6-10s en WSL2
+    const threshold = process.env.CI ? 3000 : 5000;
+    expect(loadTime).toBeLessThan(threshold);
 
     // CRÍTICO: Verificar que el contenido principal está visible
     // Esto garantiza que la página no solo cargó, sino que es funcional para el usuario
