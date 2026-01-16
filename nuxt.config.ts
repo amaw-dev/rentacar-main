@@ -28,6 +28,8 @@ export default defineNuxtConfig({
             svg { max-width: 100%; height: auto; }
             header svg { max-height: 3.5rem !important; max-width: 10rem !important; }
             .w-2\\.5 { width: 0.625rem; } .h-2\\.5 { height: 0.625rem; }
+            .w-4 { width: 1rem; } .h-4 { height: 1rem; }
+            .w-5 { width: 1.25rem; } .h-5 { height: 1.25rem; }
             .mx-auto { margin-left: auto; margin-right: auto; }
             @media (min-width: 768px) { header .md\\:hidden { display: none !important; } }
             @media (max-width: 767px) { header .hidden { display: none !important; } }
