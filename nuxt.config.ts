@@ -20,7 +20,8 @@ export default defineNuxtConfig({
       // CSS crítico - balance entre tamaño y prevención de FOUC
       style: [
         {
-          children: `
+          key: 'critical-cls',
+          innerHTML: `
             *, *::before, *::after { box-sizing: border-box; }
             body { margin: 0; font-family: system-ui, -apple-system, sans-serif; }
             img { max-width: 100%; height: auto; display: block; }
