@@ -38,6 +38,9 @@ export default defineNuxtConfig({
             .bg-white { background-color: #fff; }
             .text-white { color: #fff; }
             .text-black { color: #000; }
+            .w-full { width: 100%; }
+            /* CLS fix: aspect-ratio para contenedor de imagen hero */
+            .aspect-\\[100\\/81\\] { aspect-ratio: 100/81; }
             /* Critical: Layout background para LCP inmediato */
             .min-h-screen { min-height: 100vh; }
             .bg-gradient-to-b { background-image: linear-gradient(to bottom, var(--tw-gradient-stops)); }
