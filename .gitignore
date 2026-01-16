@@ -78,6 +78,12 @@ app/public/
 # Imágenes temporales de categorías
 public/img/categorias-nuevas/
 
+# Playwright E2E testing
+e2e-results/
+playwright-report/
+test-results/
+playwright/.cache/
+
 # Configuración local de Claude Code
 .mcp.json
 

@@ -8,16 +8,29 @@ export default defineNuxtConfig({
 
   devtools: { enabled: true },
 
+  modules: ['@nuxtjs/seo', '@nuxt/ui', '@pinia/nuxt', 'nuxt-llms', 'nuxt-vitalizer', '@nuxt/content'],
+
+  // Optimización Core Web Vitals
+  vitalizer: {
+    // NOTA: disableStylesheets: 'entry' causaba FOUC en páginas de ciudad
+    // Los estilos no se inlinean correctamente durante SSR
+    disableStylesheets: false,
+    // Remueve prefetch links para mejorar FCP
+    disablePrefetchLinks: true,
+  },
+  
   // Component Islands: renderiza componentes estáticos sin hidratación Vue
   // Reduce JavaScript en el cliente para mejorar LCP
   experimental: {
     componentIslands: true,
   },
 
-  // Configuración de app: CSS crítico inline + preloads para LCP
+  // Configuración de app: CSS crítico, preloads y atributos HTML
   app: {
     head: {
-      // CSS crítico - balance entre tamaño y prevención de FOUC
+      htmlAttrs: {
+        lang: 'es',
+      },
       style: [
         {
           key: 'critical-cls',
@@ -126,6 +139,7 @@ export default defineNuxtConfig({
     name: 'Alquilatucarro',
     description: 'Alquila carros en Bogotá, Medellín, Cali y 14 ciudades más.',
     defaultLocale: 'es',
+    currentLocale: 'es',
   },
 
   colorMode: {
@@ -171,6 +185,12 @@ export default defineNuxtConfig({
     define: {
       // Enable detailed hydration mismatch warnings in production
       __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: true
+    },
+    // Fix para timeout de vite-node al cargar módulos
+    // https://github.com/nuxt/nuxt/issues/32789
+    // https://github.com/nuxt/nuxt/pull/32874
+    viteNode: {
+      requestTimeout: 180000, // 3 minutos (aumentado desde 60s por defecto)
     }
   },
 

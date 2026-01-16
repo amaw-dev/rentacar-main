@@ -25,7 +25,14 @@
     "scrape:ahrefs:resume": "npx tsx scripts/ahrefs-scraper/run.ts --resume",
     "scrape:ahrefs:dry-run": "npx tsx scripts/ahrefs-scraper/run.ts --dry-run",
     "scrape:backlinko": "npx tsx scripts/backlinko-scraper/run.ts",
-    "scrape:seo-gaps": "npx tsx scripts/seo-gaps-scraper/download-seo-gaps.ts"
+    "scrape:seo-gaps": "npx tsx scripts/seo-gaps-scraper/download-seo-gaps.ts",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "test:e2e:headed": "playwright test --headed",
+    "test:e2e:debug": "playwright test --debug",
+    "test:e2e:chromium": "playwright test --project=chromium",
+    "test:e2e:chromium-mobile": "playwright test --project='Mobile Chrome'",
+    "test:e2e:report": "playwright show-report e2e-results"
   },
   "dependencies": {
     "@iconify-json/lucide": "^1.2.80",
@@ -79,6 +86,7 @@
     ]
   },
   "devDependencies": {
+    "@playwright/test": "^1.57.0",
     "@types/turndown": "^5.0.5",
     "cross-env": "^10.1.0",
     "playwright": "^1.49.0",
