@@ -113,6 +113,27 @@ export default defineNuxtConfig({
               /* order-last para imagen en desktop - CRÍTICO para CLS */
               .lg\\:order-last { order: 9999; }
             }
+            /* CRÍTICO CLS: Sobrescribir padding-top del hero (base.css usa !important) */
+            /* Sin esto, el padding-top cambia de 6rem a 2rem cuando carga el stylesheet diferido */
+            [data-slot="root"].relative.isolate:not(section[id]) [data-slot="container"] {
+              padding-top: 1rem !important;
+            }
+            @media (min-width: 1024px) {
+              [data-slot="root"].relative.isolate:not(section[id]) [data-slot="container"] {
+                padding-top: 2rem !important;
+              }
+            }
+            /* City Page hero - también usa padding custom con !important */
+            .hero-section div[class*="max-w-"][class*="mx-auto"] {
+              padding-top: 2rem !important;
+              padding-bottom: 1rem !important;
+            }
+            @media (min-width: 1024px) {
+              .hero-section div[class*="max-w-"][class*="mx-auto"] {
+                padding-top: 3rem !important;
+                padding-bottom: 1.5rem !important;
+              }
+            }
           `,
         },
       ],
