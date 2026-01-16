@@ -34,6 +34,52 @@ Reducir CLS (Cumulative Layout Shift) a < 0.1 en mobile y desktop.
 
 ## Fixes Intentados
 
+### PR #51 - Critical CSS para UPageHero/UPageSection padding (2026-01-16)
+**Archivo modificado**: `nuxt.config.ts`
+
+**Causa raíz identificada**: PageSpeed "Layout shift culprits" mostró:
+- `<div data-orientation="horizontal" data-slot="root">` causando 100% del CLS (0.230)
+- Este es el UPageHero root container de Nuxt UI v4
+
+**Problema**: Los componentes Nuxt UI v4 usan padding GRANDE que no estaba en critical CSS:
+- UPageHero: `py-24 sm:py-32 lg:py-40` (6rem, 8rem, 10rem)
+- UPageSection: `py-16 sm:py-24 lg:py-32` (4rem, 6rem, 8rem)
+
+**Clases añadidas al critical CSS**:
+```css
+/* Base padding */
+.py-16 { padding-top: 4rem; padding-bottom: 4rem; }
+.py-24 { padding-top: 6rem; padding-bottom: 6rem; }
+.gap-16 { gap: 4rem; }
+
+/* sm breakpoint */
+.sm\:py-24 { padding-top: 6rem; padding-bottom: 6rem; }
+.sm\:py-32 { padding-top: 8rem; padding-bottom: 8rem; }
+.sm\:gap-y-24 { row-gap: 6rem; }
+.sm\:gap-16 { gap: 4rem; }
+
+/* lg breakpoint */
+.lg\:py-32 { padding-top: 8rem; padding-bottom: 8rem; }
+.lg\:py-40 { padding-top: 10rem; padding-bottom: 10rem; }
+```
+
+**Resultado**: PENDIENTE DE DEPLOY
+
+---
+
+### PR #50 - Critical CSS adicional (2026-01-16)
+**Archivo modificado**: `nuxt.config.ts`
+
+**Clases añadidas**: Typography (text-2xl, text-3xl, etc.), padding (py-6, py-12), SelectBranch form classes
+
+**Resultado**:
+- Performance mobile: 79
+- CLS: 0.23 (SIN CAMBIO)
+
+**Conclusión**: Las clases añadidas NO eran la causa del CLS. El problema eran los padding GRANDES de UPageHero/UPageSection.
+
+---
+
 ### PR #49 - Critical CSS para Nuxt UI PageHero (2026-01-16)
 **Archivo modificado**: `nuxt.config.ts`
 
@@ -92,6 +138,25 @@ Reducir CLS (Cumulative Layout Shift) a < 0.1 en mobile y desktop.
 
 ## Análisis de Causa Raíz
 
+### ✅ CAUSA IDENTIFICADA (2026-01-16)
+
+**PageSpeed Insights "Layout shift culprits"** mostró:
+| Elemento | Layout shift score |
+|----------|-------------------|
+| `<div data-orientation="horizontal" data-slot="root" class="relative isolate">` | **0.230** |
+
+Este es el **UPageHero root container** de Nuxt UI v4.
+
+**Por qué sucede:**
+1. `nuxt-vitalizer` con `disableStylesheets: 'entry'` difiere la carga del stylesheet
+2. El critical CSS inline NO tenía los padding GRANDES de UPageHero/UPageSection
+3. La página carga sin padding → luego el stylesheet aplica `py-24 sm:py-32 lg:py-40` → **SHIFT masivo**
+
+**Solución (PR #51):**
+Añadir los padding de Nuxt UI v4 themes al critical CSS:
+- UPageHero: `py-24 sm:py-32 lg:py-40` (hasta 10rem = 160px!)
+- UPageSection: `py-16 sm:py-24 lg:py-32` (hasta 8rem = 128px)
+
 ### Elementos con aspect-ratio ya implementados (index.vue)
 1. Hero image: `aspect-[100/81]` ✅
 2. Video section image: `aspect-[100/81]` ✅
@@ -99,40 +164,29 @@ Reducir CLS (Cumulative Layout Shift) a < 0.1 en mobile y desktop.
 4. Category images: `aspect-[8/3]` ✅
 5. Testimonial avatars: `min-h-[48px]` ✅
 
-### Posibles causas NO resueltas
-1. **Fuentes web** - ¿Están causando FOIT/FOUT?
-2. **Nuxt UI componentes** - Estilos aplicados después de hydration
-3. **SelectBranch dropdown** - ¿Cambia de tamaño al cargar?
-4. **LazyUModal** - ¿Reserva espacio correctamente?
-5. **LazyUAccordion** - ¿Layout shift al cargar?
-6. **nuxt-vitalizer** - Defer de stylesheet puede causar FOUC si critical CSS incompleto
-
-### Lo que falta investigar
-1. [ ] Usar Chrome DevTools Performance con "Layout Shift Regions"
-2. [ ] Identificar elementos exactos que causan shift
-3. [ ] Verificar font-display: swap en fuentes
-4. [ ] Revisar si SelectBranch tiene dimensiones fijas
-5. [ ] Verificar hydration de componentes Lazy
+### Investigación completada
+- [x] Usar PageSpeed "Layout shift culprits" para identificar elemento exacto
+- [x] Leer tema de Nuxt UI v4 en `.nuxt/ui/page-hero.ts` y `.nuxt/ui/page-section.ts`
+- [x] Identificar clases faltantes en critical CSS
 
 ---
 
-## Próximas Acciones a Intentar
+## Próximas Acciones
 
-### Prioridad 1 - Diagnóstico
-- [ ] Grabar Performance trace en Chrome DevTools
-- [ ] Identificar los 3-5 elementos principales causando CLS
-- [ ] Documentar findings aquí
+### Pendiente (después de PR #51 deploy)
+- [ ] Re-medir CLS en PageSpeed Insights (target: < 0.1)
+- [ ] Actualizar este log con resultados
 
-### Prioridad 2 - Fixes potenciales
-- [ ] Añadir `font-display: swap` si no está
-- [ ] Precargar fuentes críticas
-- [ ] Revisar si nuxt-vitalizer necesita más clases en critical CSS
-- [ ] Verificar dimensiones fijas en SelectBranch
-- [ ] Considerar deshabilitar nuxt-vitalizer temporalmente para comparar
+### Si CLS no mejora con PR #51
+- [ ] Verificar que critical CSS se está aplicando correctamente
+- [ ] Usar Chrome DevTools Performance para ver si hay otros elementos
+- [ ] Considerar deshabilitar `nuxt-vitalizer` temporalmente para comparar
 
-### NO repetir
-- Añadir más clases de margin/padding al critical CSS (ya probado, no resuelve)
-- Asumir que el score de PageSpeed mejoró sin comparar múltiples mediciones
+### Lecciones aprendidas
+- **Usar "Layout shift culprits" en PageSpeed** para identificar elemento exacto
+- **Leer temas de Nuxt UI** en `.nuxt/ui/*.ts` para conocer clases exactas
+- **Padding GRANDES (py-24, py-32, py-40)** son críticos para CLS cuando se difiere stylesheet
+- Añadir clases pequeñas (margin, typography) NO resuelve si falta el padding principal
 
 ---
 
