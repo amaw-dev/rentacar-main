@@ -5,12 +5,12 @@ Reducir CLS (Cumulative Layout Shift) a < 0.1 en mobile y desktop.
 
 ---
 
-## Estado Actual (2026-01-16)
+## Estado Actual (2026-01-16 - Actualizado después de PR #52)
 
-| Dispositivo | CLS Actual | Objetivo | Estado |
-|-------------|------------|----------|--------|
-| Mobile | 0.23 | < 0.1 | NO ALCANZADO |
-| Desktop | 0.285 | < 0.1 | NO ALCANZADO |
+| Dispositivo | CLS Actual | CLS Anterior | Objetivo | Estado |
+|-------------|------------|--------------|----------|--------|
+| Mobile | **0.21** | 0.23 | < 0.1 | MEJORADO pero NO ALCANZADO |
+| Desktop | 0.285 | 0.285 | < 0.1 | NO ALCANZADO |
 
 ---
 
@@ -19,6 +19,7 @@ Reducir CLS (Cumulative Layout Shift) a < 0.1 en mobile y desktop.
 ### Mobile
 | Fecha | Performance | CLS | LCP | TBT | Notas |
 |-------|-------------|-----|-----|-----|-------|
+| 2026-01-16 ~15:42 | **80** | **0.21** | 3.2s | 110ms | **Después de PR #52** - fix !important |
 | 2026-01-16 ~10:59 | 78 | 0.201 | - | - | Antes del fix PR #49 |
 | 2026-01-16 ~11:01 | 83 | 0.23 | 2.9s | 130ms | Después del fix PR #49 |
 | 2026-01-16 (previo) | 88 | ~0.2 | - | - | Reportado por usuario (mejor resultado) |
@@ -33,6 +34,115 @@ Reducir CLS (Cumulative Layout Shift) a < 0.1 en mobile y desktop.
 ---
 
 ## Fixes Intentados
+
+### PR #52 - Critical CSS para reglas !important de base.css (2026-01-16)
+**Archivo modificado**: `nuxt.config.ts`
+
+**Causa raíz REAL identificada**:
+El archivo `app/assets/css/rentacar-main/base.css` tiene reglas con **alta especificidad + !important** que sobrescriben el padding-top del hero:
+
+```css
+/* Líneas 93-102 en base.css */
+[data-slot="root"].relative.isolate:not(section[id]) [data-slot="container"] {
+    padding-top: 1rem !important;
+}
+@media (min-width: 1024px) {
+    [data-slot="root"].relative.isolate:not(section[id]) [data-slot="container"] {
+        padding-top: 2rem !important;
+    }
+}
+```
+
+**Por qué causa CLS**:
+1. Critical CSS aplicaba `lg:py-24` → padding-top: 6rem (96px)
+2. Stylesheet diferido (base.css) carga y aplica `padding-top: 2rem !important` (32px)
+3. La diferencia de **64px** en padding-top causa layout shift masivo
+
+**Solución**:
+Añadir las mismas reglas `!important` al critical CSS para que el padding sea consistente desde el primer render.
+
+**Clases añadidas al critical CSS**:
+```css
+/* Hero padding override (matches base.css) */
+[data-slot="root"].relative.isolate:not(section[id]) [data-slot="container"] {
+  padding-top: 1rem !important;
+}
+@media (min-width: 1024px) {
+  [data-slot="root"].relative.isolate:not(section[id]) [data-slot="container"] {
+    padding-top: 2rem !important;
+  }
+}
+/* City Page hero padding */
+.hero-section div[class*="max-w-"][class*="mx-auto"] {
+  padding-top: 2rem !important;
+  padding-bottom: 1rem !important;
+}
+@media (min-width: 1024px) {
+  .hero-section div[class*="max-w-"][class*="mx-auto"] {
+    padding-top: 3rem !important;
+    padding-bottom: 1.5rem !important;
+  }
+}
+```
+
+**Resultado (después de deploy)**:
+- Performance mobile: 80
+- CLS: **0.21** (mejoró de 0.23, pero sigue arriba de 0.1)
+- TBT: 110ms (mejoró de 130ms)
+- LCP: 3.2s
+
+**Análisis post-deploy**:
+- ✅ Las reglas !important están presentes en critical CSS (verificado con JS)
+- ⚠️ Layout shift culprit sigue siendo el mismo elemento: `<div data-slot="root" class="relative isolate">`
+- El fix redujo CLS de 0.23 → 0.21, pero hay OTRA causa de CLS restante
+
+**Posibles causas del CLS restante (0.21)**:
+1. ~~Font loading causando text reflow~~ - DESCARTADO: sitio usa system fonts
+2. Otros estilos CSS que cambian entre critical CSS y stylesheet diferido
+3. Vue hydration re-rendering contenido
+4. Elementos dentro del hero que cambian dimensiones
+
+---
+
+### PR #53 - Critical CSS para star rating text (2026-01-16)
+**Archivo modificado**: `nuxt.config.ts`
+
+**Problema identificado**:
+El componente `Hero/Headline.server.vue` (Nuxt Islands) tiene clases de texto que NO estaban en critical CSS:
+
+```vue
+<template>
+  <div class="flex flex-row items-center justify-center space-x-0.5 text-white text-center">
+    <svg v-for="i in 5" class="w-2.5 h-2.5 md:w-4 md:h-4" .../>
+    <span class="ml-2 text-xs md:text-base">4.9 reviews</span>
+  </div>
+</template>
+```
+
+**Clases faltantes identificadas**:
+- `ml-2` - margin-left: 0.5rem (afecta posición del texto "4.9 reviews")
+- `text-xs` - font-size: 0.75rem; line-height: 1rem
+- `md:text-base` - font-size: 1rem; line-height: 1.5rem
+
+**Por qué causa CLS**:
+1. Sin `ml-2`: texto de reviews no tiene margen
+2. Stylesheet diferido aplica `ml-2`: añade 8px de margin-left
+3. Sin `text-xs`: texto usa tamaño default
+4. Stylesheet diferido aplica `text-xs`: cambia tamaño de fuente
+
+**Clases añadidas al critical CSS**:
+```css
+/* Star rating text - CRÍTICO para CLS */
+.ml-2 { margin-left: 0.5rem; }
+.text-xs { font-size: 0.75rem; line-height: 1rem; }
+@media (min-width: 768px) {
+  .md\:text-base { font-size: 1rem; line-height: 1.5rem; }
+}
+```
+
+**Resultado**: Pendiente de deploy y medición
+
+---
 
 ### PR #51 - Critical CSS para UPageHero/UPageSection padding (2026-01-16)
 **Archivo modificado**: `nuxt.config.ts`

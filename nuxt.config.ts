@@ -33,7 +33,7 @@ export default defineNuxtConfig({
             .w-2\\.5 { width: 0.625rem; } .h-2\\.5 { height: 0.625rem; }
             .w-4 { width: 1rem; } .h-4 { height: 1rem; }
             .w-5 { width: 1.25rem; } .h-5 { height: 1.25rem; }
-            @media (min-width: 768px) { .md\\:w-4 { width: 1rem; } .md\\:h-4 { height: 1rem; } }
+            @media (min-width: 768px) { .md\\:w-4 { width: 1rem; } .md\\:h-4 { height: 1rem; } .md\\:text-base { font-size: 1rem; line-height: 1.5rem; } }
             .mx-auto { margin-left: auto; margin-right: auto; }
             @media (min-width: 768px) { header .md\\:hidden { display: none !important; } }
             @media (max-width: 767px) { header .hidden { display: none !important; } }
@@ -77,6 +77,9 @@ export default defineNuxtConfig({
             .justify-center { justify-content: center; }
             .flex-row { flex-direction: row; }
             .space-x-0\\.5 > :not(:last-child) { margin-right: 0.125rem; }
+            /* Star rating text - CRÍTICO para CLS */
+            .ml-2 { margin-left: 0.5rem; }
+            .text-xs { font-size: 0.75rem; line-height: 1rem; }
             /* Max-width container */
             .max-w-\\(--ui-container\\), .max-w-7xl { max-width: 80rem; }
             @media (min-width: 640px) {
