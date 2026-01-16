@@ -72,12 +72,25 @@ export default defineNuxtConfig({
             /* Hero container padding */
             .py-8 { padding-top: 2rem; padding-bottom: 2rem; }
             .px-4 { padding-left: 1rem; padding-right: 1rem; }
+            /* Nuxt UI PageHero slot margins - CRÍTICO para CLS */
+            .mt-10 { margin-top: 2.5rem; }
+            .mb-4 { margin-bottom: 1rem; }
+            /* Nuxt UI PageHero typography - CRÍTICO para CLS */
+            .text-5xl { font-size: 3rem; line-height: 1; }
+            .tracking-tight { letter-spacing: -0.025em; }
+            .font-bold { font-weight: 700; }
+            .text-pretty { text-wrap: pretty; }
+            .text-center { text-align: center; }
+            .justify-center { justify-content: center; }
+            .flex-row { flex-direction: row; }
+            .space-x-0\\.5 > :not(:last-child) { margin-right: 0.125rem; }
             /* Max-width container */
             .max-w-\\(--ui-container\\), .max-w-7xl { max-width: 80rem; }
             @media (min-width: 640px) {
               .sm\\:py-16 { padding-top: 4rem; padding-bottom: 4rem; }
               .sm\\:px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
               .sm\\:gap-y-16 { row-gap: 4rem; }
+              .sm\\:text-7xl { font-size: 4.5rem; line-height: 1; }
             }
             @media (min-width: 1024px) {
               /* UPage wrapper grid */
