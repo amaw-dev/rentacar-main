@@ -8,17 +8,6 @@ export default defineNuxtConfig({
 
   devtools: { enabled: true },
 
-  modules: ['@nuxtjs/seo', '@nuxt/ui', '@pinia/nuxt', 'nuxt-llms', 'nuxt-vitalizer', '@nuxt/content'],
-
-  // Optimización Core Web Vitals
-  vitalizer: {
-    // NOTA: disableStylesheets: 'entry' causaba FOUC en páginas de ciudad
-    // Los estilos no se inlinean correctamente durante SSR
-    disableStylesheets: false,
-    // Remueve prefetch links para mejorar FCP
-    disablePrefetchLinks: true,
-  },
-  
   // Component Islands: renderiza componentes estáticos sin hidratación Vue
   // Reduce JavaScript en el cliente para mejorar LCP
   experimental: {
@@ -71,7 +60,11 @@ export default defineNuxtConfig({
             .isolate { isolation: isolate; }
             /* Hero container padding */
             .py-8 { padding-top: 2rem; padding-bottom: 2rem; }
+            .py-16 { padding-top: 4rem; padding-bottom: 4rem; }
+            .py-24 { padding-top: 6rem; padding-bottom: 6rem; }
             .px-4 { padding-left: 1rem; padding-right: 1rem; }
+            /* UPageHero/UPageSection gaps - CRÍTICO para CLS */
+            .gap-16 { gap: 4rem; }
             /* Nuxt UI PageHero slot margins - CRÍTICO para CLS */
             .mt-10 { margin-top: 2.5rem; }
             .mb-4 { margin-bottom: 1rem; }
@@ -87,9 +80,15 @@ export default defineNuxtConfig({
             /* Max-width container */
             .max-w-\\(--ui-container\\), .max-w-7xl { max-width: 80rem; }
             @media (min-width: 640px) {
+              /* UPageSection padding */
               .sm\\:py-16 { padding-top: 4rem; padding-bottom: 4rem; }
+              .sm\\:py-24 { padding-top: 6rem; padding-bottom: 6rem; }
+              /* UPageHero padding */
+              .sm\\:py-32 { padding-top: 8rem; padding-bottom: 8rem; }
               .sm\\:px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
               .sm\\:gap-y-16 { row-gap: 4rem; }
+              .sm\\:gap-y-24 { row-gap: 6rem; }
+              .sm\\:gap-16 { gap: 4rem; }
               .sm\\:text-7xl { font-size: 4.5rem; line-height: 1; }
             }
             @media (min-width: 1024px) {
@@ -102,7 +101,11 @@ export default defineNuxtConfig({
               /* Hero container grid */
               .lg\\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
               .lg\\:items-center { align-items: center; }
+              /* UPageSection padding */
               .lg\\:py-24 { padding-top: 6rem; padding-bottom: 6rem; }
+              .lg\\:py-32 { padding-top: 8rem; padding-bottom: 8rem; }
+              /* UPageHero padding - CRÍTICO para CLS */
+              .lg\\:py-40 { padding-top: 10rem; padding-bottom: 10rem; }
               .lg\\:py-20 { padding-top: 5rem; padding-bottom: 5rem; }
               .lg\\:py-6 { padding-top: 1.5rem; padding-bottom: 1.5rem; }
               .lg\\:text-5xl { font-size: 3rem; line-height: 1; }
