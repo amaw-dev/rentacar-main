@@ -7,6 +7,7 @@ export default function usePhoneField() {
       id: "telefono",
       name: "telefono",
       placeholder: "Whatsapp o Teléfono Móvil*",
+      'aria-label': "Número de teléfono",
     }));
 
     const phoneDropdownOptions = {

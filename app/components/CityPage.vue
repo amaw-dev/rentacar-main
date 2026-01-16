@@ -9,12 +9,13 @@
         <div
           class="flex flex-row space-x-0.5 text-white text-center justify-center items-center text-sm"
         >
-          <StarIcon v-for="i in [1,2,3,4,5]" cls="w-2.5 h-2.5 md:w-4 md:h-4" />
+          <StarIcon v-for="i in [1,2,3,4,5]" :key="i" cls="w-2.5 h-2.5 md:w-4 md:h-4" />
           <span class="ml-2">4.9 reviews</span>
         </div>
       </template>
       <template #title>
-        <h1 class="text-white text-center uppercase font-bold" style="letter-spacing: -0.025em;">
+        <!-- UPageHero ya renderiza <h1> para slot #title, usamos div para evitar h1 duplicado -->
+        <div class="text-white text-center uppercase font-bold" style="letter-spacing: -0.025em;">
           <span class="block text-2xl md:text-3xl lg:text-4xl" style="letter-spacing: -0.025em;">
             <span class="block" style="letter-spacing: -0.025em;">ALQUILER</span>
             <span class="block" style="letter-spacing: -0.025em;">DE CARROS EN</span>
@@ -25,7 +26,7 @@
             <LocationIcon cls="text-red-600 size-8 md:size-10 lg:size-14 translate-y-1" />
           </span>
           <span class="block text-2xl md:text-3xl lg:text-4xl text-white colombia-sweep" style="letter-spacing: 0.025em;">Colombia</span>
-        </h1>
+        </div>
       </template>
       <template #body>
         <!-- Solo visible en mobile -->
@@ -116,20 +117,74 @@
       </div>
     </section>
 
+    <!-- Benefits Section (adds ~100 words for SEO) -->
+    <section id="ventajas" class="bg-gray-50 text-black py-8 md:py-12 px-4 md:px-8">
+      <div class="max-w-5xl mx-auto">
+        <h2 class="text-2xl md:text-3xl font-bold text-center mb-8">
+          <span class="text-red-700">Ventajas de alquilar carro</span>
+          <span class="text-black"> en {{ city?.name }}</span>
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="flex items-start gap-4 bg-white p-5 rounded-lg shadow-sm">
+            <div class="flex-shrink-0 w-12 h-12 bg-red-100 rounded-full flex items-center justify-center">
+              <span class="text-2xl">💰</span>
+            </div>
+            <div>
+              <h3 class="font-bold text-gray-900 mb-1">Precios transparentes</h3>
+              <p class="text-gray-600 text-sm">Sin cargos ocultos ni sorpresas. El precio que ves incluye seguro básico, impuestos y kilometraje ilimitado para recorrer {{ city?.name }} y sus alrededores.</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-4 bg-white p-5 rounded-lg shadow-sm">
+            <div class="flex-shrink-0 w-12 h-12 bg-red-100 rounded-full flex items-center justify-center">
+              <span class="text-2xl">🚗</span>
+            </div>
+            <div>
+              <h3 class="font-bold text-gray-900 mb-1">Flota variada</h3>
+              <p class="text-gray-600 text-sm">Desde económicos hasta SUVs y camionetas. Encuentra el vehículo perfecto para tu viaje en {{ city?.name }}, ya sea por negocios, turismo o familia.</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-4 bg-white p-5 rounded-lg shadow-sm">
+            <div class="flex-shrink-0 w-12 h-12 bg-red-100 rounded-full flex items-center justify-center">
+              <span class="text-2xl">📍</span>
+            </div>
+            <div>
+              <h3 class="font-bold text-gray-900 mb-1">Entrega flexible</h3>
+              <p class="text-gray-600 text-sm">Recoge y devuelve tu carro en diferentes puntos de {{ city?.name }}. Aeropuerto, centro de la ciudad o donde te resulte más cómodo.</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-4 bg-white p-5 rounded-lg shadow-sm">
+            <div class="flex-shrink-0 w-12 h-12 bg-red-100 rounded-full flex items-center justify-center">
+              <span class="text-2xl">⭐</span>
+            </div>
+            <div>
+              <h3 class="font-bold text-gray-900 mb-1">Atención personalizada</h3>
+              <p class="text-gray-600 text-sm">Soporte en español las 24 horas. Te asesoramos sobre rutas, destinos y todo lo que necesites saber para moverte en {{ city?.name }}.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Delivery Points Section -->
     <section v-if="cityBranches.length > 0" id="puntos-entrega" class="bg-gray-50 text-black py-8 md:py-12 px-4 md:px-8">
-      <div class="max-w-4xl mx-auto text-center">
+      <div class="max-w-5xl mx-auto text-center">
         <h2 class="text-2xl md:text-3xl font-bold mb-6">
-          <span class="text-red-700">Puntos de entrega</span> <span class="text-black">en {{ city?.name }}</span>
+          <span class="text-red-700">Puntos de entrega</span> <span class="text-black">para alquiler de carros en {{ city?.name }}</span>
         </h2>
-        <div class="flex flex-wrap justify-center gap-3 md:gap-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           <div
             v-for="branch in cityBranches"
             :key="branch.code"
-            class="flex items-center gap-2 bg-white px-4 py-3 rounded-lg shadow-sm"
+            class="flex flex-col bg-white px-4 py-4 rounded-lg shadow-sm text-left"
           >
-            <LocationIcon cls="text-red-600 size-5" />
-            <span class="font-medium text-gray-800">{{ branch.name }}</span>
+            <div class="flex items-center gap-2 mb-2">
+              <LocationIcon cls="text-red-600 size-5 flex-shrink-0" />
+              <span class="font-semibold text-gray-900">{{ branch.name }}</span>
+            </div>
+            <div v-if="branch.schedule" class="flex items-start gap-2 text-sm text-gray-600">
+              <ClockIcon cls="text-gray-400 size-4 flex-shrink-0 mt-0.5" />
+              <span>{{ branch.schedule }}</span>
+            </div>
           </div>
         </div>
       </div>
@@ -142,7 +197,7 @@
         <div class="max-w-4xl mx-auto">
           <h2 class="text-2xl md:text-3xl font-bold text-center mb-6">
             <span class="text-red-700">Explora {{ city?.name }}</span>
-            <span class="text-black"> en carro</span>
+            <span class="text-black"> con tu carro de alquiler</span>
           </h2>
           <p class="text-gray-700 text-base md:text-lg leading-relaxed text-justify">
             {{ expandedContent.intro }}
@@ -154,7 +209,7 @@
       <section id="destinos" class="bg-gray-50 text-black py-8 md:py-12 px-4 md:px-8">
         <div class="max-w-6xl mx-auto">
           <h2 class="text-2xl md:text-3xl font-bold text-center mb-8">
-            <span class="text-red-700">Destinos populares</span>
+            <span class="text-red-700">Destinos para recorrer con carro rentado</span>
             <span class="text-black"> desde {{ city?.name }}</span>
           </h2>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -165,7 +220,7 @@
             >
               <div class="flex items-start justify-between mb-3">
                 <h3 class="text-xl font-bold text-gray-900">{{ destination.name }}</h3>
-                <span class="text-sm font-medium text-red-600 bg-red-50 px-3 py-1 rounded-full whitespace-nowrap">
+                <span class="text-sm font-medium text-gray-700 bg-gray-100 px-3 py-1 rounded-full whitespace-nowrap">
                   {{ destination.time }}
                 </span>
               </div>
@@ -180,7 +235,7 @@
         <div class="max-w-4xl mx-auto">
           <h2 class="text-2xl md:text-3xl font-bold text-center mb-8">
             <span class="text-red-700">Consejos</span>
-            <span class="text-black"> para conducir en {{ city?.name }}</span>
+            <span class="text-black"> para alquilar carro en {{ city?.name }}</span>
           </h2>
           <div class="space-y-6">
             <div class="flex items-start gap-4">
@@ -218,7 +273,7 @@
       <section id="mejor-temporada" class="bg-gray-50 text-black py-8 md:py-12 px-4 md:px-8">
         <div class="max-w-4xl mx-auto text-center">
           <h2 class="text-2xl md:text-3xl font-bold mb-6">
-            <span class="text-red-700">Mejor época</span> <span class="text-black">para viajar a {{ city?.name }}</span>
+            <span class="text-red-700">Mejor época</span> <span class="text-black">para alquilar carro y viajar a {{ city?.name }}</span>
           </h2>
           <p class="text-gray-700 text-base md:text-lg leading-relaxed">
             {{ expandedContent.bestSeason }}
@@ -227,12 +282,37 @@
       </section>
     </template>
 
+    <!-- Related Cities Section (Internal Linking) -->
+    <section v-if="relatedCities.length > 0" id="ciudades-cercanas" class="bg-white text-black py-8 md:py-12 px-4 md:px-8">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-2xl md:text-3xl font-bold text-center mb-6">
+          <span class="text-red-700">Alquiler de carros</span>
+          <span class="text-black"> en ciudades cercanas</span>
+        </h2>
+        <p class="text-gray-600 text-center mb-8">
+          ¿Planeas un viaje más largo? También ofrecemos alquiler de vehículos en estas ciudades cercanas a {{ city?.name }}.
+        </p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+          <NuxtLink
+            v-for="related in relatedCities"
+            :key="related.id"
+            :to="`/${related.id}`"
+            class="group flex flex-col items-center p-4 bg-gray-50 rounded-lg hover:bg-red-50 hover:shadow-md transition-all duration-200"
+          >
+            <LocationIcon cls="text-red-600 size-8 mb-2 group-hover:scale-110 transition-transform" />
+            <span class="font-semibold text-gray-900 group-hover:text-red-700">{{ related.name }}</span>
+            <span class="text-sm text-gray-500">{{ related.distance }} en carro</span>
+          </NuxtLink>
+        </div>
+      </div>
+    </section>
+
     <!-- FAQ Section -->
     <UPageSection id="faqs" class="bg-gray-100 text-black">
       <div class="max-w-7xl mx-auto px-1 sm:px-2 lg:px-6">
         <h2 class="text-2xl md:text-3xl font-bold text-center mb-6 space-x-2">
-          <span class="text-red-700">Preguntas Frecuentes</span>
-          <span class="text-black">sobre alquiler en {{ city?.name }}</span>
+          <span class="text-red-700">Preguntas frecuentes</span>
+          <span class="text-black">sobre alquiler de carros en {{ city?.name }}</span>
         </h2>
         <p class="text-base text-center mb-4">
           Resolvemos tus dudas más comunes sobre el alquiler de carros en {{ city?.name }}.
@@ -252,7 +332,7 @@
     <section id="testimonios" class="bg-white text-black py-12 md:py-20 px-4 md:px-8">
       <div class="max-w-7xl mx-auto">
         <h2 class="text-2xl md:text-3xl font-bold text-center mb-4">
-          <span class="text-red-700">Testimonios de nuestros clientes</span> <span class="text-black">en {{ city?.name }}</span>
+          <span class="text-red-700">Opiniones de clientes que rentaron carros</span> <span class="text-black">en {{ city?.name }}</span>
         </h2>
         <p class="text-black text-center mb-8">Descubre por qué somos la opción preferida para alquilar carros en {{ city?.name }}. Nuestros clientes destacan nuestra atención, precios competitivos y la facilidad para explorar.</p>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -273,7 +353,7 @@
             </UUser>
             <p class="mt-4 text-gray-700">{{ testimonio.quote }}</p>
             <div class="flex flex-row space-x-2 mt-4">
-              <StarIcon v-for="i in [1,2,3,4,5]" :key="i" cls="text-yellow-500 size-6" />
+              <StarIcon v-for="i in [1,2,3,4,5]" :key="i" cls="text-yellow-500 w-5 h-5" />
             </div>
           </div>
         </div>
@@ -293,6 +373,8 @@ import {
   IconsLocationIcon as LocationIcon,
 } from "#components";
 import { useCityExpandedContent, hasCityExpandedContent } from "~/composables/useCityContent";
+import { useRelatedCities } from "~/composables/useCityRelations";
+import { useCityProductSchema } from "~/composables/useCityProductSchema";
 
 /** stores */
 const storeSearch = useStoreSearchData();
@@ -325,9 +407,17 @@ const testimonios: Testimonial[] | undefined = props.city?.testimonials;
 const expandedContent = props.city?.name ? useCityExpandedContent(props.city.name) : null;
 const hasExpandedContent = props.city?.name ? hasCityExpandedContent(props.city.name) : false;
 
+// Get related cities for internal linking
+const relatedCities = props.city?.id ? useRelatedCities(props.city.id) : [];
+
 // Add AggregateRating schema for city-specific testimonials (shows stars in Google SERPs)
 if (props.city?.name && testimonios) {
   useCityAggregateRating(props.city.name, testimonios)
+}
+
+// Add Product Schema for SEO (shows vehicle offers in Google SERPs)
+if (props.city?.name && props.city?.id) {
+  useCityProductSchema(props.city.name, props.city.id)
 }
 
 // Get city-specific FAQs for UI display

@@ -1,12 +1,12 @@
 ---
-title: "7 Rutas en Carro desde Bogotá: Escapadas Imperdibles 2025"
+title: "7 Rutas en Carro desde Bogotá: Escapadas Imperdibles 2026"
 description: "Descubre las mejores rutas en carro desde Bogotá: Villa de Leyva, Guatavita, Girardot y más. Distancias, tiempos y tips para tu próximo viaje. ¡Reserva ya!"
-image: https://firebasestorage.googleapis.com/v0/b/rentacar-403321.firebasestorage.app/o/rentacar-main%2Falquilatucarro%2Fimg%2Fblog%2Frutas-bogota.webp?alt=media
+image: /img/blog/rutas-bogota.webp
 alt: Carretera panorámica colombiana con montañas y paisaje verde cerca de Bogotá
 author:
   name: Alquilatucarro
-  avatar: https://firebasestorage.googleapis.com/v0/b/rentacar-403321.firebasestorage.app/o/rentacar-main%2Falquilatucarro%2Fimg%2Flogo.png?alt=media
-date: 2025-01-12
+  avatar: https://firebasestorage.googleapis.com/v0/b/rentacar-403321.firebasestorage.app/o/rentacar-main%2Falquilatucarro%2Fimg%2Flogo.png?alt=media&token=975cfe04-c619-44bc-964a-e6231ca92dfe
+date: 2026-01-13
 category: rutas
 tags:
   - rutas
@@ -17,8 +17,6 @@ tags:
 readingTime: 10
 featured: false
 ---
-
-# 7 Rutas en Carro desde Bogotá: Escapadas Imperdibles 2025
 
 Bogotá es el punto de partida perfecto para explorar destinos increíbles en Colombia. A pocas horas de la capital encuentras pueblos coloniales, lagunas sagradas, climas cálidos y paisajes de montaña que te dejarán sin aliento.
 

@@ -3,21 +3,23 @@
         class="w-full mx-auto md:w-3/6 lg:w-4/6 grid grid-cols-2 auto-rows-min gap-2 light"
     >
         <div class="col-span-2 bg-white rounded-xl p-2 shadow-sm">
-            <u-form-field name="lugarRecogida" label="Lugar de recogida" size="xl">
+            <u-form-field label="Lugar de recogida" size="xl">
                 <!-- Móvil: select nativo (CSS: sm:hidden) -->
                 <select
                     v-if="lugarRecogida"
                     id="pickup-location-mobile"
                     v-model="lugarRecogida"
+                    aria-label="Lugar de recogida"
                     class="w-full sm:hidden"
                 >
                     <option
                         v-for="branch in sortedBranches"
+                        :key="branch.code"
                         v-text="branch.name"
                         :value="branch.code"
                     ></option>
                 </select>
-                <select v-else disabled class="w-full sm:hidden text-gray-400">
+                <select v-else disabled class="w-full sm:hidden text-gray-400" aria-label="Lugar de recogida">
                     <option>Cargando...</option>
                 </select>
                 <!-- Desktop: u-select-menu (CSS: hidden sm:block) -->
@@ -45,21 +47,23 @@
             </u-form-field>
         </div>
         <div class="col-span-2 bg-white rounded-xl p-2 shadow-sm">
-            <u-form-field name="lugarDevolucion" label="Lugar de devolución" size="xl">
+            <u-form-field label="Lugar de devolución" size="xl">
                 <!-- Móvil: select nativo (CSS: sm:hidden) -->
                 <select
                     v-if="lugarDevolucion"
                     id="return-location-mobile"
                     v-model="lugarDevolucion"
+                    aria-label="Lugar de devolución"
                     class="w-full sm:hidden"
                 >
                     <option
                         v-for="branch in sortedBranches"
+                        :key="branch.code"
                         v-text="branch.name"
                         :value="branch.code"
                     ></option>
                 </select>
-                <select v-else disabled class="w-full sm:hidden text-gray-400">
+                <select v-else disabled class="w-full sm:hidden text-gray-400" aria-label="Lugar de devolución">
                     <option>Cargando...</option>
                 </select>
                 <!-- Desktop: u-select-menu (CSS: hidden sm:block) -->
@@ -87,12 +91,14 @@
             </u-form-field>
         </div>
         <div class="bg-white rounded-xl p-2 shadow-sm">
-            <u-form-field name="fechaRecogida" label="Día de recogida" size="xl">
+            <u-form-field label="Día de recogida" size="xl">
                 <!-- Móvil: input nativo (CSS: sm:hidden) -->
                 <input
                     type="date"
+                    id="pickup-date-mobile"
                     name="pickup-date-mobile"
                     v-model="selectedPickupDate"
+                    aria-label="Día de recogida"
                     class="w-full sm:hidden"
                     :min="minPickupDate.toString()"
                 >
@@ -135,12 +141,14 @@
             </u-form-field>
         </div>
         <div class="bg-white rounded-xl p-2 shadow-sm">
-            <u-form-field name="fechaDevolucion" label="Día de devolución" size="xl">
+            <u-form-field label="Día de devolución" size="xl">
                 <!-- Móvil: input nativo (CSS: sm:hidden) -->
                 <input
                     type="date"
+                    id="return-date-mobile"
                     name="return-date-mobile"
                     v-model="selectedReturnDate"
+                    aria-label="Día de devolución"
                     class="w-full sm:hidden"
                     :min="minPickupDate.toString()"
                     :max="maxReturnDate?.toString()"
@@ -186,15 +194,17 @@
             </u-form-field>
         </div>
         <div class="bg-white rounded-xl p-2 shadow-sm">
-            <u-form-field name="horaRecogida" label="Hora de recogida" size="xl">
+            <u-form-field label="Hora de recogida" size="xl">
                 <!-- Móvil: select nativo (CSS: sm:hidden) -->
                 <select
                     id="pickup-hour-mobile"
                     v-model="horaRecogida"
+                    aria-label="Hora de recogida"
                     class="w-full sm:hidden"
                 >
                     <option
                         v-for="hour in pickupHourOptions"
+                        :key="hour.value"
                         v-text="hour.label"
                         :value="hour.value"
                     ></option>
@@ -221,10 +231,12 @@
                 <select
                     id="return-hour-mobile"
                     v-model="horaDevolucion"
+                    aria-label="Hora de devolución"
                     class="w-full sm:hidden"
                 >
                     <option
                         v-for="hour in returnHourOptions"
+                        :key="hour.value"
                         v-text="hour.label"
                         :value="hour.value"
                     ></option>
@@ -232,7 +244,6 @@
                 <!-- Desktop: u-select-menu (CSS: hidden sm:block) -->
                 <u-select-menu
                     id="return-hour"
-                    name="horaDevolucion"
                     v-model="horaDevolucion"
                     value-key="value"
                     label-key="label"

@@ -1,27 +1,12 @@
 <template>
   <UPage>
-    <!-- Hero Section -->
+    <!-- Hero Section - Server Components para reducir JS hydration -->
     <UPageHero orientation="horizontal">
       <template #headline>
-        <div
-          class="flex flex-row items-center justify-center space-x-0.5 text-white text-center"
-        >
-          <StarIcon cls="w-2.5 h-2.5 md:w-4 md:h-4" />
-          <StarIcon cls="w-2.5 h-2.5 md:w-4 md:h-4" />
-          <StarIcon cls="w-2.5 h-2.5 md:w-4 md:h-4" />
-          <StarIcon cls="w-2.5 h-2.5 md:w-4 md:h-4" />
-          <StarIcon cls="w-2.5 h-2.5 md:w-4 md:h-4" />
-          <span class="ml-2 text-xs md:text-base">4.9 reviews</span>
-        </div>
+        <HeroHeadline />
       </template>
       <template #title>
-        <div class="hero-h1-critical text-white text-4xl text-center font-bold">
-          <span class="block">
-            <span class="block uppercase">ALQUILER</span>
-            <span class="block">DE CARROS EN</span>
-          </span>
-          <span class="block tracking-wide colombia-sweep">COLOMBIA</span>
-        </div>
+        <HeroTitle />
       </template>
       <template #body>
         <div class="text-center justify-items-center">
@@ -31,15 +16,14 @@
           <div class="min-w-80 my-3">
             <SelectBranch />
           </div>
-          <p class="text-base text-white">
-            Contamos con 27 sedes a nivel nacional y una excelente reputación en
-            alquiler de carros y camionetas que se adaptan a tu necesidad y
-            presupuesto
-          </p>
+          <HeroDescription />
         </div>
       </template>
       <template #default>
-        <ImagesFamily />
+        <!-- CLS fix: reservar espacio con aspect-ratio (760x616 mobile / 2000x1620 desktop ≈ 100:81) -->
+        <div class="w-full aspect-[100/81]">
+          <ImagesFamily />
+        </div>
       </template>
     </UPageHero>
 
@@ -65,7 +49,10 @@
         </div>
       </template>
       <template #default>
-        <ImagesVideo />
+        <!-- CLS fix: reservar espacio con aspect-ratio antes de que cargue la imagen -->
+        <div class="w-full aspect-[100/81]">
+          <LazyImagesVideo hydrate-on-visible />
+        </div>
       </template>
     </UPageSection>
 
@@ -120,7 +107,10 @@
         </div>
       </template>
       <template #default>
-        <ImagesPersona />
+        <!-- CLS fix: reservar espacio con aspect-ratio antes de que cargue la imagen -->
+        <div class="w-full aspect-[100/81]">
+          <LazyImagesPersona hydrate-on-visible />
+        </div>
       </template>
     </UPageSection>
 
@@ -151,10 +141,13 @@
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-4 md:mt-0">
           <!-- Compacto -->
           <div class="flex flex-col items-center text-center">
-            <ImagesCategoriasCompacto />
+            <!-- CLS fix: reservar espacio con aspect-ratio (800x300) -->
+            <div class="w-full aspect-[8/3]">
+              <LazyImagesCategoriasCompacto hydrate-on-visible />
+            </div>
             <h3 class="font-bold text-black text-lg mt-0">COMPACTO</h3>
             <p class="text-black mt-2">Practicidad urbana con estilo. La agilidad que necesitas en la ciudad</p>
-            <UModal class="mt-4" :ui="{ content: 'bg-white', close: 'bg-black text-white rounded-full' }">
+            <LazyUModal hydrate-on-interaction class="mt-4" :ui="{ content: 'bg-white', close: 'bg-black text-white rounded-full' }">
               <template #body>
                 <div class="mb-4 text-black text-lg">
                   ¿En que ciudad<br>deseas recoger tu carro?
@@ -164,14 +157,17 @@
                 </div>
               </template>
               <UButton class="bg-green-700 hover:bg-green-800 text-white px-8 py-3 rounded-xl font-bold uppercase transition-colors">Ver disponibilidad</UButton>
-            </UModal>
+            </LazyUModal>
           </div>
           <!-- Sedan -->
           <div class="flex flex-col items-center text-center">
-            <ImagesCategoriasSedan />
+            <!-- CLS fix: reservar espacio con aspect-ratio (800x300) -->
+            <div class="w-full aspect-[8/3]">
+              <LazyImagesCategoriasSedan hydrate-on-visible />
+            </div>
             <h3 class="font-bold text-black text-lg mt-0">SEDAN</h3>
             <p class="text-black mt-2">Confort y espacio. Disfruta cada viaje con la máxima comodidad</p>
-            <UModal class="mt-4" :ui="{ content: 'bg-white', close: 'bg-black text-white rounded-full' }">
+            <LazyUModal hydrate-on-interaction class="mt-4" :ui="{ content: 'bg-white', close: 'bg-black text-white rounded-full' }">
               <template #body>
                 <div class="mb-4 text-black text-lg">
                   ¿En que ciudad<br>deseas recoger tu carro?
@@ -181,14 +177,17 @@
                 </div>
               </template>
               <UButton class="bg-green-700 hover:bg-green-800 text-white px-8 py-3 rounded-xl font-bold uppercase transition-colors">Ver disponibilidad</UButton>
-            </UModal>
+            </LazyUModal>
           </div>
           <!-- Camioneta -->
           <div class="flex flex-col items-center text-center">
-            <ImagesCategoriasSUV />
+            <!-- CLS fix: reservar espacio con aspect-ratio (800x300) -->
+            <div class="w-full aspect-[8/3]">
+              <LazyImagesCategoriasSUV hydrate-on-visible />
+            </div>
             <h3 class="font-bold text-black text-lg mt-0">CAMIONETA</h3>
             <p class="text-black mt-2">Robustez y tamaño. Capacidad para dominar cualquier camino</p>
-            <UModal class="mt-4" :ui="{ content: 'bg-white', close: 'bg-black text-white rounded-full' }">
+            <LazyUModal hydrate-on-interaction class="mt-4" :ui="{ content: 'bg-white', close: 'bg-black text-white rounded-full' }">
               <template #body>
                 <div class="mb-4 text-black text-lg">
                   ¿En que ciudad<br>deseas recoger tu carro?
@@ -198,7 +197,7 @@
                 </div>
               </template>
               <UButton class="bg-green-700 hover:bg-green-800 text-white px-8 py-3 rounded-xl font-bold uppercase transition-colors">Ver disponibilidad</UButton>
-            </UModal>
+            </LazyUModal>
           </div>
         </div>
       </template>
@@ -216,17 +215,20 @@
           <div
             v-for="testimonio in testimonios"
             :key="testimonio.user.name"
-            class="border border-gray-100 rounded-lg bg-gray-50 shadow-sm p-5 md:p-6 hover:shadow-lg hover:-translate-y-1 transition-all duration-200"
+            class="border border-gray-100 rounded-lg bg-gray-50 shadow-sm p-5 md:p-6 hover:shadow-lg transition-shadow duration-200"
           >
-            <UUser
-              size="3xl"
-              v-bind="testimonio.user"
-              :ui="testimonioUserUIConfig"
-              loading="lazy"
-            />
+            <!-- CLS fix: reservar espacio para avatar (48x48 = size 3xl) -->
+            <div class="min-h-[48px]">
+              <UUser
+                size="3xl"
+                v-bind="testimonio.user"
+                :ui="testimonioUserUIConfig"
+                loading="lazy"
+              />
+            </div>
             <p class="mt-4 text-gray-700">{{ testimonio.quote }}</p>
             <div class="flex flex-row mt-4">
-              <StarIcon v-for="i in [1,2,3,4,5]" :key="i" cls="text-yellow-500 size-6" />
+              <StarIcon v-for="i in [1,2,3,4,5]" :key="i" cls="text-yellow-500 w-5 h-5" />
             </div>
           </div>
         </div>
@@ -243,14 +245,14 @@
         <p class="text-base text-center mb-4">
           Encuentra respuestas a las consultas más comunes sobre nuestro servicio de alquiler. Si tienes otra pregunta, contáctanos directamente.
         </p>
-        <UAccordion :items="faqs" :ui="faqAccordionUIConfig" class="max-w-4xl mx-auto">
+        <LazyUAccordion hydrate-on-interaction :items="faqs" :ui="faqAccordionUIConfig" class="max-w-4xl mx-auto">
           <template #default="{ item }">
             <div class="text-base font-medium text-gray-800 px-4" v-text="item.label"></div>
           </template>
           <template #content="{ item }">
             <div class="text-base text-gray-600 py-3 bg-gray-50 px-4 rounded-lg" v-text="item.content"></div>
           </template>
-        </UAccordion>
+        </LazyUAccordion>
       </div>
     </UPageSection>
   </UPage>

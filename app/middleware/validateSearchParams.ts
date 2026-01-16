@@ -2,6 +2,7 @@ import {
   useStoreAdminData,
   createDateFromString,
   createTimeFromString,
+  createCurrentDateObject,
   isTimeObject,
   toDatetime,
   dayDifference
@@ -56,9 +57,30 @@ export default defineNuxtRouteMiddleware((to, from) => {
       name: to.name,
       params: {
         ...to.params,
-      }
+      },
+      query: to.query,
     });
 
+  }
+
+  // Validación: fecha de recogida en el pasado
+  // Si el usuario accede con una URL que tiene fecha pasada (ej: link guardado, historial),
+  // redirige automáticamente a mañana con devolución +7 días para evitar errores.
+  // Impacto: bajo, solo afecta URLs con fechas inválidas.
+  const today = createCurrentDateObject();
+  if (dateFechaRecogida.compare(today) < 0) {
+    const tomorrow = today.add({ days: 1 });
+    const newReturnDate = tomorrow.add({ days: 7 });
+
+    to.params.fecha_recogida = tomorrow.toString();
+    to.params.fecha_devolucion = newReturnDate.toString();
+
+    return navigateTo({
+      name: to.name,
+      params: {
+        ...to.params
+      }
+    });
   }
 
   // Cuando la diferencia de fechas es mensual
@@ -72,7 +94,8 @@ export default defineNuxtRouteMiddleware((to, from) => {
         name: to.name,
         params: {
           ...to.params
-        }
+        },
+        query: to.query,
       });
 
   }
@@ -93,11 +116,12 @@ export default defineNuxtRouteMiddleware((to, from) => {
       name: to.name,
       params: {
         ...to.params
-      }
+      },
+      query: to.query,
     });
 
   }
-  
+
   // Si la validación pasa, continúa con la navegación
   // Aquí no es necesario hacer nada, ya que si no retornas nada, la navegación continúa
 })

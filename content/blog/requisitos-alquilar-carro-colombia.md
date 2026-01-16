@@ -1,12 +1,12 @@
 ---
-title: "Requisitos para Alquilar un Carro en Colombia 2025"
+title: "Requisitos para Alquilar un Carro en Colombia 2026"
 description: "Guía completa con todos los documentos y requisitos necesarios para alquilar un carro en Colombia. Conoce qué necesitas antes de tu viaje."
-image: https://firebasestorage.googleapis.com/v0/b/rentacar-403321.firebasestorage.app/o/rentacar-main%2Falquilatucarro%2Fimg%2Fblog%2Frequisitos-alquiler.webp?alt=media
+image: /img/blog/requisitos-alquiler.webp
 alt: Persona mostrando documentos para alquilar carro en Colombia
 author:
   name: Alquilatucarro
-  avatar: https://firebasestorage.googleapis.com/v0/b/rentacar-403321.firebasestorage.app/o/rentacar-main%2Falquilatucarro%2Fimg%2Flogo.png?alt=media
-date: 2025-01-15
+  avatar: https://firebasestorage.googleapis.com/v0/b/rentacar-403321.firebasestorage.app/o/rentacar-main%2Falquilatucarro%2Fimg%2Flogo.png?alt=media&token=975cfe04-c619-44bc-964a-e6231ca92dfe
+date: 2026-01-13
 category: guias
 tags:
   - requisitos
@@ -16,8 +16,6 @@ tags:
 readingTime: 8
 featured: true
 ---
-
-# Requisitos para Alquilar un Carro en Colombia 2025
 
 ¿Estás planeando un viaje por Colombia y quieres la libertad de moverte a tu ritmo? Alquilar un carro es la mejor opción para explorar las maravillas de nuestro país. En esta guía te explicamos todos los **requisitos para alquilar un carro en Colombia** de forma rápida y sin complicaciones.
 

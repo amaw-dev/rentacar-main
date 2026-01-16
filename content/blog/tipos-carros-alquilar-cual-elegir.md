@@ -1,12 +1,12 @@
 ---
 title: "Tipos de Carros para Alquilar: Cuál Elegir Según tu Viaje"
 description: "Guía completa para elegir el carro ideal: compacto, sedán, SUV, camioneta o van. Compara precios, capacidad y consumo. Encuentra tu vehículo perfecto."
-image: https://firebasestorage.googleapis.com/v0/b/rentacar-403321.firebasestorage.app/o/rentacar-main%2Falquilatucarro%2Fimg%2Fblog%2Ftipos-carros.webp?alt=media
+image: /img/blog/tipos-carros.webp
 alt: Diferentes tipos de carros disponibles para alquiler en Colombia
 author:
   name: Alquilatucarro
-  avatar: https://firebasestorage.googleapis.com/v0/b/rentacar-403321.firebasestorage.app/o/rentacar-main%2Falquilatucarro%2Fimg%2Flogo.png?alt=media
-date: 2025-01-12
+  avatar: https://firebasestorage.googleapis.com/v0/b/rentacar-403321.firebasestorage.app/o/rentacar-main%2Falquilatucarro%2Fimg%2Flogo.png?alt=media&token=975cfe04-c619-44bc-964a-e6231ca92dfe
+date: 2026-01-13
 category: guias
 tags:
   - tipos de carros
@@ -17,8 +17,6 @@ tags:
 readingTime: 7
 featured: false
 ---
-
-# Tipos de Carros para Alquilar: Cuál Elegir Según tu Viaje
 
 Elegir el carro correcto puede transformar tu viaje de una experiencia estresante a una aventura memorable. No es lo mismo recorrer las calles de Cartagena que atravesar las montañas del Eje Cafetero o transportar a toda la familia por la costa. En esta guía te ayudamos a descubrir **qué tipo de carro necesitas según tu destino, presupuesto y estilo de viaje**.
 
@@ -217,4 +215,4 @@ Ya sea que busques un compacto económico para la ciudad o una camioneta para tu
 
 ---
 
-*Última actualización: Enero 2025*
+*Última actualización: Enero 2026*

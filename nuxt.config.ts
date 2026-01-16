@@ -18,6 +18,12 @@ export default defineNuxtConfig({
     // Remueve prefetch links para mejorar FCP
     disablePrefetchLinks: true,
   },
+  
+  // Component Islands: renderiza componentes estáticos sin hidratación Vue
+  // Reduce JavaScript en el cliente para mejorar LCP
+  experimental: {
+    componentIslands: true,
+  },
 
   // Configuración de app: CSS crítico, preloads y atributos HTML
   app: {
@@ -27,22 +33,74 @@ export default defineNuxtConfig({
       },
       style: [
         {
-          // CSS crítico que se inyecta inline en el <head> antes de cualquier stylesheet
-          children: `
-            /* Prevenir banderas/logos gigantes antes de CSS */
+          key: 'critical-cls',
+          innerHTML: `
+            *, *::before, *::after { box-sizing: border-box; }
+            body { margin: 0; font-family: system-ui, -apple-system, sans-serif; }
+            img { max-width: 100%; height: auto; display: block; }
+            picture { display: block; }
+            svg { max-width: 100%; height: auto; }
             header svg { max-height: 3.5rem !important; max-width: 10rem !important; }
-            /* Ocultar bandera móvil en desktop y viceversa (antes de Tailwind) */
+            .w-2\\.5 { width: 0.625rem; } .h-2\\.5 { height: 0.625rem; }
+            .w-4 { width: 1rem; } .h-4 { height: 1rem; }
+            .w-5 { width: 1.25rem; } .h-5 { height: 1.25rem; }
+            @media (min-width: 768px) { .md\\:w-4 { width: 1rem; } .md\\:h-4 { height: 1rem; } }
+            .mx-auto { margin-left: auto; margin-right: auto; }
             @media (min-width: 768px) { header .md\\:hidden { display: none !important; } }
             @media (max-width: 767px) { header .hidden { display: none !important; } }
-            /* H1 tracking-tight */
-            .hero-section h1 { letter-spacing: -0.025em !important; }
+            .block { display: block; }
+            .bg-white { background-color: #fff; }
+            .text-white { color: #fff; }
+            .text-black { color: #000; }
+            .w-full { width: 100%; }
+            /* CLS fix: aspect-ratio para contenedor de imagen hero */
+            .aspect-\\[100\\/81\\] { aspect-ratio: 100/81; }
+            /* Critical: Layout background para LCP inmediato */
+            .min-h-screen { min-height: 100vh; }
+            .bg-gradient-to-b { background-image: linear-gradient(to bottom, var(--tw-gradient-stops)); }
+            .from-\\[\\#000073\\] { --tw-gradient-from: #000073; --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, transparent); }
+            .via-blue-800 { --tw-gradient-via: #1e40af; --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-via), var(--tw-gradient-to, transparent); }
+            .to-blue-900 { --tw-gradient-to: #1e3a8a; }
+            .bg-\\[\\#000073\\] { background-color: #000073; }
+            /* Critical: Nuxt UI grid classes - previene CLS en Desktop */
+            .flex { display: flex; }
+            .flex-col { flex-direction: column; }
+            .gap-8 { gap: 2rem; }
+            .items-center { align-items: center; }
+            .relative { position: relative; }
+            .isolate { isolation: isolate; }
+            /* Hero container padding */
+            .py-8 { padding-top: 2rem; padding-bottom: 2rem; }
+            .px-4 { padding-left: 1rem; padding-right: 1rem; }
+            /* Max-width container */
+            .max-w-\\(--ui-container\\), .max-w-7xl { max-width: 80rem; }
+            @media (min-width: 640px) {
+              .sm\\:py-16 { padding-top: 4rem; padding-bottom: 4rem; }
+              .sm\\:px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
+              .sm\\:gap-y-16 { row-gap: 4rem; }
+            }
+            @media (min-width: 1024px) {
+              /* UPage wrapper grid */
+              .lg\\:grid { display: grid; }
+              .lg\\:grid-cols-10 { grid-template-columns: repeat(10, minmax(0, 1fr)); }
+              .lg\\:gap-10 { gap: 2.5rem; }
+              /* Hero section span full width in UPage grid */
+              .lg\\:col-span-10 { grid-column: span 10 / span 10; }
+              /* Hero container grid */
+              .lg\\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+              .lg\\:items-center { align-items: center; }
+              .lg\\:py-24 { padding-top: 6rem; padding-bottom: 6rem; }
+              .lg\\:px-8 { padding-left: 2rem; padding-right: 2rem; }
+              /* order-last para imagen en desktop - CRÍTICO para CLS */
+              .lg\\:order-last { order: 9999; }
+            }
           `,
         },
       ],
+      // Preload imagen LCP - solo AVIF (97%+ soporte en móviles modernos)
       link: [
-        // Preconnect a Firebase Storage (crítico para LCP)
         { rel: 'preconnect', href: 'https://firebasestorage.googleapis.com', crossorigin: '' },
-        // Preload imagen hero mobile (LCP en móviles)
+        // Mobile AVIF
         {
           rel: 'preload',
           as: 'image',
@@ -51,7 +109,7 @@ export default defineNuxtConfig({
           media: '(max-width: 767px)',
           fetchpriority: 'high',
         },
-        // Preload imagen hero desktop (LCP en escritorio)
+        // Desktop AVIF
         {
           rel: 'preload',
           as: 'image',
@@ -64,7 +122,18 @@ export default defineNuxtConfig({
     },
   },
 
-  // Configuración SEO - controla cómo se generan los títulos
+  modules: ['@nuxtjs/seo', '@nuxt/ui', '@pinia/nuxt', 'nuxt-llms', 'nuxt-vitalizer', '@nuxt/content'],
+
+  // Optimización Core Web Vitals
+  vitalizer: {
+    // Diferir stylesheets para eliminar render-blocking CSS
+    // Requiere CSS crítico inline suficiente para evitar FOUC
+    disableStylesheets: 'entry',
+    // Remueve prefetch links para mejorar FCP
+    disablePrefetchLinks: true,
+  },
+
+  // Configuración SEO
   site: {
     url: 'https://alquilatucarro.com',
     name: 'Alquilatucarro',
@@ -180,7 +249,7 @@ export default defineNuxtConfig({
         // Blog
         '/blog',
         '/blog/requisitos-alquilar-carro-colombia',
-        '/blog/pico-y-placa-colombia-2025',
+        '/blog/pico-y-placa-colombia-2026',
         '/blog/tipos-carros-alquilar-cual-elegir',
         '/blog/rutas-carro-desde-bogota',
         '/blog/eje-cafetero-en-carro-guia-completa',
@@ -191,11 +260,6 @@ export default defineNuxtConfig({
   },
 
   css: ['~/assets/css/main.css'],
-
-  site: {
-    name: "Alquilatucarro",
-    url: "https://alquilatucarro.com",
-  },
 
   sitemap: {
     urls: [
@@ -225,7 +289,7 @@ export default defineNuxtConfig({
       // Blog - prioridad media-alta
       { loc: '/blog', changefreq: 'weekly', priority: 0.8 },
       { loc: '/blog/requisitos-alquilar-carro-colombia', changefreq: 'monthly', priority: 0.7 },
-      { loc: '/blog/pico-y-placa-colombia-2025', changefreq: 'monthly', priority: 0.7 },
+      { loc: '/blog/pico-y-placa-colombia-2026', changefreq: 'monthly', priority: 0.7 },
       { loc: '/blog/tipos-carros-alquilar-cual-elegir', changefreq: 'monthly', priority: 0.7 },
       { loc: '/blog/rutas-carro-desde-bogota', changefreq: 'monthly', priority: 0.7 },
       { loc: '/blog/eje-cafetero-en-carro-guia-completa', changefreq: 'monthly', priority: 0.7 },

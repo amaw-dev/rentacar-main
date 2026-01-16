@@ -83,3 +83,9 @@ e2e-results/
 playwright-report/
 test-results/
 playwright/.cache/
+
+# Configuración local de Claude Code
+.mcp.json
+
+# Scripts locales de Windows
+*.ps1
