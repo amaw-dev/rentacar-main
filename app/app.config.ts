@@ -71,6 +71,7 @@ export default defineAppConfig({
       "https://firebasestorage.googleapis.com/v0/b/rentacar-403321.firebasestorage.app/o/rentacar-main%2Falquilatucarro%2Fimg%2Fog-logo.png?alt=media&token=609ec027-6040-466d-9364-d933f67d1e5f",
     svglogo:
       "https://firebasestorage.googleapis.com/v0/b/rentacar-403321.firebasestorage.app/o/rentacar-main%2Falquilatucarro%2Fimg%2Flogo.svg?alt=media&token=ab04ed05-fef3-4b92-9c72-a7c459933c35",
+    ogImage: "/img/og-alquilatucarro.jpg",
     phone: "+57 301 672 9250",
     whatsapp: "https://wa.me/573016729250",
     email: "alquilatucarro@gmail.com",
