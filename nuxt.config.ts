@@ -262,7 +262,10 @@ export default defineNuxtConfig({
         headers: {
           'Cache-Control': 'public, max-age=3600'
         }
-      }
+      },
+      // Redirects para URLs legacy (404s en Google Search Console)
+      '/gana/politicas-privacidad.html': { redirect: '/gana/politicas-privacidad', statusCode: 301 },
+      '/tratamiento-datos-alquilatucarro.pdf': { redirect: '/politica-privacidad', statusCode: 301 },
     },
     prerender: {
       routes: [
