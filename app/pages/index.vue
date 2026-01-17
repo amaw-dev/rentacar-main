@@ -21,8 +21,8 @@
       </template>
       <template #default>
         <!-- CLS fix: reservar espacio con aspect-ratio (760x616 mobile / 2000x1620 desktop ≈ 100:81) -->
-        <div class="w-full aspect-[100/81] bg-neutral-700">
-          <!-- TEST: <ImagesFamily /> -->
+        <div class="w-full aspect-[100/81]">
+          <ImagesFamily />
         </div>
       </template>
     </UPageHero>
