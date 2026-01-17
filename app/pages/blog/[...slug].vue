@@ -522,7 +522,19 @@ definePageMeta({
   border-bottom: none;
 }
 
-.prose h2:target {
+/* Remove link styling from heading anchors - keep them as regular text */
+.prose h2 a,
+.prose h3 a,
+.prose h4 a {
+  color: inherit;
+  text-decoration: none;
+  cursor: text;
+  pointer-events: none;
+}
+
+.prose h2:target,
+.prose h3:target,
+.prose h4:target {
   scroll-margin-top: 5rem;
 }
 
