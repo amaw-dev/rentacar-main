@@ -144,7 +144,11 @@ export default defineNuxtConfig({
               .lg\\:hidden { display: none; }
               .lg\\:flex { display: flex; }
               .lg\\:flex-col { flex-direction: column; }
+              .lg\\:flex-row { flex-direction: row; }
               .lg\\:items-center { align-items: center; }
+              /* Blog sidebar layout - CRÍTICO para CLS */
+              .lg\\:w-2\\/3 { width: 66.666667%; }
+              .lg\\:w-1\\/3 { width: 33.333333%; }
             }
             /* CityPage Searcher containers height - CRÍTICO para CLS */
             .h-\\[410px\\] { height: 410px; }
