@@ -57,7 +57,34 @@ export default defineNuxtConfig({
             .gap-8 { gap: 2rem; }
             .items-center { align-items: center; }
             .relative { position: relative; }
+            .absolute { position: absolute; }
             .isolate { isolation: isolate; }
+            /* Header mobile positioning - CRÍTICO para CLS */
+            .left-0 { left: 0; }
+            .top-0 { top: 0; }
+            .right-4 { right: 1rem; }
+            .top-4 { top: 1rem; }
+            .left-1\\/2 { left: 50%; }
+            /* Icon colors - CRÍTICO para CLS (evita iconos negros) */
+            .text-red-600 { color: #dc2626; }
+            .text-gray-600 { color: #4b5563; }
+            /* Header sizes - CRÍTICO para CLS (bandera y logo) */
+            .w-32 { width: 8rem; }
+            .h-32 { height: 8rem; }
+            .h-6 { height: 1.5rem; }
+            .h-8 { height: 2rem; }
+            .h-10 { height: 2.5rem; }
+            .w-auto { width: auto; }
+            /* Tailwind transform composición - usar CSS variables */
+            .transform, .-translate-x-1\\/2, .-translate-y-1\\/2, .-translate-x-\\[10\\%\\], .-translate-y-\\[10\\%\\] {
+              --tw-translate-x: 0;
+              --tw-translate-y: 0;
+              transform: translate(var(--tw-translate-x), var(--tw-translate-y));
+            }
+            .-translate-x-1\\/2 { --tw-translate-x: -50%; }
+            .-translate-y-1\\/2 { --tw-translate-y: -50%; }
+            .-translate-x-\\[10\\%\\] { --tw-translate-x: -10%; }
+            .-translate-y-\\[10\\%\\] { --tw-translate-y: -10%; }
             /* Hero container padding */
             .py-8 { padding-top: 2rem; padding-bottom: 2rem; }
             .py-16 { padding-top: 4rem; padding-bottom: 4rem; }
