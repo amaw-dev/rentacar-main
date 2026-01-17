@@ -53,16 +53,16 @@ export default defineAppConfig({
       "KM 3 vía chipaya parcelación praderas de verde horizonte casa 157",
     postalcode: "764007",
     logo: "https://firebasestorage.googleapis.com/v0/b/rentacar-403321.firebasestorage.app/o/rentacar-main%2Falquilatucarro%2Fimg%2Flogo.png?alt=media&token=975cfe04-c619-44bc-964a-e6231ca92dfe",
-    brand: "Alquilame",
-    otherbrands: ["Alquilatucarro", "Alquicarros"],
+    brand: "Alquicarros",
+    otherbrands: ["Alquilatucarro", "Alquilame"],
   },
   reservation: {
-    website: "https://alquilame.co",
+    website: "https://alquicarros.com",
   },
   franchise: {
-    name: "alquilame.com",
-    shortname: "Alquilame",
-    website: "https://alquilame.co",
+    name: "alquicarros.com",
+    shortname: "Alquicarros",
+    website: "https://alquicarros.com",
     title: "Alquiler de Carros en Colombia desde $32/día",
     description:
       "Alquila carros en Bogotá, Medellín, Cali y 16 ciudades más. Hasta 60% descuento por reserva anticipada. Sin pago previo. Flota renovada cada 2 años.",
@@ -101,7 +101,7 @@ export default defineAppConfig({
         label: "Gana comisiones",
       },
       {
-        link: "https://www.alquilame.co/blog/",
+        link: "https://www.alquicarros.com/blog/",
         label: "Blog",
       },
     ],
