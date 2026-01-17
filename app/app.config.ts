@@ -216,13 +216,6 @@ export default defineAppConfig({
       schedule: "Lun-Dom 24 horas | Festivos 06:00-21:00",
     },
     {
-      id: 6,
-      code: "ACBOT",
-      name: "Bogotá Av. Caracas con 72",
-      city: "bogota",
-      schedule: "Lun-Sáb 07:30-18:00 | Dom y fest Cerrado",
-    },
-    {
       id: 7,
       code: "ACBEX",
       name: "Bogotá Almacén Éxito del Country",
@@ -335,13 +328,6 @@ export default defineAppConfig({
       schedule: "Todos los días 06:00-23:00",
     },
     {
-      id: 24,
-      code: "ACMSN",
-      name: "Rionegro C.Cial San Nicolas",
-      city: "medellin",
-      schedule: "Lun-Sáb 09:00-18:00 | Dom y fest 10:00-17:00",
-    },
-    {
       id: 25,
       code: "AAMTR",
       name: "Montería Aeropuerto",
@@ -366,13 +352,6 @@ export default defineAppConfig({
       id: 28,
       code: "AAPEI",
       name: "Pereira Aeropuerto",
-      city: "pereira",
-      schedule: "Lun-Vie 06:30-19:30 | Sáb, Dom y fest 08:00-15:00",
-    },
-    {
-      id: 29,
-      code: "ACPEI",
-      name: "Pereira Zoológico",
       city: "pereira",
       schedule: "Lun-Vie 06:30-19:30 | Sáb, Dom y fest 08:00-15:00",
     },
