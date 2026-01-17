@@ -107,6 +107,13 @@ export default defineNuxtConfig({
             /* Star rating text - CRÍTICO para CLS */
             .ml-2 { margin-left: 0.5rem; }
             .text-xs { font-size: 0.75rem; line-height: 1rem; }
+            /* SelectBranch responsive visibility - CRÍTICO para CLS */
+            .hidden { display: none; }
+            .sm\\:hidden { display: block; }
+            @media (min-width: 640px) {
+              .sm\\:hidden { display: none; }
+              .sm\\:flex { display: flex; }
+            }
             /* Max-width container */
             .max-w-\\(--ui-container\\), .max-w-7xl { max-width: 80rem; }
             @media (min-width: 640px) {
