@@ -22,12 +22,12 @@
         <!-- Móvil: Bandera diagonal en esquina + Logo centrado -->
         <div class="md:hidden">
           <IconsColombiaFlagCorner cls="absolute top-0 left-0 w-32 h-32 -translate-x-[10%] -translate-y-[10%]" />
-          <NuxtLink to="/" aria-label="alquilatucarro" class="absolute left-1/2 -translate-x-1/2">
+          <NuxtLink to="/" :aria-label="franchise.name" class="absolute left-1/2 -translate-x-1/2">
             <Logo cls="h-8 w-auto" />
           </NuxtLink>
         </div>
         <!-- Desktop: Bandera + Logo juntos como unidad -->
-        <NuxtLink to="/" aria-label="alquilatucarro" class="hidden md:flex items-center gap-3">
+        <NuxtLink to="/" :aria-label="franchise.name" class="hidden md:flex items-center gap-3">
           <IconsColombiaFlag cls="h-6 w-auto" />
           <Logo cls="h-10 w-auto" />
         </NuxtLink>
@@ -70,6 +70,8 @@
 
 <script lang="ts" setup>
 import type { NavigationMenuItem } from '@nuxt/ui'
+
+const { franchise } = useAppConfig();
 
 const route = useRoute();
 

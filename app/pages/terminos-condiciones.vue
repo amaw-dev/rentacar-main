@@ -13,13 +13,13 @@
         <!-- Introducción -->
         <h2 class="text-2xl font-bold text-gray-900 mt-10 mb-4">1. Introducción</h2>
         <p>
-          Bienvenido a <strong>Alquilatucarro.com</strong>, una plataforma operada por <strong>AMAW S.A.S</strong> (NIT 900.665.917-7). Al utilizar nuestro sitio web y servicios, usted acepta estos Términos y Condiciones en su totalidad.
+          Bienvenido a <strong>{{franchise.name}}</strong>, una plataforma operada por <strong>AMAW S.A.S</strong> (NIT 900.665.917-7). Al utilizar nuestro sitio web y servicios, usted acepta estos Términos y Condiciones en su totalidad.
         </p>
 
         <!-- Naturaleza del Servicio -->
         <h2 class="text-2xl font-bold text-gray-900 mt-10 mb-4">2. Naturaleza del Servicio</h2>
         <p>
-          <strong>Alquilatucarro.com es una plataforma de intermediación</strong> que conecta a usuarios con empresas de alquiler de vehículos (en adelante "Rentadoras"). Es importante que comprenda lo siguiente:
+          <strong>{{franchise.name}} es una plataforma de intermediación</strong> que conecta a usuarios con empresas de alquiler de vehículos (en adelante "Rentadoras"). Es importante que comprenda lo siguiente:
         </p>
         <ul class="list-disc pl-6 space-y-2">
           <li><strong>No somos una empresa de alquiler de vehículos.</strong> No somos propietarios ni operadores de los vehículos mostrados en la plataforma.</li>
@@ -89,7 +89,7 @@
         <!-- Responsabilidades -->
         <h2 class="text-2xl font-bold text-gray-900 mt-10 mb-4">7. Responsabilidades</h2>
 
-        <h3 class="text-xl font-semibold text-gray-900 mt-6 mb-3">Responsabilidades de AMAW S.A.S (Alquilatucarro.com):</h3>
+        <h3 class="text-xl font-semibold text-gray-900 mt-6 mb-3">Responsabilidades de AMAW S.A.S ({{ franchise.shortname }}):</h3>
         <ul class="list-disc pl-6 space-y-2">
           <li>Mostrar información precisa proporcionada por las Rentadoras</li>
           <li>Facilitar la comunicación entre usuarios y Rentadoras</li>
@@ -153,8 +153,8 @@
         <h2 class="text-2xl font-bold text-gray-900 mt-10 mb-4">12. Contacto</h2>
         <p>Para cualquier consulta sobre estos Términos y Condiciones:</p>
         <ul class="list-disc pl-6 space-y-2">
-          <li><strong>WhatsApp:</strong> +57 301 672 9250</li>
-          <li><strong>Correo:</strong> info@alquilatucarro.com</li>
+          <li><strong>WhatsApp:</strong> {{franchise.phone}}</li>
+          <li><strong>Correo:</strong> {{franchise.email}} </li>
         </ul>
 
         <!-- Company Info -->
@@ -172,15 +172,15 @@
 const { franchise } = useAppConfig()
 
 useHead({
-  title: 'Términos y Condiciones | Alquilatucarro',
+  title: `Términos y Condiciones | ${franchise.shortname}`,
   link: [
     { rel: 'canonical', href: `${franchise.website}/terminos-condiciones` }
   ]
 })
 
 useSeoMeta({
-  description: 'Términos y condiciones de uso de Alquilatucarro.com. Conoce las condiciones del servicio de intermediación para alquiler de vehículos en Colombia.',
-  ogTitle: 'Términos y Condiciones | Alquilatucarro',
-  ogDescription: 'Términos y condiciones de uso de Alquilatucarro.com para alquiler de vehículos en Colombia.',
+  description: `Términos y condiciones de uso de ${franchise.name}. Conoce las condiciones del servicio de intermediación para alquiler de vehículos en Colombia.`,
+  ogTitle: `Términos y Condiciones | ${franchise.shortname}`,
+  ogDescription: `Términos y condiciones de uso de ${franchise.name} para alquiler de vehículos en Colombia.`,
 })
 </script>

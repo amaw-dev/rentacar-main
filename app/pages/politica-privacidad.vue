@@ -126,15 +126,15 @@
 const { franchise } = useAppConfig()
 
 useHead({
-  title: 'Política de Privacidad | Alquilatucarro',
+  title: `Política de Privacidad | ${franchise.shortname}`,
   link: [
     { rel: 'canonical', href: `${franchise.website}/politica-privacidad` }
   ]
 })
 
 useSeoMeta({
-  description: 'Política de privacidad y tratamiento de datos personales de Alquilatucarro. Conoce cómo protegemos tu información según la Ley 1581 de 2012.',
-  ogTitle: 'Política de Privacidad | Alquilatucarro',
-  ogDescription: 'Política de privacidad y tratamiento de datos personales de Alquilatucarro según la Ley 1581 de 2012.',
+  description: `Política de privacidad y tratamiento de datos personales de ${franchise.shortname}. Conoce cómo protegemos tu información según la Ley 1581 de 2012.`,
+  ogTitle: `Política de Privacidad | ${franchise.shortname}`,
+  ogDescription: `Política de privacidad y tratamiento de datos personales de ${franchise.shortname} según la Ley 1581 de 2012.`,
 })
 </script>

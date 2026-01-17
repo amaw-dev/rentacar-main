@@ -3,7 +3,7 @@ name: Deploy to Firebase
 on:
   push:
     branches:
-      - main
+      - alquilame
 
 env:
   NODE_VERSION: '20'
@@ -82,7 +82,7 @@ jobs:
           # Retry logic for transient network errors (ECONNRESET)
           max_attempts=3
           attempt=1
-          until firebase deploy --only functions:rentacar_main_alquilatucarro; do
+          until firebase deploy --only functions:rentacar_main_alquilame; do
             if [ $attempt -ge $max_attempts ]; then
               echo "Failed after $max_attempts attempts"
               exit 1
@@ -95,7 +95,7 @@ jobs:
       - name: Determine version bump
         id: version
         run: |
-          TAG_PREFIX="alquilatucarro-v"
+          TAG_PREFIX="alquilame-v"
 
           # Get latest tag matching our prefix
           LATEST_TAG=$(git tag -l "${TAG_PREFIX}*" --sort=-v:refname | head -1)

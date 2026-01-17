@@ -5,7 +5,7 @@
       <template #title>
         <div class="text-white text-3xl md:text-5xl text-center font-bold">
           <span class="block">¡Gana Dinero Refiriendo</span>
-          <span class="block">con AlquilaTuCarro.com!</span>
+          <span class="block">con {{ franchise.shortname }}!</span>
         </div>
       </template>
       <template #description>
@@ -167,8 +167,8 @@
         <h2 class="text-2xl md:text-3xl font-bold mb-4">Contáctanos</h2>
         <p class="text-lg mb-6">
           ¿Tienes dudas? Escríbenos a nuestro correo
-          <a href="mailto:info@alquilatucarro.com" class="text-amber-400 hover:underline">
-            info@alquilatucarro.com
+          <a :href="`mailto:${franchise.email}`" class="text-amber-400 hover:underline">
+            {{ franchise.email }}
           </a>
           o contáctanos a través de WhatsApp en el número
           <a :href="franchise.whatsapp" target="_blank" class="text-amber-400 hover:underline">
@@ -183,7 +183,7 @@
     <section class="bg-blue-950 text-white py-6">
       <div class="max-w-4xl mx-auto px-4 text-center">
         <p class="text-sm">
-          &copy; {{ currentYear }} AlquilaTuCarro.com. Todos los derechos reservados.
+          &copy; {{ currentYear }} {{ franchise.name }}. Todos los derechos reservados.
           <NuxtLink to="/gana/politicas-privacidad" class="text-amber-400 hover:underline ml-2">
             Políticas de privacidad
           </NuxtLink>
@@ -207,14 +207,14 @@ useHead({
   meta: [
     {
       name: 'description',
-      content: 'Únete al programa de referidos de AlquilaTuCarro.com y gana el 5% de comisión por cada reserva efectiva que realicen tus contactos.'
+      content: `Únete al programa de referidos de ${franchise.name} y gana el 5% de comisión por cada reserva efectiva que realicen tus contactos.`
     }
   ]
 })
 
 useSeoMeta({
   ogTitle: `Programa de Referidos | ${franchise.shortname}`,
-  ogDescription: 'Gana dinero refiriendo con AlquilaTuCarro.com. Recibe el 5% de comisión por cada reserva efectiva.',
+  ogDescription: `Gana dinero refiriendo con ${franchise.name}. Recibe el 5% de comisión por cada reserva efectiva.`,
   ogType: 'website',
 })
 
@@ -224,7 +224,7 @@ definePageMeta({
 })
 
 const pasos = [
-  'Regístrate en alquilatucarro.com/gana y completa el formulario con tus datos.',
+  `Regístrate en ${franchise.name}/gana y completa el formulario con tus datos.`,
   'Recibe tu enlace único para compartir con tus contactos.',
   'Comparte tu enlace y ayuda a tus contactos a realizar reservas.',
   'Gana el 5% de comisión por cada reserva efectiva realizada a través de tu enlace.'
@@ -284,14 +284,14 @@ const preguntas = [
   },
   {
     label: '¿Qué hago si tengo problemas con mi enlace o mis comisiones?',
-    content: 'Puedes contactarnos a través de nuestro correo info@alquilatucarro.com o nuestro WhatsApp +57 301 672 9250.'
+    content: `Puedes contactarnos a través de nuestro correo ${franchise.email} o nuestro WhatsApp ${franchise.phone}.`
   },
   {
     label: '¿En qué ciudades de Colombia está disponible el servicio?',
     content: 'Estamos disponibles en: Armenia, Barranquilla, Bogotá, Bucaramanga, Cali, Cartagena, Cúcuta, Floridablanca, Ibagué, Manizales, Medellín, Montería, Neiva, Pereira, Santa Marta, Soledad, Palmira, Valledupar y Villavicencio.'
   },
   {
-    label: '¿Por qué confiar en AlquilaTuCarro.com?',
+    label: `¿Por qué confiar en ${franchise.name}?`,
     content: 'Somos una plataforma confiable y líder en la renta de autos en Colombia, con una amplia red de socios y rentadoras locales en más de 20 ciudades del país.'
   }
 ]
@@ -303,7 +303,7 @@ const testimonios = [
   },
   {
     nombre: 'María López',
-    texto: 'Recomendar AlquilaTuCarro.com fue una decisión sencilla. Mi enlace generó comisiones rápidamente.'
+    texto: `Recomendar ${franchise.name} fue una decisión sencilla. Mi enlace generó comisiones rápidamente.`
   },
   {
     nombre: 'Carlos García',

@@ -82,7 +82,7 @@ export function useCityProductSchema(cityName: string, citySlug: string) {
       category: 'Alquiler de Vehículos',
       brand: {
         '@type': 'Brand',
-        name: 'Alquilatucarro'
+        name: franchise.name
       },
       image: category.image,
       offers: <AggregateOffer>{
@@ -95,7 +95,7 @@ export function useCityProductSchema(cityName: string, citySlug: string) {
         priceValidUntil: '2026-12-31',
         seller: {
           '@type': 'Organization',
-          name: 'Alquilatucarro',
+          name: franchise.name,
           url: franchise.website
         },
         areaServed: {

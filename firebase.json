@@ -3,7 +3,7 @@
     "source": ".output/server"
   },
   "hosting": {
-    "site": "rentacar-main-alquilatucarro",
+    "site": "rentacar-main-alquilame",
     "public": ".output/public",
     "headers": [
       {
@@ -23,7 +23,7 @@
     "rewrites": [
       {
         "source": "**",
-        "function": "rentacar_main_alquilatucarro"
+        "function": "rentacar_main_alquilame"
       }
     ],
     "cleanUrls": true

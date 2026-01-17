@@ -22,7 +22,7 @@ export const useLocalBusiness = (cityId: string, cityName: string) => {
         return <LocalBusiness>{
             '@type': 'AutoRental',
             '@id': `${franchise.website}/${cityId}#${branch.code}`,
-            name: `Alquilatucarro ${branch.name}`,
+            name: `${franchise.name} ${branch.name}`,
             description: `Alquiler de carros en ${branch.name}, ${cityName}. Reserva sin anticipos, recoge tu vehículo y paga al final.`,
             url: `${franchise.website}/${cityId}`,
             telephone: franchise.phone,

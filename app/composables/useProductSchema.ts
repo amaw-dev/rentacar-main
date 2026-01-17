@@ -36,7 +36,7 @@ export const useProductSchema = (options: ProductSchemaOptions) => {
         category: 'Alquiler de Vehículos',
         brand: {
             '@type': 'Brand',
-            name: 'Alquilatucarro'
+            name: franchise.name
         },
         image: models[0]?.image || franchise.logo,
         offers: <AggregateOffer>{
@@ -49,7 +49,7 @@ export const useProductSchema = (options: ProductSchemaOptions) => {
             priceValidUntil: getNextMonthDate(),
             seller: {
                 '@type': 'Organization',
-                name: 'Alquilatucarro',
+                name: franchise.name,
                 url: franchise.website
             },
             areaServed: {
@@ -122,7 +122,7 @@ export const useCarSchema = (options: ProductSchemaOptions) => {
                 availability: 'https://schema.org/InStock',
                 seller: {
                     '@type': 'Organization',
-                    name: 'Alquilatucarro'
+                    name: franchise.name
                 }
             }
         }

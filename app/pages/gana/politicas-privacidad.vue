@@ -127,7 +127,7 @@
             <p class="text-gray-700">
               AMAW S.A.S. se reserva el derecho de modificar esta política en cualquier momento. Cualquier cambio
               será notificado a los participantes con al menos 15 días de anticipación y publicado en
-              <NuxtLink to="/gana" class="text-amber-600 hover:underline">alquilatucarro.com/gana</NuxtLink>.
+              <NuxtLink to="/gana" class="text-amber-600 hover:underline">{{ franchise.name }}/gana</NuxtLink>.
             </p>
           </div>
 
@@ -173,7 +173,7 @@ useHead({
   meta: [
     {
       name: 'description',
-      content: 'Políticas de privacidad del programa de referidos de AlquilaTuCarro.com - AMAW S.A.S.'
+      content: `Políticas de privacidad del programa de referidos de ${franchise.name} - AMAW S.A.S.`
     }
   ]
 })

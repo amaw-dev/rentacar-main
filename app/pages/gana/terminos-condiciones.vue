@@ -154,8 +154,11 @@
               </li>
               <li>
                 Las modificaciones serán publicadas en la página oficial:
-                <NuxtLink to="/gana" class="text-amber-600 hover:underline">
-                  alquilatucarro.com/gana
+                <NuxtLink 
+                  to="/gana" 
+                  class="text-amber-600 hover:underline"
+                  v-text="franchise.name + '/gana'"
+                >
                 </NuxtLink>.
               </li>
               <li>
@@ -187,7 +190,7 @@
                 Al registrarse en el programa de referidos y aceptar digitalmente los términos y
                 condiciones en
                 <NuxtLink to="/gana" class="text-amber-600 hover:underline">
-                  alquilatucarro.com/gana
+                  {{ franchise.name }}/gana
                 </NuxtLink>,
                 el participante declara haber leído, entendido y aceptado este contrato en su totalidad.
               </li>
@@ -217,7 +220,7 @@ useHead({
   meta: [
     {
       name: 'description',
-      content: 'Términos y condiciones del programa de comisiones por referidos de AlquilaTuCarro.com - AMAW S.A.S.'
+      content: `Términos y condiciones del programa de comisiones por referidos de ${franchise.name} - AMAW S.A.S.`
     }
   ]
 })

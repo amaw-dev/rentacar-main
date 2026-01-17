@@ -4,7 +4,7 @@
     <UPageHero orientation="vertical">
       <template #title>
         <h1 class="text-white text-3xl md:text-4xl text-center font-bold">
-          Blog de <span class="text-red-500">Alquilatucarro</span>
+          Blog de <span class="text-red-500">{{ franchise.shortname }}</span>
         </h1>
       </template>
       <template #description>

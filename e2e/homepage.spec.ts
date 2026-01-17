@@ -5,7 +5,7 @@ test.describe('Página principal', () => {
     await page.goto('/');
 
     // Verificar título
-    await expect(page).toHaveTitle(/Alquilatucarro/);
+    await expect(page).toHaveTitle(/Alquilame/);
 
     // Verificar que hay un H1
     const h1 = page.locator('h1').first();

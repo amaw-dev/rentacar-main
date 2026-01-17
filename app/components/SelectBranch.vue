@@ -1,11 +1,11 @@
 <template>
     <!-- Móvil: select nativo (mejor UX táctil) -->
     <div class="relative w-full sm:hidden">
-      <label for="select-branch-mobile" class="sr-only">Selecciona ciudad de recogida</label>
       <LocationIcon cls="absolute left-3 top-1/2 -translate-y-1/2 text-red-600 size-5 pointer-events-none" />
       <select
         id="select-branch-mobile"
         v-model="selectedBranch"
+        aria-label="Selecciona ciudad de recogida"
         :class="[
           'select-branch-critical w-full rounded-xl text-black py-6 pl-10 pr-12 border border-gray-400 appearance-none',
           variant === 'gray' ? 'bg-gray-200' : 'bg-white'
@@ -109,6 +109,6 @@ const goToReservationPage = async (branch: BranchData) =>
 const createReservationURL = (branch: BranchData) =>
   `/${branch.city}/buscar-vehiculos/lugar-recogida/${branch.code.toLowerCase()}/lugar-devolucion/${branch.code.toLowerCase()}/fecha-recogida/${reservationInitDay}/fecha-devolucion/${reservationEndDay}/hora-recogida/${reservationInitHour}/hora-devolucion/${reservationEndHour}`;
 
-  // https://alquilatucarro.com/cali/buscar-vehiculos/lugar-recogida/aakal/lugar-devolucion/aakal/fecha-recogida/2026-01-10/fecha-devolucion/2026-01-17/hora-recogida/12:00/hora-devolucion/12:00
+  // https://alquilame.co/cali/buscar-vehiculos/lugar-recogida/aakal/lugar-devolucion/aakal/fecha-recogida/2026-01-10/fecha-devolucion/2026-01-17/hora-recogida/12:00/hora-devolucion/12:00
 
 </script>

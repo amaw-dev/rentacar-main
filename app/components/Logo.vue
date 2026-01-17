@@ -7,7 +7,7 @@
     height="40"
     style="max-height: 2.5rem; max-width: 10rem;"
     :class="cls"
-    aria-label="Alquilatucarro logo"
+    aria-label="Alquilame logo"
     role="img"
   >
     <g id="Capa_x0020_1">

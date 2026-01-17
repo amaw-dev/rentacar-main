@@ -4,7 +4,7 @@ description: "Guía completa para elegir el carro ideal: compacto, sedán, SUV, 
 image: /img/blog/tipos-carros.webp
 alt: Diferentes tipos de carros disponibles para alquiler en Colombia
 author:
-  name: Alquilatucarro
+  name: Alquilame
   avatar: https://firebasestorage.googleapis.com/v0/b/rentacar-403321.firebasestorage.app/o/rentacar-main%2Falquilatucarro%2Fimg%2Flogo.png?alt=media&token=975cfe04-c619-44bc-964a-e6231ca92dfe
 date: 2026-01-13
 category: guias
@@ -207,7 +207,7 @@ Un solo vehículo, todos juntos, más económico que dos carros separados.
 
 ## Encuentra tu Carro Ideal
 
-En Alquilatucarro tenemos todos los tipos de vehículos que necesitas, disponibles en **19 ciudades de Colombia**. Sin anticipos, sin trámites complicados, con la mejor atención.
+En Alquilame tenemos todos los tipos de vehículos que necesitas, disponibles en **19 ciudades de Colombia**. Sin anticipos, sin trámites complicados, con la mejor atención.
 
 Ya sea que busques un compacto económico para la ciudad o una camioneta para tu próxima aventura, tenemos el carro perfecto esperándote.
 
