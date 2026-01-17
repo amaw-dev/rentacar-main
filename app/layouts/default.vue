@@ -22,12 +22,12 @@
         <!-- Móvil: Bandera diagonal en esquina + Logo centrado -->
         <div class="md:hidden">
           <IconsColombiaFlagCorner cls="absolute top-0 left-0 w-32 h-32 -translate-x-[10%] -translate-y-[10%]" />
-          <NuxtLink to="/" aria-label="alquilatucarro" class="absolute left-1/2 -translate-x-1/2">
+          <NuxtLink to="/" :aria-label="franchise.name" class="absolute left-1/2 -translate-x-1/2">
             <Logo cls="h-8 w-auto" />
           </NuxtLink>
         </div>
         <!-- Desktop: Bandera + Logo juntos como unidad -->
-        <NuxtLink to="/" aria-label="alquilatucarro" class="hidden md:flex items-center gap-3">
+        <NuxtLink to="/" :aria-label="franchise.name" class="hidden md:flex items-center gap-3">
           <IconsColombiaFlag cls="h-6 w-auto" />
           <Logo cls="h-10 w-auto" />
         </NuxtLink>
@@ -67,7 +67,7 @@
     <section id="sedes" class="bg-blue-700 text-white text-center py-12 lg:py-20">
       <div class="max-w-7xl mx-auto px-4 space-y-6">
         <div>
-          <NuxtLink to="/" aria-label="alquilatucarro">
+          <NuxtLink to="/" :aria-label="franchise.name">
             <Logo cls="h-10 w-auto mx-auto" />
           </NuxtLink>
         </div>
@@ -110,7 +110,7 @@
     <!-- Footer -->
     <UFooter class="bg-black text-white text-center">
       <p class="text-white">
-        copyright 2025 © Alquilatucarro renta car Colombia
+        copyright 2025 © {{ franchise.name }} renta car Colombia
       </p>
     </UFooter>
 

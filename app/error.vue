@@ -87,13 +87,14 @@
 
     <!-- Footer mínimo -->
     <footer class="py-4 text-center text-gray-500 text-sm">
-      © {{ new Date().getFullYear() }} AlquilaTuCarro.com - Todos los derechos reservados
+      © {{ new Date().getFullYear() }} Alquilame.co - Todos los derechos reservados
     </footer>
   </div>
 </template>
 
 <script setup lang="ts">
 import type { NuxtError } from '#app'
+const { franchise } = useAppConfig();
 
 const props = defineProps<{
   error: NuxtError
@@ -124,6 +125,6 @@ const handleError = () => {
 }
 
 useHead({
-  title: `Error ${props.error?.statusCode || 404} | AlquilaTuCarro.com`
+  title: `Error ${props.error?.statusCode || 404} | ${franchise.name}`
 })
 </script>
