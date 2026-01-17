@@ -5,7 +5,32 @@ Reducir CLS (Cumulative Layout Shift) a < 0.1 en mobile y desktop.
 
 ---
 
-## Estado Actual (2026-01-16 - Actualizado después de PR #52)
+## Estado Actual (2026-01-17 - PRs #56, #57, #58)
+
+| Dispositivo | Performance | CLS | LCP | Objetivo CLS | Estado |
+|-------------|-------------|-----|-----|--------------|--------|
+| Mobile | 81 | **0** | 3.8s | < 0.1 | ✅ **CLS ALCANZADO** |
+| Desktop | **99** | **0** | 0.8s | < 0.1 | ✅ **EXCELENTE** |
+
+### 🎯 Resumen de cambios (2026-01-17)
+**Problemas encontrados:**
+1. **Nuxt Islands NO funcionaban en producción** - 0 server components renderizados
+2. **Imagen hero estaba comentada** del test anterior
+
+**Solución aplicada:**
+- Convertir todos los `.server.vue` a `.vue` normales
+- Restaurar `<ImagesFamily />` que estaba comentado
+
+**Archivos modificados:**
+- `Hero/Description.server.vue` → `Hero/Description.vue`
+- `Hero/Title.server.vue` → `Hero/Title.vue`
+- `Hero/Headline.server.vue` → `Hero/Headline.vue`
+- `Images/Family.server.vue` → `Images/Family.vue`
+- `app/pages/index.vue` - descomentar `<ImagesFamily />`
+
+---
+
+## Estado Anterior (2026-01-16 - Actualizado después de PR #52)
 
 | Dispositivo | CLS Actual | CLS Anterior | Objetivo | Estado |
 |-------------|------------|--------------|----------|--------|
