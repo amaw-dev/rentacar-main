@@ -1,11 +1,11 @@
 <template>
     <!-- Móvil: select nativo (mejor UX táctil) -->
     <div class="relative w-full sm:hidden">
-      <label for="select-branch-mobile" class="sr-only">Selecciona ciudad de recogida</label>
       <LocationIcon cls="absolute left-3 top-1/2 -translate-y-1/2 text-red-600 size-5 pointer-events-none" />
       <select
         id="select-branch-mobile"
         v-model="selectedBranch"
+        aria-label="Selecciona ciudad de recogida"
         :class="[
           'select-branch-critical w-full rounded-xl text-black py-6 pl-10 pr-12 border border-gray-400 appearance-none',
           variant === 'gray' ? 'bg-gray-200' : 'bg-white'

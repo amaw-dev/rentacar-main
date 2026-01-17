@@ -371,6 +371,7 @@ import { defineAsyncComponent } from "vue";
 import {
   IconsStarIcon as StarIcon,
   IconsLocationIcon as LocationIcon,
+  IconsClockIcon as ClockIcon,
 } from "#components";
 import { useCityExpandedContent, hasCityExpandedContent } from "~/composables/useCityContent";
 import { useRelatedCities } from "~/composables/useCityRelations";

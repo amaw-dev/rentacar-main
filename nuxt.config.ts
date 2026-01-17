@@ -8,17 +8,6 @@ export default defineNuxtConfig({
 
   devtools: { enabled: true },
 
-  modules: ['@nuxtjs/seo', '@nuxt/ui', '@pinia/nuxt', 'nuxt-llms', 'nuxt-vitalizer', '@nuxt/content'],
-
-  // Optimización Core Web Vitals
-  vitalizer: {
-    // NOTA: disableStylesheets: 'entry' causaba FOUC en páginas de ciudad
-    // Los estilos no se inlinean correctamente durante SSR
-    disableStylesheets: false,
-    // Remueve prefetch links para mejorar FCP
-    disablePrefetchLinks: true,
-  },
-  
   // Component Islands: renderiza componentes estáticos sin hidratación Vue
   // Reduce JavaScript en el cliente para mejorar LCP
   experimental: {
@@ -44,7 +33,7 @@ export default defineNuxtConfig({
             .w-2\\.5 { width: 0.625rem; } .h-2\\.5 { height: 0.625rem; }
             .w-4 { width: 1rem; } .h-4 { height: 1rem; }
             .w-5 { width: 1.25rem; } .h-5 { height: 1.25rem; }
-            @media (min-width: 768px) { .md\\:w-4 { width: 1rem; } .md\\:h-4 { height: 1rem; } }
+            @media (min-width: 768px) { .md\\:w-4 { width: 1rem; } .md\\:h-4 { height: 1rem; } .md\\:text-base { font-size: 1rem; line-height: 1.5rem; } }
             .mx-auto { margin-left: auto; margin-right: auto; }
             @media (min-width: 768px) { header .md\\:hidden { display: none !important; } }
             @media (max-width: 767px) { header .hidden { display: none !important; } }
@@ -68,16 +57,76 @@ export default defineNuxtConfig({
             .gap-8 { gap: 2rem; }
             .items-center { align-items: center; }
             .relative { position: relative; }
+            .absolute { position: absolute; }
             .isolate { isolation: isolate; }
+            /* Header mobile positioning - CRÍTICO para CLS */
+            .left-0 { left: 0; }
+            .top-0 { top: 0; }
+            .right-4 { right: 1rem; }
+            .top-4 { top: 1rem; }
+            .left-1\\/2 { left: 50%; }
+            /* Icon colors - CRÍTICO para CLS (evita iconos negros) */
+            .text-red-600 { color: #dc2626; }
+            .text-gray-600 { color: #4b5563; }
+            /* Header sizes - CRÍTICO para CLS (bandera y logo) */
+            .w-32 { width: 8rem; }
+            .h-32 { height: 8rem; }
+            .h-6 { height: 1.5rem; }
+            .h-8 { height: 2rem; }
+            .h-10 { height: 2.5rem; }
+            .w-auto { width: auto; }
+            /* Tailwind transform composición - usar CSS variables */
+            .transform, .-translate-x-1\\/2, .-translate-y-1\\/2, .-translate-x-\\[10\\%\\], .-translate-y-\\[10\\%\\] {
+              --tw-translate-x: 0;
+              --tw-translate-y: 0;
+              transform: translate(var(--tw-translate-x), var(--tw-translate-y));
+            }
+            .-translate-x-1\\/2 { --tw-translate-x: -50%; }
+            .-translate-y-1\\/2 { --tw-translate-y: -50%; }
+            .-translate-x-\\[10\\%\\] { --tw-translate-x: -10%; }
+            .-translate-y-\\[10\\%\\] { --tw-translate-y: -10%; }
             /* Hero container padding */
             .py-8 { padding-top: 2rem; padding-bottom: 2rem; }
+            .py-16 { padding-top: 4rem; padding-bottom: 4rem; }
+            .py-24 { padding-top: 6rem; padding-bottom: 6rem; }
             .px-4 { padding-left: 1rem; padding-right: 1rem; }
+            /* UPageHero/UPageSection gaps - CRÍTICO para CLS */
+            .gap-16 { gap: 4rem; }
+            /* Nuxt UI PageHero slot margins - CRÍTICO para CLS */
+            .mt-10 { margin-top: 2.5rem; }
+            .mb-4 { margin-bottom: 1rem; }
+            /* Nuxt UI PageHero typography - CRÍTICO para CLS */
+            .text-5xl { font-size: 3rem; line-height: 1; }
+            .tracking-tight { letter-spacing: -0.025em; }
+            .font-bold { font-weight: 700; }
+            .text-pretty { text-wrap: pretty; }
+            .text-center { text-align: center; }
+            .justify-center { justify-content: center; }
+            .flex-row { flex-direction: row; }
+            .space-x-0\\.5 > :not(:last-child) { margin-right: 0.125rem; }
+            /* Star rating text - CRÍTICO para CLS */
+            .ml-2 { margin-left: 0.5rem; }
+            .text-xs { font-size: 0.75rem; line-height: 1rem; }
+            /* SelectBranch responsive visibility - CRÍTICO para CLS */
+            .hidden { display: none; }
+            .sm\\:hidden { display: block; }
+            @media (min-width: 640px) {
+              .sm\\:hidden { display: none; }
+              .sm\\:flex { display: flex; }
+            }
             /* Max-width container */
             .max-w-\\(--ui-container\\), .max-w-7xl { max-width: 80rem; }
             @media (min-width: 640px) {
+              /* UPageSection padding */
               .sm\\:py-16 { padding-top: 4rem; padding-bottom: 4rem; }
+              .sm\\:py-24 { padding-top: 6rem; padding-bottom: 6rem; }
+              /* UPageHero padding */
+              .sm\\:py-32 { padding-top: 8rem; padding-bottom: 8rem; }
               .sm\\:px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
               .sm\\:gap-y-16 { row-gap: 4rem; }
+              .sm\\:gap-y-24 { row-gap: 6rem; }
+              .sm\\:gap-16 { gap: 4rem; }
+              .sm\\:text-7xl { font-size: 4.5rem; line-height: 1; }
             }
             @media (min-width: 1024px) {
               /* UPage wrapper grid */
@@ -89,10 +138,38 @@ export default defineNuxtConfig({
               /* Hero container grid */
               .lg\\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
               .lg\\:items-center { align-items: center; }
+              /* UPageSection padding */
               .lg\\:py-24 { padding-top: 6rem; padding-bottom: 6rem; }
+              .lg\\:py-32 { padding-top: 8rem; padding-bottom: 8rem; }
+              /* UPageHero padding - CRÍTICO para CLS */
+              .lg\\:py-40 { padding-top: 10rem; padding-bottom: 10rem; }
+              .lg\\:py-20 { padding-top: 5rem; padding-bottom: 5rem; }
+              .lg\\:py-6 { padding-top: 1.5rem; padding-bottom: 1.5rem; }
+              .lg\\:text-5xl { font-size: 3rem; line-height: 1; }
               .lg\\:px-8 { padding-left: 2rem; padding-right: 2rem; }
               /* order-last para imagen en desktop - CRÍTICO para CLS */
               .lg\\:order-last { order: 9999; }
+            }
+            /* CRÍTICO CLS: Sobrescribir padding-top del hero (base.css usa !important) */
+            /* Sin esto, el padding-top cambia de 6rem a 2rem cuando carga el stylesheet diferido */
+            [data-slot="root"].relative.isolate:not(section[id]) [data-slot="container"] {
+              padding-top: 1rem !important;
+            }
+            @media (min-width: 1024px) {
+              [data-slot="root"].relative.isolate:not(section[id]) [data-slot="container"] {
+                padding-top: 2rem !important;
+              }
+            }
+            /* City Page hero - también usa padding custom con !important */
+            .hero-section div[class*="max-w-"][class*="mx-auto"] {
+              padding-top: 2rem !important;
+              padding-bottom: 1rem !important;
+            }
+            @media (min-width: 1024px) {
+              .hero-section div[class*="max-w-"][class*="mx-auto"] {
+                padding-top: 3rem !important;
+                padding-bottom: 1.5rem !important;
+              }
             }
           `,
         },
@@ -219,7 +296,10 @@ export default defineNuxtConfig({
         headers: {
           'Cache-Control': 'public, max-age=3600'
         }
-      }
+      },
+      // Redirects para URLs legacy (404s en Google Search Console)
+      '/gana/politicas-privacidad.html': { redirect: '/gana/politicas-privacidad', statusCode: 301 },
+      '/tratamiento-datos-alquilatucarro.pdf': { redirect: '/politica-privacidad', statusCode: 301 },
     },
     prerender: {
       routes: [
