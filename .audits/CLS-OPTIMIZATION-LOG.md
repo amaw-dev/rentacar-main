@@ -60,10 +60,64 @@ El fix final debe ser añadir más critical CSS, NO deshabilitar vitalizer.
    - El problema de LCP está en otra parte (CSS blocking, JS, o render delay)
 
 ### Próximos pasos para mejorar Mobile FCP/LCP
-- [ ] Investigar CSS render-blocking (470ms según PageSpeed)
+- [x] Investigar CSS render-blocking (470ms según PageSpeed) → **450ms de entry.css (96KB)**
 - [ ] Optimizar hydration de Vue/Nuxt
 - [ ] Considerar prerender del hero content
-- [ ] Analizar el "Element render delay: 1,890ms" que mostró PageSpeed
+- [x] Analizar el "Element render delay: 1,890ms" que mostró PageSpeed → **CAUSA ENCONTRADA**
+
+---
+
+## 🎯 PRÓXIMA ACCIÓN (2026-01-17) - Optimizar LCP Mobile
+
+### Diagnóstico Completado (2026-01-16 ~20:15)
+
+**Métricas actuales (con imagen hero restaurada):**
+- Performance: 85
+- FCP: 2.7s
+- LCP: 3.7s
+- TBT: 70ms ✅
+- CLS: 0 ✅
+
+**Causas del LCP lento identificadas:**
+
+| Problema | Impacto | Causa Raíz |
+|----------|---------|------------|
+| **Element render delay** | 1,360ms | Nuxt Islands (`.server.vue`) |
+| **CSS render-blocking** | 2,400ms | `entry.css` de 96KB |
+
+### SOLUCIÓN LISTA PARA IMPLEMENTAR
+
+**Convertir Hero components de `.server.vue` a `.vue` normal:**
+
+Los 3 componentes Hero son 100% estáticos (sin props, sin API calls, sin datos dinámicos):
+
+```
+app/components/Hero/
+├── Description.server.vue  →  Description.vue
+├── Title.server.vue        →  Title.vue
+└── Headline.server.vue     →  Headline.vue
+```
+
+**Contenido de cada archivo (no cambia, solo el nombre):**
+- `Description.vue`: Párrafo "Contamos con 27 sedes..."
+- `Title.vue`: "ALQUILER DE CARROS EN COLOMBIA"
+- `Headline.vue`: 5 estrellas SVG + "4.9 reviews"
+
+**Impacto esperado:**
+- Eliminar ~1,360ms de Element render delay
+- El contenido del Hero estará en el HTML inicial
+- LCP debería bajar de 3.7s a ~2.3s
+
+### Comandos para ejecutar mañana:
+
+```bash
+cd "C:/CLAUDE Proyectos diego/rentacar/worktree-seo-alquilatucarro/app/components/Hero"
+mv Description.server.vue Description.vue
+mv Title.server.vue Title.vue
+mv Headline.server.vue Headline.vue
+```
+
+Luego crear commit, push, y medir en PageSpeed.
 
 ---
 
@@ -413,3 +467,49 @@ vitalizer: {
 - Siempre tomar 2-3 mediciones para confirmar tendencia
 - Mobile es prioridad (Google usa mobile-first indexing)
 - Desktop tiene problema adicional de TBT alto (2,680ms) que es issue separado de CLS
+
+---
+
+## 🔖 CHECKPOINTS - Puntos de Control
+
+Sistema para revertir a configuraciones conocidas si un cambio empeora las métricas.
+
+### Checkpoint #1 - PR #54 (Desktop Excelente) ⭐ MEJOR DESKTOP
+**Fecha**: 2026-01-16
+**Commit**: `f9701c4` (vitalizer deshabilitado)
+**Cómo revertir**: `git checkout f9701c4 -- nuxt.config.ts`
+
+| Métrica | Mobile | Desktop |
+|---------|--------|---------|
+| Performance | 65 | **99** |
+| CLS | **0** | **0** |
+| LCP | 3.6s | ~0.8s |
+| TBT | 30ms | ~20ms |
+
+**Pros**: CLS=0 en ambos, Desktop perfecto
+**Contras**: Mobile LCP lento (3.6s)
+
+---
+
+### Checkpoint #2 - Antes de .server.vue change (2026-01-17)
+**Commit**: `44de1f5` (hero image restaurada)
+**Cómo revertir**: `git checkout 44de1f5 -- app/components/Hero/`
+
+| Métrica | Mobile | Desktop |
+|---------|--------|---------|
+| Performance | ~85 | ~99 |
+| CLS | 0 | 0 |
+| LCP | 3.7s | ~0.8s |
+
+**Estado**: Baseline antes de eliminar Nuxt Islands
+
+---
+
+### 🎯 OBJETIVO: Checkpoint #3 - Después de .server.vue → .vue
+**Fecha**: 2026-01-17 (pendiente)
+**Cambio**: Convertir Hero/*.server.vue a *.vue para eliminar render delay
+
+**Expectativa**:
+- LCP Mobile: 3.7s → ~2.3s (-1.4s)
+- CLS: mantener 0
+- Desktop: mantener ≥95
