@@ -4,7 +4,7 @@ description: "Guía completa con todos los documentos y requisitos necesarios pa
 image: /img/blog/requisitos-alquiler.webp
 alt: Persona mostrando documentos para alquilar carro en Colombia
 author:
-  name: Alquilame
+  name: Alquicarros
   avatar: https://firebasestorage.googleapis.com/v0/b/rentacar-403321.firebasestorage.app/o/rentacar-main%2Falquilatucarro%2Fimg%2Flogo.png?alt=media&token=975cfe04-c619-44bc-964a-e6231ca92dfe
 date: 2026-01-13
 category: guias

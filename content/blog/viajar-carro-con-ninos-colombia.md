@@ -4,7 +4,7 @@ description: "Tips esenciales para viajar con niños en carro por Colombia: sill
 image: /img/blog/viajar-ninos.webp
 alt: Viaje familiar por carretera con vista panorámica del camino
 author:
-  name: Alquilame
+  name: Alquicarros
   avatar: https://firebasestorage.googleapis.com/v0/b/rentacar-403321.firebasestorage.app/o/rentacar-main%2Falquilatucarro%2Fimg%2Flogo.png?alt=media&token=975cfe04-c619-44bc-964a-e6231ca92dfe
 date: 2026-01-13
 category: tips
@@ -294,7 +294,7 @@ En Colombia, los menores de 10 años deben viajar en el asiento trasero. A parti
 
 ### ¿Puedo alquilar una silla de bebé con el carro?
 
-Sí, en Alquilame ofrecemos sillas de bebé como accesorio adicional. Solicítala al momento de reservar para garantizar disponibilidad.
+Sí, en Alquicarros ofrecemos sillas de bebé como accesorio adicional. Solicítala al momento de reservar para garantizar disponibilidad.
 
 ### ¿Qué pasa si mi hijo vomita en el carro alquilado?
 

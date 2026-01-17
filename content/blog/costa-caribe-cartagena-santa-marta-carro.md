@@ -4,7 +4,7 @@ description: "Guía completa para recorrer la costa caribe colombiana en carro. 
 image: /img/blog/costa-caribe.webp
 alt: Vista panorámica de la costa caribe colombiana con carretera bordeando el mar
 author:
-  name: Alquilame
+  name: Alquicarros
   avatar: https://firebasestorage.googleapis.com/v0/b/rentacar-403321.firebasestorage.app/o/rentacar-main%2Falquilatucarro%2Fimg%2Flogo.png?alt=media&token=975cfe04-c619-44bc-964a-e6231ca92dfe
 date: 2026-01-13
 category: rutas
@@ -269,7 +269,7 @@ La temperatura promedio es de 28-32°C todo el año. El calor es constante, así
 
 Recorrer la costa caribe colombiana en carro propio es la mejor forma de vivir este destino mágico. Sin horarios fijos, sin restricciones (recuerda: Cartagena y Santa Marta no tienen pico y placa), y con la libertad de explorar cada rincón.
 
-En **Alquilame** tenemos sedes en las tres ciudades principales de la ruta:
+En **Alquicarros** tenemos sedes en las tres ciudades principales de la ruta:
 
 - [Alquiler de carros en Cartagena →](/cartagena)
 - [Alquiler de carros en Barranquilla →](/barranquilla)

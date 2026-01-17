@@ -4,7 +4,7 @@ description: "Horarios actualizados de pico y placa en Bogotá, Medellín, Cali,
 image: /img/blog/pico-y-placa.webp
 alt: Tráfico vehicular en ciudad colombiana con restricción de pico y placa
 author:
-  name: Alquilame
+  name: Alquicarros
   avatar: https://firebasestorage.googleapis.com/v0/b/rentacar-403321.firebasestorage.app/o/rentacar-main%2Falquilatucarro%2Fimg%2Flogo.png?alt=media&token=975cfe04-c619-44bc-964a-e6231ca92dfe
 date: 2026-01-13
 category: guias
