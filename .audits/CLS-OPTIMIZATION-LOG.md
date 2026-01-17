@@ -5,119 +5,12 @@ Reducir CLS (Cumulative Layout Shift) a < 0.1 en mobile y desktop.
 
 ---
 
-## Estado Actual (2026-01-16 - Después de PR #55 TEST sin imagen hero)
+## Estado Actual (2026-01-16 - Actualizado después de PR #52)
 
 | Dispositivo | CLS Actual | CLS Anterior | Objetivo | Estado |
 |-------------|------------|--------------|----------|--------|
-| Mobile | **0** | 0.208 | < 0.1 | ✅ **ALCANZADO** (con vitalizer deshabilitado) |
-| Desktop | **0** | 0.285 | < 0.1 | ✅ **ALCANZADO** (con vitalizer deshabilitado) |
-
-### 🌟 RESULTADO EXCELENTE EN DESKTOP (PR #54)
-- **Performance Desktop: 99** (antes era 48)
-- **CLS Desktop: 0** (antes era 0.285)
-- Este resultado es EXCELENTE y debe preservarse en futuros cambios
-
-### ⚠️ IMPORTANTE: PR #54 es un TEST
-PR #54 deshabilita `nuxt-vitalizer` stylesheet deferral. Esto **ELIMINA el CLS** pero **EMPEORA FCP/LCP en mobile**.
-El fix final debe ser añadir más critical CSS, NO deshabilitar vitalizer.
-
----
-
-## Test PR #55 - Sin Imagen Hero (2026-01-16 ~19:49)
-
-**Objetivo**: Determinar si la imagen hero es la causa del LCP lento en mobile.
-
-**Cambio realizado**: Comentado `<ImagesFamily />` en `app/pages/index.vue`, dejando solo el contenedor con `bg-neutral-700`.
-
-### Resultados Comparativos
-
-| Métrica | Mobile CON img (PR #54) | Mobile SIN img (PR #55) | Desktop CON img (PR #54) | Desktop SIN img (PR #55) |
-|---------|-------------------------|-------------------------|--------------------------|--------------------------|
-| **Performance** | 65 | **81** (+16) | **99** | 86 (-13) |
-| FCP | 2.9s | 2.9s | ~0.5s | 0.6s |
-| LCP | 3.6s | 3.8s (+0.2s) | ~0.8s | 1.2s (+0.4s) |
-| TBT | 30ms | 100ms (+70ms) | ~20ms | 290ms (+270ms) |
-| CLS | 0 | 0 | 0 | 0 |
-| Speed Index | - | 4.6s | - | 0.8s |
-
-### Conclusiones del Test
-
-1. **❌ La imagen hero NO es el cuello de botella del LCP en mobile**
-   - LCP empeoró de 3.6s a 3.8s SIN la imagen
-   - Esto significa que el elemento LCP cambió a otro componente (probablemente texto)
-
-2. **❌ Quitar la imagen PERJUDICA Desktop severamente**
-   - Performance cayó de 99 a 86 (-13 puntos)
-   - LCP empeoró de ~0.8s a 1.2s
-   - TBT empeoró de ~20ms a 290ms
-
-3. **✅ Mobile Performance subió +16 puntos**
-   - Pero esto es por mejora en Speed Index, no en LCP
-   - El Speed Index mejoró porque hay menos contenido que pintar
-
-4. **Decisión: RESTAURAR la imagen hero**
-   - La imagen no es el problema
-   - El problema de LCP está en otra parte (CSS blocking, JS, o render delay)
-
-### Próximos pasos para mejorar Mobile FCP/LCP
-- [x] Investigar CSS render-blocking (470ms según PageSpeed) → **450ms de entry.css (96KB)**
-- [ ] Optimizar hydration de Vue/Nuxt
-- [ ] Considerar prerender del hero content
-- [x] Analizar el "Element render delay: 1,890ms" que mostró PageSpeed → **CAUSA ENCONTRADA**
-
----
-
-## 🎯 PRÓXIMA ACCIÓN (2026-01-17) - Optimizar LCP Mobile
-
-### Diagnóstico Completado (2026-01-16 ~20:15)
-
-**Métricas actuales (con imagen hero restaurada):**
-- Performance: 85
-- FCP: 2.7s
-- LCP: 3.7s
-- TBT: 70ms ✅
-- CLS: 0 ✅
-
-**Causas del LCP lento identificadas:**
-
-| Problema | Impacto | Causa Raíz |
-|----------|---------|------------|
-| **Element render delay** | 1,360ms | Nuxt Islands (`.server.vue`) |
-| **CSS render-blocking** | 2,400ms | `entry.css` de 96KB |
-
-### SOLUCIÓN LISTA PARA IMPLEMENTAR
-
-**Convertir Hero components de `.server.vue` a `.vue` normal:**
-
-Los 3 componentes Hero son 100% estáticos (sin props, sin API calls, sin datos dinámicos):
-
-```
-app/components/Hero/
-├── Description.server.vue  →  Description.vue
-├── Title.server.vue        →  Title.vue
-└── Headline.server.vue     →  Headline.vue
-```
-
-**Contenido de cada archivo (no cambia, solo el nombre):**
-- `Description.vue`: Párrafo "Contamos con 27 sedes..."
-- `Title.vue`: "ALQUILER DE CARROS EN COLOMBIA"
-- `Headline.vue`: 5 estrellas SVG + "4.9 reviews"
-
-**Impacto esperado:**
-- Eliminar ~1,360ms de Element render delay
-- El contenido del Hero estará en el HTML inicial
-- LCP debería bajar de 3.7s a ~2.3s
-
-### Comandos para ejecutar mañana:
-
-```bash
-cd "C:/CLAUDE Proyectos diego/rentacar/worktree-seo-alquilatucarro/app/components/Hero"
-mv Description.server.vue Description.vue
-mv Title.server.vue Title.vue
-mv Headline.server.vue Headline.vue
-```
-
-Luego crear commit, push, y medir en PageSpeed.
+| Mobile | **0.21** | 0.23 | < 0.1 | MEJORADO pero NO ALCANZADO |
+| Desktop | 0.285 | 0.285 | < 0.1 | NO ALCANZADO |
 
 ---
 
@@ -126,9 +19,7 @@ Luego crear commit, push, y medir en PageSpeed.
 ### Mobile
 | Fecha | Performance | CLS | LCP | TBT | Notas |
 |-------|-------------|-----|-----|-----|-------|
-| 2026-01-16 ~19:03 | 82 | **0** | 3.6s | 30ms | **PR #54 TEST** - vitalizer DESHABILITADO |
-| 2026-01-16 ~16:38 | **82** | **0.208** | 3.2s | 110ms | **Después de PR #53** - fix star rating text |
-| 2026-01-16 ~15:42 | 80 | 0.21 | 3.2s | 110ms | Después de PR #52 - fix !important |
+| 2026-01-16 ~15:42 | **80** | **0.21** | 3.2s | 110ms | **Después de PR #52** - fix !important |
 | 2026-01-16 ~10:59 | 78 | 0.201 | - | - | Antes del fix PR #49 |
 | 2026-01-16 ~11:01 | 83 | 0.23 | 2.9s | 130ms | Después del fix PR #49 |
 | 2026-01-16 (previo) | 88 | ~0.2 | - | - | Reportado por usuario (mejor resultado) |
@@ -256,18 +147,7 @@ El componente `Hero/Headline.server.vue` (Nuxt Islands) tiene clases de texto qu
 }
 ```
 
-**Resultado (después de deploy)**:
-- Performance mobile: 82 (+2 puntos)
-- CLS: **0.208** (mejoró de 0.21, pero sigue arriba de 0.1)
-- TBT: 110ms (sin cambio)
-- LCP: 3.2s (sin cambio)
-
-**Análisis post-deploy**:
-- ✅ Las clases de star rating están presentes en critical CSS (verificado con JS)
-- ⚠️ El fix tuvo impacto MÍNIMO (0.21 → 0.208 = -0.002)
-- La causa principal del CLS restante NO es el star rating text
-
-**Conclusión**: El fix del star rating text ayuda pero NO es la causa principal del CLS ~0.2 restante.
+**Resultado**: Pendiente de deploy y medición
 
 ---
 
