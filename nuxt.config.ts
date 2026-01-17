@@ -37,7 +37,7 @@ export default defineNuxtConfig({
             .mx-auto { margin-left: auto; margin-right: auto; }
             @media (min-width: 768px) { header .md\\:hidden { display: none !important; } header .md\\:flex { display: flex !important; } }
             @media (max-width: 767px) { header .hidden { display: none !important; } }
-            @media (min-width: 1024px) { header .lg\\:block { display: block !important; } }
+            @media (min-width: 1024px) { header .lg\\:block { display: block !important; } .lg\\:block { display: block; } }
             .block { display: block; }
             .bg-white { background-color: #fff; }
             .text-white { color: #fff; }
