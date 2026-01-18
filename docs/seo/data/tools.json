@@ -28,7 +28,13 @@
   "gsc": {
     "property": "https://alquilatucarro.com",
     "type": "Domain property",
-    "connected": false,
+    "connected": true,
+    "oauth": {
+      "projectId": "diego-seo-audit",
+      "clientId": "94167550338-ok9uhdmq309tkrhii4cnjl5mbbauqj29.apps.googleusercontent.com",
+      "credentialsFile": "client_secret_94167550338-ok9uhdmq309tkrhii4cnjl5mbbauqj29.apps.googleusercontent.com.json",
+      "configuredAt": "2026-01-18"
+    },
     "quotas": {
       "queriesPerDay": {
         "limit": 25000,
@@ -36,9 +42,9 @@
       }
     },
     "mcp": {
-      "installed": false,
+      "installed": true,
       "repo": null,
-      "note": "Requiere OAuth setup manual",
+      "note": "OAuth configurado - credenciales en carpeta Descargas",
       "setupGuide": "/docs/seo/setup/gsc-oauth-setup.md"
     },
     "dashboardUrl": "https://search.google.com/search-console"
