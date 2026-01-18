@@ -4,7 +4,19 @@ definePageMeta({
   middleware: ['seo-auth']
 })
 
-const { data: keywordsData, pending } = await useFetch('/api/seo/keywords')
+const { data: keywordsData, pending, error } = await useFetch('/api/seo/keywords', {
+  key: 'seo-keywords',
+  default: () => null
+})
+
+// Debug: log data state on client
+if (import.meta.client) {
+  console.log('[SEO Keywords] Data loaded:', {
+    hasData: !!keywordsData.value,
+    pending: pending.value,
+    error: error.value
+  })
+}
 
 // Tracked keywords
 const trackedKeywords = computed(() => keywordsData.value?.tracked || [])

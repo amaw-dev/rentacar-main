@@ -4,7 +4,10 @@ definePageMeta({
   middleware: ['seo-auth']
 })
 
-const { data: toolsData, pending } = await useFetch('/api/seo/tools')
+const { data: toolsData, pending, error } = await useFetch('/api/seo/tools', {
+  key: 'seo-tools',
+  default: () => null
+})
 
 // Tools
 const moz = computed(() => toolsData.value?.moz || {})

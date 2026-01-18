@@ -4,7 +4,20 @@ definePageMeta({
   middleware: ['seo-auth']
 })
 
-const { data: backlinksData, pending } = await useFetch('/api/seo/backlinks')
+const { data: backlinksData, pending, error } = await useFetch('/api/seo/backlinks', {
+  key: 'seo-backlinks',
+  default: () => null
+})
+
+// Debug: log data state on client
+if (import.meta.client) {
+  console.log('[SEO Backlinks] Data loaded:', {
+    hasData: !!backlinksData.value,
+    pending: pending.value,
+    error: error.value,
+    summary: backlinksData.value?.summary
+  })
+}
 
 // Filters
 const filterType = ref<'all' | 'follow' | 'nofollow'>('all')

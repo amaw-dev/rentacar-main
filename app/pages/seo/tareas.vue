@@ -4,8 +4,23 @@ definePageMeta({
   middleware: ['seo-auth']
 })
 
-const { data: tasksData, pending: tasksPending } = await useFetch('/api/seo/tasks')
-const { data: activityData, pending: activityPending } = await useFetch('/api/seo/activity')
+const { data: tasksData, pending: tasksPending, error: tasksError } = await useFetch('/api/seo/tasks', {
+  key: 'seo-tasks',
+  default: () => null
+})
+const { data: activityData, pending: activityPending, error: activityError } = await useFetch('/api/seo/activity', {
+  key: 'seo-activity',
+  default: () => null
+})
+
+// Debug: log data state on client
+if (import.meta.client) {
+  console.log('[SEO Tasks] Data loaded:', {
+    hasTasksData: !!tasksData.value,
+    hasActivityData: !!activityData.value,
+    errors: { tasks: tasksError.value, activity: activityError.value }
+  })
+}
 
 const pending = computed(() => tasksPending.value || activityPending.value)
 
