@@ -34,7 +34,6 @@ robots.txt
 .claude/
 .specify/
 advancedrentalcar/
-docs/
 scripts/
 *.zip
 nul
