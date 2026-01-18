@@ -91,6 +91,30 @@ export default defineNuxtConfig({
             .py-16 { padding-top: 4rem; padding-bottom: 4rem; }
             .py-24 { padding-top: 6rem; padding-bottom: 6rem; }
             .px-4 { padding-left: 1rem; padding-right: 1rem; }
+            /* SEO Dashboard Critical CSS */
+            .bg-gray-900 { background-color: #111827; }
+            .bg-gray-800 { background-color: #1f2937; }
+            .bg-gray-700 { background-color: #374151; }
+            .bg-red-600 { background-color: #dc2626; }
+            .text-gray-400 { color: #9ca3af; }
+            .text-gray-300 { color: #d1d5db; }
+            .rounded-lg { border-radius: 0.5rem; }
+            .rounded-full { border-radius: 9999px; }
+            .shadow-xl { box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1); }
+            .border-gray-600 { border-color: #4b5563; }
+            .border-gray-700 { border-color: #374151; }
+            .border { border-width: 1px; }
+            .p-8 { padding: 2rem; }
+            .p-6 { padding: 1.5rem; }
+            .p-4 { padding: 1rem; }
+            .space-y-6 > :not([hidden]) ~ :not([hidden]) { margin-top: 1.5rem; }
+            .w-16 { width: 4rem; }
+            .h-16 { height: 4rem; }
+            .w-64 { width: 16rem; }
+            .py-3 { padding-top: 0.75rem; padding-bottom: 0.75rem; }
+            .font-semibold { font-weight: 600; }
+            .text-2xl { font-size: 1.5rem; line-height: 2rem; }
+            .text-sm { font-size: 0.875rem; line-height: 1.25rem; }
             /* UPageHero/UPageSection gaps - CRÍTICO para CLS */
             .gap-16 { gap: 4rem; }
             /* Nuxt UI PageHero slot margins - CRÍTICO para CLS */
