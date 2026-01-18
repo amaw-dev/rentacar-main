@@ -21,8 +21,9 @@ export default defineEventHandler(async (event) => {
   }
 
   // Establecer cookie de sesión (expira en 7 días)
+  // httpOnly: false para que useCookie() pueda leerla en el cliente
   setCookie(event, 'seo-auth', 'authenticated', {
-    httpOnly: true,
+    httpOnly: false,
     secure: process.env.NODE_ENV === 'production',
     sameSite: 'lax',
     maxAge: 60 * 60 * 24 * 7, // 7 días
