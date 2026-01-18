@@ -333,13 +333,6 @@ export default defineNuxtConfig({
         maxInstances: 1,
       },
     },
-    // SEO data files - bundled with server for Firebase Functions
-    serverAssets: [
-      {
-        baseName: 'seo-data',
-        dir: './docs/seo/data'
-      }
-    ],
     esbuild: {
       options: {
         target: 'node20'

@@ -1,11 +1,5 @@
-export default defineEventHandler(async () => {
-  try {
-    const data = await useStorage('assets:server').getItem('seo-data:content.json')
-    return data
-  } catch (error) {
-    throw createError({
-      statusCode: 500,
-      message: 'Error reading content data'
-    })
-  }
+import contentData from '../../../docs/seo/data/content.json'
+
+export default defineEventHandler(() => {
+  return contentData
 })
