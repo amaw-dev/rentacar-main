@@ -119,7 +119,7 @@ export default defineEventHandler(async (event): Promise<UpdateResult> => {
   if (services.includes('gsc')) {
     try {
       // Check if GSC is connected via OAuth tokens
-      const gscConnected = isGscConnected()
+      const gscConnected = await isGscConnected()
 
       if (!gscConnected) {
         result.errors.push('GSC no conectado - usa el botón "Conectar GSC" para autorizar')

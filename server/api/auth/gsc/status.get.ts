@@ -1,8 +1,8 @@
 import { isGscConnected, getGscTokens } from '../../../utils/gsc'
 
-export default defineEventHandler(() => {
-  const connected = isGscConnected()
-  const tokens = getGscTokens()
+export default defineEventHandler(async () => {
+  const connected = await isGscConnected()
+  const tokens = await getGscTokens()
 
   return {
     connected,

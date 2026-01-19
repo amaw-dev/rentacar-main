@@ -1,5 +1,4 @@
-import { writeFileSync, mkdirSync, existsSync } from 'fs'
-import { resolve } from 'path'
+import { saveGscTokens } from '../../../utils/gsc'
 
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig()
@@ -43,12 +42,7 @@ export default defineEventHandler(async (event) => {
       }
     })
 
-    // Store tokens securely
-    const tokensDir = resolve(process.cwd(), 'docs/seo/data/.tokens')
-    if (!existsSync(tokensDir)) {
-      mkdirSync(tokensDir, { recursive: true })
-    }
-
+    // Save tokens to Firestore
     const tokenData = {
       access_token: tokenResponse.access_token,
       refresh_token: tokenResponse.refresh_token,
@@ -58,16 +52,8 @@ export default defineEventHandler(async (event) => {
       created_at: new Date().toISOString()
     }
 
-    writeFileSync(
-      resolve(tokensDir, 'gsc-tokens.json'),
-      JSON.stringify(tokenData, null, 2)
-    )
+    await saveGscTokens(tokenData)
 
-    // Update tools.json to reflect connected status
-    const toolsPath = resolve(process.cwd(), 'docs/seo/data/tools.json')
-    const tools = JSON.parse(await useStorage().getItem('assets:server:tools.json') as string || '{}')
-
-    // We'll update tools.json through the API instead
     return sendRedirect(event, '/seo/herramientas?success=gsc_connected')
 
   } catch (err: any) {
