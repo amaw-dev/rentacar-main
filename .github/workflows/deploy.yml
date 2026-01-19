@@ -54,6 +54,9 @@ jobs:
           echo "NUXT_PUBLIC_RENTACAR_API_RESERVAS_FORM_RECORD_ENDPOINT=${{ secrets.NUXT_PUBLIC_RENTACAR_API_RESERVAS_FORM_RECORD_ENDPOINT }}" >> .env.prod
           echo "NUXT_PUBLIC_RENTACAR_API_RESERVAS_CATEGORIES_AVAILABILITY_ENDPOINT=${{ secrets.NUXT_PUBLIC_RENTACAR_API_RESERVAS_CATEGORIES_AVAILABILITY_ENDPOINT }}" >> .env.prod
           echo "SEO_PASSWORD=${{ secrets.SEO_PASSWORD }}" >> .env.prod
+          echo "GSC_CLIENT_ID=${{ secrets.GSC_CLIENT_ID }}" >> .env.prod
+          echo "GSC_CLIENT_SECRET=${{ secrets.GSC_CLIENT_SECRET }}" >> .env.prod
+          echo "GSC_REDIRECT_URI=https://alquilatucarro.com/api/auth/gsc/callback" >> .env.prod
 
       - name: Build
         run: pnpm run build
