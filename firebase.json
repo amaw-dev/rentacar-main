@@ -20,6 +20,33 @@
       "**/.*",
       "**/node_modules/**"
     ],
+    "redirects": [
+      {
+        "source": "/images/carros2.png",
+        "destination": "/",
+        "type": 301
+      },
+      {
+        "source": "/imacion/ani2a.png",
+        "destination": "/",
+        "type": 301
+      },
+      {
+        "source": "/-coche-en-espana/",
+        "destination": "/",
+        "type": 301
+      },
+      {
+        "source": "/gana/politicas-privacidad.html",
+        "destination": "/gana/politicas-privacidad",
+        "type": 301
+      },
+      {
+        "source": "/tratamiento-datos-alquilatucarro.pdf",
+        "destination": "/politica-privacidad",
+        "type": 301
+      }
+    ],
     "rewrites": [
       {
         "source": "**",
