@@ -1,5 +1,4 @@
-import { readFileSync, writeFileSync, existsSync } from 'fs'
-import { resolve } from 'path'
+import { getFirestoreDb } from './firebase'
 
 interface GscTokens {
   access_token: string
@@ -21,27 +20,33 @@ interface GscSearchAnalyticsResponse {
   responseAggregationType?: string
 }
 
-const TOKENS_PATH = resolve(process.cwd(), 'docs/seo/data/.tokens/gsc-tokens.json')
+const TOKENS_COLLECTION = 'seo_config'
+const TOKENS_DOC = 'gsc_tokens'
 
-export function getGscTokens(): GscTokens | null {
+export async function getGscTokens(): Promise<GscTokens | null> {
   try {
-    if (!existsSync(TOKENS_PATH)) {
+    const db = getFirestoreDb()
+    const doc = await db.collection(TOKENS_COLLECTION).doc(TOKENS_DOC).get()
+
+    if (!doc.exists) {
       return null
     }
-    const content = readFileSync(TOKENS_PATH, 'utf-8')
-    return JSON.parse(content)
-  } catch {
+
+    return doc.data() as GscTokens
+  } catch (error) {
+    console.error('Error getting GSC tokens from Firestore:', error)
     return null
   }
 }
 
-export function saveGscTokens(tokens: GscTokens): void {
-  const dir = resolve(process.cwd(), 'docs/seo/data/.tokens')
-  if (!existsSync(dir)) {
-    const { mkdirSync } = require('fs')
-    mkdirSync(dir, { recursive: true })
+export async function saveGscTokens(tokens: GscTokens): Promise<void> {
+  try {
+    const db = getFirestoreDb()
+    await db.collection(TOKENS_COLLECTION).doc(TOKENS_DOC).set(tokens)
+  } catch (error) {
+    console.error('Error saving GSC tokens to Firestore:', error)
+    throw error
   }
-  writeFileSync(TOKENS_PATH, JSON.stringify(tokens, null, 2))
 }
 
 export async function refreshGscToken(refreshToken: string): Promise<GscTokens | null> {
@@ -72,7 +77,7 @@ export async function refreshGscToken(refreshToken: string): Promise<GscTokens |
       created_at: new Date().toISOString()
     }
 
-    saveGscTokens(tokens)
+    await saveGscTokens(tokens)
     return tokens
   } catch (error) {
     console.error('Failed to refresh GSC token:', error)
@@ -81,7 +86,7 @@ export async function refreshGscToken(refreshToken: string): Promise<GscTokens |
 }
 
 export async function getValidGscToken(): Promise<string | null> {
-  let tokens = getGscTokens()
+  let tokens = await getGscTokens()
 
   if (!tokens) {
     return null
@@ -138,7 +143,7 @@ export async function queryGscSearchAnalytics(options: {
   }
 }
 
-export function isGscConnected(): boolean {
-  const tokens = getGscTokens()
+export async function isGscConnected(): Promise<boolean> {
+  const tokens = await getGscTokens()
   return tokens !== null && !!tokens.refresh_token
 }
