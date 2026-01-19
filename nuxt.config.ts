@@ -458,11 +458,13 @@ export default defineNuxtConfig({
 
   runtimeConfig: {
     // Server-only config (not exposed to client)
-    seoPassword: process.env.SEO_PASSWORD || '',
+    // These can be overridden by NUXT_* env vars at runtime
+    seoPassword: '',
     // GSC OAuth credentials (server-only for security)
-    gscClientId: process.env.GSC_CLIENT_ID || '',
-    gscClientSecret: process.env.GSC_CLIENT_SECRET || '',
-    gscRedirectUri: process.env.GSC_REDIRECT_URI || '',
+    // Override with NUXT_GSC_CLIENT_ID, NUXT_GSC_CLIENT_SECRET, NUXT_GSC_REDIRECT_URI
+    gscClientId: '',
+    gscClientSecret: '',
+    gscRedirectUri: '',
     // Public config (exposed to client)
     public: {
       rentacarFranchise: "alquilatucarro",
