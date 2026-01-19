@@ -50,20 +50,26 @@
       "url": "/images/carros2.png",
       "linkingDomains": 19,
       "pa": 30,
-      "status": "pending-redirect"
+      "status": "redirected",
+      "redirectTo": "/",
+      "redirectedAt": "2026-01-19"
     },
     {
       "url": "/imacion/ani2a.png",
       "linkingDomains": 3,
       "pa": 25,
-      "status": "pending-redirect"
+      "status": "redirected",
+      "redirectTo": "/",
+      "redirectedAt": "2026-01-19"
     },
     {
       "url": "/-coche-en-espana/",
       "linkingDomains": 1,
       "pa": 23,
-      "status": "pending-redirect"
+      "status": "redirected",
+      "redirectTo": "/",
+      "redirectedAt": "2026-01-19"
     }
   ],
-  "lastUpdated": "2026-01-17"
+  "lastUpdated": "2026-01-19"
 }

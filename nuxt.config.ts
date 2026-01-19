@@ -537,6 +537,11 @@ export default defineNuxtConfig({
       // Redirects para URLs legacy (404s en Google Search Console)
       '/gana/politicas-privacidad.html': { redirect: '/gana/politicas-privacidad', statusCode: 301 },
       '/tratamiento-datos-alquilatucarro.pdf': { redirect: '/politica-privacidad', statusCode: 301 },
+      // Redirects para URLs 404 con backlinks (preservar link equity)
+      // Fuente: SEO Dashboard - URLs 404 con Backlinks (19 + 3 + 1 = 23 linking domains)
+      '/images/carros2.png': { redirect: '/', statusCode: 301 },
+      '/imacion/ani2a.png': { redirect: '/', statusCode: 301 },
+      '/-coche-en-espana/': { redirect: '/', statusCode: 301 },
     },
     prerender: {
       routes: [
