@@ -88,3 +88,6 @@ playwright/.cache/
 
 # Scripts locales de Windows
 *.ps1
+
+# GSC tokens (sensitive)
+docs/seo/data/.tokens/

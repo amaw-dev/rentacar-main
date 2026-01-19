@@ -1,10 +1,10 @@
 {
   "gsc": {
     "last28d": {
-      "impressions": null,
-      "clicks": null,
-      "ctr": null,
-      "avgPosition": null
+      "impressions": 12500,
+      "clicks": 890,
+      "ctr": 7.12,
+      "avgPosition": 18.4
     },
     "previousPeriod": {
       "impressions": null,
@@ -30,8 +30,16 @@
       "cls": 0
     },
     "history": [
-      { "month": "2025-12", "desktop": 98, "mobile": 82 },
-      { "month": "2026-01", "desktop": 99, "mobile": 85 }
+      {
+        "month": "2025-12",
+        "desktop": 98,
+        "mobile": 82
+      },
+      {
+        "month": "2026-01",
+        "desktop": 99,
+        "mobile": 85
+      }
     ],
     "lastUpdated": "2026-01-17"
   },

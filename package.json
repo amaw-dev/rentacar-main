@@ -7,7 +7,7 @@
     "build:ci": "cross-env NODE_OPTIONS=--max-old-space-size=4096 nuxt build --dotenv .env.prod",
     "build:lite": "cross-env PRERENDER_LIMIT=true PRERENDER_CONCURRENCY=1 NODE_OPTIONS=--max-old-space-size=4096 nuxt build --dotenv .env.prod",
     "postbuild": "cp .env.prod .output/server/.env",
-    "dev": "nuxt dev --dotenv .env.local",
+    "dev": "nuxt dev --dotenv .env.prod",
     "generate": "nuxt generate --dotenv .env.prod",
     "preview": "nuxt preview --dotenv .env.local",
     "postinstall": "nuxt prepare",

@@ -5,7 +5,7 @@
     "cost": "$99/mes",
     "quotas": {
       "domainOverview": {
-        "used": 1,
+        "used": 3,
         "limit": 5,
         "resetsAt": "2026-02-01",
         "costPerQuery": "~$20"
@@ -28,7 +28,7 @@
   "gsc": {
     "property": "https://alquilatucarro.com",
     "type": "Domain property",
-    "connected": true,
+    "connected": false,
     "oauth": {
       "projectId": "diego-seo-audit",
       "clientId": "94167550338-ok9uhdmq309tkrhii4cnjl5mbbauqj29.apps.googleusercontent.com",

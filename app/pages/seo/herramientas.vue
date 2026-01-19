@@ -4,15 +4,59 @@ definePageMeta({
   middleware: ['seo-auth']
 })
 
-const { data: toolsData, pending, error } = await useFetch('/api/seo/tools', {
+const route = useRoute()
+const toast = useToast()
+
+// Check for OAuth callback result
+onMounted(() => {
+  const success = route.query.success as string
+  const error = route.query.error as string
+
+  if (success === 'gsc_connected') {
+    toast.add({
+      title: 'GSC Conectado',
+      description: 'Google Search Console se ha conectado correctamente',
+      color: 'success'
+    })
+    // Refresh GSC status
+    refreshGscStatus()
+    // Clean URL
+    navigateTo('/seo/herramientas', { replace: true })
+  } else if (error) {
+    toast.add({
+      title: 'Error de conexión',
+      description: `No se pudo conectar GSC: ${error}`,
+      color: 'error'
+    })
+    navigateTo('/seo/herramientas', { replace: true })
+  }
+})
+
+const { data: toolsData, pending } = await useFetch('/api/seo/tools', {
   key: 'seo-tools',
   default: () => null
+})
+
+// GSC connection status (real OAuth status)
+const { data: gscStatus, refresh: refreshGscStatus } = await useFetch('/api/auth/gsc/status', {
+  key: 'gsc-status',
+  default: () => ({ connected: false })
 })
 
 // Tools
 const moz = computed(() => toolsData.value?.moz || {})
 const gsc = computed(() => toolsData.value?.gsc || {})
 const pagespeed = computed(() => toolsData.value?.pagespeed || {})
+
+// Real GSC connection status
+const isGscConnected = computed(() => gscStatus.value?.connected || false)
+
+// Connect GSC
+const connectingGsc = ref(false)
+const connectGsc = () => {
+  connectingGsc.value = true
+  window.location.href = '/api/auth/gsc/authorize'
+}
 
 // Get usage percentage
 const getUsagePercent = (used: number, limit: number) => {
@@ -153,9 +197,9 @@ const getUsageColor = (percent: number) => {
           <div class="flex items-center gap-2">
             <span
               class="px-2 py-1 rounded text-xs font-medium"
-              :class="gsc.connected ? 'bg-green-900 text-green-300' : 'bg-red-900 text-red-300'"
+              :class="isGscConnected ? 'bg-green-900 text-green-300' : 'bg-red-900 text-red-300'"
             >
-              {{ gsc.connected ? 'Conectado' : 'No conectado' }}
+              {{ isGscConnected ? 'Conectado' : 'No conectado' }}
             </span>
             <a
               :href="gsc.dashboardUrl"
@@ -178,19 +222,40 @@ const getUsageColor = (percent: number) => {
             <p class="text-xs text-gray-500">{{ gsc.quotas?.queriesPerDay?.note }}</p>
           </div>
 
-          <!-- OAuth Setup -->
-          <div v-if="!gsc.connected" class="mt-4 p-3 bg-red-900/20 border border-red-800 rounded-lg">
+          <!-- Connected Info -->
+          <div v-if="isGscConnected" class="mt-4 p-3 bg-green-900/20 border border-green-800 rounded-lg">
             <div class="flex items-start gap-2">
-              <UIcon name="i-heroicons-exclamation-triangle" class="w-5 h-5 text-red-400 mt-0.5" />
+              <UIcon name="i-heroicons-check-circle" class="w-5 h-5 text-green-400 mt-0.5" />
               <div>
-                <p class="text-sm text-red-300">OAuth no configurado</p>
-                <p class="text-xs text-red-300/70 mt-1">
-                  {{ gsc.mcp?.note }}
-                </p>
-                <p class="text-xs text-red-300/70">
-                  Guía: {{ gsc.mcp?.setupGuide }}
+                <p class="text-sm text-green-300">OAuth conectado correctamente</p>
+                <p v-if="gscStatus?.expiresAt" class="text-xs text-green-300/70 mt-1">
+                  Token válido hasta: {{ new Date(gscStatus.expiresAt).toLocaleString() }}
                 </p>
               </div>
+            </div>
+          </div>
+
+          <!-- OAuth Setup -->
+          <div v-else class="mt-4 p-3 bg-red-900/20 border border-red-800 rounded-lg">
+            <div class="flex items-start justify-between gap-2">
+              <div class="flex items-start gap-2">
+                <UIcon name="i-heroicons-exclamation-triangle" class="w-5 h-5 text-red-400 mt-0.5" />
+                <div>
+                  <p class="text-sm text-red-300">OAuth no configurado</p>
+                  <p class="text-xs text-red-300/70 mt-1">
+                    Conecta tu cuenta de Google para obtener datos reales de Search Console
+                  </p>
+                </div>
+              </div>
+              <button
+                @click="connectGsc"
+                :disabled="connectingGsc"
+                class="px-4 py-2 bg-red-600 hover:bg-red-500 text-white text-sm font-medium rounded-lg transition flex items-center gap-2 whitespace-nowrap disabled:opacity-50"
+              >
+                <UIcon v-if="connectingGsc" name="i-heroicons-arrow-path" class="w-4 h-4 animate-spin" />
+                <UIcon v-else name="i-heroicons-link" class="w-4 h-4" />
+                Conectar GSC
+              </button>
             </div>
           </div>
         </div>

@@ -1,5 +1,6 @@
 import { readFileSync, writeFileSync } from 'fs'
 import { resolve } from 'path'
+import { isGscConnected, queryGscSearchAnalytics } from '../../utils/gsc'
 
 interface UpdateResult {
   success: boolean
@@ -117,33 +118,68 @@ export default defineEventHandler(async (event): Promise<UpdateResult> => {
   // --- GSC UPDATE ---
   if (services.includes('gsc')) {
     try {
-      // Check if GSC is connected
-      if (!tools?.gsc?.connected) {
-        result.errors.push('GSC no conectado - configura OAuth primero')
+      // Check if GSC is connected via OAuth tokens
+      const gscConnected = isGscConnected()
+
+      if (!gscConnected) {
+        result.errors.push('GSC no conectado - usa el botón "Conectar GSC" para autorizar')
       } else {
-        // For now, simulate GSC API response
-        // In production, this would call the actual GSC API with OAuth tokens
-        const gscData = {
-          impressions: 12500,
-          clicks: 890,
-          ctr: 7.12,
-          avgPosition: 18.4
-        }
+        // Calculate date range (last 28 days)
+        const endDate = new Date()
+        const startDate = new Date()
+        startDate.setDate(startDate.getDate() - 28)
 
-        // Update performance.json
-        const performance = readJsonFile('performance.json')
-        if (performance) {
-          performance.gsc.last28d = {
-            impressions: gscData.impressions,
-            clicks: gscData.clicks,
-            ctr: gscData.ctr,
-            avgPosition: gscData.avgPosition
+        const siteUrl = tools?.gsc?.property || 'https://alquilatucarro.com'
+
+        // Query real GSC API
+        const gscResponse = await queryGscSearchAnalytics({
+          siteUrl,
+          startDate: startDate.toISOString().split('T')[0],
+          endDate: endDate.toISOString().split('T')[0],
+          dimensions: ['query'],
+          rowLimit: 1000
+        })
+
+        if (!gscResponse) {
+          result.errors.push('GSC API no disponible - token puede haber expirado')
+        } else {
+          // Aggregate data from all rows
+          let totalClicks = 0
+          let totalImpressions = 0
+          let totalPosition = 0
+          let rowCount = 0
+
+          if (gscResponse.rows) {
+            for (const row of gscResponse.rows) {
+              totalClicks += row.clicks
+              totalImpressions += row.impressions
+              totalPosition += row.position
+              rowCount++
+            }
           }
-          performance.gsc.lastUpdated = today
 
-          if (writeJsonFile('performance.json', performance)) {
-            result.updated.push('performance.json')
-            result.data.gsc = gscData
+          const gscData = {
+            impressions: totalImpressions,
+            clicks: totalClicks,
+            ctr: totalImpressions > 0 ? Math.round((totalClicks / totalImpressions) * 10000) / 100 : 0,
+            avgPosition: rowCount > 0 ? Math.round((totalPosition / rowCount) * 10) / 10 : 0
+          }
+
+          // Update performance.json
+          const performance = readJsonFile('performance.json')
+          if (performance) {
+            performance.gsc.last28d = {
+              impressions: gscData.impressions,
+              clicks: gscData.clicks,
+              ctr: gscData.ctr,
+              avgPosition: gscData.avgPosition
+            }
+            performance.gsc.lastUpdated = today
+
+            if (writeJsonFile('performance.json', performance)) {
+              result.updated.push('performance.json')
+              result.data.gsc = gscData
+            }
           }
         }
       }
