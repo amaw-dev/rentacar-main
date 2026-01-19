@@ -15,9 +15,9 @@ export default defineEventHandler(async (event) => {
     return sendRedirect(event, '/seo/herramientas?error=no_code')
   }
 
-  const clientId = config.gscClientId
-  const clientSecret = config.gscClientSecret
-  const redirectUri = config.gscRedirectUri || `${getRequestURL(event).origin}/api/auth/gsc/callback`
+  const clientId = String(config.gscClientId || '').trim()
+  const clientSecret = String(config.gscClientSecret || '').trim()
+  const redirectUri = String(config.gscRedirectUri || '').trim() || `${getRequestURL(event).origin}/api/auth/gsc/callback`
 
   if (!clientId || !clientSecret) {
     return sendRedirect(event, '/seo/herramientas?error=missing_credentials')

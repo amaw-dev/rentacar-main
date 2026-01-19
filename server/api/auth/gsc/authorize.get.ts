@@ -5,8 +5,8 @@ const SCOPES = [
 export default defineEventHandler((event) => {
   const config = useRuntimeConfig()
 
-  const clientId = config.gscClientId
-  const redirectUri = config.gscRedirectUri || `${getRequestURL(event).origin}/api/auth/gsc/callback`
+  const clientId = String(config.gscClientId || '').trim()
+  const redirectUri = String(config.gscRedirectUri || '').trim() || `${getRequestURL(event).origin}/api/auth/gsc/callback`
 
   if (!clientId) {
     throw createError({
