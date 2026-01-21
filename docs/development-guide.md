@@ -35,8 +35,8 @@
 
 ```bash
 # 1. Clonar repositorio
-git clone <repo-url> alquilatucarro-monorepo
-cd alquilatucarro-monorepo
+git clone <repo-url> rentacar-main
+cd rentacar-main
 
 # 2. Instalar pnpm (si no está instalado)
 npm install -g pnpm@latest
@@ -45,7 +45,7 @@ npm install -g pnpm@latest
 pnpm install
 
 # 4. Verificar instalación
-pnpm --filter @alquilatucarro/logic typecheck
+pnpm --filter @rentacar-main/logic typecheck
 pnpm --filter ui-alquilatucarro typecheck
 
 # ✅ Si todo compila sin errores, estás listo
@@ -739,13 +739,13 @@ vim packages/ui-alquilame/app/components/PromotionCard.vue
 
 ```bash
 # Correr todos los tests de logic
-pnpm --filter @alquilatucarro/logic test
+pnpm --filter @rentacar-main/logic test
 
 # Correr tests con watch mode
-pnpm --filter @alquilatucarro/logic test --watch
+pnpm --filter @rentacar-main/logic test --watch
 
 # Correr tests con coverage
-pnpm --filter @alquilatucarro/logic test --coverage
+pnpm --filter @rentacar-main/logic test --coverage
 ```
 
 **Ejemplo de test:**
@@ -891,7 +891,7 @@ git push origin hotfix/critical-bug
 **Solución:**
 ```bash
 # 1. Verificar que logic está instalado
-pnpm --filter ui-alquilatucarro list @alquilatucarro/logic
+pnpm --filter ui-alquilatucarro list @rentacar-main/logic
 
 # 2. Reinstalar dependencias
 pnpm install

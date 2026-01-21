@@ -1,5 +1,5 @@
 {
-  "name": "alquilatucarro-monorepo",
+  "name": "rentacar-main",
   "version": "1.0.0",
   "description": "Monorepo multi-marca para alquilatucarro, alquilame y alquicarros",
   "type": "module",

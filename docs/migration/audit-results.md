@@ -479,7 +479,7 @@ export default defineAppConfig({
 ### Fase 1: Estructura
 1. ⏳ Crear estructura de monorepo
 2. ⏳ Configurar pnpm workspace
-3. ⏳ Crear package `@alquilatucarro/logic`
+3. ⏳ Crear package `@rentacar-main/logic`
 
 ### Fase 2: Migrar Lógica
 1. ⏳ Mover composables (organizados por carpeta)

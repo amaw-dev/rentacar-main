@@ -24,7 +24,7 @@ Monorepo para las marcas de alquiler de vehículos: **alquilatucarro.com**, **al
 Este proyecto utiliza un **monorepo** con pnpm workspaces para separar **lógica compartida** de **presentación específica** por marca.
 
 ```
-alquilatucarro-monorepo/
+rentacar-main/
 ├── packages/
 │   ├── logic/                     # 🧠 Lógica compartida (100%)
 │   │   ├── composables/          # Business logic
@@ -66,8 +66,8 @@ Ver [Arquitectura Completa](./docs/architecture.md)
 
 ```bash
 # 1. Clonar repositorio
-git clone <repo-url> alquilatucarro-monorepo
-cd alquilatucarro-monorepo
+git clone <repo-url> rentacar-main
+cd rentacar-main
 
 # 2. Instalar pnpm (si no está instalado)
 npm install -g pnpm@latest
@@ -127,11 +127,11 @@ pnpm --filter ui-alquilatucarro typecheck  # Solo una marca
 
 # Lint
 pnpm lint                                   # Todos los packages
-pnpm --filter @alquilatucarro/logic lint   # Solo logic
+pnpm --filter @rentacar-main/logic lint    # Solo logic
 
 # Tests
 pnpm test                                   # Todos los tests
-pnpm --filter @alquilatucarro/logic test   # Solo logic
+pnpm --filter @rentacar-main/logic test    # Solo logic
 
 # Build
 pnpm build                                  # Todas las marcas
@@ -147,13 +147,13 @@ pnpm clean
 
 ```bash
 # Tests unitarios (logic package)
-pnpm --filter @alquilatucarro/logic test
+pnpm --filter @rentacar-main/logic test
 
 # Tests con watch mode
-pnpm --filter @alquilatucarro/logic test --watch
+pnpm --filter @rentacar-main/logic test --watch
 
 # Tests con coverage
-pnpm --filter @alquilatucarro/logic test --coverage
+pnpm --filter @rentacar-main/logic test --coverage
 
 # Tests de todas las marcas
 pnpm --filter "ui-*" test
@@ -302,7 +302,7 @@ firebase deploy --only hosting
 
 ## 📁 Estructura de Packages
 
-### `@alquilatucarro/logic`
+### `@rentacar-main/logic`
 
 Lógica de negocio compartida entre las 3 marcas.
 

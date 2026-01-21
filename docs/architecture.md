@@ -76,7 +76,7 @@ packages/logic ──────┬──> ui-alquilatucarro
 ### 2.1. Árbol de Directorios
 
 ```
-alquilatucarro-monorepo/
+rentacar-main/
 ├── package.json                    # Root package - Scripts globales
 ├── pnpm-workspace.yaml            # Workspace config
 ├── pnpm-lock.yaml                 # Lockfile unificado
@@ -134,7 +134,7 @@ alquilatucarro-monorepo/
 
 | Package | Responsabilidad | Consumidores |
 |---------|----------------|--------------|
-| `@alquilatucarro/logic` | Lógica de negocio, estado, tipos, utils | Todos los UI packages |
+| `@rentacar-main/logic` | Lógica de negocio, estado, tipos, utils | Todos los UI packages |
 | `ui-alquilatucarro` | Presentación marca alquilatucarro.com | Usuarios finales |
 | `ui-alquilame` | Presentación marca alquilame.com | Usuarios finales |
 | `ui-alquicarros` | Presentación marca alquicarros.com | Usuarios finales |
@@ -272,7 +272,7 @@ import { cities } from '@logic/config/cities'
 **`packages/logic/package.json`:**
 ```json
 {
-  "name": "@alquilatucarro/logic",
+  "name": "@rentacar-main/logic",
   "version": "1.0.0",
   "type": "module",
   "main": "./src/index.ts",
@@ -413,7 +413,7 @@ export default defineNuxtConfig({
 
   // Transpile logic package
   build: {
-    transpile: ['@alquilatucarro/logic']
+    transpile: ['@rentacar-main/logic']
   },
 
   // Modules
@@ -689,7 +689,7 @@ const handleSubmit = async () => {
 // packages/ui-alquilatucarro/package.json
 {
   "dependencies": {
-    "@alquilatucarro/logic": "workspace:*"
+    "@rentacar-main/logic": "workspace:*"
   }
 }
 ```
@@ -738,7 +738,7 @@ packages/ui-alquilatucarro/node_modules/
 
 ```bash
 # 1. Build logic (si fuera necesario - en este caso no)
-pnpm --filter @alquilatucarro/logic build
+pnpm --filter @rentacar-main/logic build
 
 # 2. Build UIs (en paralelo)
 pnpm --filter "ui-*" build
@@ -915,7 +915,7 @@ pnpm build
 pnpm publish --access public
 
 # 4. Consumir en otros proyectos
-npm install @alquilatucarro/logic
+npm install @rentacar-main/logic
 ```
 
 ---

@@ -215,7 +215,7 @@ git push origin main-restored
 ### Nuevos Archivos a Crear
 
 ```
-alquilatucarro-monorepo/
+rentacar-main/
 ├── pnpm-workspace.yaml                        # ⭐ NUEVO
 ├── package.json (root)                        # ⭐ ACTUALIZAR
 ├── packages/
@@ -281,7 +281,7 @@ A:  packages/ui-{marca}/app/pages/*
   - [ ] Stores movidos y exportados
   - [ ] Utils movidos y exportados
   - [ ] Config extraída y exportada
-  - [ ] `pnpm --filter @alquilatucarro/logic typecheck` sin errores
+  - [ ] `pnpm --filter @rentacar-main/logic typecheck` sin errores
 
 - [ ] **UI Packages**
   - [ ] Las 3 marcas existen

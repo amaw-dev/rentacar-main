@@ -47,7 +47,7 @@ export type { default as ReservationResumeProps } from './types/props/Reservatio
 // Type Definitions - General Types
 // ============================================================================
 // Note: City, Testimonial, and FAQ types are exported from config module
-// to avoid conflicts. Import them from '@alquilatucarro/logic/config'
+// to avoid conflicts. Import them from '@rentacar-main/logic/config'
 export type * from './types/type/BlogPost';
 export type { CategoryType } from './types/type/CategoryType';
 export type { default as ErrorMessage } from './types/type/ErrorMessage';

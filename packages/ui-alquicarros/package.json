@@ -15,7 +15,7 @@
     "clean": "rm -rf .nuxt .output node_modules"
   },
   "dependencies": {
-    "@alquilatucarro/logic": "workspace:*"
+    "@rentacar-main/logic": "workspace:*"
   },
   "devDependencies": {
     "@nuxt/devtools": "^1.0.0",
