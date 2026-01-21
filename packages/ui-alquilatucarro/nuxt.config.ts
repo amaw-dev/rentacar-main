@@ -536,7 +536,7 @@ export default defineNuxtConfig({
     routeRules: {
       '/_nuxt/**': {
         headers: {
-          'Cache-Control': 'public, max-age=31536000, inmutable'
+          'Cache-Control': 'public, max-age=31536000, immutable'
         }
       },
       '/**': {
