@@ -24,7 +24,7 @@ export default defineAppConfig({
   // Organization: shared base + brand-specific overrides
   organization: {
     ...organizationConfig, // name, address, postalcode
-    logo: "/img/logo.webp",
+    logo: "https://firebasestorage.googleapis.com/v0/b/rentacar-403321.firebasestorage.app/o/rentacar-main%2Falquilame%2Fimg%2Flogo.png?alt=media&token=placeholder-token-1",
     brand: "Alquilame",
     otherbrands: ["Alquilatucarro", "Alquicarros"],
   },
@@ -42,10 +42,10 @@ export default defineAppConfig({
     title: "Alquiler de Carros en Colombia desde $32/día",
     description:
       "Alquila carros en Bogotá, Medellín, Cali y 16 ciudades más. Hasta 60% descuento por reserva anticipada. Sin pago previo. Flota renovada cada 2 años.",
-    logo: "/img/logo.webp",
-    oglogo: "/img/og-logo.png",
-    svglogo: "/img/logo.svg",
-    ogImage: "/img/og-alquilame.jpg",
+    logo: "https://firebasestorage.googleapis.com/v0/b/rentacar-403321.firebasestorage.app/o/rentacar-main%2Falquilame%2Fimg%2Flogo.png?alt=media&token=placeholder-token-1",
+    oglogo: "https://firebasestorage.googleapis.com/v0/b/rentacar-403321.firebasestorage.app/o/rentacar-main%2Falquilame%2Fimg%2Fog-logo.png?alt=media&token=placeholder-token-2",
+    svglogo: "https://firebasestorage.googleapis.com/v0/b/rentacar-403321.firebasestorage.app/o/rentacar-main%2Falquilame%2Fimg%2Flogo.svg?alt=media&token=placeholder-token-3",
+    ogImage: "https://firebasestorage.googleapis.com/v0/b/rentacar-403321.firebasestorage.app/o/rentacar-main%2Falquilame%2Fimg%2Fog-alquilame.jpg?alt=media&token=placeholder-token-4",
     phone: "+57 301 672 9250",
     whatsapp: "https://wa.me/573146826821",
     email: "alquilame@gmail.com",
