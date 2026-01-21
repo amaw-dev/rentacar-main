@@ -1,0 +1,25 @@
+{
+  "name": "ui-alquicarros",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Frontend de Alquicarros",
+  "scripts": {
+    "dev": "nuxt dev",
+    "build": "nuxt build",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "typecheck": "nuxt typecheck",
+    "lint": "eslint .",
+    "clean": "rm -rf .nuxt .output node_modules"
+  },
+  "dependencies": {
+    "@alquilatucarro/logic": "workspace:*"
+  },
+  "devDependencies": {
+    "@nuxt/devtools": "^1.0.0",
+    "nuxt": "^3.9.0",
+    "typescript": "^5.3.3"
+  }
+}

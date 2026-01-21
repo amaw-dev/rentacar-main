@@ -9,14 +9,28 @@ dist
 # Node dependencies
 node_modules
 
+# Monorepo
+packages/*/node_modules
+packages/*/.nuxt
+packages/*/.output
+packages/*/dist
+
+# pnpm
+.pnpm-store/
+.pnpm-debug.log
+
 # Logs
 logs
 *.log
 
 # Misc
 .DS_Store
+Thumbs.db
 .fleet
 .idea
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
 
 # Local env files
 .env
@@ -91,3 +105,6 @@ playwright/.cache/
 
 # GSC tokens (sensitive)
 docs/seo/data/.tokens/
+
+# Build artifacts
+*.tsbuildinfo

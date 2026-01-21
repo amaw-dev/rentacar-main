@@ -1,0 +1,32 @@
+{
+  "name": "@alquilatucarro/logic",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Lógica compartida entre todas las marcas",
+  "exports": {
+    ".": "./src/index.ts",
+    "./composables": "./src/composables/index.ts",
+    "./stores": "./src/stores/index.ts",
+    "./utils": "./src/utils/index.ts",
+    "./config": "./src/config/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "vitest",
+    "test:watch": "vitest --watch",
+    "test:coverage": "vitest --coverage"
+  },
+  "peerDependencies": {
+    "@nuxt/kit": "^3.0.0",
+    "nuxt": "^3.0.0",
+    "vue": "^3.0.0",
+    "pinia": "^2.0.0"
+  },
+  "devDependencies": {
+    "@nuxt/kit": "^3.9.0",
+    "nuxt": "^3.9.0",
+    "typescript": "^5.3.3",
+    "vitest": "^1.0.0"
+  }
+}

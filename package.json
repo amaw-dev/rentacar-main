@@ -1,7 +1,14 @@
 {
-  "name": "rentacar-main",
+  "name": "alquilatucarro-monorepo",
+  "version": "1.0.0",
+  "description": "Monorepo multi-marca para alquilatucarro, alquilame y alquicarros",
   "type": "module",
   "private": true,
+  "engines": {
+    "node": ">=20.0.0",
+    "pnpm": ">=9.0.0"
+  },
+  "packageManager": "pnpm@9.0.0",
   "scripts": {
     "build": "nuxt build --dotenv .env.prod",
     "build:ci": "cross-env NODE_OPTIONS=--max-old-space-size=4096 nuxt build --dotenv .env.prod",
@@ -32,7 +39,11 @@
     "test:e2e:debug": "playwright test --debug",
     "test:e2e:chromium": "playwright test --project=chromium",
     "test:e2e:chromium-mobile": "playwright test --project='Mobile Chrome'",
-    "test:e2e:report": "playwright show-report e2e-results"
+    "test:e2e:report": "playwright show-report e2e-results",
+    "dev:alquilame": "pnpm --filter ui-alquilame dev --port 3001",
+    "dev:alquicarros": "pnpm --filter ui-alquicarros dev --port 3002",
+    "build:alquilame": "pnpm --filter ui-alquilame build",
+    "build:alquicarros": "pnpm --filter ui-alquicarros build"
   },
   "dependencies": {
     "@iconify-json/lucide": "^1.2.80",
