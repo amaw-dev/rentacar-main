@@ -42,8 +42,6 @@
 </template>
 
 <script setup lang="ts">
-import useStoreReservationForm from '~/stores/useStoreReservationForm'
-
 const { franchise } = useAppConfig()
 const store = useStoreReservationForm()
 

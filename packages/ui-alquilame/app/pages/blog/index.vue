@@ -163,7 +163,7 @@
 </template>
 
 <script setup lang="ts">
-import type { BlogPost } from '~/utils/types/type/BlogPost'
+import type { BlogPost } from '@rentacar-main/logic'
 
 const { franchise } = useAppConfig()
 const route = useRoute()
