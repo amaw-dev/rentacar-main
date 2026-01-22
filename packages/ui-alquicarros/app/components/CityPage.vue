@@ -373,9 +373,6 @@ import {
   IconsLocationIcon as LocationIcon,
   IconsClockIcon as ClockIcon,
 } from "#components";
-import { useCityExpandedContent, hasCityExpandedContent } from "~/composables/useCityContent";
-import { useRelatedCities } from "~/composables/useCityRelations";
-import { useCityProductSchema } from "~/composables/useCityProductSchema";
 
 /** stores */
 const storeSearch = useStoreSearchData();
