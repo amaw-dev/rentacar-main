@@ -1,3 +1,4 @@
+// External dependencies
 import type { Offer } from 'schema-dts'
 
 interface PromotionSchemaOptions {

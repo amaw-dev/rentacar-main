@@ -1,4 +1,27 @@
-/** types */
+// External dependencies
+import { defineStore } from 'pinia';
+import { ref, computed, type WritableComputedRef } from 'vue';
+import type { FormSubmitEvent } from '@nuxt/ui';
+
+// Internal dependencies - stores
+import useStoreAdminData from './useStoreAdminData';
+
+// Internal dependencies - composables
+import useRecordReservationForm from '../composables/useRecordReservationForm';
+
+// Internal dependencies - utils
+import {
+  createCurrentDateObject,
+  createDateFromString,
+  createTimeFromString,
+  dayDifference,
+  hourDifference,
+  formatHumanDate,
+  formatHumanTime,
+  toDatetime,
+} from '@rentacar-main/logic/utils';
+
+// Types
 import type {
   CategoryType,
   BranchData,
@@ -8,20 +31,7 @@ import type {
   TimeObject,
   ReservationWithFlightFormValidationSchemaType,
   ReservationFormValidationSchemaType,
-} from "#imports";
-
-import { 
-  createCurrentDateObject,
-  createDateFromString,
-  createTimeFromString,
-  dayDifference,
-  hourDifference,
-  ReservationFormValidationSchema,
-  validateForm,
-  useStoreAdminData
-} from '#imports';
-
-import type { FormSubmitEvent } from '@nuxt/ui';
+} from '@rentacar-main/logic/utils';
 
 
 const useStoreReservationForm = defineStore("reservationForm", () => {
@@ -60,28 +70,28 @@ const useStoreReservationForm = defineStore("reservationForm", () => {
   const horaDevolucion = ref<string | null>(defaultHoraDevolucion);
   const politicaPrivacidad = ref<boolean | undefined>(true);
 
-  // form states
-  const reservationFormState = reactive({
-    nombreCompleto,
-    apellidos,
-    tipoIdentificacion,
-    identificacion,
-    telefono,
-    email,
-    vehiculo,
-    lugarRecogida,
-    lugarDevolucion,
-    fechaRecogida,
-    fechaDevolucion,
-    horaRecogida,
-    horaDevolucion,
-    politicaPrivacidad,
-  })
+  // form states (currently unused, kept for future use)
+  // const reservationFormState = reactive({
+  //   nombreCompleto,
+  //   apellidos,
+  //   tipoIdentificacion,
+  //   identificacion,
+  //   telefono,
+  //   email,
+  //   vehiculo,
+  //   lugarRecogida,
+  //   lugarDevolucion,
+  //   fechaRecogida,
+  //   fechaDevolucion,
+  //   horaRecogida,
+  //   horaDevolucion,
+  //   politicaPrivacidad,
+  // })
 
-  let flightFormState = {
-    aerolinea,
-    numeroVueloIda
-  }
+  // let flightFormState = {
+  //   aerolinea,
+  //   numeroVueloIda
+  // }
 
   // other vars ref
   const selectedMonthlyMileage = ref<MonthlyMileage | null>(null); // either 2_kms or 3_kms
@@ -190,7 +200,7 @@ const useStoreReservationForm = defineStore("reservationForm", () => {
     //   "Hubo un error al enviar la información. Por favor intentelo de nuevo.";
   };
 
-  const submitForm = async (event: FormSubmitEvent<ReservationFormValidationSchemaType | ReservationWithFlightFormValidationSchemaType>) => {
+  const submitForm = async (_event: FormSubmitEvent<ReservationFormValidationSchemaType | ReservationWithFlightFormValidationSchemaType>) => {
     isSubmittingForm.value = true;
 
     const { data: dataRecord, error: errorRecord } =

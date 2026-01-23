@@ -1,3 +1,10 @@
+// External dependencies
+
+// Internal dependencies - composables
+import { useBaseSEO } from './useBaseSEO';
+import { useData } from './useData';
+import { useSearchBreadcrumbs } from './useBreadcrumbs';
+
 export const useSearchPageSEO = () => {
     useBaseSEO()
 

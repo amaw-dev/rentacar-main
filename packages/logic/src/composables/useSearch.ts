@@ -1,14 +1,27 @@
+// External dependencies
+import { ref, watch, computed } from 'vue';
+import { storeToRefs } from 'pinia';
 import { watchDebounced } from "@vueuse/core";
 
+// Internal dependencies - stores
+import useStoreAdminData from '../stores/useStoreAdminData';
+import useStoreSearchData from '../stores/useStoreSearchData';
+import useStoreReservationForm from '../stores/useStoreReservationForm';
+
+// Internal dependencies - composables
+import useMessages from './useMessages';
+
+// Internal dependencies - utils
 import {
   createTimeFromString,
+  createCurrentDateObject,
   toDatetime,
   formatHumanTime,
   formatTime,
-  useStoreAdminData,
-  useStoreSearchData,
-  useStoreReservationForm,
-} from '#imports';
+} from '@rentacar-main/logic/utils';
+
+// Types
+import type { BranchData } from '@rentacar-main/logic/utils';
 
 // Opciones de hora estáticas (se generan una sola vez al cargar el módulo)
 // Evita regenerar 48 opciones en cada re-render
@@ -39,9 +52,6 @@ const getHourOptions = () => {
   }
   return _cachedHourOptions;
 };
-
-/** types */
-import type { BranchData } from "#imports";
 
 export default function useSearch() {
 
@@ -137,7 +147,7 @@ export default function useSearch() {
     { flush: 'sync' }
   );
 
-  watch(fechaRecogida, (newPickupDate): void => {
+  watch(fechaRecogida, (): void => {
     if (selectedPickupDate.value)
       fechaDevolucion.value = selectedPickupDate.value.copy().add({ days: 7 }).toString() ?? null
   }, { flush: 'sync' });
@@ -210,7 +220,6 @@ export default function useSearch() {
     }
 
     // Filtra opciones hasta la hora de recogida (para reservas mensuales)
-    const pickupHourStr = selectedPickupHour.value.toString();
     const cutoffIndex = allOptions.findIndex(opt => {
       const optTime = createTimeFromString(opt.value);
       return optTime.compare(selectedPickupHour.value!) > 0;

@@ -1,21 +1,28 @@
+// Note: utilities and composables are auto-imported by Nuxt
 import {
-  useStoreAdminData,
   createDateFromString,
   createTimeFromString,
   createCurrentDateObject,
+  isDateObject,
   isTimeObject,
   toDatetime,
-  dayDifference
-} from "#imports";
+  dayDifference,
+  formatTime
+} from '@rentacar-main/logic/utils';
 
 export default defineNuxtRouteMiddleware((to, from) => {
-  
+
   const { createMessage } = useMessages();
 
   const fecha_recogida = to.params.fecha_recogida as string;
   let fecha_devolucion = to.params.fecha_devolucion as string;
   const hora_recogida = to.params.hora_recogida as string;
   const hora_devolucion = to.params.hora_devolucion as string;
+
+  // Skip validation if route doesn't have search parameters (e.g., /bogota, /medellin)
+  if (!fecha_recogida || !fecha_devolucion || !hora_recogida || !hora_devolucion) {
+    return;
+  }
   
   const dateFechaRecogida = createDateFromString(fecha_recogida);
   const dateFechaDevolucion = createDateFromString(fecha_devolucion);

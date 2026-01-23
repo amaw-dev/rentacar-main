@@ -1,8 +1,6 @@
-import {
-  type CategoryMonthPriceData,
-  type CategoryModelData,
-  type CategoryType,
-} from "#imports";
+import type { CategoryType } from '../type/CategoryType';
+import type CategoryModelData from './CategoryModelData';
+import type CategoryMonthPriceData from './CategoryMonthPriceData';
 
 export default interface CategoryData {
   id: CategoryType;

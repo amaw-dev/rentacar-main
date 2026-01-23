@@ -43,8 +43,6 @@
 </template>
 
 <script setup lang="ts">
-import { defineImage } from "#imports";
-import type { CategoryModelData, CategoryType, VehicleCategoryModel } from "#imports";
 
 interface CarruselProps {
   category: CategoryType;

@@ -1447,4 +1447,4 @@ export const citiesConfig: City[] = [
       },
     ],
   },
-],
+];

@@ -49,7 +49,6 @@
 <script setup lang="ts">
 /** types */
 import type { SelectMenuItem } from "@nuxt/ui";
-import type { BranchData } from "#imports";
 
 /** imports */
 import { today } from "@internationalized/date";

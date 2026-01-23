@@ -1,4 +1,4 @@
-import performanceData from '../../../docs/seo/data/performance.json'
+import performanceData from '../../data/performance.json'
 
 export default defineEventHandler(() => {
   return performanceData

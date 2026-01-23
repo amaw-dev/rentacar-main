@@ -179,17 +179,7 @@ import {
   IconsChevronRightIcon as ChevronRightIcon
 } from "#components";
 
-/** imports */
-import {
-  useStoreSearchData,
-  useStoreReservationForm,
-  useCategory,
-  useVehicleCategories,
-  useRoute,
-  watch,
-  nextTick,
-  computed,
-} from "#imports";
+// Note: composables and functions are auto-imported by Nuxt
 
 /** stores */
 const storeSearch = useStoreSearchData();

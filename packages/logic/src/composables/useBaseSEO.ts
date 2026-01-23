@@ -1,4 +1,5 @@
-import type { AutoRental, Brand, OpeningHoursSpecification, SearchAction, EntryPoint } from 'schema-dts'
+// External dependencies
+import type { AutoRental, Brand, OpeningHoursSpecification, SearchAction, EntryPoint } from 'schema-dts';
 
 export const useBaseSEO = () => {
 
@@ -45,7 +46,7 @@ export const useBaseSEO = () => {
             brand: <Brand>{
                 name: organization.brand
             },
-            subOrganization: organization.otherbrands.map((brand) => (<Brand>{
+            subOrganization: organization.otherbrands.map((brand: string) => (<Brand>{
                 name: brand
             }))
         }),

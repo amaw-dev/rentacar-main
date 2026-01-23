@@ -15,7 +15,7 @@ export {
   adminDataConfig,
   type AdminData,
   type AdminBranch,
-  type VehicleCategory,
+  type VehicleCategory as AdminVehicleCategory,
   type VehicleModel,
   type MonthPrice,
 } from './admin.config';

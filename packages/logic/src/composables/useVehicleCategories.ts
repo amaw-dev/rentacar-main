@@ -1,4 +1,5 @@
-import type { VehicleCategoryData } from "#imports";
+// Types
+import type { VehicleCategoryData } from '@rentacar-main/logic/utils';
 
 export default function useVehicleCategories() {
     const vehicleCategories: VehicleCategoryData = 

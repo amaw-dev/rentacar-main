@@ -32,7 +32,6 @@
 
 <script setup lang="ts">
 /** stores */
-import { useStoreReservationForm, useStoreSearchData } from "#imports";
 import {
   IconsChevronLeftIcon as ChevronLeftIcon,
   IconsChevronRightIcon as ChevronRightIcon,

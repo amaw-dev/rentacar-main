@@ -597,7 +597,6 @@
 
 <script setup lang="ts">
 /** imports */
-import { useStoreReservationForm, useCategory } from "#imports";
 import {
   IconsInfoQuestionIcon as InfoQuestionIcon,
   IconsChevronDownIcon as ChevronDownIcon,
@@ -607,7 +606,7 @@ import { defineAsyncComponent } from 'vue'
 const Carrusel = defineAsyncComponent(() => import('./Carrusel.vue'))
 
 /** types */
-import type { CategoryProps } from "#imports";
+import type { CategoryProps } from '@rentacar-main/logic/utils';
 
 /** props */
 const props = withDefaults(defineProps<CategoryProps>(), {

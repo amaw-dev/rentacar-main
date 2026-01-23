@@ -2,7 +2,7 @@ import { getFirestoreDb } from './firebase'
 import { readFileSync, existsSync } from 'fs'
 import { resolve } from 'path'
 
-const LOCAL_TOKENS_PATH = resolve(process.cwd(), 'docs/seo/data/.tokens/gsc-tokens.json')
+const LOCAL_TOKENS_PATH = resolve(process.cwd(), 'server/data/.tokens/gsc-tokens.json')
 
 interface GscTokens {
   access_token: string

@@ -1,9 +1,15 @@
-/** imports */
-import { useStoreReservationForm, useStoreSearchData } from "#imports";
+// External dependencies
+import { ref } from 'vue';
+import { storeToRefs } from 'pinia';
+import { $fetch } from 'ofetch';
+import type { FetchError } from 'ofetch';
 
-/**types */
-import type { FormRecordFields, RecordReservationApiData } from "#imports";
-import type { FetchError } from "ofetch";
+// Internal dependencies - stores
+import useStoreReservationForm from '../stores/useStoreReservationForm';
+import useStoreSearchData from '../stores/useStoreSearchData';
+
+// Types
+import type { FormRecordFields, RecordReservationApiData } from '@rentacar-main/logic/utils';
 
 export default async function useRecordReservationForm() {
   const config = useRuntimeConfig();

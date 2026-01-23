@@ -7,7 +7,6 @@
 
 <script setup lang="ts">
 
-import type { CategoryType } from '#imports';
 
 const props = defineProps<{
     category: ReturnType<typeof useCategory>;

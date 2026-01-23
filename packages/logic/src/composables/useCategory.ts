@@ -1,14 +1,27 @@
-// imports
-import { useMoneyFormat, useStoreReservationForm } from "#imports";
+// External dependencies
+import { ref, computed } from 'vue';
+import { storeToRefs } from 'pinia';
 
-// types
-import type { CategoryAvailabilityData, CategoryModelData, CategoryMonthPriceData, CategoryType, MonthlyMileage } from "#imports";
+// Internal dependencies - composables
+import useMoneyFormat from './useMoneyFormat';
+
+// Internal dependencies - stores
+import useStoreReservationForm from '../stores/useStoreReservationForm';
+
+// Types
+import type {
+  CategoryAvailabilityData,
+  CategoryModelData,
+  CategoryMonthPriceData,
+  CategoryType,
+  MonthlyMileage
+} from '@rentacar-main/logic/utils';
 
 const { moneyFormat } = useMoneyFormat();
 
 export default function useCategory(categoryAvailableData: CategoryAvailabilityData){
-   
-   const storeForm = useStoreReservationForm();   
+
+   const storeForm = useStoreReservationForm();
    const { haveMonthlyReservation } = storeToRefs(storeForm);
 
    // constants
@@ -55,8 +68,7 @@ export default function useCategory(categoryAvailableData: CategoryAvailabilityD
    const oneKmMileageCheckboxID: string = `one-km-mileage-radio-${categoryCode.value}`;
    const twoKmsMileageCheckboxID: string = `two-kms-mileage-radio-${categoryCode.value}`;
    const threeKmsMileageCheckboxID: string = `three-kms-mileage-radio-${categoryCode.value}`;
-   const totalPriceTooltipID: string = `total-price-tooltip-${categoryCode.value}`;
-   
+
    // util functions
    const getFormattedPrice = (price: number | undefined): string =>
       price !== undefined ? moneyFormat(price) : "";
@@ -327,16 +339,6 @@ export default function useCategory(categoryAvailableData: CategoryAvailabilityD
    const taxFeePriceTooltip = computed(() => currencyTaxFee.value);
    const ivaFeePriceTooltip = computed(() => currencyIvaFee.value);
    const actualTotalPriceTooltip = computed(() => currencyActualTotalPrice.value);
-   const totalPriceTooltipTitle = computed<string | undefined>(() => {
-      if(!haveMonthlyReservation.value)
-         return `
-            Día: ${dayPriceTooltip.value} \r\n
-            Seguro día: ${coverageDayPriceTooltip.value} \r\n
-            Tasa: ${taxFeePriceTooltip.value} \r\n
-            IVA: ${ivaFeePriceTooltip.value} \r\n
-            Total: ${actualTotalPriceTooltip.value} \r\n
-         `;
-   });
    
    return {
       // category attributes refs

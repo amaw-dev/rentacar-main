@@ -1,4 +1,7 @@
-import type { City } from "#imports";
+// External dependencies
+
+// Types
+import type { City } from '@rentacar-main/logic/utils';
 
 export const useData = () => {
 

@@ -261,7 +261,6 @@
 <script lang="ts" setup>
 /** types */
 import type { FAQPage } from "schema-dts";
-import type { Testimonial } from "#imports";
 
 /** components */
 import {

@@ -55,9 +55,9 @@
 </template>
 
 <script setup lang="ts">
+import type { CategoryProps } from '@rentacar-main/logic/utils';
 
 /** types */
-import type { CategoryProps } from "#imports";
 
 /** props */
 const props = withDefaults(defineProps<CategoryProps>(), {});

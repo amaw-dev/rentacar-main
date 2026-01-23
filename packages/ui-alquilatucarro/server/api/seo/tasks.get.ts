@@ -1,4 +1,4 @@
-import tasksData from '../../../docs/seo/data/tasks.json'
+import tasksData from '../../data/tasks.json'
 
 export default defineEventHandler(() => {
   return tasksData

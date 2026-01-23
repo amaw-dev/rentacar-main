@@ -1,3 +1,4 @@
+// External dependencies
 import type { VideoObject } from 'schema-dts'
 
 interface VideoSchemaOptions {

@@ -1,4 +1,7 @@
-import type { LocalizaErrorResponse, Message } from "#imports";
+// External dependencies
+
+// Types
+import type { LocalizaErrorResponse, Message } from '@rentacar-main/logic/utils';
 
 export default function useMessages(){
     const toast = useToast();

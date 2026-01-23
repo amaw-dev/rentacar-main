@@ -1,12 +1,19 @@
-/** types */
-import type { BranchData } from "#imports";
+// External dependencies
+import { defineStore } from 'pinia';
+import { computed } from 'vue';
+
+// Internal dependencies - composables
+import useFetchRentacarData from '../composables/useFetchRentacarData';
+
+// Types
+import type { BranchData } from '@rentacar-main/logic/utils';
 
 const useStoreAdminData = defineStore("storeAdminData", () => {
   const { categories, branches } = useFetchRentacarData();
 
   const sortedBranches = computed<BranchData[] | []>(() =>
     branches
-      ? branches.toSorted((a: BranchData, b: BranchData) =>
+      ? [...branches].sort((a: BranchData, b: BranchData) =>
           a.name.localeCompare(b.name)
         )
       : []

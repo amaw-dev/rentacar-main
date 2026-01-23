@@ -890,4 +890,4 @@ export const adminDataConfig: AdminData = {
       active: 0,
     },
   ],
-},
+};

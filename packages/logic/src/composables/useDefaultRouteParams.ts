@@ -1,8 +1,13 @@
+// External dependencies
+import { ref } from 'vue';
+
+// Internal dependencies - utils
+import { createCurrentDateObject } from '@rentacar-main/logic/utils';
+
 export default function useDefaultRouteParams(){
     const defaultBranch = 'AABOT';
     const defaultHour = '12:00';
     const defaultDaysRange = 7;
-    const defaultDateFormat = "YYYY-MM-DD";
 
     const currentDay = createCurrentDateObject();
     const nextDay = currentDay.add({ days: 1 });

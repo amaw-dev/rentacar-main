@@ -1,4 +1,5 @@
-import type { FAQPage } from 'schema-dts'
+// External dependencies
+import type { FAQPage } from 'schema-dts';
 
 export interface FAQ {
     label: string

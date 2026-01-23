@@ -28,7 +28,7 @@ export type { default as PageConfigData } from './types/data/PageConfigData';
 export type { default as RecordReservationApiData } from './types/data/RecordReservationApiData';
 export type { default as ReservasApiData } from './types/data/ReservasApiData';
 export type { ReservationApiStatus } from './types/data/ReservationApiStatus';
-export type { default as VehicleCategoryData } from './types/data/VehicleCategoryData';
+export type { default as VehicleCategoryData, VehicleCategory, VehicleCategoryModel, VehicleCategoryImage } from './types/data/VehicleCategoryData';
 
 // ============================================================================
 // Type Definitions - Form Fields
@@ -46,8 +46,8 @@ export type { default as ReservationResumeProps } from './types/props/Reservatio
 // ============================================================================
 // Type Definitions - General Types
 // ============================================================================
-// Note: City, Testimonial, and FAQ types are exported from config module
-// to avoid conflicts. Import them from '@rentacar-main/logic/config'
+// Note: City, Testimonial, and FAQ types are re-exported from config module
+export type { City, Testimonial } from '../config';
 export type * from './types/type/BlogPost';
 export type { CategoryType } from './types/type/CategoryType';
 export type { default as ErrorMessage } from './types/type/ErrorMessage';

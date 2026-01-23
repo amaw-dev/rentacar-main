@@ -44,7 +44,7 @@ export default defineEventHandler(async (event): Promise<UpdateResult> => {
     timestamp: new Date().toISOString()
   }
 
-  const dataDir = resolve(process.cwd(), 'docs/seo/data')
+  const dataDir = resolve(process.cwd(), 'server/data')
 
   // Read current data files
   const readJsonFile = (filename: string) => {

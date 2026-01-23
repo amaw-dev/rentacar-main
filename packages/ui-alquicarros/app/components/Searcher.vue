@@ -94,6 +94,7 @@
             <u-form-field label="Día de recogida" size="xl">
                 <!-- Móvil: input nativo (CSS: sm:hidden) -->
                 <input
+                    v-if="minPickupDate"
                     type="date"
                     id="pickup-date-mobile"
                     name="pickup-date-mobile"
@@ -124,7 +125,7 @@
                                 class="px-0"
                             >
                                 <template #leading>
-                                    <CalendarIcon cls="size-4" />
+                                    <IconsCalendarIcon cls="size-4" />
                                 </template>
                             </u-button>
                             <template #content>
@@ -144,6 +145,7 @@
             <u-form-field label="Día de devolución" size="xl">
                 <!-- Móvil: input nativo (CSS: sm:hidden) -->
                 <input
+                    v-if="minPickupDate"
                     type="date"
                     id="return-date-mobile"
                     name="return-date-mobile"
@@ -176,7 +178,7 @@
                                 class="px-0"
                             >
                                 <template #leading>
-                                    <CalendarIcon cls="size-4" />
+                                    <IconsCalendarIcon cls="size-4" />
                                 </template>
                             </u-button>
                             <template #content>
@@ -273,13 +275,7 @@
 </template>
 
 <script setup lang="ts">
-/** imports */
-import { 
-    useStoreAdminData,
-    useStoreSearchData,
-    useStoreReservationForm,
-} from '#imports';
-import { IconsCalendarIcon as CalendarIcon } from '#components' 
+// Note: stores and components are auto-imported by Nuxt
 
 /** stores */
 const storeReservationForm = useStoreReservationForm();

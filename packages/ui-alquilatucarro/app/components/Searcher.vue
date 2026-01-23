@@ -94,6 +94,7 @@
             <u-form-field label="Día de recogida" size="xl">
                 <!-- Móvil: input nativo (CSS: sm:hidden) -->
                 <input
+                    v-if="minPickupDate"
                     type="date"
                     id="pickup-date-mobile"
                     name="pickup-date-mobile"
@@ -104,6 +105,7 @@
                 >
                 <!-- Desktop: u-input-date (CSS: hidden sm:block) -->
                 <u-input-date
+                    v-if="minPickupDate"
                     id="pickup-date"
                     v-model="selectedPickupDate"
                     variant="ghost"
@@ -124,7 +126,7 @@
                                 class="px-0"
                             >
                                 <template #leading>
-                                    <CalendarIcon cls="size-4" />
+                                    <IconsCalendarIcon cls="size-4" />
                                 </template>
                             </u-button>
                             <template #content>
@@ -144,6 +146,7 @@
             <u-form-field label="Día de devolución" size="xl">
                 <!-- Móvil: input nativo (CSS: sm:hidden) -->
                 <input
+                    v-if="minPickupDate"
                     type="date"
                     id="return-date-mobile"
                     name="return-date-mobile"
@@ -155,6 +158,7 @@
                 >
                 <!-- Desktop: u-input-date (CSS: hidden sm:block) -->
                 <u-input-date
+                    v-if="minPickupDate"
                     id="return-date"
                     v-model="selectedReturnDate"
                     variant="ghost"
@@ -176,7 +180,7 @@
                                 class="px-0"
                             >
                                 <template #leading>
-                                    <CalendarIcon cls="size-4" />
+                                    <IconsCalendarIcon cls="size-4" />
                                 </template>
                             </u-button>
                             <template #content>
@@ -273,44 +277,68 @@
 </template>
 
 <script setup lang="ts">
-/** imports */
-import { 
-    useStoreAdminData,
-    useStoreSearchData,
-    useStoreReservationForm,
-} from '#imports';
-import { IconsCalendarIcon as CalendarIcon } from '#components' 
+// Note: stores and components are auto-imported by Nuxt
 
-/** stores */
-const storeReservationForm = useStoreReservationForm();
-const storeAdminData = useStoreAdminData();
-const storeSearchData = useStoreSearchData();
-
-/** refs */
-const {
-    lugarRecogida,
-    lugarDevolucion,
-    horaRecogida,
-    horaDevolucion,
-    referido,
-    minPickupDate,
-    maxReturnDate,
-    selectedPickupDate,
-    selectedReturnDate,
-} = storeToRefs(storeReservationForm)
-const { pending: pendingSearching } = storeToRefs(storeSearchData);
-const { sortedBranches } = storeToRefs(storeAdminData);
-
-const {
-    pickupHourOptions,
-    returnHourOptions,
-    searchLinkName,
-    searchLinkParams,
-    animateSearchButton,
-} = useSearch()
+/** Local refs - initialized lazily to avoid SSR Pinia errors */
+const lugarRecogida = ref<string | null>(null);
+const lugarDevolucion = ref<string | null>(null);
+const horaRecogida = ref<string | null>(null);
+const horaDevolucion = ref<string | null>(null);
+const referido = ref<string | null>(null);
+const minPickupDate = ref<any>(null);
+const maxReturnDate = ref<any>(null);
+const selectedPickupDate = ref<any>(null);
+const selectedReturnDate = ref<any>(null);
+const pendingSearching = ref<boolean>(false);
+const sortedBranches = ref<any[]>([]);
+const pickupHourOptions = ref<any[]>([]);
+const returnHourOptions = ref<any[]>([]);
+const searchLinkName = ref<string>('');
+const searchLinkParams = ref<any>({});
+const animateSearchButton = ref<boolean>(true);
 
 const pickupDateCalendarOpen = ref<boolean>(false);
 const returnDateCalendarOpen = ref<boolean>(false);
+
+// Initialize stores only on client side after mount
+onMounted(() => {
+  const storeReservationForm = useStoreReservationForm();
+  const storeAdminData = useStoreAdminData();
+  const storeSearchData = useStoreSearchData();
+
+  const formRefs = storeToRefs(storeReservationForm);
+  const searchRefs = storeToRefs(storeSearchData);
+  const adminRefs = storeToRefs(storeAdminData);
+
+  // Sync store refs to local refs
+  watch(() => formRefs.lugarRecogida.value, (val) => lugarRecogida.value = val, { immediate: true });
+  watch(() => formRefs.lugarDevolucion.value, (val) => lugarDevolucion.value = val, { immediate: true });
+  watch(() => formRefs.horaRecogida.value, (val) => horaRecogida.value = val, { immediate: true });
+  watch(() => formRefs.horaDevolucion.value, (val) => horaDevolucion.value = val, { immediate: true });
+  watch(() => formRefs.referido.value, (val) => referido.value = val, { immediate: true });
+  watch(() => formRefs.minPickupDate.value, (val) => minPickupDate.value = val, { immediate: true });
+  watch(() => formRefs.maxReturnDate.value, (val) => maxReturnDate.value = val, { immediate: true });
+  watch(() => formRefs.selectedPickupDate.value, (val) => selectedPickupDate.value = val, { immediate: true });
+  watch(() => formRefs.selectedReturnDate.value, (val) => selectedReturnDate.value = val, { immediate: true });
+  watch(() => searchRefs.pending.value, (val) => pendingSearching.value = val, { immediate: true });
+  watch(() => adminRefs.sortedBranches.value, (val) => sortedBranches.value = val, { immediate: true });
+
+  // Sync local refs back to store (bi-directional binding)
+  watch(lugarRecogida, (val) => formRefs.lugarRecogida.value = val);
+  watch(lugarDevolucion, (val) => formRefs.lugarDevolucion.value = val);
+  watch(horaRecogida, (val) => formRefs.horaRecogida.value = val);
+  watch(horaDevolucion, (val) => formRefs.horaDevolucion.value = val);
+  watch(selectedPickupDate, (val) => formRefs.selectedPickupDate.value = val);
+  watch(selectedReturnDate, (val) => formRefs.selectedReturnDate.value = val);
+
+  // Initialize useSearch composable
+  const searchComposable = useSearch();
+  watch(() => searchComposable.pickupHourOptions.value, (val) => pickupHourOptions.value = val, { immediate: true });
+  watch(() => searchComposable.returnHourOptions.value, (val) => returnHourOptions.value = val, { immediate: true });
+  watch(() => searchComposable.searchLinkName.value, (val) => searchLinkName.value = val, { immediate: true });
+  watch(() => searchComposable.searchLinkParams.value, (val) => searchLinkParams.value = val, { immediate: true });
+  watch(() => searchComposable.animateSearchButton.value, (val) => animateSearchButton.value = val, { immediate: true });
+});
 
 </script>
 

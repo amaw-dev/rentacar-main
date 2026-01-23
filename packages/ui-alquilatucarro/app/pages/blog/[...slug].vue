@@ -288,7 +288,7 @@
 
 <script setup lang="ts">
 import type { BlogPosting, BreadcrumbList } from 'schema-dts'
-import type { BlogPost } from '@rentacar-main/logic'
+import type { BlogPost } from '@rentacar-main/logic/src'
 
 const { franchise } = useAppConfig()
 const route = useRoute()

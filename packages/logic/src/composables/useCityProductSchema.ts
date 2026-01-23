@@ -1,4 +1,5 @@
-import type { Product, AggregateOffer } from 'schema-dts'
+// External dependencies
+import type { Product, AggregateOffer } from 'schema-dts';
 
 interface CityPricing {
   lowPrice: number

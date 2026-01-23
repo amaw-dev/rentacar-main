@@ -1,4 +1,4 @@
-import type { Testimonial } from "#imports";
+import type { Testimonial } from '../../../config';
 
 export default interface City {
     id: string;

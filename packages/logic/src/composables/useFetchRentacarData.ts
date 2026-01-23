@@ -1,5 +1,7 @@
-/** types */
-import type { ReservasApiData } from "#imports";
+// External dependencies
+
+// Types
+import type { ReservasApiData } from '@rentacar-main/logic/utils';
 
 export default function useFetchRentacarData(){
     const { adminData } = useAppConfig();

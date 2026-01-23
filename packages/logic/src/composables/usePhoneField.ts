@@ -1,5 +1,8 @@
-/** types */
-import type { VueTelInputPhoneObject, PhoneInputOptionsType } from "#imports";
+// External dependencies
+import { computed } from 'vue';
+
+// Types
+import type { PhoneInputOptionsType } from '@rentacar-main/logic/utils';
 
 export default function usePhoneField() {
     const phoneInputOptions = computed<PhoneInputOptionsType>(() => ({

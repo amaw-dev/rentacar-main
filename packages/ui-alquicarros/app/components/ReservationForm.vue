@@ -95,7 +95,7 @@
 import type {
   ReservationFormValidationSchemaType,
   ReservationWithFlightFormValidationSchemaType,
-} from "#imports";
+} from '@rentacar-main/logic/utils';
 
 // Lazy load vue-tel-input (solo se carga cuando se renderiza el formulario)
 const VueTelInput = defineAsyncComponent(() =>

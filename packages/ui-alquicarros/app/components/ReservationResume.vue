@@ -114,17 +114,12 @@
 </template>
 
 <script setup lang="ts">
-/** imports */
-import {
-  useStoreReservationForm,
-  useStoreSearchData,
-  useVehicleCategories,
-} from "#imports";
-import { defineAsyncComponent } from 'vue'
+// Note: composables are auto-imported by Nuxt
+import { defineAsyncComponent} from 'vue'
 const Carrusel = defineAsyncComponent(() => import('./Carrusel.vue'))
 
 /** types */
-import type { ReservationResumeProps } from "#imports";
+import type { ReservationResumeProps } from '@rentacar-main/logic/utils';
 
 /** props */
 const props = defineProps<ReservationResumeProps>();

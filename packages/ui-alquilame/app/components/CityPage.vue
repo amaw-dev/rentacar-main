@@ -364,7 +364,7 @@
 
 <script setup lang="ts">
 /** types */
-import type { Testimonial, City } from "#imports";
+import type { City } from '@rentacar-main/logic/utils';
 
 /** imports */
 import { defineAsyncComponent } from "vue";
@@ -374,16 +374,22 @@ import {
   IconsClockIcon as ClockIcon,
 } from "#components";
 
-/** stores */
-const storeSearch = useStoreSearchData();
-
-
 /** refs */
 const { franchise, branches } = useAppConfig();
-const {
-  pending: pendingSearch,
-  filteredCategories,
-} = storeToRefs(storeSearch);
+
+/** stores - lazy initialization to avoid SSR Pinia error */
+const pendingSearch = ref(false);
+const filteredCategories = ref<any[]>([]);
+
+// Initialize store only on client side after mount
+onMounted(() => {
+  const storeSearch = useStoreSearchData();
+  const refs = storeToRefs(storeSearch);
+
+  // Sync refs
+  watch(() => refs.pending.value, (val) => pendingSearch.value = val, { immediate: true });
+  watch(() => refs.filteredCategories.value, (val) => filteredCategories.value = val, { immediate: true });
+});
 
 /** props */
 const props = defineProps<{

@@ -12,7 +12,7 @@ import {
   faqsConfig,
   citiesConfig,
   adminDataConfig,
-} from '@rentacar-main/logic'
+} from '@rentacar-main/logic/src'
 
 export default defineAppConfig({
   // Shared default timezone

@@ -1,4 +1,5 @@
-import type { LocalBusiness, OpeningHoursSpecification, PostalAddress } from 'schema-dts'
+// External dependencies
+import type { LocalBusiness, OpeningHoursSpecification, PostalAddress } from 'schema-dts';
 
 interface Branch {
     id: number

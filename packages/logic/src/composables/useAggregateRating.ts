@@ -1,5 +1,9 @@
-import type { AggregateRating, Review, Person, Organization } from 'schema-dts'
-import type { Testimonial } from '#imports'
+// External dependencies
+// Note: useAppConfig, useRoute, useSchemaOrg are auto-imported by Nuxt
+import type { AggregateRating, Review, Person, Organization } from 'schema-dts';
+
+// Types
+import type { Testimonial } from '@rentacar-main/logic/utils';
 
 interface AggregateRatingOptions {
     testimonials: Testimonial[]

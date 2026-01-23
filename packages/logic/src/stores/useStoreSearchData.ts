@@ -1,18 +1,24 @@
-/** imports */
-import {
-  useFetchCategoriesAvailabilityData,
-  useCategory,
-  useStoreAdminData,
-  useStoreReservationForm
-} from "#imports";
+// External dependencies
+import { defineStore } from 'pinia';
+import { ref, computed } from 'vue';
+import { storeToRefs } from 'pinia';
 
-/** types */
+// Internal dependencies - stores
+import useStoreAdminData from './useStoreAdminData';
+import useStoreReservationForm from './useStoreReservationForm';
+
+// Internal dependencies - composables
+import useFetchCategoriesAvailabilityData from '../composables/useFetchCategoriesAvailabilityData';
+import useCategory from '../composables/useCategory';
+import useMessages from '../composables/useMessages';
+
+// Types
 import type {
   CategoryAvailabilityData,
   CategoryData,
+  CategoryType,
   ErrorMessage,
-  LocalizaErrorResponse,
-} from "#imports";
+} from '@rentacar-main/logic/utils';
 
 const useStoreSearchData = defineStore("storeSearchData", () => {
   const storeAdminData = useStoreAdminData();
@@ -42,8 +48,14 @@ const useStoreSearchData = defineStore("storeSearchData", () => {
 
     const { data, error: errorResponse } = await useFetchCategoriesAvailabilityData();
 
-    if(errorResponse.value)
+    // Handle missing parameters error silently (not a real error, just missing information)
+    if(errorResponse.value) {
+      if(errorResponse.value.error === 'missing_parameters') {
+        pending.value = false;
+        return;
+      }
       error.value = errorResponse.value;
+    }
 
     // if monthly reservation is selected
     if(haveMonthlyReservation.value){
@@ -173,24 +185,26 @@ const useStoreSearchData = defineStore("storeSearchData", () => {
       .filter((category: CategoryAvailabilityData) => {
         // filter categories that are not available when selected bogota
         if(pickupLocationCode){
-          if ( 
+          if (
             !bogotaBranches.includes(pickupLocationCode) &&
-            onlyBogotaCategories.includes(category.categoryCode) 
+            onlyBogotaCategories.includes(category.categoryCode)
           ) {
             return false;
           } else return true;
         }
+        return true;
       })
       .filter((category: CategoryAvailabilityData) => {
         // filter category GR that are not available when selected allowed city
         if(pickupLocationCity){
-          if ( 
+          if (
             !onlyCategoryGRCityAllowed.includes(pickupLocationCity) &&
             category.categoryCode == "GR"
           ) {
             return false;
           } else return true;
         }
+        return true;
       });
 
   });

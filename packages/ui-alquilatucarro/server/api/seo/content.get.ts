@@ -1,4 +1,4 @@
-import contentData from '../../../docs/seo/data/content.json'
+import contentData from '../../data/content.json'
 
 export default defineEventHandler(() => {
   return contentData

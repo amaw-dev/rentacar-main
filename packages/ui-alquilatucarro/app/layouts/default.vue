@@ -121,7 +121,7 @@
 
 <script lang="ts" setup>
 import type { NavigationMenuItem } from '@nuxt/ui'
-import type { BranchData, CityData } from '#imports'
+import type { BranchData, City as CityData } from '@rentacar-main/logic/utils'
 import { today } from '@internationalized/date'
 
 const route = useRoute();

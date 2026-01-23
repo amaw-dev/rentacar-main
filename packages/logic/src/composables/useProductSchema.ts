@@ -1,5 +1,8 @@
+// External dependencies
 import type { Product, Offer, AggregateOffer, Car } from 'schema-dts'
-import type { CategoryAvailabilityData, VehicleCategory, CategoryModelData } from '#imports'
+
+// Types
+import type { CategoryAvailabilityData, CategoryModelData, VehicleCategory } from '@rentacar-main/logic/utils';
 
 interface ProductSchemaOptions {
     category: CategoryAvailabilityData
@@ -26,7 +29,6 @@ export const useProductSchema = (options: ProductSchemaOptions) => {
     const modelNames = models.map((m: CategoryModelData) => m.name).join(', ')
 
     const dailyPrice = category.vehicleDayCharge + category.coverageUnitCharge
-    const totalPrice = category.estimatedTotalAmount
 
     const productSchema = <Product>{
         '@type': 'Product',
@@ -72,7 +74,7 @@ export const useProductSchema = (options: ProductSchemaOptions) => {
                 name: 'Tipo',
                 value: categoryName
             },
-            ...vehicleCategory.tags.map(tag => ({
+            ...vehicleCategory.tags.map((tag: string) => ({
                 '@type': 'PropertyValue',
                 name: 'Característica',
                 value: tag

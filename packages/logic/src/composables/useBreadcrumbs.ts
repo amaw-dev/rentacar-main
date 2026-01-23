@@ -1,4 +1,5 @@
-import type { BreadcrumbList, ListItem } from 'schema-dts'
+// External dependencies
+import type { BreadcrumbList, ListItem } from 'schema-dts';
 
 interface BreadcrumbItem {
     name: string
@@ -31,8 +32,6 @@ export const useBreadcrumbs = (items: BreadcrumbItem[]) => {
 }
 
 export const useHomeBreadcrumb = () => {
-    const { franchise } = useAppConfig()
-
     return useBreadcrumbs([
         { name: 'Inicio', path: '/' }
     ])
