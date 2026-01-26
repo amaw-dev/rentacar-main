@@ -1,6 +1,6 @@
 # Pruebas E2E con Playwright
 
-Este directorio contiene las pruebas end-to-end (E2E) de la aplicación Alquilatucarro usando Playwright.
+Este directorio contiene las pruebas end-to-end (E2E) del sistema multi-marca (Alquilatucarro, Alquicarros, Alquilame) usando Playwright.
 
 ## Estado actual
 
@@ -24,6 +24,16 @@ pnpm test:e2e:ui
 ```
 
 Para más detalles de instalación, ver [INSTALL-PLAYWRIGHT.md](../INSTALL-PLAYWRIGHT.md)
+
+## Ejecutar tests por marca
+
+- **Alquilatucarro**: `pnpm test:e2e:alquilatucarro`
+- **Alquicarros**: `pnpm test:e2e:alquicarros`
+- **Alquilame**: `pnpm test:e2e:alquilame`
+
+## Tests por defecto
+
+`pnpm test:e2e` ejecuta contra **Alquilatucarro**
 
 ## Estructura de pruebas
 
