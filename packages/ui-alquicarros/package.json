@@ -5,7 +5,7 @@
   "type": "module",
   "description": "Frontend de Alquicarros",
   "scripts": {
-    "dev": "nuxt dev",
+    "dev": "nuxt dev --port 3001",
     "build": "nuxt build",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
