@@ -1,12 +1,28 @@
 import { defineConfig, devices } from '@playwright/test';
 
-// Configuración multi-marca
+/**
+ * Configuración multi-marca para Playwright
+ *
+ * Para ejecutar tests de una marca específica:
+ * BRAND=alquicarros pnpm playwright test
+ * BRAND=alquilame pnpm playwright test
+ *
+ * Default: alquilatucarro
+ */
 const brand = process.env.BRAND || 'alquilatucarro';
 const brandPorts: Record<string, number> = {
   alquilatucarro: 3000,
   alquicarros: 3001,
   alquilame: 3002
 };
+
+// Validación
+if (!(brand in brandPorts)) {
+  throw new Error(
+    `Invalid BRAND "${brand}". Valid options: ${Object.keys(brandPorts).join(', ')}`
+  );
+}
+
 const port = brandPorts[brand];
 
 /**
