@@ -73,7 +73,7 @@ jobs:
           echo "brands=$BRANDS" >> $GITHUB_OUTPUT
 
   deploy:
-    name: Deploy ${{ matrix.brand.name }}
+    name: Deploy ${{ matrix.name }}
     runs-on: ubuntu-latest
     needs: detect-changes
     if: needs.detect-changes.outputs.brands != '[]'
@@ -141,24 +141,24 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Create .env.prod from secrets
-        working-directory: packages/${{ matrix.brand.package }}
+        working-directory: packages/${{ matrix.package }}
         run: |
           echo "NUXT_PUBLIC_FIREBASE_API_KEY=${{ secrets.NUXT_PUBLIC_FIREBASE_API_KEY }}" >> .env.prod
           echo "NUXT_PUBLIC_FIREBASE_AUTH_DOMAIN=${{ secrets.NUXT_PUBLIC_FIREBASE_AUTH_DOMAIN }}" >> .env.prod
-          echo "NUXT_PUBLIC_FIREBASE_PROJECT_ID=${{ matrix.brand.firebase_project }}" >> .env.prod
+          echo "NUXT_PUBLIC_FIREBASE_PROJECT_ID=${{ matrix.firebase_project }}" >> .env.prod
           echo "NUXT_PUBLIC_RENTACAR_API_RESERVAS_DATA_ENDPOINT=${{ secrets.NUXT_PUBLIC_RENTACAR_API_RESERVAS_DATA_ENDPOINT }}" >> .env.prod
           echo "NUXT_PUBLIC_RENTACAR_API_RESERVAS_FORM_RECORD_ENDPOINT=${{ secrets.NUXT_PUBLIC_RENTACAR_API_RESERVAS_FORM_RECORD_ENDPOINT }}" >> .env.prod
           echo "NUXT_PUBLIC_RENTACAR_API_RESERVAS_CATEGORIES_AVAILABILITY_ENDPOINT=${{ secrets.NUXT_PUBLIC_RENTACAR_API_RESERVAS_CATEGORIES_AVAILABILITY_ENDPOINT }}" >> .env.prod
           echo "NUXT_SEO_PASSWORD=${{ secrets.SEO_PASSWORD }}" >> .env.prod
           echo "NUXT_GSC_CLIENT_ID=${{ secrets.GSC_CLIENT_ID }}" >> .env.prod
           echo "NUXT_GSC_CLIENT_SECRET=${{ secrets.GSC_CLIENT_SECRET }}" >> .env.prod
-          echo "NUXT_GSC_REDIRECT_URI=https://${{ matrix.brand.domain }}/api/auth/gsc/callback" >> .env.prod
+          echo "NUXT_GSC_REDIRECT_URI=https://${{ matrix.domain }}/api/auth/gsc/callback" >> .env.prod
 
-      - name: Build ${{ matrix.brand.name }}
-        run: pnpm --filter ${{ matrix.brand.package }} build
+      - name: Build ${{ matrix.name }}
+        run: pnpm --filter ${{ matrix.package }} build
 
       - name: Fix Firebase Functions dependencies
-        working-directory: packages/${{ matrix.brand.package }}/.output/server
+        working-directory: packages/${{ matrix.package }}/.output/server
         run: |
           rm -rf node_modules
           npm install --omit=dev
@@ -169,8 +169,8 @@ jobs:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
           channelId: live
-          projectId: ${{ matrix.brand.firebase_project }}
-          entryPoint: packages/${{ matrix.brand.package }}
+          projectId: ${{ matrix.firebase_project }}
+          entryPoint: packages/${{ matrix.package }}
 
       - name: Setup Firebase credentials
         run: |
@@ -178,12 +178,12 @@ jobs:
           echo "GOOGLE_APPLICATION_CREDENTIALS=$HOME/gcloud-service-key.json" >> $GITHUB_ENV
 
       - name: Deploy Functions
-        working-directory: packages/${{ matrix.brand.package }}
+        working-directory: packages/${{ matrix.package }}
         run: |
           npm install -g firebase-tools
           max_attempts=3
           attempt=1
-          until firebase deploy --only functions:${{ matrix.brand.function }} --project ${{ matrix.brand.firebase_project }}; do
+          until firebase deploy --only functions:${{ matrix.function }} --project ${{ matrix.firebase_project }}; do
             if [ $attempt -ge $max_attempts ]; then
               echo "Failed after $max_attempts attempts"
               exit 1
@@ -197,7 +197,7 @@ jobs:
         id: version
         if: github.ref_name == 'main'
         run: |
-          TAG_PREFIX="${{ matrix.brand.tag_prefix }}"
+          TAG_PREFIX="${{ matrix.tag_prefix }}"
 
           LATEST_TAG=$(git tag -l "${TAG_PREFIX}*" --sort=-v:refname | head -1)
           if [ -z "$LATEST_TAG" ]; then
@@ -210,7 +210,7 @@ jobs:
           MINOR=$(echo $VERSION | cut -d. -f2)
           PATCH=$(echo $VERSION | cut -d. -f3)
 
-          COMMITS=$(git log ${LATEST_TAG}..HEAD --pretty=format:"%s" --grep="(${{ matrix.brand.name }})" 2>/dev/null || git log --pretty=format:"%s" --grep="(${{ matrix.brand.name }})")
+          COMMITS=$(git log ${LATEST_TAG}..HEAD --pretty=format:"%s" --grep="(${{ matrix.name }})" 2>/dev/null || git log --pretty=format:"%s" --grep="(${{ matrix.name }})")
 
           if echo "$COMMITS" | grep -qE "^BREAKING CHANGE:|^[a-z]+!:"; then
             MAJOR=$((MAJOR + 1))
@@ -237,7 +237,7 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ steps.version.outputs.new_version }}
-          name: Release ${{ matrix.brand.name }} ${{ steps.version.outputs.new_version }}
+          name: Release ${{ matrix.name }} ${{ steps.version.outputs.new_version }}
           generate_release_notes: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
