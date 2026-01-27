@@ -9,14 +9,28 @@ dist
 # Node dependencies
 node_modules
 
+# Monorepo
+packages/*/node_modules
+packages/*/.nuxt
+packages/*/.output
+packages/*/dist
+
+# pnpm
+.pnpm-store/
+.pnpm-debug.log
+
 # Logs
 logs
 *.log
 
 # Misc
 .DS_Store
+Thumbs.db
 .fleet
 .idea
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
 
 # Local env files
 .env
@@ -34,7 +48,6 @@ robots.txt
 .claude/
 .specify/
 advancedrentalcar/
-docs/
 scripts/
 *.zip
 nul
@@ -90,3 +103,9 @@ playwright/.cache/
 
 # Scripts locales de Windows
 *.ps1
+
+# GSC tokens (sensitive)
+docs/seo/data/.tokens/
+
+# Build artifacts
+*.tsbuildinfo

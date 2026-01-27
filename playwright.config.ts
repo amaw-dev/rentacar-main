@@ -1,6 +1,31 @@
 import { defineConfig, devices } from '@playwright/test';
 
 /**
+ * Configuración multi-marca para Playwright
+ *
+ * Para ejecutar tests de una marca específica:
+ * BRAND=alquicarros pnpm playwright test
+ * BRAND=alquilame pnpm playwright test
+ *
+ * Default: alquilatucarro
+ */
+const brand = process.env.BRAND || 'alquilatucarro';
+const brandPorts: Record<string, number> = {
+  alquilatucarro: 3000,
+  alquicarros: 3001,
+  alquilame: 3002
+};
+
+// Validación
+if (!(brand in brandPorts)) {
+  throw new Error(
+    `Invalid BRAND "${brand}". Valid options: ${Object.keys(brandPorts).join(', ')}`
+  );
+}
+
+const port = brandPorts[brand];
+
+/**
  * Configuración de Playwright para pruebas E2E
  * @see https://playwright.dev/docs/test-configuration
  */
@@ -25,7 +50,7 @@ export default defineConfig({
 
   use: {
     // URL base para las pruebas
-    baseURL: process.env.PLAYWRIGHT_BASE_URL || 'http://localhost:3000',
+    baseURL: process.env.PLAYWRIGHT_BASE_URL || `http://localhost:${port}`,
 
     // Capturar trazas al fallar
     trace: 'on-first-retry',
@@ -71,8 +96,8 @@ export default defineConfig({
 
   // Servidor de desarrollo
   webServer: {
-    command: 'pnpm run dev',
-    url: 'http://localhost:3000',
+    command: `pnpm --filter ui-${brand} dev`,
+    url: `http://localhost:${port}`,
     reuseExistingServer: !process.env.CI,
     timeout: 180 * 1000, // 3 minutos para Nuxt en WSL
     stdout: 'pipe',

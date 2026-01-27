@@ -3,22 +3,117 @@ name: Deploy to Firebase
 on:
   push:
     branches:
+      - main
       - alquicarros
 
 env:
   NODE_VERSION: '20'
 
 jobs:
-  deploy:
+  detect-changes:
+    name: Detect affected brands
     runs-on: ubuntu-latest
-    permissions:
-      contents: write  # Needed for creating tags/releases
+    outputs:
+      brands: ${{ steps.filter.outputs.brands }}
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # Full history for semantic versioning
+          fetch-depth: 0
+
+      - name: Detect affected brands
+        id: filter
+        run: |
+          BRANCH="${{ github.ref_name }}"
+
+          # Get changed files
+          if [ "${{ github.event.before }}" = "0000000000000000000000000000000000000000" ] || [ -z "${{ github.event.before }}" ]; then
+            # First push to branch or before is empty, compare with HEAD~1
+            CHANGED_FILES=$(git diff --name-only HEAD~1 HEAD 2>/dev/null || echo "")
+          else
+            CHANGED_FILES=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }})
+          fi
+
+          echo "Changed files:"
+          echo "$CHANGED_FILES"
+
+          DEPLOY_BRANDS=()
+
+          # Detect if logic package changed (affects all brands in scope)
+          if echo "$CHANGED_FILES" | grep -q "^packages/logic/"; then
+            if [ "$BRANCH" = "main" ]; then
+              DEPLOY_BRANDS+=("alquilatucarro" "alquicarros" "alquilame")
+            else
+              DEPLOY_BRANDS+=("alquicarros" "alquilame")
+            fi
+          else
+            # Detect changes per specific UI package
+            if echo "$CHANGED_FILES" | grep -q "^packages/ui-alquilatucarro/"; then
+              [ "$BRANCH" = "main" ] && DEPLOY_BRANDS+=("alquilatucarro")
+            fi
+
+            if echo "$CHANGED_FILES" | grep -q "^packages/ui-alquicarros/"; then
+              DEPLOY_BRANDS+=("alquicarros")
+            fi
+
+            if echo "$CHANGED_FILES" | grep -q "^packages/ui-alquilame/"; then
+              DEPLOY_BRANDS+=("alquilame")
+            fi
+          fi
+
+          # Convert to JSON without duplicates
+          if [ ${#DEPLOY_BRANDS[@]} -eq 0 ]; then
+            BRANDS="[]"
+          else
+            BRANDS=$(printf '%s\n' "${DEPLOY_BRANDS[@]}" | sort -u | jq -R . | jq -s -c .)
+          fi
+
+          echo "Brands to deploy: $BRANDS"
+          echo "brands=$BRANDS" >> $GITHUB_OUTPUT
+
+  deploy:
+    name: Deploy ${{ matrix.brand.name }}
+    runs-on: ubuntu-latest
+    needs: detect-changes
+    if: needs.detect-changes.outputs.brands != '[]'
+    permissions:
+      contents: write
+
+    strategy:
+      matrix:
+        brand: ${{ fromJson(needs.detect-changes.outputs.brands) }}
+        include:
+          - brand: alquilatucarro
+            name: alquilatucarro
+            package: ui-alquilatucarro
+            function: rentacar_main_alquilatucarro
+            tag_prefix: alquilatucarro-v
+            firebase_project: rentacar-403321
+            domain: alquilatucarro.com
+            port: 3000
+          - brand: alquilame
+            name: alquilame
+            package: ui-alquilame
+            function: rentacar_main_alquilame
+            tag_prefix: alquilame-v
+            firebase_project: rentacar-403321
+            domain: alquilame.co
+            port: 3001
+          - brand: alquicarros
+            name: alquicarros
+            package: ui-alquicarros
+            function: rentacar_main_alquicarros
+            tag_prefix: alquicarros-v
+            firebase_project: rentacar-403321
+            domain: alquicarros.com
+            port: 3002
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -46,30 +141,36 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Create .env.prod from secrets
+        working-directory: packages/${{ matrix.brand.package }}
         run: |
           echo "NUXT_PUBLIC_FIREBASE_API_KEY=${{ secrets.NUXT_PUBLIC_FIREBASE_API_KEY }}" >> .env.prod
           echo "NUXT_PUBLIC_FIREBASE_AUTH_DOMAIN=${{ secrets.NUXT_PUBLIC_FIREBASE_AUTH_DOMAIN }}" >> .env.prod
-          echo "NUXT_PUBLIC_FIREBASE_PROJECT_ID=rentacar-403321" >> .env.prod
+          echo "NUXT_PUBLIC_FIREBASE_PROJECT_ID=${{ matrix.brand.firebase_project }}" >> .env.prod
           echo "NUXT_PUBLIC_RENTACAR_API_RESERVAS_DATA_ENDPOINT=${{ secrets.NUXT_PUBLIC_RENTACAR_API_RESERVAS_DATA_ENDPOINT }}" >> .env.prod
           echo "NUXT_PUBLIC_RENTACAR_API_RESERVAS_FORM_RECORD_ENDPOINT=${{ secrets.NUXT_PUBLIC_RENTACAR_API_RESERVAS_FORM_RECORD_ENDPOINT }}" >> .env.prod
           echo "NUXT_PUBLIC_RENTACAR_API_RESERVAS_CATEGORIES_AVAILABILITY_ENDPOINT=${{ secrets.NUXT_PUBLIC_RENTACAR_API_RESERVAS_CATEGORIES_AVAILABILITY_ENDPOINT }}" >> .env.prod
+          echo "NUXT_SEO_PASSWORD=${{ secrets.SEO_PASSWORD }}" >> .env.prod
+          echo "NUXT_GSC_CLIENT_ID=${{ secrets.GSC_CLIENT_ID }}" >> .env.prod
+          echo "NUXT_GSC_CLIENT_SECRET=${{ secrets.GSC_CLIENT_SECRET }}" >> .env.prod
+          echo "NUXT_GSC_REDIRECT_URI=https://${{ matrix.brand.domain }}/api/auth/gsc/callback" >> .env.prod
 
-      - name: Build
-        run: pnpm run build
+      - name: Build ${{ matrix.brand.name }}
+        run: pnpm --filter ${{ matrix.brand.package }} build
 
       - name: Fix Firebase Functions dependencies
-        working-directory: .output/server
+        working-directory: packages/${{ matrix.brand.package }}/.output/server
         run: |
           rm -rf node_modules
           npm install --omit=dev
 
-      - name: Deploy to Firebase
+      - name: Deploy to Firebase Hosting
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
           channelId: live
-          projectId: rentacar-403321
+          projectId: ${{ matrix.brand.firebase_project }}
+          entryPoint: packages/${{ matrix.brand.package }}
 
       - name: Setup Firebase credentials
         run: |
@@ -77,12 +178,12 @@ jobs:
           echo "GOOGLE_APPLICATION_CREDENTIALS=$HOME/gcloud-service-key.json" >> $GITHUB_ENV
 
       - name: Deploy Functions
+        working-directory: packages/${{ matrix.brand.package }}
         run: |
           npm install -g firebase-tools
-          # Retry logic for transient network errors (ECONNRESET)
           max_attempts=3
           attempt=1
-          until firebase deploy --only functions:rentacar_main_alquicarros; do
+          until firebase deploy --only functions:${{ matrix.brand.function }} --project ${{ matrix.brand.firebase_project }}; do
             if [ $attempt -ge $max_attempts ]; then
               echo "Failed after $max_attempts attempts"
               exit 1
@@ -94,26 +195,23 @@ jobs:
 
       - name: Determine version bump
         id: version
+        if: github.ref_name == 'main'
         run: |
-          TAG_PREFIX="alquicarros-v"
+          TAG_PREFIX="${{ matrix.brand.tag_prefix }}"
 
-          # Get latest tag matching our prefix
           LATEST_TAG=$(git tag -l "${TAG_PREFIX}*" --sort=-v:refname | head -1)
           if [ -z "$LATEST_TAG" ]; then
             LATEST_TAG="${TAG_PREFIX}0.0.0"
           fi
           echo "Latest tag: $LATEST_TAG"
 
-          # Extract version numbers (remove prefix first)
           VERSION=${LATEST_TAG#$TAG_PREFIX}
           MAJOR=$(echo $VERSION | cut -d. -f1)
           MINOR=$(echo $VERSION | cut -d. -f2)
           PATCH=$(echo $VERSION | cut -d. -f3)
 
-          # Analyze commits since last tag
-          COMMITS=$(git log ${LATEST_TAG}..HEAD --pretty=format:"%s" 2>/dev/null || git log --pretty=format:"%s")
+          COMMITS=$(git log ${LATEST_TAG}..HEAD --pretty=format:"%s" --grep="(${{ matrix.brand.name }})" 2>/dev/null || git log --pretty=format:"%s" --grep="(${{ matrix.brand.name }})")
 
-          # Determine bump type based on conventional commits
           if echo "$COMMITS" | grep -qE "^BREAKING CHANGE:|^[a-z]+!:"; then
             MAJOR=$((MAJOR + 1))
             MINOR=0
@@ -135,10 +233,11 @@ jobs:
           echo "bump_type=$BUMP" >> $GITHUB_OUTPUT
 
       - name: Create Release
+        if: github.ref_name == 'main'
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ steps.version.outputs.new_version }}
-          name: Release ${{ steps.version.outputs.new_version }}
+          name: Release ${{ matrix.brand.name }} ${{ steps.version.outputs.new_version }}
           generate_release_notes: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

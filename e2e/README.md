@@ -1,6 +1,6 @@
 # Pruebas E2E con Playwright
 
-Este directorio contiene las pruebas end-to-end (E2E) de la aplicación usando Playwright.
+Este directorio contiene las pruebas end-to-end (E2E) del sistema multi-marca (Alquilatucarro, Alquicarros, Alquilame) usando Playwright.
 
 ## Estado actual
 
@@ -24,6 +24,24 @@ pnpm test:e2e:ui
 ```
 
 Para más detalles de instalación, ver [INSTALL-PLAYWRIGHT.md](../INSTALL-PLAYWRIGHT.md)
+
+## Ejecutar tests por marca
+
+- **Alquilatucarro**: `pnpm test:e2e:alquilatucarro`
+- **Alquicarros**: `pnpm test:e2e:alquicarros`
+- **Alquilame**: `pnpm test:e2e:alquilame`
+
+## Tests por defecto
+
+`pnpm test:e2e` ejecuta contra **Alquilatucarro**
+
+## Tests de Chromium por marca
+
+Para ejecutar tests únicamente en el navegador Chromium para una marca específica:
+
+- **Alquilatucarro**: `pnpm test:e2e:chromium:alquilatucarro`
+- **Alquicarros**: `pnpm test:e2e:chromium:alquicarros`
+- **Alquilame**: `pnpm test:e2e:chromium:alquilame`
 
 ## Estructura de pruebas
 
@@ -82,7 +100,7 @@ La configuración de Playwright se encuentra en [playwright.config.ts](../playwr
 
 ## Servidor de desarrollo
 
-Las pruebas inician automáticamente el servidor de desarrollo de Nuxt en `http://localhost:3000`. No necesitas iniciar el servidor manualmente.
+Las pruebas inician automáticamente el servidor de desarrollo de la marca especificada en el puerto correspondiente (alquilatucarro:3000, alquicarros:3001, alquilame:3002). No necesitas iniciar el servidor manualmente.
 
 ## Variables de entorno
 
