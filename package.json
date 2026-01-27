@@ -54,8 +54,8 @@
     "build:alquicarros": "pnpm --filter ui-alquicarros build",
     "build:alquilatucarro": "pnpm --filter ui-alquilatucarro build",
     "build:all": "pnpm --filter ui-alquilatucarro build && pnpm --filter ui-alquilame build && pnpm --filter ui-alquicarros build",
-    "typecheck": "pnpm --recursive typecheck",
-    "lint": "pnpm --recursive lint"
+    "typecheck": "pnpm -r typecheck",
+    "lint": "pnpm -r lint"
   },
   "dependencies": {
     "@iconify-json/lucide": "^1.2.80",
