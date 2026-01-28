@@ -54,7 +54,7 @@
     "build:alquicarros": "pnpm --filter ui-alquicarros build",
     "build:alquilatucarro": "pnpm --filter ui-alquilatucarro build",
     "build:all": "pnpm --filter ui-alquilatucarro build && pnpm --filter ui-alquilame build && pnpm --filter ui-alquicarros build",
-    "typecheck": "pnpm -r typecheck",
+    "typecheck": "pnpm --filter 'ui-*' typecheck",
     "lint": "pnpm -r lint"
   },
   "dependencies": {

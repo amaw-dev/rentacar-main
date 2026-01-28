@@ -10,7 +10,7 @@ interface ProductSchemaOptions {
     cityName?: string
 }
 
-export const useProductSchema = (options: ProductSchemaOptions) => {
+export const useProductSchema = (options: ProductSchemaOptions): void => {
     const { franchise } = useAppConfig()
     const route = useRoute()
 
@@ -83,10 +83,6 @@ export const useProductSchema = (options: ProductSchemaOptions) => {
     }
 
     useSchemaOrg([productSchema])
-
-    return {
-        productSchema
-    }
 }
 
 function getNextMonthDate(): string {
@@ -95,7 +91,7 @@ function getNextMonthDate(): string {
     return '2026-12-31'
 }
 
-export const useCarSchema = (options: ProductSchemaOptions) => {
+export const useCarSchema = (options: ProductSchemaOptions): void => {
     const { franchise } = useAppConfig()
     const route = useRoute()
 
@@ -131,8 +127,4 @@ export const useCarSchema = (options: ProductSchemaOptions) => {
     })
 
     useSchemaOrg(carSchemas)
-
-    return {
-        carSchemas
-    }
 }
