@@ -407,19 +407,9 @@ header [data-highlighted],
     background-color: white !important;
 }
 
-/* Calendar day cells */
-.calendar-light [role="gridcell"] button {
-    color: #1f2937 !important;
-}
-
+/* Calendar day cells - configuration moved to component :ui prop */
 .calendar-light [role="gridcell"] button:hover {
     background-color: #f3f4f6 !important;
-}
-
-/* Days outside current month */
-.calendar-light [data-outside-view] button,
-.calendar-light [data-disabled] button {
-    color: #9ca3af !important;
 }
 
 /* UModal customization - remove header divider and reduce spacing */
