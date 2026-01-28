@@ -17,7 +17,7 @@
     "./utils/*": "./src/utils/*.ts"
   },
   "scripts": {
-    "typecheck": "tsc --noEmit",
+    "typecheck": "vue-tsc --noEmit",
     "test": "vitest",
     "test:watch": "vitest --watch",
     "test:coverage": "vitest --coverage"
