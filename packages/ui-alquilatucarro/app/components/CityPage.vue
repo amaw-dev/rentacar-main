@@ -14,18 +14,20 @@
         </div>
       </template>
       <template #title>
-        <!-- UPageHero ya renderiza <h1> para slot #title, usamos div para evitar h1 duplicado -->
-        <div class="text-white text-center uppercase font-bold" style="letter-spacing: -0.025em;">
+        <!-- UPageHero renderiza <h1> para slot #title — usar solo phrasing content (span, no div) -->
+        <span class="block text-white text-center uppercase font-bold" style="letter-spacing: -0.025em;">
           <span class="block text-2xl md:text-3xl lg:text-4xl" style="letter-spacing: -0.025em;">
-            ALQUILER<br>DE CARROS EN
+            ALQUILER <br>DE CARROS EN
           </span>
+          {{ ' ' }}
           <span class="flex flex-row justify-center items-baseline gap-2 text-4xl md:text-5xl lg:text-7xl lg:whitespace-nowrap" style="letter-spacing: -0.025em;">
             <span class="size-8 md:size-10 lg:size-14" aria-hidden="true"></span>
             {{ city?.name }}
             <LocationIcon cls="text-red-600 size-8 md:size-10 lg:size-14 translate-y-1" />
           </span>
+          {{ ' ' }}
           <span class="block text-2xl md:text-3xl lg:text-4xl text-white colombia-sweep" style="letter-spacing: 0.025em;">Colombia</span>
-        </div>
+        </span>
       </template>
       <template #body>
         <!-- Solo visible en mobile -->
@@ -317,10 +319,10 @@
         </p>
         <UAccordion :items="cityFAQs" :ui="faqAccordionUIConfig" class="max-w-4xl mx-auto">
           <template #default="{ item }">
-            <div class="text-base font-medium text-gray-800 px-4" v-text="item.label"></div>
+            <span class="block text-base font-medium text-gray-800 px-4" v-text="item.label"></span>
           </template>
           <template #content="{ item }">
-            <div class="text-base text-gray-600 py-3 bg-gray-50 px-4 rounded-lg" v-text="item.content"></div>
+            <span class="block text-base text-gray-600 py-3 bg-gray-50 px-4 rounded-lg" v-text="item.content"></span>
           </template>
         </UAccordion>
       </div>
