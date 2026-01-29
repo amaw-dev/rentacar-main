@@ -35,11 +35,11 @@
       class="bg-white text-black"
     >
       <template #title>
-        <div class="text-2xl md:text-3xl text-center">
+        <span class="block text-2xl md:text-3xl text-center">
           <span class="block text-red-700">Hasta 60% de Descuento</span>
-          <br>
+          {{ ' ' }}
           <span class="block text-black">Reserva Ahora, Paga Después</span>
-        </div>
+        </span>
       </template>
       <template #description>
         <div class="text-black text-center">
@@ -65,9 +65,9 @@
       class="bg-gray-200 text-black"
     >
       <template #title>
-        <div class="text-2xl md:text-3xl text-center">
+        <span class="block text-2xl md:text-3xl text-center">
           <span class="text-red-700">Requisitos</span>{{ ' ' }}<span class="text-black">para tu alquiler</span>
-        </div>
+        </span>
       </template>
       <template #description>
         <div class="text-black justify-items-center">
@@ -122,9 +122,9 @@
       :ui="categoriasPageSectionUIConfig"
     >
       <template #title>
-        <div class="text-2xl md:text-3xl text-center">
+        <span class="block text-2xl md:text-3xl text-center">
           <span class="text-red-700">Tipos de Vehículos</span>{{ ' ' }}<span class="text-black">ideales para tu necesidad</span>
-        </div>
+        </span>
       </template>
       <template #description>
         <div class="text-black justify-items-center">
@@ -244,10 +244,10 @@
         </p>
         <LazyUAccordion hydrate-on-interaction :items="faqs" :ui="faqAccordionUIConfig" class="max-w-4xl mx-auto">
           <template #default="{ item }">
-            <div class="text-base font-medium text-gray-800 px-4" v-text="item.label"></div>
+            <span class="block text-base font-medium text-gray-800 px-4" v-text="item.label"></span>
           </template>
           <template #content="{ item }">
-            <div class="text-base text-gray-600 py-3 bg-gray-50 px-4 rounded-lg" v-text="item.content"></div>
+            <span class="block text-base text-gray-600 py-3 bg-gray-50 px-4 rounded-lg" v-text="item.content"></span>
           </template>
         </LazyUAccordion>
       </div>
