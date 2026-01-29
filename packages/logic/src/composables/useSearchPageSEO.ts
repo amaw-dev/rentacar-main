@@ -27,7 +27,7 @@ export const useSearchPageSEO = () => {
         link: [
             {
                 rel: 'canonical',
-                href: `${franchise.website}/${cityParam}/buscar-vehiculos`
+                href: `${franchise.website}/${cityParam}`
             }
         ]
     })
