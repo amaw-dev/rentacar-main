@@ -35,10 +35,11 @@
       class="bg-white text-black"
     >
       <template #title>
-        <div class="text-2xl md:text-3xl text-center">
+        <span class="block text-2xl md:text-3xl text-center">
           <span class="block text-red-700">Hasta 60% de Descuento</span>
+          {{ ' ' }}
           <span class="block text-black">Reserva Ahora, Paga Después</span>
-        </div>
+        </span>
       </template>
       <template #description>
         <div class="text-black text-center">
@@ -64,10 +65,9 @@
       class="bg-gray-200 text-black"
     >
       <template #title>
-        <div class="text-2xl md:text-3xl text-center space-x-2">
-          <span class="text-red-700">Requisitos</span>
-          <span class="text-black">para tu alquiler</span>
-        </div>
+        <span class="block text-2xl md:text-3xl text-center">
+          <span class="text-red-700">Requisitos</span>{{ ' ' }}<span class="text-black">para tu alquiler</span>
+        </span>
       </template>
       <template #description>
         <div class="text-black justify-items-center">
@@ -122,10 +122,9 @@
       :ui="categoriasPageSectionUIConfig"
     >
       <template #title>
-        <div class="text-2xl md:text-3xl text-center space-x-2">
-          <span class="text-red-700">Tipos de Vehículos</span>
-          <span class="text-black">ideales para tu necesidad</span>
-        </div>
+        <span class="block text-2xl md:text-3xl text-center">
+          <span class="text-red-700">Tipos de Vehículos</span>{{ ' ' }}<span class="text-black">ideales para tu necesidad</span>
+        </span>
       </template>
       <template #description>
         <div class="text-black justify-items-center">
@@ -206,9 +205,8 @@
     <!-- Testimonials Section -->
     <section id="testimonios" class="bg-gray-200 text-black py-12 md:py-20 px-4 md:px-8">
       <div class="max-w-7xl mx-auto">
-        <h2 class="text-2xl md:text-3xl text-center space-x-2 mb-4">
-          <span class="text-red-700">Testimonios</span>
-          <span class="text-black">que comparten nuestros clientes</span>
+        <h2 class="text-2xl md:text-3xl text-center mb-4">
+          <span class="text-red-700">Testimonios</span>{{ ' ' }}<span class="text-black">que comparten nuestros clientes</span>
         </h2>
         <p class="text-black text-center mb-8">Descubre por qué somos la opción preferida para alquilar carros en Colombia. Nuestros clientes destacan nuestra atención, precios competitivos y la facilidad para explorar.</p>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -238,19 +236,18 @@
     <!-- FAQ Section -->
     <UPageSection id="faqs" class="bg-white text-black">
       <div class="max-w-7xl mx-auto px-1 sm:px-2 lg:px-6">
-        <h2 class="text-2xl md:text-3xl font-bold text-center mb-6 space-x-2">
-          <span class="text-red-700">Preguntas Frecuentes</span>
-          <span class="text-black">sobre alquiler de carros</span>
+        <h2 class="text-2xl md:text-3xl font-bold text-center mb-6">
+          <span class="text-red-700">Preguntas Frecuentes</span>{{ ' ' }}<span class="text-black">sobre alquiler de carros</span>
         </h2>
         <p class="text-base text-center mb-4">
           Encuentra respuestas a las consultas más comunes sobre nuestro servicio de alquiler. Si tienes otra pregunta, contáctanos directamente.
         </p>
         <LazyUAccordion hydrate-on-interaction :items="faqs" :ui="faqAccordionUIConfig" class="max-w-4xl mx-auto">
           <template #default="{ item }">
-            <div class="text-base font-medium text-gray-800 px-4" v-text="item.label"></div>
+            <span class="block text-base font-medium text-gray-800 px-4" v-text="item.label"></span>
           </template>
           <template #content="{ item }">
-            <div class="text-base text-gray-600 py-3 bg-gray-50 px-4 rounded-lg" v-text="item.content"></div>
+            <span class="block text-base text-gray-600 py-3 bg-gray-50 px-4 rounded-lg" v-text="item.content"></span>
           </template>
         </LazyUAccordion>
       </div>
