@@ -412,6 +412,13 @@ header [data-highlighted],
     background-color: #f3f4f6 !important;
 }
 
+/* Fix navigation buttons positioning - all buttons were stacked with position:absolute */
+.calendar-light > div:first-child button {
+    position: relative !important;
+    left: auto !important;
+    right: auto !important;
+}
+
 /* UModal customization - remove header divider and reduce spacing */
 [role="dialog"] [data-slot="header"] {
     border-bottom: none !important;

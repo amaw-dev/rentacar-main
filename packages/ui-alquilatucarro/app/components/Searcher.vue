@@ -136,6 +136,12 @@
                                     :min-value="minPickupDate"
                                     color="success"
                                     :ui="calendarUIConfig"
+                                    :month-controls="true"
+                                    :year-controls="true"
+                                    :prev-month="{ color: 'gray', variant: 'soft' }"
+                                    :next-month="{ color: 'gray', variant: 'soft' }"
+                                    :prev-year="{ color: 'gray', variant: 'soft' }"
+                                    :next-year="{ color: 'gray', variant: 'soft' }"
                                 />
                             </template>
                         </u-popover>
@@ -192,6 +198,12 @@
                                     :max-value="maxReturnDate"
                                     color="success"
                                     :ui="calendarUIConfig"
+                                    :month-controls="true"
+                                    :year-controls="true"
+                                    :prev-month="{ color: 'gray', variant: 'soft' }"
+                                    :next-month="{ color: 'gray', variant: 'soft' }"
+                                    :prev-year="{ color: 'gray', variant: 'soft' }"
+                                    :next-year="{ color: 'gray', variant: 'soft' }"
                                 />
                             </template>
                         </u-popover>
