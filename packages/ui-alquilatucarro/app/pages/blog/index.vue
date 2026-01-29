@@ -3,9 +3,9 @@
     <!-- Hero Section -->
     <UPageHero orientation="vertical">
       <template #title>
-        <h1 class="text-white text-3xl md:text-4xl text-center font-bold">
+        <span class="block text-white text-3xl md:text-4xl text-center font-bold">
           Blog de <span class="text-red-500">Alquilatucarro</span>
-        </h1>
+        </span>
       </template>
       <template #description>
         <p class="text-white text-center max-w-2xl mx-auto">

@@ -3,10 +3,11 @@
     <!-- Hero Section -->
     <UPageHero orientation="horizontal">
       <template #title>
-        <div class="text-white text-3xl md:text-5xl text-center font-bold">
+        <span class="block text-white text-3xl md:text-5xl text-center font-bold">
           <span class="block">¡Gana Dinero Refiriendo</span>
+          {{ ' ' }}
           <span class="block">con AlquilaTuCarro.com!</span>
-        </div>
+        </span>
       </template>
       <template #description>
         <p class="text-white text-lg md:text-xl text-center max-w-2xl mx-auto">
@@ -101,10 +102,11 @@
     <!-- Beneficios -->
     <UPageSection class="bg-white text-black">
       <template #title>
-        <h2 class="text-2xl md:text-3xl font-bold text-center">
+        <span class="block text-2xl md:text-3xl font-bold text-center">
           <span class="text-blue-900">¿Por Qué Unirte</span>
-          <span class="text-amber-500"> a Nuestro Programa?</span>
-        </h2>
+          {{ ' ' }}
+          <span class="text-amber-500">a Nuestro Programa?</span>
+        </span>
       </template>
       <template #default>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
@@ -130,10 +132,10 @@
         </h2>
         <UAccordion :items="preguntas" :ui="faqAccordionUIConfig">
           <template #default="{ item }">
-            <div class="text-base font-medium text-gray-800 px-4">{{ item.label }}</div>
+            <span class="block text-base font-medium text-gray-800 px-4">{{ item.label }}</span>
           </template>
           <template #content="{ item }">
-            <div class="text-base text-gray-600 py-3 bg-white px-4 rounded-lg">{{ item.content }}</div>
+            <span class="block text-base text-gray-600 py-3 bg-white px-4 rounded-lg">{{ item.content }}</span>
           </template>
         </UAccordion>
       </div>
@@ -142,10 +144,11 @@
     <!-- Testimonios -->
     <UPageSection class="bg-white text-black">
       <template #title>
-        <h2 class="text-2xl md:text-3xl font-bold text-center">
+        <span class="block text-2xl md:text-3xl font-bold text-center">
           <span class="text-blue-900">Lo Que Dicen</span>
-          <span class="text-amber-500"> Nuestros Afiliados</span>
-        </h2>
+          {{ ' ' }}
+          <span class="text-amber-500">Nuestros Afiliados</span>
+        </span>
       </template>
       <template #default>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
