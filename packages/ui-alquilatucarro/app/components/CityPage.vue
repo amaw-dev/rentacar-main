@@ -17,8 +17,7 @@
         <!-- UPageHero ya renderiza <h1> para slot #title, usamos div para evitar h1 duplicado -->
         <div class="text-white text-center uppercase font-bold" style="letter-spacing: -0.025em;">
           <span class="block text-2xl md:text-3xl lg:text-4xl" style="letter-spacing: -0.025em;">
-            <span class="block" style="letter-spacing: -0.025em;">ALQUILER</span>
-            <span class="block" style="letter-spacing: -0.025em;">DE CARROS EN</span>
+            ALQUILER<br>DE CARROS EN
           </span>
           <span class="flex flex-row justify-center items-baseline gap-2 text-4xl md:text-5xl lg:text-7xl lg:whitespace-nowrap" style="letter-spacing: -0.025em;">
             <span class="size-8 md:size-10 lg:size-14" aria-hidden="true"></span>
@@ -310,9 +309,8 @@
     <!-- FAQ Section -->
     <UPageSection id="faqs" class="bg-gray-100 text-black">
       <div class="max-w-7xl mx-auto px-1 sm:px-2 lg:px-6">
-        <h2 class="text-2xl md:text-3xl font-bold text-center mb-6 space-x-2">
-          <span class="text-red-700">Preguntas frecuentes</span>
-          <span class="text-black">sobre alquiler de carros en {{ city?.name }}</span>
+        <h2 class="text-2xl md:text-3xl font-bold text-center mb-6">
+          <span class="text-red-700">Preguntas frecuentes</span>{{ ' ' }}<span class="text-black">sobre alquiler de carros en {{ city?.name }}</span>
         </h2>
         <p class="text-base text-center mb-4">
           Resolvemos tus dudas más comunes sobre el alquiler de carros en {{ city?.name }}.

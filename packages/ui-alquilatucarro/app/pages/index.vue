@@ -64,9 +64,8 @@
       class="bg-gray-200 text-black"
     >
       <template #title>
-        <div class="text-2xl md:text-3xl text-center space-x-2">
-          <span class="text-red-700">Requisitos</span>
-          <span class="text-black">para tu alquiler</span>
+        <div class="text-2xl md:text-3xl text-center">
+          <span class="text-red-700">Requisitos</span>{{ ' ' }}<span class="text-black">para tu alquiler</span>
         </div>
       </template>
       <template #description>
@@ -122,9 +121,8 @@
       :ui="categoriasPageSectionUIConfig"
     >
       <template #title>
-        <div class="text-2xl md:text-3xl text-center space-x-2">
-          <span class="text-red-700">Tipos de Vehículos</span>
-          <span class="text-black">ideales para tu necesidad</span>
+        <div class="text-2xl md:text-3xl text-center">
+          <span class="text-red-700">Tipos de Vehículos</span>{{ ' ' }}<span class="text-black">ideales para tu necesidad</span>
         </div>
       </template>
       <template #description>
@@ -206,9 +204,8 @@
     <!-- Testimonials Section -->
     <section id="testimonios" class="bg-gray-200 text-black py-12 md:py-20 px-4 md:px-8">
       <div class="max-w-7xl mx-auto">
-        <h2 class="text-2xl md:text-3xl text-center space-x-2 mb-4">
-          <span class="text-red-700">Testimonios</span>
-          <span class="text-black">que comparten nuestros clientes</span>
+        <h2 class="text-2xl md:text-3xl text-center mb-4">
+          <span class="text-red-700">Testimonios</span>{{ ' ' }}<span class="text-black">que comparten nuestros clientes</span>
         </h2>
         <p class="text-black text-center mb-8">Descubre por qué somos la opción preferida para alquilar carros en Colombia. Nuestros clientes destacan nuestra atención, precios competitivos y la facilidad para explorar.</p>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -238,9 +235,8 @@
     <!-- FAQ Section -->
     <UPageSection id="faqs" class="bg-white text-black">
       <div class="max-w-7xl mx-auto px-1 sm:px-2 lg:px-6">
-        <h2 class="text-2xl md:text-3xl font-bold text-center mb-6 space-x-2">
-          <span class="text-red-700">Preguntas Frecuentes</span>
-          <span class="text-black">sobre alquiler de carros</span>
+        <h2 class="text-2xl md:text-3xl font-bold text-center mb-6">
+          <span class="text-red-700">Preguntas Frecuentes</span>{{ ' ' }}<span class="text-black">sobre alquiler de carros</span>
         </h2>
         <p class="text-base text-center mb-4">
           Encuentra respuestas a las consultas más comunes sobre nuestro servicio de alquiler. Si tienes otra pregunta, contáctanos directamente.
