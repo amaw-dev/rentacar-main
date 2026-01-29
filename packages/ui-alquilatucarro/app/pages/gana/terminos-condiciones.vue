@@ -2,9 +2,9 @@
   <UPage>
     <UPageHero>
       <template #title>
-        <h1 class="text-white text-2xl md:text-4xl text-center font-bold">
+        <span class="block text-white text-2xl md:text-4xl text-center font-bold">
           Contrato del Programa de Comisiones por Referidos
-        </h1>
+        </span>
       </template>
       <template #description>
         <p class="text-gray-300 text-center">AMAW S.A.S.</p>
