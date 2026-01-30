@@ -33,69 +33,69 @@ export const citiesConfig: City[] = [
     testimonials: [
       {
         user: {
-          name: "Stephany M. García",
-          description: "Peru",
+          name: "Valentina Ospina",
+          description: "Colombia",
           avatar: {
             src: "uifaces-popular-image5",
-            alt: "Stephany M. García",
+            alt: "Valentina Ospina",
           },
         },
         quote:
-          "Durante nuestra estadía en Armenia, tuvimos la oportunidad de visitar el Parque del Café y el Jardín Botánico del Quindío. Fue muy cómodo desplazarse entre estos destinos y disfrutar del paisaje cafetero a nuestro propio ritmo.",
+          "Llevamos a los niños al Parque del Café y al Valle de Cocora en un solo fin de semana. Tener carro propio hizo posible adaptar los horarios a su ritmo sin depender de buses.",
       },
       {
         user: {
-          name: "Sandra Milena Barona",
-          description: "Colombia",
+          name: "Ricardo Antúnez",
+          description: "México",
           avatar: {
             src: "uifaces-popular-image4",
-            alt: "Sandra Milena Barona",
+            alt: "Ricardo Antúnez",
           },
         },
         quote:
-          "Hicimos una parada en el Recuca al final de la tarde, después de explorar Salento. Contar con transporte propio nos dio la libertad de hacer ese recorrido sin prisas y apreciar la cultura cafetera.",
+          "Recogí el carro en el Aeropuerto El Edén y en 40 minutos ya estaba en Salento. La carretera es bonita y el GPS del celular fue suficiente. El vehículo andaba perfecto en las subidas.",
       },
       {
         user: {
-          name: "Luis Javier Rodríguez M.",
-          description: "Honduras",
+          name: "Marcela Duarte",
+          description: "Colombia",
           avatar: {
             src: "uifaces-popular-image3",
-            alt: "Luis Javier Rodríguez M.",
+            alt: "Marcela Duarte",
           },
         },
         quote:
-          "En Armenia, visitamos el Zoológico y el Valle de Cocora. Tener un auto nos permitió movernos con facilidad y disfrutar de la naturaleza sin preocupaciones.",
+          "Con mi esposo hicimos la ruta Filandia → Salento → Cocora en tres días. Parábamos donde queríamos a tomar café de origen. Esa libertad no la da ningún tour.",
       },
       {
         user: {
-          name: "Carlos Andrés Mejía",
-          description: "Colombia",
+          name: "Diego Hernández P.",
+          description: "Chile",
           avatar: {
             src: "uifaces-popular-image2",
-            alt: "Carlos Andrés Mejía",
+            alt: "Diego Hernández P.",
           },
         },
         quote:
-          "Me encantó el servicio en Armenia. Todo muy puntual y el carro en excelente estado. Pude conocer el Parque del Café y Filandia sin complicaciones. ¡Totalmente recomendado!",
+          "Vine a una reunión de negocios y aproveché para conocer el Jardín Botánico del Quindío. La entrega en aeropuerto fue rápida, sin filas ni papeleo excesivo.",
       },
       {
         user: {
-          name: "Ana Lucía Torres",
-          description: "Ecuador",
-          avatar: { src: "uifaces-human-image6", alt: "Ana Lucía Torres" },
+          name: "Luciana Mendoza",
+          description: "Argentina",
+          avatar: { src: "uifaces-human-image6", alt: "Luciana Mendoza" },
         },
         quote:
-          "Viajar en familia a Armenia fue muy fácil gracias a este servicio de alquiler. Recorrimos el Jardín Botánico y el Recuca, con buen precio y excelente atención.",
+          "Viajamos cuatro amigas y dividimos el costo del alquiler. Nos salió más barato que cuatro pasajes de bus y pudimos visitar fincas cafeteras fuera de los circuitos turísticos típicos.",
       },
       {
         user: {
-          name: "Esteban Páez",
+          name: "Jhon Fredy Castaño",
           description: "Colombia",
-          avatar: { src: "uifaces-popular-image", alt: "Esteban Páez" },
+          avatar: { src: "uifaces-popular-image", alt: "Jhon Fredy Castaño" },
         },
         quote:
-          "Excelente alternativa para recorrer Armenia. El auto fue perfecto para ir al Valle de Cocora y Salento, muy limpio, seguro y con buen consumo de gasolina.",
+          "Ya es la tercera vez que alquilo acá para recorrer el Eje Cafetero. El proceso de reserva en línea es claro, sin letra pequeña, y el carro siempre llega limpio y con tanque lleno.",
       },
     ],
   },
@@ -108,69 +108,69 @@ export const citiesConfig: City[] = [
     testimonials: [
       {
         user: {
-          name: "Stephany M. García",
-          description: "Peru",
+          name: "Camilo Vega R.",
+          description: "Colombia",
           avatar: {
             src: "uifaces-popular-image5",
-            alt: "Stephany M. García",
+            alt: "Camilo Vega R.",
           },
         },
         quote:
-          "Durante nuestra estadía en Barranquilla, tuvimos la oportunidad de visitar el Museo del Caribe y el Zoológico. Fue muy cómodo desplazarse entre estos destinos y disfrutar del ambiente carnavalero a nuestro propio ritmo.",
+          "Vinimos para el Carnaval y fue clave tener carro. Nos movimos entre la Vía 40, el Malecón y el hotel sin esperar taxis que en esas fechas cobran el triple.",
       },
       {
         user: {
-          name: "Sandra Milena Barona",
-          description: "Colombia",
+          name: "Patricia Lozano",
+          description: "Venezuela",
           avatar: {
             src: "uifaces-popular-image4",
-            alt: "Sandra Milena Barona",
+            alt: "Patricia Lozano",
           },
         },
         quote:
-          "Hicimos una parada en Bocas de Ceniza al final de la tarde, después de explorar el Castillo de Salgar. Contar con transporte propio nos dio la libertad de hacer ese desvío sin prisas y apreciar el río Magdalena.",
+          "Visité a mi familia en Barranquilla y alquilé para llevar a mi mamá al Zoológico y a Bocas de Ceniza. Ella no camina mucho y con el carro pudimos hacer todo sin agotarla.",
       },
       {
         user: {
-          name: "Luis Javier Rodríguez M.",
-          description: "Honduras",
+          name: "Andrés Felipe Mora",
+          description: "Colombia",
           avatar: {
             src: "uifaces-popular-image3",
-            alt: "Luis Javier Rodríguez M.",
+            alt: "Andrés Felipe Mora",
           },
         },
         quote:
-          "En Barranquilla, visitamos el Teatro Amira de la Rosa y la Puerta de Oro. Tener un auto nos permitió movernos con facilidad y disfrutar de la cultura sin preocupaciones.",
+          "Viajo por trabajo a Barranquilla cada mes. La reserva en línea me ahorra tiempo y siempre encuentro disponibilidad. El carro me lo entregan limpio y a tiempo en el aeropuerto.",
       },
       {
         user: {
-          name: "Carlos Andrés Mejía",
-          description: "Colombia",
+          name: "María José Ruiz",
+          description: "Panamá",
           avatar: {
             src: "uifaces-popular-image2",
-            alt: "Carlos Andrés Mejía",
+            alt: "María José Ruiz",
           },
         },
         quote:
-          "Me encantó el servicio en Barranquilla. Todo muy puntual y el carro en excelente estado. Pude conocer el Museo del Caribe y el Zoológico sin complicaciones. ¡Totalmente recomendado!",
+          "Desde el aeropuerto fuimos directo al Castillo de Salgar al atardecer. No conocía Barranquilla y tener carro me dio la confianza de explorar a mi ritmo.",
       },
       {
         user: {
-          name: "Ana Lucía Torres",
-          description: "Ecuador",
-          avatar: { src: "uifaces-human-image6", alt: "Ana Lucía Torres" },
-        },
-        quote:
-          "Viajar en familia a Barranquilla fue muy fácil gracias a este servicio de alquiler. Recorrimos Bocas de Ceniza y el Castillo de Salgar, con buen precio y excelente atención.",
-      },
-      {
-        user: {
-          name: "Esteban Páez",
+          name: "Fernando Gutiérrez",
           description: "Colombia",
-          avatar: { src: "uifaces-popular-image", alt: "Esteban Páez" },
+          avatar: { src: "uifaces-human-image6", alt: "Fernando Gutiérrez" },
         },
         quote:
-          "Excelente alternativa para recorrer Barranquilla. El auto fue perfecto para ir al Teatro Amira de la Rosa y la Puerta de Oro, muy limpio, seguro y con buen consumo de gasolina.",
+          "Alquilé un fin de semana para llevar a los niños al Museo del Caribe y al Zoológico. El precio fue justo y el sedán tenía aire acondicionado potente, que en Barranquilla es indispensable.",
+      },
+      {
+        user: {
+          name: "Daniela Serrano",
+          description: "Colombia",
+          avatar: { src: "uifaces-popular-image", alt: "Daniela Serrano" },
+        },
+        quote:
+          "Segunda vez que reservo con ellos. Me gusta que no piden anticipos y que la devolución es igual de simple que la recogida. El Museo del Caribe vale cada minuto.",
       },
     ],
   },
@@ -183,69 +183,69 @@ export const citiesConfig: City[] = [
     testimonials: [
       {
         user: {
-          name: "Stephany M. García",
-          description: "Peru",
+          name: "Julián Castillo",
+          description: "Colombia",
           avatar: {
             src: "uifaces-popular-image5",
-            alt: "Stephany M. García",
+            alt: "Julián Castillo",
           },
         },
         quote:
-          "Durante nuestra estadía en Bogotá, tuvimos la oportunidad de visitar Monserrate y La Candelaria. Fue muy cómodo desplazarse entre estos destinos y disfrutar de la vista panorámica a nuestro propio ritmo.",
+          "Tenía reuniones en el norte y en Chía el mismo día. Con el carro pude cubrir ambas sin depender del tráfico de TransMilenio. La recogida en El Dorado fue en menos de 15 minutos.",
       },
       {
         user: {
-          name: "Sandra Milena Barona",
+          name: "Carolina Pinzón",
           description: "Colombia",
           avatar: {
             src: "uifaces-popular-image4",
-            alt: "Sandra Milena Barona",
+            alt: "Carolina Pinzón",
           },
         },
         quote:
-          "Hicimos una parada en el Museo del Oro al final de la tarde, después de explorar el Museo Botero. Contar con transporte propio nos dio la libertad de hacer ese recorrido sin prisas y apreciar el arte.",
+          "Llevé a mis hijos a la Catedral de Sal en Zipaquirá un domingo. Con carro propio el paseo fue ida y vuelta sin estrés, con parada a almorzar en la plaza del pueblo.",
       },
       {
         user: {
-          name: "Luis Javier Rodríguez M.",
-          description: "Honduras",
+          name: "Roberto Salazar",
+          description: "Ecuador",
           avatar: {
             src: "uifaces-popular-image3",
-            alt: "Luis Javier Rodríguez M.",
+            alt: "Roberto Salazar",
           },
         },
         quote:
-          "En Bogotá, visitamos la Plaza de Bolívar y la Catedral de Sal en Zipaquirá. Tener un auto nos permitió movernos con facilidad y disfrutar de la historia sin preocupaciones.",
+          "Primera vez en Bogotá. Subí a Monserrate, recorrí La Candelaria y fui al Museo del Oro todo en dos días. Sin carro hubiera perdido horas esperando transporte entre cada punto.",
       },
       {
         user: {
-          name: "Carlos Andrés Mejía",
+          name: "Laura Vásquez",
           description: "Colombia",
           avatar: {
             src: "uifaces-popular-image2",
-            alt: "Carlos Andrés Mejía",
+            alt: "Laura Vásquez",
           },
         },
         quote:
-          "Me encantó el servicio en Bogotá. Todo muy puntual y el carro en excelente estado. Pude conocer Monserrate y el Museo del Oro sin complicaciones. ¡Totalmente recomendado!",
+          "Viajé sola por trabajo y me sentí segura con el carro. Pude moverme de noche entre la Zona T y el hotel sin preocuparme. Vehículo en buen estado y seguro incluido.",
       },
       {
         user: {
-          name: "Ana Lucía Torres",
-          description: "Ecuador",
-          avatar: { src: "uifaces-human-image6", alt: "Ana Lucía Torres" },
+          name: "Miguel Ángel Pardo",
+          description: "México",
+          avatar: { src: "uifaces-human-image6", alt: "Miguel Ángel Pardo" },
         },
         quote:
-          "Viajar en familia a Bogotá fue muy fácil gracias a este servicio de alquiler. Recorrimos La Candelaria y el Museo Botero, con buen precio y excelente atención.",
+          "Vine a un congreso en Corferias y necesitaba movilidad entre el evento, el hotel y cenas con clientes. Todo impecable desde la reserva hasta la devolución.",
       },
       {
         user: {
-          name: "Esteban Páez",
+          name: "Andrea Quintero",
           description: "Colombia",
-          avatar: { src: "uifaces-popular-image", alt: "Esteban Páez" },
+          avatar: { src: "uifaces-popular-image", alt: "Andrea Quintero" },
         },
         quote:
-          "Excelente alternativa para recorrer Bogotá. El auto fue perfecto para ir a la Plaza de Bolívar y la Catedral de Sal, muy limpio, seguro y con buen consumo de gasolina.",
+          "Alquilé por una semana completa mientras mi carro estaba en el taller. El precio diario fue razonable y tuve un sedán cómodo para mi ruta diaria por la Autopista Norte.",
       },
     ],
   },
@@ -258,69 +258,69 @@ export const citiesConfig: City[] = [
     testimonials: [
       {
         user: {
-          name: "Stephany M. García",
-          description: "Peru",
+          name: "Sergio Mantilla",
+          description: "Colombia",
           avatar: {
             src: "uifaces-popular-image5",
-            alt: "Stephany M. García",
+            alt: "Sergio Mantilla",
           },
         },
         quote:
-          "Durante nuestra estadía en Bucaramanga, tuvimos la oportunidad de visitar el Cañón del Chicamocha y Girón. Fue muy cómodo desplazarse entre estos destinos y disfrutar de las vistas a nuestro propio ritmo.",
+          "Fuimos al Cañón del Chicamocha y al Cerro del Santísimo en un solo día. La carretera desde Bucaramanga tiene curvas, pero la camioneta respondió bien y las vistas son increíbles.",
       },
       {
         user: {
-          name: "Sandra Milena Barona",
+          name: "Isabel Cristina Vargas",
           description: "Colombia",
           avatar: {
             src: "uifaces-popular-image4",
-            alt: "Sandra Milena Barona",
+            alt: "Isabel Cristina Vargas",
           },
         },
         quote:
-          "Hicimos una parada en el Parque del Agua al final de la tarde, después de explorar el Ecoparque Cerro del Santísimo. Contar con transporte propio nos dio la libertad de hacer ese recorrido sin prisas y apreciar la naturaleza.",
+          "Conocimos Girón con los niños, pueblo colonial precioso a 15 minutos de Bucaramanga. Con carro fue fácil ir y volver sin depender de horarios de buses.",
       },
       {
         user: {
-          name: "Luis Javier Rodríguez M.",
+          name: "Pedro Alonso Rivas",
           description: "Honduras",
           avatar: {
             src: "uifaces-popular-image3",
-            alt: "Luis Javier Rodríguez M.",
+            alt: "Pedro Alonso Rivas",
           },
         },
         quote:
-          "En Bucaramanga, visitamos el Parque Santander y Panachi. Tener un auto nos permitió movernos con facilidad y disfrutar de la aventura sin preocupaciones.",
+          "Quería hacer parapente en el Cañón del Chicamocha y necesitaba llegar temprano. Con el carro salí a las 6am y llegué antes que los tours grupales. Experiencia única.",
       },
       {
         user: {
-          name: "Carlos Andrés Mejía",
+          name: "Natalia Gómez",
           description: "Colombia",
           avatar: {
             src: "uifaces-popular-image2",
-            alt: "Carlos Andrés Mejía",
+            alt: "Natalia Gómez",
           },
         },
         quote:
-          "Me encantó el servicio en Bucaramanga. Todo muy puntual y el carro en excelente estado. Pude conocer el Cañón del Chicamocha y Girón sin complicaciones. ¡Totalmente recomendado!",
+          "Escapada de fin de semana desde Bogotá. Recogí en Palonegro y recorrí el Parque del Agua y los miradores de la Mesa de los Santos. Bucaramanga sorprende.",
       },
       {
         user: {
-          name: "Ana Lucía Torres",
+          name: "Juan Pablo Ordóñez",
           description: "Ecuador",
-          avatar: { src: "uifaces-human-image6", alt: "Ana Lucía Torres" },
+          avatar: { src: "uifaces-human-image6", alt: "Juan Pablo Ordóñez" },
         },
         quote:
-          "Viajar en familia a Bucaramanga fue muy fácil gracias a este servicio de alquiler. Recorrimos el Parque del Agua y el Ecoparque Cerro del Santísimo, con buen precio y excelente atención.",
+          "Vine por el parapente y me quedé cinco días explorando. El carro me permitió descubrir Panachi, San Gil y las cascadas de Juan Curí sin tours organizados.",
       },
       {
         user: {
-          name: "Esteban Páez",
+          name: "Ximena Pedraza",
           description: "Colombia",
-          avatar: { src: "uifaces-popular-image", alt: "Esteban Páez" },
+          avatar: { src: "uifaces-popular-image", alt: "Ximena Pedraza" },
         },
         quote:
-          "Excelente alternativa para recorrer Bucaramanga. El auto fue perfecto para ir al Parque Santander y Panachi, muy limpio, seguro y con buen consumo de gasolina.",
+          "Siempre alquilo cuando visito a mi familia en Bucaramanga. El proceso no cambia: reservo, llego, me entregan el carro y listo. Sin sorpresas ni costos ocultos.",
       },
     ],
   },
@@ -333,69 +333,69 @@ export const citiesConfig: City[] = [
     testimonials: [
       {
         user: {
-          name: "Stephany M. García",
-          description: "Peru",
-          avatar: {
-            src: "uifaces-popular-image5",
-            alt: "Stephany M. García",
-          },
-        },
-        quote:
-          "Durante nuestra estadía en Cali, tuvimos la oportunidad de visitar el Zoológico y Cristo Rey. Fue muy cómodo desplazarse entre estos destinos y disfrutar de la vista de la ciudad a nuestro propio ritmo.",
-      },
-      {
-        user: {
-          name: "Sandra Milena Barona",
+          name: "Alejandra Muñoz",
           description: "Colombia",
           avatar: {
-            src: "uifaces-popular-image4",
-            alt: "Sandra Milena Barona",
+            src: "uifaces-popular-image5",
+            alt: "Alejandra Muñoz",
           },
         },
         quote:
-          "Hicimos una parada en el Barrio San Antonio al final de la tarde, después de explorar el Cerro de las Tres Cruces. Contar con transporte propio nos dio la libertad de hacer ese recorrido sin prisas y apreciar la salsa.",
+          "Vinimos desde Bogotá a conocer la salsa caleña. Con carro fuimos al Barrio San Antonio de día y a las salsotecas de la Sexta de noche sin preocuparnos por el transporte.",
       },
       {
         user: {
-          name: "Luis Javier Rodríguez M.",
-          description: "Honduras",
+          name: "Tomás Rivera",
+          description: "Perú",
+          avatar: {
+            src: "uifaces-popular-image4",
+            alt: "Tomás Rivera",
+          },
+        },
+        quote:
+          "Subí al Cristo Rey al atardecer y la vista de Cali desde arriba es espectacular. El carro subió sin problema por la carretera empinada. Muy buen estado mecánico.",
+      },
+      {
+        user: {
+          name: "Diana Marcela López",
+          description: "Colombia",
           avatar: {
             src: "uifaces-popular-image3",
-            alt: "Luis Javier Rodríguez M.",
+            alt: "Diana Marcela López",
           },
         },
         quote:
-          "En Cali, visitamos el Museo de la Caña y el Parque del Perro. Tener un auto nos permitió movernos con facilidad y disfrutar del ambiente sin preocupaciones.",
+          "El Zoológico de Cali con niños pequeños requiere carro sí o sí. Llevamos coche, lonchera, cambio de ropa... en bus habría sido imposible. El alquiler nos salvó el paseo.",
       },
       {
         user: {
-          name: "Carlos Andrés Mejía",
+          name: "Sebastián Herrera",
           description: "Colombia",
           avatar: {
             src: "uifaces-popular-image2",
-            alt: "Carlos Andrés Mejía",
+            alt: "Sebastián Herrera",
           },
         },
         quote:
-          "Me encantó el servicio en Cali. Todo muy puntual y el carro en excelente estado. Pude conocer el Zoológico y Cristo Rey sin complicaciones. ¡Totalmente recomendado!",
+          "Viajo a Cali por negocios dos veces al mes. Me recogen en el aeropuerto Bonilla Aragón y en 30 minutos estoy en mis reuniones en el sur. Servicio puntual y profesional.",
       },
       {
         user: {
-          name: "Ana Lucía Torres",
-          description: "Ecuador",
-          avatar: { src: "uifaces-human-image6", alt: "Ana Lucía Torres" },
+          name: "Paola Andrea Jiménez",
+          description: "Chile",
+          avatar: { src: "uifaces-human-image6", alt: "Paola Andrea Jiménez" },
         },
         quote:
-          "Viajar en familia a Cali fue muy fácil gracias a este servicio de alquiler. Recorrimos el Barrio San Antonio y el Cerro de las Tres Cruces, con buen precio y excelente atención.",
+          "Mi novio y yo hicimos el recorrido Cali → Buga → Lago Calima en tres días. Con carro pudimos parar en miradores que desde un bus ni se ven. Muy recomendado.",
       },
       {
         user: {
-          name: "Esteban Páez",
+          name: "Gustavo Arango",
           description: "Colombia",
-          avatar: { src: "uifaces-popular-image", alt: "Esteban Páez" },
+          avatar: { src: "uifaces-popular-image", alt: "Gustavo Arango" },
         },
         quote:
-          "Excelente alternativa para recorrer Cali. El auto fue perfecto para ir al Museo de la Caña y el Parque del Perro, muy limpio, seguro y con buen consumo de gasolina.",
+          "Cuarta vez que alquilo con ellos en Cali. Lo que más valoro es la transparencia: el precio de la web es el precio final, sin cargos extra al devolver.",
       },
     ],
   },
@@ -408,69 +408,69 @@ export const citiesConfig: City[] = [
     testimonials: [
       {
         user: {
-          name: "Stephany M. García",
-          description: "Peru",
-          avatar: {
-            src: "uifaces-popular-image5",
-            alt: "Stephany M. García",
-          },
-        },
-        quote:
-          "Durante nuestra estadía en Cartagena, tuvimos la oportunidad de visitar la Ciudad Amurallada y el Castillo San Felipe. Fue muy cómodo desplazarse entre estos destinos y disfrutar de la historia colonial a nuestro propio ritmo.",
-      },
-      {
-        user: {
-          name: "Sandra Milena Barona",
+          name: "Mariana Delgado",
           description: "Colombia",
           avatar: {
-            src: "uifaces-popular-image4",
-            alt: "Sandra Milena Barona",
+            src: "uifaces-popular-image5",
+            alt: "Mariana Delgado",
           },
         },
         quote:
-          "Hicimos una parada en Getsemaní al final de la tarde, después de explorar el Convento de la Popa. Contar con transporte propio nos dio la libertad de hacer ese recorrido sin prisas y apreciar el arte callejero.",
+          "Luna de miel en Cartagena. El carro nos permitió escapar de la Ciudad Amurallada para conocer Playa Blanca y La Boquilla sin depender de tours sobrevendidos.",
       },
       {
         user: {
-          name: "Luis Javier Rodríguez M.",
-          description: "Honduras",
+          name: "Enrique Solís",
+          description: "México",
+          avatar: {
+            src: "uifaces-popular-image4",
+            alt: "Enrique Solís",
+          },
+        },
+        quote:
+          "Recorrí el Castillo de San Felipe, Getsemaní y el Convento de la Popa en un solo día. En taxi habría gastado el doble. El aire acondicionado del carro fue un alivio con el calor caribeño.",
+      },
+      {
+        user: {
+          name: "Sofía Betancourt",
+          description: "Venezuela",
           avatar: {
             src: "uifaces-popular-image3",
-            alt: "Luis Javier Rodríguez M.",
+            alt: "Sofía Betancourt",
           },
         },
         quote:
-          "En Cartagena, visitamos las Islas del Rosario y el Palacio de la Inquisición. Tener un auto nos permitió movernos con facilidad y disfrutar de las playas sin preocupaciones.",
+          "Vinimos en familia desde Maracaibo. Con tres niños y maletas, el alquiler fue la opción más cómoda. Nos movimos entre el hotel en Bocagrande y los planes sin complicaciones.",
       },
       {
         user: {
-          name: "Carlos Andrés Mejía",
+          name: "Pablo Emilio Giraldo",
           description: "Colombia",
           avatar: {
             src: "uifaces-popular-image2",
-            alt: "Carlos Andrés Mejía",
+            alt: "Pablo Emilio Giraldo",
           },
         },
         quote:
-          "Me encantó el servicio en Cartagena. Todo muy puntual y el carro en excelente estado. Pude conocer la Ciudad Amurallada y el Castillo San Felipe sin complicaciones. ¡Totalmente recomendado!",
+          "Evento corporativo en el Centro de Convenciones. Necesitaba movilidad para coordinar logística entre el hotel, el venue y las cenas. Todo funcionó perfecto.",
       },
       {
         user: {
-          name: "Ana Lucía Torres",
-          description: "Ecuador",
-          avatar: { src: "uifaces-human-image6", alt: "Ana Lucía Torres" },
-        },
-        quote:
-          "Viajar en familia a Cartagena fue muy fácil gracias a este servicio de alquiler. Recorrimos Getsemaní y el Convento de la Popa, con buen precio y excelente atención.",
-      },
-      {
-        user: {
-          name: "Esteban Páez",
+          name: "Claudia Restrepo",
           description: "Colombia",
-          avatar: { src: "uifaces-popular-image", alt: "Esteban Páez" },
+          avatar: { src: "uifaces-human-image6", alt: "Claudia Restrepo" },
         },
         quote:
-          "Excelente alternativa para recorrer Cartagena. El auto fue perfecto para ir a las Islas del Rosario y el Palacio de la Inquisición, muy limpio, seguro y con buen consumo de gasolina.",
+          "Viaje de amigas: fuimos a Playa Blanca, al Volcán del Totumo y terminamos en Getsemaní. Imposible hacer todo eso en transporte público. El carro fue nuestra mejor decisión.",
+      },
+      {
+        user: {
+          name: "Javier Rincón",
+          description: "Colombia",
+          avatar: { src: "uifaces-popular-image", alt: "Javier Rincón" },
+        },
+        quote:
+          "Vine al hay Festival y me quedé unos días extra. Con carro conocí las playas del norte de Cartagena que los turistas normalmente no visitan. Proceso de reserva sencillo.",
       },
     ],
   },
@@ -483,69 +483,69 @@ export const citiesConfig: City[] = [
     testimonials: [
       {
         user: {
-          name: "Stephany M. García",
-          description: "Peru",
-          avatar: {
-            src: "uifaces-popular-image5",
-            alt: "Stephany M. García",
-          },
-        },
-        quote:
-          "Durante nuestra estadía en Cúcuta, tuvimos la oportunidad de visitar el Parque Santander y el Monumento a la Batalla de Cúcuta. Fue muy cómodo desplazarse entre estos destinos y disfrutar de la historia a nuestro propio ritmo.",
-      },
-      {
-        user: {
-          name: "Sandra Milena Barona",
+          name: "Yuliana Contreras",
           description: "Colombia",
           avatar: {
-            src: "uifaces-popular-image4",
-            alt: "Sandra Milena Barona",
+            src: "uifaces-popular-image5",
+            alt: "Yuliana Contreras",
           },
         },
         quote:
-          "Hicimos una parada en el Puente Internacional Simón Bolívar al final de la tarde, después de explorar la Catedral de Cúcuta. Contar con transporte propio nos dio la libertad de hacer ese recorrido sin prisas y apreciar la frontera.",
+          "Necesitaba movilidad para gestiones comerciales entre Cúcuta y la zona fronteriza. El carro facilitó todo: iba y venía sin depender de horarios de transporte público.",
       },
       {
         user: {
-          name: "Luis Javier Rodríguez M.",
-          description: "Honduras",
+          name: "Leonardo Suárez",
+          description: "Venezuela",
+          avatar: {
+            src: "uifaces-popular-image4",
+            alt: "Leonardo Suárez",
+          },
+        },
+        quote:
+          "Llegué por el aeropuerto Camilo Daza y recogí el carro rápidamente. Recorrí el centro, el Parque Santander y la zona comercial de San Antonio. Todo en orden.",
+      },
+      {
+        user: {
+          name: "Marta Cecilia Rojas",
+          description: "Colombia",
           avatar: {
             src: "uifaces-popular-image3",
-            alt: "Luis Javier Rodríguez M.",
+            alt: "Marta Cecilia Rojas",
           },
         },
         quote:
-          "En Cúcuta, visitamos el Zoológico y el Museo Norte de Santander. Tener un auto nos permitió movernos con facilidad y disfrutar de la cultura sin preocupaciones.",
+          "Fui con mis padres a conocer Chinácota y Pamplona desde Cúcuta. La carretera es de montaña pero el carro aguantó bien. Mis padres viajaron cómodos con el aire acondicionado.",
       },
       {
         user: {
-          name: "Carlos Andrés Mejía",
+          name: "Óscar Ramírez",
           description: "Colombia",
           avatar: {
             src: "uifaces-popular-image2",
-            alt: "Carlos Andrés Mejía",
+            alt: "Óscar Ramírez",
           },
         },
         quote:
-          "Me encantó el servicio en Cúcuta. Todo muy puntual y el carro en excelente estado. Pude conocer el Parque Santander y el Monumento a la Batalla sin complicaciones. ¡Totalmente recomendado!",
+          "Viajo seguido a Cúcuta por negocios. El proceso ya lo conozco de memoria: reservo, llego, firmo y salgo. Sin filas, sin sorpresas en el precio.",
       },
       {
         user: {
-          name: "Ana Lucía Torres",
-          description: "Ecuador",
-          avatar: { src: "uifaces-human-image6", alt: "Ana Lucía Torres" },
-        },
-        quote:
-          "Viajar en familia a Cúcuta fue muy fácil gracias a este servicio de alquiler. Recorrimos el Puente Internacional y la Catedral, con buen precio y excelente atención.",
-      },
-      {
-        user: {
-          name: "Esteban Páez",
+          name: "Adriana Patiño",
           description: "Colombia",
-          avatar: { src: "uifaces-popular-image", alt: "Esteban Páez" },
+          avatar: { src: "uifaces-human-image6", alt: "Adriana Patiño" },
         },
         quote:
-          "Excelente alternativa para recorrer Cúcuta. El auto fue perfecto para ir al Zoológico y el Museo Norte de Santander, muy limpio, seguro y con buen consumo de gasolina.",
+          "Fin de semana con mi esposo recorriendo pueblos cercanos. Visitamos la Catedral de Cúcuta, el Puente Internacional y terminamos en Villa del Rosario. El carro hizo posible el plan.",
+      },
+      {
+        user: {
+          name: "Freddy Carvajal",
+          description: "Colombia",
+          avatar: { src: "uifaces-popular-image", alt: "Freddy Carvajal" },
+        },
+        quote:
+          "Soy de Cúcuta y alquilo cuando necesito un carro extra para mi negocio. La disponibilidad inmediata y la entrega en la ciudad son lo que más me convence.",
       },
     ],
   },
@@ -558,69 +558,69 @@ export const citiesConfig: City[] = [
     testimonials: [
       {
         user: {
-          name: "Stephany M. García",
-          description: "Peru",
+          name: "Santiago Morales",
+          description: "Colombia",
           avatar: {
             src: "uifaces-popular-image5",
-            alt: "Stephany M. García",
+            alt: "Santiago Morales",
           },
         },
         quote:
-          "Durante nuestra estadía en Ibagué, tuvimos la oportunidad de visitar el Jardín Botánico y el Cañón del Combeima. Fue muy cómodo desplazarse entre estos destinos y disfrutar de la naturaleza a nuestro propio ritmo.",
+          "Vine al Festival Folclórico y con carro pude ir a los eventos en distintas sedes de la ciudad sin perder ninguno. Ibagué durante el festival se vive mejor con movilidad propia.",
       },
       {
         user: {
-          name: "Sandra Milena Barona",
+          name: "Viviana Trujillo",
           description: "Colombia",
           avatar: {
             src: "uifaces-popular-image4",
-            alt: "Sandra Milena Barona",
+            alt: "Viviana Trujillo",
           },
         },
         quote:
-          "Hicimos una parada en Ukukú Rural al final de la tarde, después de explorar la Plaza Bolívar. Contar con transporte propio nos dio la libertad de hacer ese recorrido sin prisas y apreciar la música.",
+          "El Cañón del Combeima con niños es plan obligado. Con carro subimos hasta donde quisimos, paramos a almorzar trucha fresca y bajamos a nuestro ritmo. Excelente paseo familiar.",
       },
       {
         user: {
-          name: "Luis Javier Rodríguez M.",
-          description: "Honduras",
+          name: "Héctor Fabio Londoño",
+          description: "Colombia",
           avatar: {
             src: "uifaces-popular-image3",
-            alt: "Luis Javier Rodríguez M.",
+            alt: "Héctor Fabio Londoño",
           },
         },
         quote:
-          "En Ibagué, visitamos la Catedral Inmaculada Concepción y el Parque de los Periodistas. Tener un auto nos permitió movernos con facilidad y disfrutar de la cultura sin preocupaciones.",
+          "Recorrí la ruta del Cañón del Combeima hasta el Nevado del Tolima en una camioneta que me alquilaron. Las trochas requieren un vehículo alto y este cumplió bien.",
       },
       {
         user: {
-          name: "Carlos Andrés Mejía",
-          description: "Colombia",
+          name: "Rosa Elena Castro",
+          description: "Perú",
           avatar: {
             src: "uifaces-popular-image2",
-            alt: "Carlos Andrés Mejía",
+            alt: "Rosa Elena Castro",
           },
         },
         quote:
-          "Me encantó el servicio en Ibagué. Todo muy puntual y el carro en excelente estado. Pude conocer el Jardín Botánico y el Cañón del Combeima sin complicaciones. ¡Totalmente recomendado!",
+          "No conocía Ibagué y me sorprendió. Con el carro visité el Jardín Botánico San Jorge y las cascadas cercanas. Una ciudad verde rodeada de montañas.",
       },
       {
         user: {
-          name: "Ana Lucía Torres",
+          name: "Camila Andrade",
           description: "Ecuador",
-          avatar: { src: "uifaces-human-image6", alt: "Ana Lucía Torres" },
+          avatar: { src: "uifaces-human-image6", alt: "Camila Andrade" },
         },
         quote:
-          "Viajar en familia a Ibagué fue muy fácil gracias a este servicio de alquiler. Recorrimos Ukukú Rural y la Plaza Bolívar, con buen precio y excelente atención.",
+          "Mi novio y yo hicimos un road trip Bogotá → Ibagué → Armenia. Ibagué fue la escala perfecta y con carro la ruta por la Línea fue cómoda y segura.",
       },
       {
         user: {
-          name: "Esteban Páez",
+          name: "Jorge Iván Bermúdez",
           description: "Colombia",
-          avatar: { src: "uifaces-popular-image", alt: "Esteban Páez" },
+          avatar: { src: "uifaces-popular-image", alt: "Jorge Iván Bermúdez" },
         },
         quote:
-          "Excelente alternativa para recorrer Ibagué. El auto fue perfecto para ir a la Catedral Inmaculada Concepción y el Parque de los Periodistas, muy limpio, seguro y con buen consumo de gasolina.",
+          "Tercer alquiler en Ibagué. Siempre disponible, siempre sin contratiempos. Esta vez el carro lo usé para ir al Conservatorio y a reuniones en el centro. Cumplido.",
       },
     ],
   },
@@ -633,69 +633,69 @@ export const citiesConfig: City[] = [
     testimonials: [
       {
         user: {
-          name: "Stephany M. García",
-          description: "Peru",
+          name: "Felipe Cardona",
+          description: "Colombia",
           avatar: {
             src: "uifaces-popular-image5",
-            alt: "Stephany M. García",
+            alt: "Felipe Cardona",
           },
         },
         quote:
-          "Durante nuestra estadía en Manizales, tuvimos la oportunidad de visitar el Nevado del Ruiz y la Catedral Basílica. Fue muy cómodo desplazarse entre estos destinos y disfrutar de los paisajes montañosos a nuestro propio ritmo.",
+          "Hice la ruta cafetera completa desde Manizales: fincas en Chinchiná, el Recinto del Pensamiento y los termales de Santa Rosa. El carro fue indispensable para cubrir todo.",
       },
       {
         user: {
-          name: "Sandra Milena Barona",
+          name: "Lorena Agudelo",
           description: "Colombia",
           avatar: {
             src: "uifaces-popular-image4",
-            alt: "Sandra Milena Barona",
+            alt: "Lorena Agudelo",
           },
         },
         quote:
-          "Hicimos una parada en el Recinto del Pensamiento al final de la tarde, después de explorar el Ecoparque Los Yarumos. Contar con transporte propio nos dio la libertad de hacer ese recorrido sin prisas y apreciar la biodiversidad.",
+          "Con mi esposo subimos hacia el Nevado del Ruiz. La carretera es exigente y fría, pero la camioneta fue segura. Las vistas del Parque Los Nevados desde arriba son impresionantes.",
       },
       {
         user: {
-          name: "Luis Javier Rodríguez M.",
-          description: "Honduras",
+          name: "Martín Echeverri",
+          description: "Colombia",
           avatar: {
             src: "uifaces-popular-image3",
-            alt: "Luis Javier Rodríguez M.",
+            alt: "Martín Echeverri",
           },
         },
         quote:
-          "En Manizales, visitamos las fincas cafeteras y el Parque Los Nevados. Tener un auto nos permitió movernos con facilidad y disfrutar de la naturaleza sin preocupaciones.",
+          "Evento de la Feria de Manizales y necesitaba moverme entre el hotel, la Plaza de Toros y las casetas. Sin carro hubiera sido un caos con las calles cerradas.",
       },
       {
         user: {
-          name: "Carlos Andrés Mejía",
-          description: "Colombia",
+          name: "Gabriela Soto",
+          description: "Costa Rica",
           avatar: {
             src: "uifaces-popular-image2",
-            alt: "Carlos Andrés Mejía",
+            alt: "Gabriela Soto",
           },
         },
         quote:
-          "Me encantó el servicio en Manizales. Todo muy puntual y el carro en excelente estado. Pude conocer el Nevado del Ruiz y la Catedral Basílica sin complicaciones. ¡Totalmente recomendado!",
+          "Manizales me recordó a Costa Rica por lo verde. Con el carro fui al Ecoparque Los Yarumos y a la Catedral Basílica. Ciudad tranquila y bonita para recorrer.",
       },
       {
         user: {
-          name: "Ana Lucía Torres",
-          description: "Ecuador",
-          avatar: { src: "uifaces-human-image6", alt: "Ana Lucía Torres" },
-        },
-        quote:
-          "Viajar en familia a Manizales fue muy fácil gracias a este servicio de alquiler. Recorrimos el Recinto del Pensamiento y el Ecoparque Los Yarumos, con buen precio y excelente atención.",
-      },
-      {
-        user: {
-          name: "Esteban Páez",
+          name: "David Alejandro Ríos",
           description: "Colombia",
-          avatar: { src: "uifaces-popular-image", alt: "Esteban Páez" },
+          avatar: { src: "uifaces-human-image6", alt: "David Alejandro Ríos" },
         },
         quote:
-          "Excelente alternativa para recorrer Manizales. El auto fue perfecto para ir a las fincas cafeteras y el Parque Los Nevados, muy limpio, seguro y con buen consumo de gasolina.",
+          "Vine a hacer senderismo en Los Nevados y me quedé tres días extra. El carro aguantó las trochas de montaña y me llevó a termales que no salen en las guías turísticas.",
+      },
+      {
+        user: {
+          name: "Tatiana Mejía",
+          description: "Colombia",
+          avatar: { src: "uifaces-popular-image", alt: "Tatiana Mejía" },
+        },
+        quote:
+          "Plan familiar al Recinto del Pensamiento con los abuelos. El carro nos dejó en la puerta, sin caminar de más. Los niños disfrutaron el mariposario y nosotros el café.",
       },
     ],
   },
@@ -708,69 +708,69 @@ export const citiesConfig: City[] = [
     testimonials: [
       {
         user: {
-          name: "Stephany M. García",
-          description: "Peru",
+          name: "Juan Camilo Restrepo",
+          description: "Colombia",
           avatar: {
             src: "uifaces-popular-image5",
-            alt: "Stephany M. García",
+            alt: "Juan Camilo Restrepo",
           },
         },
         quote:
-          "Durante nuestra estadía en Medellín, tuvimos la oportunidad de visitar Comuna 13 y Pueblito Paisa. Fue muy cómodo desplazarse entre estos destinos y disfrutar de la transformación urbana a nuestro propio ritmo.",
+          "Trabajo remoto desde Medellín un mes al año. Alquilo por semanas y me muevo entre El Poblado, Laureles y coworkings sin las limitaciones del Metro o los taxis de app.",
       },
       {
         user: {
-          name: "Sandra Milena Barona",
+          name: "Verónica Zapata",
           description: "Colombia",
           avatar: {
             src: "uifaces-popular-image4",
-            alt: "Sandra Milena Barona",
+            alt: "Verónica Zapata",
           },
         },
         quote:
-          "Hicimos una parada en el Metrocable al final de la tarde, después de explorar la Plaza Botero. Contar con transporte propio nos dio la libertad de hacer ese recorrido sin prisas y apreciar las esculturas.",
+          "El Parque Arví con niños es mejor en carro: llevas comida, abrigos y te devuelves cuando quieras. Subir por Las Palmas fue rápido y la vista del valle espectacular.",
       },
       {
         user: {
-          name: "Luis Javier Rodríguez M.",
-          description: "Honduras",
+          name: "Manuel Alejandro Díaz",
+          description: "Argentina",
           avatar: {
             src: "uifaces-popular-image3",
-            alt: "Luis Javier Rodríguez M.",
+            alt: "Manuel Alejandro Díaz",
           },
         },
         quote:
-          "En Medellín, visitamos el Parque Arví y el Jardín Botánico. Tener un auto nos permitió movernos con facilidad y disfrutar de la naturaleza sin preocupaciones.",
+          "Vine de turista y recorrí la Comuna 13, Plaza Botero y el Jardín Botánico. El carro me permitió ir también a Guatapé, que está a dos horas. Sin él, me lo habría perdido.",
       },
       {
         user: {
-          name: "Carlos Andrés Mejía",
+          name: "Katherine Bustamante",
           description: "Colombia",
           avatar: {
             src: "uifaces-popular-image2",
-            alt: "Carlos Andrés Mejía",
+            alt: "Katherine Bustamante",
           },
         },
         quote:
-          "Me encantó el servicio en Medellín. Todo muy puntual y el carro en excelente estado. Pude conocer Comuna 13 y Pueblito Paisa sin complicaciones. ¡Totalmente recomendado!",
+          "Reuniones en Rionegro y en El Poblado el mismo día. Sin carro propio ese trayecto es de dos horas en bus. En carro fueron 40 minutos. La entrega en José María Córdova fue eficiente.",
       },
       {
         user: {
-          name: "Ana Lucía Torres",
-          description: "Ecuador",
-          avatar: { src: "uifaces-human-image6", alt: "Ana Lucía Torres" },
-        },
-        quote:
-          "Viajar en familia a Medellín fue muy fácil gracias a este servicio de alquiler. Recorrimos el Metrocable y la Plaza Botero, con buen precio y excelente atención.",
-      },
-      {
-        user: {
-          name: "Esteban Páez",
+          name: "Daniel Ochoa",
           description: "Colombia",
-          avatar: { src: "uifaces-popular-image", alt: "Esteban Páez" },
+          avatar: { src: "uifaces-human-image6", alt: "Daniel Ochoa" },
         },
         quote:
-          "Excelente alternativa para recorrer Medellín. El auto fue perfecto para ir al Parque Arví y el Jardín Botánico, muy limpio, seguro y con buen consumo de gasolina.",
+          "Es mi segunda vez alquilando para vacaciones en Medellín. Esta vez fui a Santa Fe de Antioquia y Jardín. La confianza de repetir se gana con buen servicio.",
+      },
+      {
+        user: {
+          name: "Lina Marcela Álvarez",
+          description: "Colombia",
+          avatar: { src: "uifaces-popular-image", alt: "Lina Marcela Álvarez" },
+        },
+        quote:
+          "Viaje de amigas a Medellín. Éramos cinco y con maletas. El carro fue más barato que taxis durante cuatro días y pudimos llegar a restaurantes en Las Palmas que solo se acceden en vehículo.",
       },
     ],
   },
@@ -783,69 +783,69 @@ export const citiesConfig: City[] = [
     testimonials: [
       {
         user: {
-          name: "Stephany M. García",
-          description: "Peru",
+          name: "José Luis Padilla",
+          description: "Colombia",
           avatar: {
             src: "uifaces-popular-image5",
-            alt: "Stephany M. García",
+            alt: "José Luis Padilla",
           },
         },
         quote:
-          "Durante nuestra estadía en Montería, tuvimos la oportunidad de visitar la Ronda del Sinú y la Plaza Cultural del Sinú. Fue muy cómodo desplazarse entre estos destinos y disfrutar del río a nuestro propio ritmo.",
+          "Viajo a Montería cada dos meses por temas ganaderos. Necesito recorrer fincas fuera de la ciudad y el alquiler de carro me resuelve la logística sin complicaciones.",
       },
       {
         user: {
-          name: "Sandra Milena Barona",
+          name: "Eliana Vergara",
           description: "Colombia",
           avatar: {
             src: "uifaces-popular-image4",
-            alt: "Sandra Milena Barona",
+            alt: "Eliana Vergara",
           },
         },
         quote:
-          "Hicimos una parada en la Catedral al final de la tarde, después de explorar el Zoológico. Contar con transporte propio nos dio la libertad de hacer ese recorrido sin prisas y apreciar la cultura local.",
+          "Paseo familiar por la Ronda del Sinú y luego fuimos a Lorica, un pueblo con arquitectura árabe preciosa. Con carro la distancia de una hora se hace fácil.",
       },
       {
         user: {
-          name: "Luis Javier Rodríguez M.",
-          description: "Honduras",
+          name: "Raúl Montes",
+          description: "Colombia",
           avatar: {
             src: "uifaces-popular-image3",
-            alt: "Luis Javier Rodríguez M.",
+            alt: "Raúl Montes",
           },
         },
         quote:
-          "En Montería, visitamos el Parque Los Laureles y la Zona Rosa. Tener un auto nos permitió movernos con facilidad y disfrutar del ambiente sin preocupaciones.",
+          "Primera vez en Montería. El río Sinú al atardecer es hermoso. Con el carro pude moverme también a Santa Cruz de Lorica y a playas de Coveñas en el mismo viaje.",
       },
       {
         user: {
-          name: "Carlos Andrés Mejía",
+          name: "Sandra Patricia Navarro",
           description: "Colombia",
           avatar: {
             src: "uifaces-popular-image2",
-            alt: "Carlos Andrés Mejía",
+            alt: "Sandra Patricia Navarro",
           },
         },
         quote:
-          "Me encantó el servicio en Montería. Todo muy puntual y el carro en excelente estado. Pude conocer la Ronda del Sinú y la Plaza Cultural sin complicaciones. ¡Totalmente recomendado!",
+          "Fin de semana con mi esposo. Recorrimos la Ronda del Sinú en la noche, fuimos a comer a la zona gastronómica y al día siguiente a Coveñas. El carro lo hizo posible.",
       },
       {
         user: {
-          name: "Ana Lucía Torres",
-          description: "Ecuador",
-          avatar: { src: "uifaces-human-image6", alt: "Ana Lucía Torres" },
-        },
-        quote:
-          "Viajar en familia a Montería fue muy fácil gracias a este servicio de alquiler. Recorrimos la Catedral y el Zoológico, con buen precio y excelente atención.",
-      },
-      {
-        user: {
-          name: "Esteban Páez",
+          name: "Alberto Charris",
           description: "Colombia",
-          avatar: { src: "uifaces-popular-image", alt: "Esteban Páez" },
+          avatar: { src: "uifaces-human-image6", alt: "Alberto Charris" },
         },
         quote:
-          "Excelente alternativa para recorrer Montería. El auto fue perfecto para ir al Parque Los Laureles y la Zona Rosa, muy limpio, seguro y con buen consumo de gasolina.",
+          "Alquilo regularmente para mis viajes de trabajo a las fincas del Sinú. La entrega en aeropuerto es rápida y los carros siempre están en buenas condiciones para trocha.",
+      },
+      {
+        user: {
+          name: "Melissa Petro",
+          description: "Colombia",
+          avatar: { src: "uifaces-popular-image", alt: "Melissa Petro" },
+        },
+        quote:
+          "Volví a Montería después de un año y repetí el alquiler. Esta vez incluí San Bernardo del Viento en el itinerario. Playa tranquila y con carro se llega fácil.",
       },
     ],
   },
@@ -858,69 +858,69 @@ export const citiesConfig: City[] = [
     testimonials: [
       {
         user: {
-          name: "Stephany M. García",
-          description: "Peru",
+          name: "Andrés Tovar",
+          description: "Colombia",
           avatar: {
             src: "uifaces-popular-image5",
-            alt: "Stephany M. García",
+            alt: "Andrés Tovar",
           },
         },
         quote:
-          "Durante nuestra estadía en Neiva, tuvimos la oportunidad de visitar el Desierto de la Tatacoa y el Río Magdalena. Fue muy cómodo desplazarse entre estos destinos y disfrutar de los paisajes desérticos a nuestro propio ritmo.",
+          "El Desierto de la Tatacoa está a hora y media de Neiva. Salí temprano con el carro, vi el amanecer en el desierto rojo y volví para almorzar. Sin carro propio ese plan no funciona.",
       },
       {
         user: {
-          name: "Sandra Milena Barona",
+          name: "Martha Liliana Perdomo",
           description: "Colombia",
           avatar: {
             src: "uifaces-popular-image4",
-            alt: "Sandra Milena Barona",
+            alt: "Martha Liliana Perdomo",
           },
         },
         quote:
-          "Hicimos una parada en San Agustín al final de la tarde, después de explorar la Catedral de Neiva. Contar con transporte propio nos dio la libertad de hacer ese recorrido sin prisas y apreciar las esculturas arqueológicas.",
+          "Llevé a la familia a San Agustín desde Neiva. Son casi cuatro horas pero la carretera es bonita y con carro paramos en Rivera y en los termales. Los niños durmieron la vuelta.",
       },
       {
         user: {
-          name: "Luis Javier Rodríguez M.",
-          description: "Honduras",
+          name: "Carlos Eduardo Romero",
+          description: "México",
           avatar: {
             src: "uifaces-popular-image3",
-            alt: "Luis Javier Rodríguez M.",
+            alt: "Carlos Eduardo Romero",
           },
         },
         quote:
-          "En Neiva, visitamos el Museo del Huila y el Parque Mercedes Abrego. Tener un auto nos permitió movernos con facilidad y disfrutar de la cultura sin preocupaciones.",
+          "Vine solo a conocer la Tatacoa y quedé impresionado. El carro me permitió quedarme hasta la noche para ver las estrellas en el observatorio y volver seguro a Neiva.",
       },
       {
         user: {
-          name: "Carlos Andrés Mejía",
+          name: "Yolanda Cabrera",
           description: "Colombia",
           avatar: {
             src: "uifaces-popular-image2",
-            alt: "Carlos Andrés Mejía",
+            alt: "Yolanda Cabrera",
           },
         },
         quote:
-          "Me encantó el servicio en Neiva. Todo muy puntual y el carro en excelente estado. Pude conocer el Desierto de la Tatacoa y el Río Magdalena sin complicaciones. ¡Totalmente recomendado!",
+          "Soy de Neiva y siempre recomiendo este servicio a mis amigos que visitan. La relación precio-calidad es buena y para ir a la Tatacoa o a San Agustín, carro es la única opción real.",
       },
       {
         user: {
-          name: "Ana Lucía Torres",
-          description: "Ecuador",
-          avatar: { src: "uifaces-human-image6", alt: "Ana Lucía Torres" },
+          name: "Francisco Javier Cortés",
+          description: "Chile",
+          avatar: { src: "uifaces-human-image6", alt: "Francisco Javier Cortés" },
         },
         quote:
-          "Viajar en familia a Neiva fue muy fácil gracias a este servicio de alquiler. Recorrimos San Agustín y la Catedral, con buen precio y excelente atención.",
+          "Ruta Neiva → Tatacoa → San Agustín en cinco días. Las estatuas precolombinas de San Agustín son impresionantes. Sin vehículo no habría podido cubrir los distintos parques arqueológicos.",
       },
       {
         user: {
-          name: "Esteban Páez",
+          name: "Alejandra Sánchez",
           description: "Colombia",
-          avatar: { src: "uifaces-popular-image", alt: "Esteban Páez" },
+          avatar: { src: "uifaces-popular-image", alt: "Alejandra Sánchez" },
         },
         quote:
-          "Excelente alternativa para recorrer Neiva. El auto fue perfecto para ir al Museo del Huila y el Parque Mercedes Abrego, muy limpio, seguro y con buen consumo de gasolina.",
+          "Escapada romántica con mi pareja al Desierto de la Tatacoa. Con carro pudimos elegir nuestros horarios: desierto al amanecer, piscina de hotel al mediodía, observatorio de noche.",
       },
     ],
   },
@@ -933,69 +933,69 @@ export const citiesConfig: City[] = [
     testimonials: [
       {
         user: {
-          name: "Stephany M. García",
-          description: "Peru",
+          name: "Mauricio Gallego",
+          description: "Colombia",
           avatar: {
             src: "uifaces-popular-image5",
-            alt: "Stephany M. García",
+            alt: "Mauricio Gallego",
           },
         },
         quote:
-          "Durante nuestra estadía en Pereira, tuvimos la oportunidad de visitar el Bioparque Ukumarí y la Catedral de Nuestra Señora de la Pobreza. Fue muy cómodo desplazarse entre estos destinos y disfrutar de la naturaleza a nuestro propio ritmo.",
+          "Recorrí fincas cafeteras por la vía a Marsella y Santa Rosa de Cabal. Cada finca tiene su propia ruta y horario, así que con carro propio pude armar mi itinerario perfecto.",
       },
       {
         user: {
-          name: "Sandra Milena Barona",
+          name: "Catalina Osorio",
           description: "Colombia",
           avatar: {
             src: "uifaces-popular-image4",
-            alt: "Sandra Milena Barona",
+            alt: "Catalina Osorio",
           },
         },
         quote:
-          "Hicimos una parada en las Termales de Santa Rosa al final de la tarde, después de explorar el Zoológico Matecaña. Contar con transporte propio nos dio la libertad de hacer ese recorrido sin prisas y apreciar las aguas termales.",
+          "Los niños querían ver los animales del Bioparque Ukumarí y después ir a las Termales de Santa Rosa. Con carro hicimos los dos planes el mismo día sin prisas.",
       },
       {
         user: {
-          name: "Luis Javier Rodríguez M.",
-          description: "Honduras",
+          name: "Rodrigo Escobar",
+          description: "Colombia",
           avatar: {
             src: "uifaces-popular-image3",
-            alt: "Luis Javier Rodríguez M.",
+            alt: "Rodrigo Escobar",
           },
         },
         quote:
-          "En Pereira, visitamos las fincas cafeteras y el Parque Arboleda. Tener un auto nos permitió movernos con facilidad y disfrutar del café sin preocupaciones.",
+          "Las Termales de Santa Rosa a las 6am, sin turistas. Solo posible con carro propio para llegar a esa hora. Agua caliente con vista al bosque nublado, experiencia inolvidable.",
       },
       {
         user: {
-          name: "Carlos Andrés Mejía",
-          description: "Colombia",
+          name: "Ana María Rendón",
+          description: "Ecuador",
           avatar: {
             src: "uifaces-popular-image2",
-            alt: "Carlos Andrés Mejía",
+            alt: "Ana María Rendón",
           },
         },
         quote:
-          "Me encantó el servicio en Pereira. Todo muy puntual y el carro en excelente estado. Pude conocer el Bioparque Ukumarí y la Catedral sin complicaciones. ¡Totalmente recomendado!",
+          "Vine de turista al Eje Cafetero. Desde Pereira con carro llegué a Salento, a Armenia y a Manizales en el mismo viaje. Pereira es base perfecta con buenas carreteras.",
       },
       {
         user: {
-          name: "Ana Lucía Torres",
-          description: "Ecuador",
-          avatar: { src: "uifaces-human-image6", alt: "Ana Lucía Torres" },
-        },
-        quote:
-          "Viajar en familia a Pereira fue muy fácil gracias a este servicio de alquiler. Recorrimos las Termales de Santa Rosa y el Zoológico Matecaña, con buen precio y excelente atención.",
-      },
-      {
-        user: {
-          name: "Esteban Páez",
+          name: "Esteban Loaiza",
           description: "Colombia",
-          avatar: { src: "uifaces-popular-image", alt: "Esteban Páez" },
+          avatar: { src: "uifaces-human-image6", alt: "Esteban Loaiza" },
         },
         quote:
-          "Excelente alternativa para recorrer Pereira. El auto fue perfecto para ir a las fincas cafeteras y el Parque Arboleda, muy limpio, seguro y con buen consumo de gasolina.",
+          "Segundo alquiler con ellos en Pereira. Lo que me trae de vuelta es la sencillez: reservo, llego a Matecaña, me entregan el carro y ya. Sin depósitos exagerados ni letra menuda.",
+      },
+      {
+        user: {
+          name: "Jennifer Caicedo",
+          description: "Colombia",
+          avatar: { src: "uifaces-popular-image", alt: "Jennifer Caicedo" },
+        },
+        quote:
+          "Fin de semana de descanso en los termales con mi mejor amiga. El carro fue cómodo para la vía a Santa Rosa y el precio por dos días fue razonable.",
       },
     ],
   },
@@ -1008,69 +1008,69 @@ export const citiesConfig: City[] = [
     testimonials: [
       {
         user: {
-          name: "Stephany M. García",
-          description: "Peru",
+          name: "Nicolás Dávila",
+          description: "Colombia",
           avatar: {
             src: "uifaces-popular-image5",
-            alt: "Stephany M. García",
+            alt: "Nicolás Dávila",
           },
         },
         quote:
-          "Durante nuestra estadía en Santa Marta, tuvimos la oportunidad de visitar el Parque Tayrona y Minca. Fue muy cómodo desplazarse entre estos destinos y disfrutar de las playas a nuestro propio ritmo.",
+          "Playa durante el día en el Tayrona y cena en Taganga al atardecer. Con carro la distancia entre ambos puntos no fue problema. Santa Marta tiene tanto por ver que el carro es esencial.",
       },
       {
         user: {
-          name: "Sandra Milena Barona",
+          name: "Amanda Orozco",
           description: "Colombia",
           avatar: {
             src: "uifaces-popular-image4",
-            alt: "Sandra Milena Barona",
+            alt: "Amanda Orozco",
           },
         },
         quote:
-          "Hicimos una parada en la Quinta de San Pedro Alejandrino al final de la tarde, después de explorar la Catedral. Contar con transporte propio nos dio la libertad de hacer ese recorrido sin prisas y apreciar la historia.",
+          "Con tres hijos y nevera portátil, llegar al Tayrona en bus habría sido una odisea. El carro nos dejó en la entrada del parque con todo lo necesario para el día.",
       },
       {
         user: {
-          name: "Luis Javier Rodríguez M.",
-          description: "Honduras",
+          name: "Bryan Acosta",
+          description: "Venezuela",
           avatar: {
             src: "uifaces-popular-image3",
-            alt: "Luis Javier Rodríguez M.",
+            alt: "Bryan Acosta",
           },
         },
         quote:
-          "En Santa Marta, visitamos la Ciudad Perdida y el Museo del Oro Tairona. Tener un auto nos permitió movernos con facilidad y disfrutar de la aventura sin preocupaciones.",
+          "Subí a Minca en el carro alquilado. La carretera es de montaña pero se puede. Arriba hay cascadas, fincas de café y un fresco que no esperas tan cerca de la playa.",
       },
       {
         user: {
-          name: "Carlos Andrés Mejía",
+          name: "Gloria Amparo Nieto",
           description: "Colombia",
           avatar: {
             src: "uifaces-popular-image2",
-            alt: "Carlos Andrés Mejía",
+            alt: "Gloria Amparo Nieto",
           },
         },
         quote:
-          "Me encantó el servicio en Santa Marta. Todo muy puntual y el carro en excelente estado. Pude conocer el Parque Tayrona y Minca sin complicaciones. ¡Totalmente recomendado!",
+          "Mi esposo y yo, ya jubilados, recorrimos la Quinta de San Pedro Alejandrino y las playas del Rodadero a nuestro ritmo. Sin apuros ni grupos turísticos. Así se disfruta.",
       },
       {
         user: {
-          name: "Ana Lucía Torres",
-          description: "Ecuador",
-          avatar: { src: "uifaces-human-image6", alt: "Ana Lucía Torres" },
-        },
-        quote:
-          "Viajar en familia a Santa Marta fue muy fácil gracias a este servicio de alquiler. Recorrimos la Quinta de San Pedro Alejandrino y la Catedral, con buen precio y excelente atención.",
-      },
-      {
-        user: {
-          name: "Esteban Páez",
+          name: "Cristian Camilo Torres",
           description: "Colombia",
-          avatar: { src: "uifaces-popular-image", alt: "Esteban Páez" },
+          avatar: { src: "uifaces-human-image6", alt: "Cristian Camilo Torres" },
         },
         quote:
-          "Excelente alternativa para recorrer Santa Marta. El auto fue perfecto para ir a la Ciudad Perdida y el Museo del Oro Tairona, muy limpio, seguro y con buen consumo de gasolina.",
+          "Grupo de amigos, seis días en Santa Marta. Entre todos pagamos el alquiler y salió más barato que taxis. Fuimos al Tayrona, Palomino, Minca y Taganga sin límites.",
+      },
+      {
+        user: {
+          name: "Isabela Márquez",
+          description: "Perú",
+          avatar: { src: "uifaces-popular-image", alt: "Isabela Márquez" },
+        },
+        quote:
+          "Luna de miel caribeña. Santa Marta tiene playas que solo se llegan en carro: Playa Cristal, Neguanje... Alquilar fue la mejor decisión del viaje.",
       },
     ],
   },
@@ -1083,69 +1083,69 @@ export const citiesConfig: City[] = [
     testimonials: [
       {
         user: {
-          name: "Stephany M. García",
-          description: "Peru",
+          name: "Mario Zuleta",
+          description: "Colombia",
           avatar: {
             src: "uifaces-popular-image5",
-            alt: "Stephany M. García",
+            alt: "Mario Zuleta",
           },
         },
         quote:
-          "Durante nuestra estadía en Valledupar, tuvimos la oportunidad de visitar el Río Guatapurí y la Plaza Alfonso López. Fue muy cómodo desplazarse entre estos destinos y disfrutar del vallenato a nuestro propio ritmo.",
+          "Vine al Festival Vallenato y con carro pude ir a los eventos en la Plaza, al Río Guatapurí y a parrandas nocturnas sin depender de nadie. El vallenato se vive mejor así.",
       },
       {
         user: {
-          name: "Sandra Milena Barona",
+          name: "Liliana Molina",
           description: "Colombia",
           avatar: {
             src: "uifaces-popular-image4",
-            alt: "Sandra Milena Barona",
+            alt: "Liliana Molina",
           },
         },
         quote:
-          "Hicimos una parada en el Balneario Hurtado al final de la tarde, después de explorar el Museo del Acordeón. Contar con transporte propio nos dio la libertad de hacer ese recorrido sin prisas y apreciar la música.",
+          "Llevé a mis hijos al Balneario Hurtado. Agua cristalina de la Sierra Nevada y con carro no tuvimos que cargar todo en bus. Parqueadero cerca y plan familiar perfecto.",
       },
       {
         user: {
-          name: "Luis Javier Rodríguez M.",
-          description: "Honduras",
+          name: "César Augusto Peña",
+          description: "Colombia",
           avatar: {
             src: "uifaces-popular-image3",
-            alt: "Luis Javier Rodríguez M.",
+            alt: "César Augusto Peña",
           },
         },
         quote:
-          "En Valledupar, visitamos el Parque Ecológico Los Besotes y el Valle de la Luna. Tener un auto nos permitió movernos con facilidad y disfrutar de la naturaleza sin preocupaciones.",
+          "Soy músico y vine a conocer la tierra del vallenato. Recorrí la Plaza Alfonso López, el Museo del Acordeón y pueblos como La Paz y San Diego. El carro fue indispensable.",
       },
       {
         user: {
-          name: "Carlos Andrés Mejía",
+          name: "Karen Johana Luna",
           description: "Colombia",
           avatar: {
             src: "uifaces-popular-image2",
-            alt: "Carlos Andrés Mejía",
+            alt: "Karen Johana Luna",
           },
         },
         quote:
-          "Me encantó el servicio en Valledupar. Todo muy puntual y el carro en excelente estado. Pude conocer el Río Guatapurí y la Plaza Alfonso López sin complicaciones. ¡Totalmente recomendado!",
+          "Mi novio y yo fuimos al Río Guatapurí al amanecer, antes de que llegara la gente. Solo posible con carro propio. El agua bajando de la Sierra Nevada es helada y deliciosa.",
       },
       {
         user: {
-          name: "Ana Lucía Torres",
-          description: "Ecuador",
-          avatar: { src: "uifaces-human-image6", alt: "Ana Lucía Torres" },
-        },
-        quote:
-          "Viajar en familia a Valledupar fue muy fácil gracias a este servicio de alquiler. Recorrimos el Balneario Hurtado y el Museo del Acordeón, con buen precio y excelente atención.",
-      },
-      {
-        user: {
-          name: "Esteban Páez",
+          name: "Jairo Oñate",
           description: "Colombia",
-          avatar: { src: "uifaces-popular-image", alt: "Esteban Páez" },
+          avatar: { src: "uifaces-human-image6", alt: "Jairo Oñate" },
         },
         quote:
-          "Excelente alternativa para recorrer Valledupar. El auto fue perfecto para ir al Parque Ecológico Los Besotes y el Valle de la Luna, muy limpio, seguro y con buen consumo de gasolina.",
+          "Negocios en fincas ganaderas de la región. Valledupar requiere carro para cualquier gestión fuera del casco urbano. La entrega fue puntual y el vehículo confiable para las vías.",
+      },
+      {
+        user: {
+          name: "Angélica Daza",
+          description: "Colombia",
+          avatar: { src: "uifaces-popular-image", alt: "Angélica Daza" },
+        },
+        quote:
+          "Repito alquiler cada vez que vengo a Valledupar. El aeropuerto Alfonso López es pequeño así que la entrega es rápida, sin las demoras de los aeropuertos grandes.",
       },
     ],
   },
@@ -1158,142 +1158,144 @@ export const citiesConfig: City[] = [
     testimonials: [
       {
         user: {
-          name: "Stephany M. García",
-          description: "Peru",
+          name: "Germán Rodríguez",
+          description: "Colombia",
           avatar: {
             src: "uifaces-popular-image5",
-            alt: "Stephany M. García",
+            alt: "Germán Rodríguez",
           },
         },
         quote:
-          "Durante nuestra estadía en Villavicencio, tuvimos la oportunidad de visitar el Bioparque Los Ocarros y el Parque Las Malocas. Fue muy cómodo desplazarse entre estos destinos y disfrutar de los llanos a nuestro propio ritmo.",
+          "Vine desde Bogotá a comer mamona llanera y terminé recorriendo los hatos ganaderos con el carro. Los Llanos se disfrutan con la libertad de parar donde uno quiera.",
       },
       {
         user: {
-          name: "Sandra Milena Barona",
+          name: "Adriana Milena Parra",
           description: "Colombia",
           avatar: {
             src: "uifaces-popular-image4",
-            alt: "Sandra Milena Barona",
+            alt: "Adriana Milena Parra",
           },
         },
         quote:
-          "Hicimos una parada en Caño Cristales al final de la tarde, después de explorar la Catedral Nuestra Señora del Carmen. Contar con transporte propio nos dio la libertad de hacer ese recorrido sin prisas y apreciar los colores del río.",
+          "El Bioparque Los Ocarros con niños es plan obligado. Con carro llevamos silla de bebé, lonchera y repelente sin cargar todo en bus. Perfecto para un día en familia.",
       },
       {
         user: {
-          name: "Luis Javier Rodríguez M.",
-          description: "Honduras",
+          name: "Luis Fernando Gaitán",
+          description: "Colombia",
           avatar: {
             src: "uifaces-popular-image3",
-            alt: "Luis Javier Rodríguez M.",
+            alt: "Luis Fernando Gaitán",
           },
         },
         quote:
-          "En Villavicencio, visitamos el Mirador La Piedra del Amor y el Parque Infantil. Tener un auto nos permitió movernos con facilidad y disfrutar de la naturaleza sin preocupaciones.",
+          "Ruta Villavicencio → Restrepo → Cumaral por la llanura. Paisajes increíbles, atardeceres rojos y carretera recta. La camioneta fue perfecta para las vías destapadas.",
       },
       {
         user: {
-          name: "Carlos Andrés Mejía",
+          name: "Sandra Milena Cárdenas",
           description: "Colombia",
           avatar: {
             src: "uifaces-popular-image2",
-            alt: "Carlos Andrés Mejía",
+            alt: "Sandra Milena Cárdenas",
           },
         },
         quote:
-          "Me encantó el servicio en Villavicencio. Todo muy puntual y el carro en excelente estado. Pude conocer el Bioparque Los Ocarros y el Parque Las Malocas sin complicaciones. ¡Totalmente recomendado!",
+          "Escapada de fin de semana desde Bogotá. Recogimos en Villavicencio y fuimos al Mirador de Buenavista. La bajada por la vía al Llano es espectacular en carro.",
       },
       {
         user: {
-          name: "Ana Lucía Torres",
-          description: "Ecuador",
-          avatar: { src: "uifaces-human-image6", alt: "Ana Lucía Torres" },
-        },
-        quote:
-          "Viajar en familia a Villavicencio fue muy fácil gracias a este servicio de alquiler. Recorrimos Caño Cristales y la Catedral, con buen precio y excelente atención.",
-      },
-      {
-        user: {
-          name: "Esteban Páez",
+          name: "Iván Darío Bernal",
           description: "Colombia",
-          avatar: { src: "uifaces-popular-image", alt: "Esteban Páez" },
+          avatar: { src: "uifaces-human-image6", alt: "Iván Darío Bernal" },
         },
         quote:
-          "Excelente alternativa para recorrer Villavicencio. El auto fue perfecto para ir al Mirador La Piedra del Amor y el Parque Infantil, muy limpio, seguro y con buen consumo de gasolina.",
+          "Viajo por negocios agrícolas a los Llanos regularmente. El carro me permite cubrir fincas en Acacías, Granada y Puerto López en un solo día. Servicio confiable.",
+      },
+      {
+        user: {
+          name: "Mónica Guzmán",
+          description: "Ecuador",
+          avatar: { src: "uifaces-popular-image", alt: "Mónica Guzmán" },
+        },
+        quote:
+          "No conocía los Llanos colombianos y fue una sorpresa. Con el carro recorrí el Parque Las Malocas, probé carne a la llanera y vi un amanecer llanero. Experiencia única.",
       },
     ],
   },
   {
     id: "floridablanca",
     name: "Floridablanca",
+    description:
+      "¿Planeas visitar Floridablanca? En Floridablanca puedes reservar en línea sin anticipos y recoger directamente en la ciudad, con fácil acceso desde el Aeropuerto Palonegro de Bucaramanga. Aprovecha descuentos de hasta el 60% por reserva anticipada y elige entre carros compactos, sedanes o camionetas para recorrer lugares como el Jardín Botánico Eloy Valenzuela, el Ecoparque Cerro del Santísimo o el centro histórico. Nuestra sede en Floridablanca te ofrece precios bajos y disponibilidad inmediata los 7 días de la semana. ¡Alquila fácil, sin trámites largos y comienza tu aventura en la Ciudad Jardín de Santander!",
     link: "/floridablanca",
     testimonials: [
       {
         user: {
-          name: "Stephany M. García",
-          description: "Peru",
+          name: "Wilson Rangel",
+          description: "Colombia",
           avatar: {
             src: "uifaces-popular-image5",
-            alt: "Stephany M. García",
+            alt: "Wilson Rangel",
           },
         },
         quote:
-          "Durante nuestra estadía en Floridablanca, tuvimos la oportunidad de visitar el Ecoparque El Santísimo y el Parque Caracoli. Fue muy cómodo desplazarse entre estos destinos y disfrutar de las vistas a nuestro propio ritmo.",
+          "Vivo en Bucaramanga pero alquilo en Floridablanca para diligencias que requieren carro. La sede es cómoda y puedo moverme al Cañaveral, al centro y a fincas cercanas sin problema.",
       },
       {
         user: {
-          name: "Sandra Milena Barona",
+          name: "Rocío Amaya",
           description: "Colombia",
           avatar: {
             src: "uifaces-popular-image4",
-            alt: "Sandra Milena Barona",
+            alt: "Rocío Amaya",
           },
         },
         quote:
-          "Hicimos una parada en el Jardín Botánico Eloy Valenzuela al final de la tarde, después de explorar el Acualago. Contar con transporte propio nos dio la libertad de hacer ese recorrido sin prisas y apreciar la naturaleza.",
+          "Plan de domingo en el Jardín Botánico Eloy Valenzuela con los niños. Con carro nos quedamos hasta que ellos quisieron y después fuimos a comer sin depender de bus.",
       },
       {
         user: {
-          name: "Luis Javier Rodríguez M.",
-          description: "Honduras",
+          name: "Omar Becerra",
+          description: "Colombia",
           avatar: {
             src: "uifaces-popular-image3",
-            alt: "Luis Javier Rodríguez M.",
+            alt: "Omar Becerra",
           },
         },
         quote:
-          "En Floridablanca, visitamos el Parque Natural La Pera y el Centro Comercial Cañaveral. Tener un auto nos permitió movernos con facilidad y disfrutar del ambiente sin preocupaciones.",
+          "Reuniones de negocios entre Floridablanca, Bucaramanga y Girón en un solo día. Sin carro habría sido imposible cumplir con todos los horarios. Servicio profesional.",
       },
       {
         user: {
-          name: "Carlos Andrés Mejía",
+          name: "Luz Dary Pabón",
           description: "Colombia",
           avatar: {
             src: "uifaces-popular-image2",
-            alt: "Carlos Andrés Mejía",
+            alt: "Luz Dary Pabón",
           },
         },
         quote:
-          "Me encantó el servicio en Floridablanca. Todo muy puntual y el carro en excelente estado. Pude conocer el Ecoparque El Santísimo y el Parque Caracoli sin complicaciones. ¡Totalmente recomendado!",
+          "Visité a mi familia en Floridablanca y aprovechamos para ir al Cerro del Santísimo. La vista del área metropolitana desde arriba es impresionante, sobre todo al atardecer.",
       },
       {
         user: {
-          name: "Ana Lucía Torres",
-          description: "Ecuador",
-          avatar: { src: "uifaces-human-image6", alt: "Ana Lucía Torres" },
+          name: "Christian Gálvez",
+          description: "Perú",
+          avatar: { src: "uifaces-human-image6", alt: "Christian Gálvez" },
         },
         quote:
-          "Viajar en familia a Floridablanca fue muy fácil gracias a este servicio de alquiler. Recorrimos el Jardín Botánico Eloy Valenzuela y el Acualago, con buen precio y excelente atención.",
+          "Llegué por Palonegro y me quedé en Floridablanca. Desde ahí con carro recorrí el Cañón del Chicamocha y Mesa de los Santos. Todo a menos de una hora de distancia.",
       },
       {
         user: {
-          name: "Esteban Páez",
+          name: "Paula Andrea Niño",
           description: "Colombia",
-          avatar: { src: "uifaces-popular-image", alt: "Esteban Páez" },
+          avatar: { src: "uifaces-popular-image", alt: "Paula Andrea Niño" },
         },
         quote:
-          "Excelente alternativa para recorrer Floridablanca. El auto fue perfecto para ir al Parque Natural La Pera y el Centro Comercial Cañaveral, muy limpio, seguro y con buen consumo de gasolina.",
+          "Ya van tres veces que alquilo en Floridablanca. Siempre para fines de semana largos con mi familia. Los carros están bien mantenidos y el trato es directo y honesto.",
       },
     ],
   },
@@ -1306,69 +1308,69 @@ export const citiesConfig: City[] = [
     testimonials: [
       {
         user: {
-          name: "Stephany M. García",
-          description: "Peru",
+          name: "Diego Fernando Caicedo",
+          description: "Colombia",
           avatar: {
             src: "uifaces-popular-image5",
-            alt: "Stephany M. García",
+            alt: "Diego Fernando Caicedo",
           },
         },
         quote:
-          "Durante nuestra estadía en Palmira, tuvimos la oportunidad de visitar el Museo de la Caña de Azúcar y la Catedral de Palmira. Fue muy cómodo desplazarse entre estos destinos y disfrutar de la historia azucarera a nuestro propio ritmo.",
+          "Trabajo en agroindustria y necesito recorrer ingenios y haciendas entre Palmira y Candelaria. El carro me permite cubrir cuatro visitas al día sin perder tiempo en transporte público.",
       },
       {
         user: {
-          name: "Sandra Milena Barona",
+          name: "Martha Isabel Olave",
           description: "Colombia",
           avatar: {
             src: "uifaces-popular-image4",
-            alt: "Sandra Milena Barona",
+            alt: "Martha Isabel Olave",
           },
         },
         quote:
-          "Hicimos una parada en el Zoológico al final de la tarde, después de explorar el Parque Bolívar. Contar con transporte propio nos dio la libertad de hacer ese recorrido sin prisas y apreciar la arquitectura colonial.",
+          "Fuimos en familia a la Basílica del Señor de los Milagros en Buga. Desde Palmira son 40 minutos en carro y el viaje fue cómodo para mis papás mayores.",
       },
       {
         user: {
-          name: "Luis Javier Rodríguez M.",
-          description: "Honduras",
+          name: "Hernán Darío Valencia",
+          description: "Colombia",
           avatar: {
             src: "uifaces-popular-image3",
-            alt: "Luis Javier Rodríguez M.",
+            alt: "Hernán Darío Valencia",
           },
         },
         quote:
-          "En Palmira, visitamos el Centro Histórico y el Parque de los Fundadores. Tener un auto nos permitió movernos con facilidad y disfrutar de la cultura sin preocupaciones.",
+          "El aeropuerto de Cali queda en Palmira, así que recoger el carro acá es lógico. De ahí fui directo a mis reuniones en Cali sin pasar por terminal ni esperar taxi.",
       },
       {
         user: {
-          name: "Carlos Andrés Mejía",
+          name: "Jenny Marcela Toro",
           description: "Colombia",
           avatar: {
             src: "uifaces-popular-image2",
-            alt: "Carlos Andrés Mejía",
+            alt: "Jenny Marcela Toro",
           },
         },
         quote:
-          "Me encantó el servicio en Palmira. Todo muy puntual y el carro en excelente estado. Pude conocer el Museo de la Caña de Azúcar y la Catedral sin complicaciones. ¡Totalmente recomendado!",
+          "Fin de semana recorriendo pueblos del Valle: Palmira, Buga, Tuluá. Cada uno tiene su encanto y con carro es fácil hacer la ruta sin depender de buses intermunicipales.",
       },
       {
         user: {
-          name: "Ana Lucía Torres",
-          description: "Ecuador",
-          avatar: { src: "uifaces-human-image6", alt: "Ana Lucía Torres" },
-        },
-        quote:
-          "Viajar en familia a Palmira fue muy fácil gracias a este servicio de alquiler. Recorrimos el Zoológico y el Parque Bolívar, con buen precio y excelente atención.",
-      },
-      {
-        user: {
-          name: "Esteban Páez",
+          name: "Álvaro Escobar",
           description: "Colombia",
-          avatar: { src: "uifaces-popular-image", alt: "Esteban Páez" },
+          avatar: { src: "uifaces-human-image6", alt: "Álvaro Escobar" },
         },
         quote:
-          "Excelente alternativa para recorrer Palmira. El auto fue perfecto para ir al Centro Histórico y el Parque de los Fundadores, muy limpio, seguro y con buen consumo de gasolina.",
+          "Segundo alquiler en Palmira. El servicio es consistente: mismo proceso, misma calidad. Lo uso para visitas a clientes en el sector azucarero.",
+      },
+      {
+        user: {
+          name: "Yesenia Arboleda",
+          description: "Ecuador",
+          avatar: { src: "uifaces-popular-image", alt: "Yesenia Arboleda" },
+        },
+        quote:
+          "Vine de turista y no sabía que el aeropuerto de Cali está en Palmira. Recogí el carro ahí y exploré Cali, Palmira y Buga. Todo conectado y cerca, ideal con vehículo.",
       },
     ],
   },
@@ -1381,69 +1383,69 @@ export const citiesConfig: City[] = [
     testimonials: [
       {
         user: {
-          name: "Stephany M. García",
-          description: "Peru",
+          name: "Rafael Donado",
+          description: "Colombia",
           avatar: {
             src: "uifaces-popular-image5",
-            alt: "Stephany M. García",
+            alt: "Rafael Donado",
           },
         },
         quote:
-          "Durante nuestra estadía en Soledad, tuvimos la oportunidad de visitar el Parque Muvdi y el Río Magdalena. Fue muy cómodo desplazarse entre estos destinos y disfrutar del ambiente local a nuestro propio ritmo.",
+          "Tengo clientes en Soledad y Barranquilla. Con el carro cubro ambas zonas en un día sin los embotellamientos del transporte público por la Circunvalar.",
       },
       {
         user: {
-          name: "Sandra Milena Barona",
+          name: "Keyla Barrios",
           description: "Colombia",
           avatar: {
             src: "uifaces-popular-image4",
-            alt: "Sandra Milena Barona",
+            alt: "Keyla Barrios",
           },
         },
         quote:
-          "Hicimos una parada en la Iglesia de Soledad al final de la tarde, después de explorar el Parque Central. Contar con transporte propio nos dio la libertad de hacer ese recorrido sin prisas y apreciar la cultura.",
+          "Vinimos al Carnaval desde Bogotá. El aeropuerto Cortissoz queda en Soledad y recogimos el carro ahí. Nos movimos entre comparsas, casetas y el hotel sin estrés.",
       },
       {
         user: {
-          name: "Luis Javier Rodríguez M.",
-          description: "Honduras",
+          name: "Jorge Andrés Solano",
+          description: "Colombia",
           avatar: {
             src: "uifaces-popular-image3",
-            alt: "Luis Javier Rodríguez M.",
+            alt: "Jorge Andrés Solano",
           },
         },
         quote:
-          "En Soledad, visitamos el Mercado Público y el Malecón. Tener un auto nos permitió movernos con facilidad y disfrutar del ambiente sin preocupaciones.",
+          "Plan familiar: Museo del Carnaval en Barranquilla, luego playa en Puerto Colombia. Con el carro mis papás no sufrieron el calor esperando bus. Aire acondicionado total.",
       },
       {
         user: {
-          name: "Carlos Andrés Mejía",
+          name: "Milena Fontalvo",
           description: "Colombia",
           avatar: {
             src: "uifaces-popular-image2",
-            alt: "Carlos Andrés Mejía",
+            alt: "Milena Fontalvo",
           },
         },
         quote:
-          "Me encantó el servicio en Soledad. Todo muy puntual y el carro en excelente estado. Pude conocer el Parque Muvdi y el Río Magdalena sin complicaciones. ¡Totalmente recomendado!",
+          "Viajo por trabajo entre Soledad y la zona industrial de Barranquilla. El alquiler por semana me sale más económico que taxis diarios y me da flexibilidad de horarios.",
       },
       {
         user: {
-          name: "Ana Lucía Torres",
-          description: "Ecuador",
-          avatar: { src: "uifaces-human-image6", alt: "Ana Lucía Torres" },
-        },
-        quote:
-          "Viajar en familia a Soledad fue muy fácil gracias a este servicio de alquiler. Recorrimos la Iglesia y el Parque Central, con buen precio y excelente atención.",
-      },
-      {
-        user: {
-          name: "Esteban Páez",
+          name: "Víctor Escorcia",
           description: "Colombia",
-          avatar: { src: "uifaces-popular-image", alt: "Esteban Páez" },
+          avatar: { src: "uifaces-human-image6", alt: "Víctor Escorcia" },
         },
         quote:
-          "Excelente alternativa para recorrer Soledad. El auto fue perfecto para ir al Mercado Público y el Malecón, muy limpio, seguro y con buen consumo de gasolina.",
+          "Alquilo cada vez que vengo al Atlántico. La recogida en el aeropuerto es práctica y desde Soledad se llega rápido a Barranquilla, Puerto Colombia y Juan de Acosta.",
+      },
+      {
+        user: {
+          name: "Angeline Herazo",
+          description: "Colombia",
+          avatar: { src: "uifaces-popular-image", alt: "Angeline Herazo" },
+        },
+        quote:
+          "Primera vez que alquilo un carro y la experiencia fue sencilla. Reservé por internet, recogí en el aeropuerto y devolví al final sin complicaciones ni cobros de más.",
       },
     ],
   },
