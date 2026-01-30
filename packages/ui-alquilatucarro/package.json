@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "description": "Frontend de Alquilatucarro",
+  "description": "Frontend de Alquilatucarro - alquilatucarro.com",
   "scripts": {
     "dev": "nuxt dev",
     "build": "nuxt build",
