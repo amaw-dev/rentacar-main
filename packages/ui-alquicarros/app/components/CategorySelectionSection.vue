@@ -261,30 +261,22 @@ const abrirFormularioDirecto = computed(() => !!reservarParam.value);
 // Flag para evitar loops cuando actualizamos la URL programáticamente
 const isUpdatingFromUrl = ref(false);
 
-// Navegar a URL con categoría o limpiar categoría de la URL
+// Actualizar URL con categoría sin disparar navegación Vue Router.
+// Usa history.replaceState para evitar que Nuxt desmonte/remonte la página
+// (la ruta /categoria/[codigo] es una página Nuxt separada, y router.replace
+// causaba re-mount → re-search → scroll al tope → loop).
 function updateCategoriaUrl(codigoCategoria?: string, reservar?: boolean) {
   if (!import.meta.client) return;
 
-  const router = useRouter();
-  const route = useRoute();
+  const currentPath = window.location.pathname;
+  const basePathWithoutCategoria = currentPath.replace(/\/categoria\/[^/]+$/, '');
 
   if (codigoCategoria) {
-    // Construir nueva ruta con /categoria/[codigo]
-    const currentPath = route.path;
-    const basePathWithoutCategoria = currentPath.replace(/\/categoria\/[^\/]+$/, '');
     const newPath = `${basePathWithoutCategoria}/categoria/${codigoCategoria.toLowerCase()}`;
-
-    // Si se marca "reservar", usar query param para abrir form directamente
-    if (reservar) {
-      router.replace({ path: newPath, query: { reservar: codigoCategoria } });
-    } else {
-      router.replace({ path: newPath });
-    }
+    const newUrl = reservar ? `${newPath}?reservar=${codigoCategoria}` : newPath;
+    window.history.replaceState(window.history.state, '', newUrl);
   } else {
-    // Limpiar categoría de la URL (volver a ruta sin /categoria/)
-    const currentPath = route.path;
-    const basePathWithoutCategoria = currentPath.replace(/\/categoria\/[^\/]+$/, '');
-    router.replace({ path: basePathWithoutCategoria });
+    window.history.replaceState(window.history.state, '', basePathWithoutCategoria);
   }
 }
 
