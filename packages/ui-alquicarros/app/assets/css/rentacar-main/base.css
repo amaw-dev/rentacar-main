@@ -539,3 +539,24 @@ section[id] > [data-slot="container"] {
         padding-bottom: 4rem !important;
     }
 }
+
+/* Fix: UCarousel arrows — Tailwind v4 scanner doesn't detect responsive */
+/* classes (hidden, lg:block) passed dynamically through :ui prop string. */
+/* Handle arrow visibility and button styling via explicit CSS. */
+[data-slot="arrows"] {
+    display: none !important;
+}
+
+@media (min-width: 1024px) {
+    [data-slot="arrows"] {
+        display: block !important;
+    }
+
+    [data-slot="arrows"] button {
+        cursor: pointer;
+        border-radius: 0.75rem;
+        height: 3rem;
+        border: none;
+        box-shadow: none;
+    }
+}

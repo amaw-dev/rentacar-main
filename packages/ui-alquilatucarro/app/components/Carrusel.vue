@@ -9,10 +9,7 @@
       :ui="{
         viewport: 'rounded-t-lg',
         dots: 'bottom-5 gap-1',
-        dot: 'size-2 bg-gray-400/70 rounded-full transition-all duration-300 data-[state=active]:w-6 data-[state=active]:bg-white',
-        arrows: 'hidden lg:block',
-        prev: 'translate-x-[200%] cursor-pointer rounded-xl h-12 border-0',
-        next: '-translate-x-[200%] cursor-pointer rounded-xl h-12 border-0'
+        dot: 'size-2 bg-gray-400/70 rounded-full transition-all duration-300 data-[state=active]:w-6 data-[state=active]:bg-white'
       }"
     >
       <div class="relative">
