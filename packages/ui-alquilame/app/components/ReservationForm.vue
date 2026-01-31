@@ -92,9 +92,9 @@
 </template>
 
 <script setup lang="ts">
-import type {
-  ReservationFormValidationSchemaType,
-  ReservationWithFlightFormValidationSchemaType,
+import {
+  ReservationFormValidationSchema,
+  ReservationWithFlightFormValidationSchema,
 } from '@rentacar-main/logic/utils';
 
 // Lazy load vue-tel-input (solo se carga cuando se renderiza el formulario)
