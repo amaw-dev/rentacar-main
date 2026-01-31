@@ -399,13 +399,8 @@ const props = defineProps<{
   city: City;
 }>();
 
-// Filter branches for current city (handle ID mapping inconsistencies)
-const cityIdMapping: Record<string, string> = {
-  'santamarta': 'santa-marta',
-};
-const branchCityId = cityIdMapping[props.city?.id] || props.city?.id;
 const cityBranches = computed(() =>
-  branches.filter((branch: { city: string }) => branch.city === branchCityId)
+  branches.filter((branch: { city: string }) => branch.city === props.city?.id)
 );
 
 const testimonios: Testimonial[] | undefined = props.city?.testimonials;
