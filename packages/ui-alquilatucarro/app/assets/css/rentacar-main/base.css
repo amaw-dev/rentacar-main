@@ -419,6 +419,23 @@ header [data-highlighted],
     right: auto !important;
 }
 
+/* Fix: UModal centering — Tailwind v4/v3 double-translate conflict */
+/* The dialog gets BOTH `translate: -50% -50%` (v4 individual prop) AND */
+/* `transform: translate(-50%, -50%)` (v3 compat), causing 2x shift off-center. */
+/* Fix: Replace translate centering with inset + margin auto (transform-independent). */
+[role="dialog"][class*="top-1/2"][class*="left-1/2"] {
+    top: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    margin: auto !important;
+    translate: none !important;
+    --tw-translate-x: 0 !important;
+    --tw-translate-y: 0 !important;
+    width: fit-content !important;
+    height: fit-content !important;
+}
+
 /* UModal customization - remove header divider and reduce spacing */
 [role="dialog"] [data-slot="header"] {
     border-bottom: none !important;
