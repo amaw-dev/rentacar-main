@@ -28,7 +28,7 @@ export const citiesConfig: City[] = [
     id: "armenia",
     name: "Armenia",
     description:
-      "¿Planeas visitar Armenia? En Armenia puedes reservar en línea sin anticipos y recoger directamente en el Aeropuerto El Edén. Aprovecha descuentos de hasta el 60% por reserva anticipada y elige entre carros compactos, sedanes o camionetas para recorrer lugares como Salento, Filandia o el Parque del Café. Nuestra sede en Armenia te ofrece precios bajos y disponibilidad inmediata los 7 días de la semana. ¡Alquila fácil, sin trámites largos y comienza tu aventura en el corazón del Paisaje Cultural Cafetero, declarado Patrimonio de la Humanidad!",
+      "Armenia es la puerta de entrada al Paisaje Cultural Cafetero, declarado Patrimonio de la Humanidad por la UNESCO. Recoge tu carro en el Aeropuerto El Edén y en menos de una hora estarás en Salento recorriendo el Valle de Cocora, en Filandia probando café de origen o disfrutando del Parque del Café con toda la familia. Reserva en línea sin anticipos, elige entre compactos, sedanes o camionetas y aprovecha descuentos de hasta el 60%. Con disponibilidad inmediata los 7 días, Armenia se convierte en tu base perfecta para explorar el Quindío a tu ritmo.",
     link: "/armenia",
     testimonials: [
       {
@@ -103,7 +103,7 @@ export const citiesConfig: City[] = [
     id: "barranquilla",
     name: "Barranquilla",
     description:
-      "¿Planeas visitar Barranquilla? En Barranquilla puedes reservar en línea sin anticipos y recoger directamente en el Aeropuerto Ernesto Cortissoz. Aprovecha descuentos de hasta el 60% por reserva anticipada y elige entre carros compactos, sedanes o camionetas para recorrer lugares como el Malecón del Río, el Museo del Caribe o el Zoológico de Barranquilla. Nuestra sede en Barranquilla te ofrece precios bajos y disponibilidad inmediata los 7 días de la semana. ¡Alquila fácil, sin trámites largos y comienza tu aventura en la Puerta de Oro de Colombia, epicentro del Carnaval más famoso del país!",
+      "La Puerta de Oro de Colombia te espera con su Carnaval, su brisa caribeña y su energía inagotable. Alquila tu carro en el Aeropuerto Ernesto Cortissoz y recorre Barranquilla sin límites: el Malecón del Río al atardecer, el Museo del Caribe para entender la cultura costeña o el Zoológico con los más pequeños. Reserva sin anticipos, con precios bajos y disponibilidad inmediata. Ya sea por negocios o por la fiesta más grande de Colombia, en Barranquilla tener carro propio marca la diferencia.",
     link: "/barranquilla",
     testimonials: [
       {
@@ -178,7 +178,7 @@ export const citiesConfig: City[] = [
     id: "bogota",
     name: "Bogotá",
     description:
-      "¿Planeas visitar Bogotá? En Bogotá puedes reservar en línea sin anticipos y recoger directamente en el Aeropuerto El Dorado. Aprovecha descuentos de hasta el 60% por reserva anticipada y elige entre carros compactos, sedanes o camionetas para recorrer lugares como el Museo del Oro, el Cerro de Monserrate o la Zona Rosa. Nuestra sede en Bogotá te ofrece precios bajos y disponibilidad inmediata los 7 días de la semana. ¡Alquila fácil, sin trámites largos y comienza tu aventura en la capital a 2.600 metros más cerca de las estrellas!",
+      "Bogotá, la capital colombiana a 2.600 metros de altura, combina historia, gastronomía y vida nocturna en una ciudad que nunca duerme. Retira tu carro en el Aeropuerto El Dorado y muévete con libertad: sube a Monserrate al amanecer, recorre La Candelaria y el Museo del Oro, escápate a la Catedral de Sal en Zipaquirá o disfruta la Zona Rosa de noche. Sin anticipos, con descuentos de hasta el 60% y entrega inmediata los 7 días. En una capital donde el tráfico dicta los tiempos, tu propio carro te devuelve el control.",
     link: "/bogota",
     testimonials: [
       {
@@ -253,7 +253,7 @@ export const citiesConfig: City[] = [
     id: "bucaramanga",
     name: "Bucaramanga",
     description:
-      "¿Planeas visitar Bucaramanga? En Bucaramanga puedes reservar en línea sin anticipos y recoger directamente en el Aeropuerto Palonegro. Aprovecha descuentos de hasta el 60% por reserva anticipada y elige entre carros compactos, sedanes o camionetas para recorrer lugares como el Parque Nacional del Chicamocha, el Ecoparque Cerro del Santísimo o el centro histórico. Nuestra sede en Bucaramanga te ofrece precios bajos y disponibilidad inmediata los 7 días de la semana. ¡Alquila fácil, sin trámites largos y comienza tu aventura en la Ciudad Bonita de Colombia, famosa por sus parques y aventura extrema!",
+      "Conocida como la Ciudad Bonita, Bucaramanga es el punto de partida para la aventura extrema en Santander. Desde el Aeropuerto Palonegro puedes recoger tu carro y lanzarte al Cañón del Chicamocha para parapente, cruzar al Cerro del Santísimo o perderte en los pueblos coloniales de Girón y Barichara. También puedes explorar San Gil, la capital del turismo de aventura, a solo una hora. Reserva sin anticipos y con descuentos de hasta el 60%. Bucaramanga tiene parques, miradores y montañas que solo se descubren con ruedas propias.",
     link: "/bucaramanga",
     testimonials: [
       {
@@ -328,7 +328,7 @@ export const citiesConfig: City[] = [
     id: "cali",
     name: "Cali",
     description:
-      "¿Planeas visitar Cali? En Cali puedes reservar en línea sin anticipos y recoger directamente en el Aeropuerto Alfonso Bonilla Aragón. Aprovecha descuentos de hasta el 60% por reserva anticipada y elige entre carros compactos, sedanes o camionetas para recorrer lugares como el Zoológico de Cali, la Iglesia La Ermita o el Cristo Rey. Nuestra sede en Cali te ofrece precios bajos y disponibilidad inmediata los 7 días de la semana. ¡Alquila fácil, sin trámites largos y comienza tu aventura en la capital mundial de la salsa, donde el ritmo nunca para!",
+      "Cali no solo es la capital mundial de la salsa: es gastronomía valluna, atardeceres desde el Cristo Rey y una vida nocturna que no para. Recoge tu carro en el Aeropuerto Alfonso Bonilla Aragón y recorre el Barrio San Antonio, el Zoológico de Cali, la Iglesia La Ermita y, si te animas, escápate al Lago Calima o a Buga en el mismo viaje. Sin anticipos, con hasta 60% de descuento por reserva anticipada y disponibilidad los 7 días. La Sucursal del Cielo se disfruta mejor cuando tú decides el ritmo.",
     link: "/cali",
     testimonials: [
       {
@@ -403,7 +403,7 @@ export const citiesConfig: City[] = [
     id: "cartagena",
     name: "Cartagena",
     description:
-      "¿Planeas visitar Cartagena? En Cartagena puedes reservar en línea sin anticipos y recoger directamente en el Aeropuerto Rafael Núñez. Aprovecha descuentos de hasta el 60% por reserva anticipada y elige entre carros compactos, sedanes o camionetas para recorrer lugares como el Castillo de San Felipe, el Centro Histórico o las Islas del Rosario. Nuestra sede en Cartagena te ofrece precios bajos y disponibilidad inmediata los 7 días de la semana. ¡Alquila fácil, sin trámites largos y comienza tu aventura en la Heroica, joya colonial del Caribe!",
+      "Cartagena es historia colonial, playas caribeñas y atardeceres sobre la muralla, todo en una sola ciudad. Alquila desde el Aeropuerto Rafael Núñez y explora más allá del Centro Histórico: el Castillo de San Felipe, Getsemaní con su arte callejero, Playa Blanca, el Volcán del Totumo o las playas vírgenes camino a Barú. Reserva en línea sin anticipos y aprovecha hasta 60% de descuento. Cartagena tiene mucho más que la Ciudad Amurallada, y con carro propio puedes descubrir cada rincón de la Heroica sin depender de tours.",
     link: "/cartagena",
     testimonials: [
       {
@@ -478,7 +478,7 @@ export const citiesConfig: City[] = [
     id: "cucuta",
     name: "Cúcuta",
     description:
-      "¿Planeas visitar Cúcuta? En Cúcuta puedes reservar en línea sin anticipos y recoger directamente en el Aeropuerto Camilo Daza. Aprovecha descuentos de hasta el 60% por reserva anticipada y elige entre carros compactos, sedanes o camionetas para recorrer lugares como el Malecón, el Parque Santander o el Puente Internacional Simón Bolívar. Nuestra sede en Cúcuta te ofrece precios bajos y disponibilidad inmediata los 7 días de la semana. ¡Alquila fácil, sin trámites largos y comienza tu aventura en la Perla del Norte, puerta fronteriza con Venezuela!",
+      "Cúcuta, la Perla del Norte, es el principal punto fronterizo de Colombia con Venezuela y un centro comercial en constante movimiento. Recoge tu carro en el Aeropuerto Camilo Daza y muévete con agilidad entre el Parque Santander, el Malecón, Villa del Rosario y la zona de frontera. Desde Cúcuta también puedes subir a Pamplona o a los pueblos de montaña de Norte de Santander. Sin anticipos, precios bajos y disponibilidad inmediata los 7 días. Para negocios o turismo, en Cúcuta el carro es la forma más práctica de cubrir terreno.",
     link: "/cucuta",
     testimonials: [
       {
@@ -553,7 +553,7 @@ export const citiesConfig: City[] = [
     id: "ibague",
     name: "Ibagué",
     description:
-      "¿Planeas visitar Ibagué? En Ibagué puedes reservar en línea sin anticipos y recoger directamente en el Aeropuerto Perales. Aprovecha descuentos de hasta el 60% por reserva anticipada y elige entre carros compactos, sedanes o camionetas para recorrer lugares como el Cañón del Combeima, el Jardín Botánico San Jorge o el Conservatorio del Tolima. Nuestra sede en Ibagué te ofrece precios bajos y disponibilidad inmediata los 7 días de la semana. ¡Alquila fácil, sin trámites largos y comienza tu aventura en la Capital Musical de Colombia, cuna de festivales folclóricos!",
+      "Ibagué, la Capital Musical de Colombia, está rodeada de naturaleza que pide ser explorada en carro. Desde el Aeropuerto Perales llegas rápido al Cañón del Combeima — puerta al Nevado del Tolima —, al Jardín Botánico San Jorge o a cascadas escondidas en la cordillera. Si vienes durante el Festival Folclórico, tener vehículo propio te permite moverte entre sedes y eventos sin perder un solo compás. Reserva sin anticipos, elige tu vehículo y aprovecha descuentos de hasta el 60%. Ibagué suena mejor cuando la recorres a tu manera.",
     link: "/ibague",
     testimonials: [
       {
@@ -628,7 +628,7 @@ export const citiesConfig: City[] = [
     id: "manizales",
     name: "Manizales",
     description:
-      "¿Planeas visitar Manizales? En Manizales puedes reservar en línea sin anticipos y recoger directamente en el Aeropuerto La Nubia. Aprovecha descuentos de hasta el 60% por reserva anticipada y elige entre carros compactos, sedanes o camionetas para recorrer lugares como la Catedral Basílica, el Ecoparque Los Yarumos o el Nevado del Ruiz. Nuestra sede en Manizales te ofrece precios bajos y disponibilidad inmediata los 7 días de la semana. ¡Alquila fácil, sin trámites largos y comienza tu aventura en la Ciudad de las Puertas Abiertas, entre volcanes y café!",
+      "Entre volcanes nevados y fincas cafeteras, Manizales ofrece una experiencia única en el Eje Cafetero. Retira tu carro en el Aeropuerto La Nubia y aventúrate hacia el Parque Nacional Los Nevados, sube al mirador de Chipre, visita el Recinto del Pensamiento o baja a los termales de Santa Rosa de Cabal. Reserva en línea sin anticipos y con descuentos de hasta el 60%. La Ciudad de las Puertas Abiertas tiene carreteras de montaña que premian a quien se anima a recorrerlas con calma y libertad.",
     link: "/manizales",
     testimonials: [
       {
@@ -703,7 +703,7 @@ export const citiesConfig: City[] = [
     id: "medellin",
     name: "Medellín",
     description:
-      "¿Planeas visitar Medellín? En Medellín puedes reservar en línea sin anticipos y recoger directamente en el Aeropuerto José María Córdova. Aprovecha descuentos de hasta el 60% por reserva anticipada y elige entre carros compactos, sedanes o camionetas para recorrer lugares como el Parque Arví, la Comuna 13 o el Jardín Botánico. Nuestra sede en Medellín te ofrece precios bajos y disponibilidad inmediata los 7 días de la semana. ¡Alquila fácil, sin trámites largos y comienza tu aventura en la Ciudad de la Eterna Primavera, ejemplo de innovación urbana!",
+      "Medellín, la Ciudad de la Eterna Primavera, se ha convertido en destino obligado para viajeros de todo el mundo. Recoge tu carro en el Aeropuerto José María Córdova y descubre por qué: la transformación de la Comuna 13, el Parque Arví entre las montañas, el Jardín Botánico en pleno centro, y a dos horas la piedra de Guatapé con su vista de 360 grados. Reserva sin anticipos y aprovecha hasta 60% de descuento. Medellín tiene tanto dentro como fuera del valle que un carro propio multiplica lo que puedes vivir.",
     link: "/medellin",
     testimonials: [
       {
@@ -778,7 +778,7 @@ export const citiesConfig: City[] = [
     id: "monteria",
     name: "Montería",
     description:
-      "¿Planeas visitar Montería? En Montería puedes reservar en línea sin anticipos y recoger directamente en el Aeropuerto Los Garzones. Aprovecha descuentos de hasta el 60% por reserva anticipada y elige entre carros compactos, sedanes o camionetas para recorrer lugares como el Río Sinú, el Parque Ronda del Sinú o el Sombrero Vueltiao. Nuestra sede en Montería te ofrece precios bajos y disponibilidad inmediata los 7 días de la semana. ¡Alquila fácil, sin trámites largos y comienza tu aventura en la Perla del Sinú, capital ganadera del Caribe!",
+      "Montería, la Perla del Sinú, combina la tranquilidad de una ciudad ribereña con la fuerza de la capital ganadera del Caribe colombiano. Desde el Aeropuerto Los Garzones toma tu carro y pasea por la Ronda del Sinú al atardecer, visita Lorica con su arquitectura árabe-libanesa o escápate a las playas de Coveñas y San Bernardo del Viento. Reserva sin anticipos, con precios bajos y disponibilidad los 7 días. En una región donde las distancias entre fincas, pueblos y playas son largas, el carro es indispensable.",
     link: "/monteria",
     testimonials: [
       {
@@ -853,7 +853,7 @@ export const citiesConfig: City[] = [
     id: "neiva",
     name: "Neiva",
     description:
-      "¿Planeas visitar Neiva? En Neiva puedes reservar en línea sin anticipos y recoger directamente en el Aeropuerto Benito Salas. Aprovecha descuentos de hasta el 60% por reserva anticipada y elige entre carros compactos, sedanes o camionetas para recorrer lugares como el Desierto de la Tatacoa, el Parque Andino o el Festival del Bambuco. Nuestra sede en Neiva te ofrece precios bajos y disponibilidad inmediata los 7 días de la semana. ¡Alquila fácil, sin trámites largos y comienza tu aventura en la Puerta del Sur, cerca de maravillas arqueológicas!",
+      "Neiva es la base ideal para dos de los tesoros más impresionantes de Colombia: el Desierto de la Tatacoa (a hora y media) y el Parque Arqueológico de San Agustín (a cuatro horas por carretera escénica). Retira tu carro en el Aeropuerto Benito Salas y arma tu propia ruta por el Huila, con paradas en termales, Rivera y pueblos cafeteros. Sin anticipos, con descuentos de hasta el 60% y entrega los 7 días. Si vienes durante el Festival del Bambuco, la movilidad propia te permite vivir cada evento sin restricciones.",
     link: "/neiva",
     testimonials: [
       {
@@ -928,7 +928,7 @@ export const citiesConfig: City[] = [
     id: "pereira",
     name: "Pereira",
     description:
-      "¿Planeas visitar Pereira? En Pereira puedes reservar en línea sin anticipos y recoger directamente en el Aeropuerto Matecaña. Aprovecha descuentos de hasta el 60% por reserva anticipada y elige entre carros compactos, sedanes o camionetas para recorrer lugares como el Bioparque Ukumarí, el Santuario de Fauna y Flora Otún Quimbaya o el Cerrito. Nuestra sede en Pereira te ofrece precios bajos y disponibilidad inmediata los 7 días de la semana. ¡Alquila fácil, sin trámites largos y comienza tu aventura en la Querendona, Trasnochadora y Morena del Eje Cafetero!",
+      "Pereira, la Querendona del Eje Cafetero, tiene la ubicación perfecta: desde aquí llegas fácil a Salento, a las Termales de Santa Rosa de Cabal, al Bioparque Ukumarí y a Manizales o Armenia en menos de una hora. Alquila en el Aeropuerto Matecaña sin anticipos y con hasta 60% de descuento por reserva anticipada. Pereira es ideal como base para recorrer todo el triángulo cafetero con libertad, parando en fincas, miradores y pueblos que solo se alcanzan en vehículo propio. Disponibilidad los 7 días.",
     link: "/pereira",
     testimonials: [
       {
@@ -1003,7 +1003,7 @@ export const citiesConfig: City[] = [
     id: "santa-marta",
     name: "Santa Marta",
     description:
-      "¿Planeas visitar Santa Marta? En Santa Marta puedes reservar en línea sin anticipos y recoger directamente en el Aeropuerto Simón Bolívar. Aprovecha descuentos de hasta el 60% por reserva anticipada y elige entre carros compactos, sedanes o camionetas para recorrer lugares como el Parque Tayrona, la Quinta de San Pedro Alejandrino o Taganga. Nuestra sede en Santa Marta te ofrece precios bajos y disponibilidad inmediata los 7 días de la semana. ¡Alquila fácil, sin trámites largos y comienza tu aventura en la Bahía Más Linda de América!",
+      "Santa Marta tiene algo que pocas ciudades ofrecen: sierra nevada, playas caribeñas y selva tropical a minutos de distancia. Recoge tu carro en el Aeropuerto Simón Bolívar y en el mismo viaje puedes visitar el Parque Tayrona, subir a Minca por café y cascadas, explorar Taganga al atardecer o llegar hasta Palomino. La Quinta de San Pedro Alejandrino y el centro histórico completan la experiencia. Reserva sin anticipos, con descuentos de hasta el 60% y entrega inmediata. La Bahía Más Linda de América tiene demasiado para verlo desde un solo punto.",
     link: "/santa-marta",
     testimonials: [
       {
@@ -1078,7 +1078,7 @@ export const citiesConfig: City[] = [
     id: "valledupar",
     name: "Valledupar",
     description:
-      "¿Planeas visitar Valledupar? En Valledupar puedes reservar en línea sin anticipos y recoger directamente en el Aeropuerto Alfonso López. Aprovecha descuentos de hasta el 60% por reserva anticipada y elige entre carros compactos, sedanes o camionetas para recorrer lugares como el Río Guatapurí, la Plaza Alfonso López o el Festival Vallenato. Nuestra sede en Valledupar te ofrece precios bajos y disponibilidad inmediata los 7 días de la semana. ¡Alquila fácil, sin trámites largos y comienza tu aventura en la Cuna del Vallenato, tierra de acordeones y leyendas!",
+      "Valledupar es acordeones al atardecer, el Río Guatapurí bajando cristalino de la Sierra Nevada y una tradición musical que se siente en cada esquina. Alquila tu carro en el Aeropuerto Alfonso López y recorre la Plaza Alfonso López, el Balneario Hurtado, los pueblos vallenatos de La Paz y San Diego, o adéntrate hacia la Sierra Nevada. Sin anticipos y con descuentos de hasta el 60%. Si vienes durante el Festival Vallenato, el carro te da la libertad de moverte entre parrandas, conciertos y el río sin depender de nadie.",
     link: "/valledupar",
     testimonials: [
       {
@@ -1153,7 +1153,7 @@ export const citiesConfig: City[] = [
     id: "villavicencio",
     name: "Villavicencio",
     description:
-      "¿Planeas visitar Villavicencio? En Villavicencio puedes reservar en línea sin anticipos y recoger directamente en el Aeropuerto Vanguardia. Aprovecha descuentos de hasta el 60% por reserva anticipada y elige entre carros compactos, sedanes o camionetas para recorrer lugares como el Bioparque Los Ocarros, el Mirador de Buenavista o Caño Cristales (cerca). Nuestra sede en Villavicencio te ofrece precios bajos y disponibilidad inmediata los 7 días de la semana. ¡Alquila fácil, sin trámites largos y comienza tu aventura en la Puerta al Llano, con sabores de llanero auténtico!",
+      "Villavicencio es la puerta a los Llanos Orientales, donde Colombia se vuelve horizonte infinito, atardeceres rojos y cultura llanera auténtica. Desde el Aeropuerto Vanguardia recoge tu carro y explora el Bioparque Los Ocarros, el Mirador de Buenavista, las rutas hacia Acacías, Restrepo y Puerto López — el ombligo de Colombia. Reserva sin anticipos, con hasta 60% de descuento y disponibilidad los 7 días. Los Llanos son extensión pura: hatos ganaderos, ríos y sabana que solo se recorren con la libertad de un vehículo propio.",
     link: "/villavicencio",
     testimonials: [
       {
@@ -1228,7 +1228,7 @@ export const citiesConfig: City[] = [
     id: "floridablanca",
     name: "Floridablanca",
     description:
-      "¿Planeas visitar Floridablanca? En Floridablanca puedes reservar en línea sin anticipos y recoger directamente en la ciudad, con fácil acceso desde el Aeropuerto Palonegro de Bucaramanga. Aprovecha descuentos de hasta el 60% por reserva anticipada y elige entre carros compactos, sedanes o camionetas para recorrer lugares como el Jardín Botánico Eloy Valenzuela, el Ecoparque Cerro del Santísimo o el centro histórico. Nuestra sede en Floridablanca te ofrece precios bajos y disponibilidad inmediata los 7 días de la semana. ¡Alquila fácil, sin trámites largos y comienza tu aventura en la Ciudad Jardín de Santander!",
+      "Floridablanca, la Ciudad Jardín de Santander, forma parte del área metropolitana de Bucaramanga y es un punto estratégico para recorrer la región. Con fácil acceso desde el Aeropuerto Palonegro, puedes recoger tu carro y visitar el Jardín Botánico Eloy Valenzuela, subir al Cerro del Santísimo, cruzar a Girón o lanzarte al Cañón del Chicamocha y Mesa de los Santos. Sin anticipos, con descuentos de hasta el 60% y entrega los 7 días. Floridablanca ofrece la tranquilidad de una ciudad residencial con toda la aventura santandereana a menos de una hora.",
     link: "/floridablanca",
     testimonials: [
       {
@@ -1303,7 +1303,7 @@ export const citiesConfig: City[] = [
     id: "palmira",
     name: "Palmira",
     description:
-      "¿Planeas visitar Palmira? En Palmira puedes reservar en línea sin anticipos y recoger directamente en el Aeropuerto Alfonso Bonilla Aragón (Cali), a solo 20 minutos. Aprovecha descuentos de hasta el 60% por reserva anticipada y elige entre carros compactos, sedanes o camionetas para recorrer lugares como la Basílica del Señor de los Milagros en Buga, las haciendas azucareras históricas o el centro de Cali. Nuestra sede en Palmira te ofrece precios bajos y disponibilidad inmediata los 7 días de la semana. ¡Alquila fácil, sin trámites largos y comienza tu aventura en la Villa de las Palmas, Capital Agrícola de Colombia!",
+      "Palmira, la Capital Agrícola de Colombia, tiene una ventaja clave: el Aeropuerto Alfonso Bonilla Aragón está en su territorio, así que recoges el carro apenas aterrizas. Desde aquí recorre las haciendas azucareras del Valle del Cauca, visita la Basílica del Señor de los Milagros en Buga, explora Cali a 30 minutos o sube al Lago Calima. Sin anticipos, con descuentos de hasta el 60% y entrega inmediata. Palmira es el punto de partida más práctico para descubrir todo el Valle con la comodidad de un vehículo propio.",
     link: "/palmira",
     testimonials: [
       {
@@ -1378,7 +1378,7 @@ export const citiesConfig: City[] = [
     id: "soledad",
     name: "Soledad",
     description:
-      "¿Planeas visitar Soledad? En Soledad puedes reservar en línea sin anticipos y recoger directamente en el Aeropuerto Ernesto Cortissoz (Barranquilla). Aprovecha descuentos de hasta el 60% por reserva anticipada y elige entre carros compactos, sedanes o camionetas para recorrer lugares como el Malecón del Río, el Parque Sagrado Corazón o el Museo del Carnaval. Nuestra sede en Soledad te ofrece precios bajos y disponibilidad inmediata los 7 días de la semana. ¡Alquila fácil, sin trámites largos y comienza tu aventura en el municipio más poblado del Atlántico, vibrante y carnavalero!",
+      "Soledad es el municipio más poblado del Atlántico y sede del Aeropuerto Ernesto Cortissoz, lo que la convierte en la entrada natural al área metropolitana de Barranquilla. Recoge tu carro apenas aterrizas y muévete sin restricciones entre Soledad, Barranquilla, Puerto Colombia y las playas de Juan de Acosta. Si vienes para el Carnaval, el carro te permite ir de comparsa en comparsa sin esperar transporte. Reserva sin anticipos, con hasta 60% de descuento y entrega los 7 días. En el Atlántico, tener ruedas propias lo cambia todo.",
     link: "/soledad",
     testimonials: [
       {
