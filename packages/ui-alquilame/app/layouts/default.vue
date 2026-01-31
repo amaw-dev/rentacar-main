@@ -190,23 +190,15 @@ const reservationEndDay = today(defaultTimezone).add({ days: 8 }).toString();
 const reservationInitHour = "12:00";
 const reservationEndHour = "12:00";
 
-// Mapeo de IDs de ciudad que difieren entre cities y branches
-const cityIdMapping: Record<string, string> = {
-  'santamarta': 'santa-marta',
-};
-
 const getCityReservationURL = (city: CityData): string => {
-  // Normalizar el ID de la ciudad (manejar inconsistencias como santamarta vs santa-marta)
-  const branchCityId = cityIdMapping[city.id] || city.id;
-
   // Buscar la sucursal de aeropuerto para esta ciudad (código empieza con "AA")
   const airportBranch = branches.find(
-    (branch: BranchData) => branch.city === branchCityId && branch.code.startsWith('AA')
+    (branch: BranchData) => branch.city === city.id && branch.code.startsWith('AA')
   );
 
   // Si no hay aeropuerto, buscar cualquier sucursal de esa ciudad
   const branch = airportBranch || branches.find(
-    (branch: BranchData) => branch.city === branchCityId
+    (branch: BranchData) => branch.city === city.id
   );
 
   if (!branch) {
