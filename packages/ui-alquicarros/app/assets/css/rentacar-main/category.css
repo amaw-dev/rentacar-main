@@ -42,6 +42,19 @@
       @apply flex justify-between items-center w-full px-4 py-3 text-left transition-all focus:outline-none text-gray-700 bg-white hover:bg-white cursor-pointer;
     }
 
+    /* Chevron rotation animation on collapsible open/close. */
+    /* :ui.trailingIcon classes don't apply to custom #trailing slots, */
+    /* so we handle the animation via CSS on the parent button state. */
+    .boton-contenedor-descripcion-carro svg,
+    .boton-contenedor-adicionales-carro svg {
+      transition: transform 200ms ease-out;
+    }
+
+    .boton-contenedor-descripcion-carro[data-state="open"] svg,
+    .boton-contenedor-adicionales-carro[data-state="open"] svg {
+      transform: rotate(180deg);
+    }
+
     .categoria-carro {
       @apply font-light text-lg leading-tight block;
     }
