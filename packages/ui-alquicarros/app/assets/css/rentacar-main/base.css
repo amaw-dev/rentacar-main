@@ -541,8 +541,8 @@ section[id] > [data-slot="container"] {
 }
 
 /* Fix: UCarousel arrows — Tailwind v4 scanner doesn't detect responsive */
-/* classes (hidden, lg:block) passed dynamically through :ui prop string. */
-/* Handle arrow visibility and button styling via explicit CSS. */
+/* classes (hidden, lg:block, translate) passed dynamically via :ui prop. */
+/* Handle arrow visibility, positioning and styling via explicit CSS. */
 [data-slot="arrows"] {
     display: none !important;
 }
@@ -554,9 +554,33 @@ section[id] > [data-slot="container"] {
 
     [data-slot="arrows"] button {
         cursor: pointer;
-        border-radius: 0.75rem;
-        height: 3rem;
+        border-radius: 9999px;
+        width: 2.5rem;
+        height: 2.5rem;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba(0, 0, 0, 0.45);
+        color: white;
         border: none;
         box-shadow: none;
+        --tw-ring-color: transparent;
+        --tw-ring-shadow: none;
+        z-index: 10;
+    }
+
+    [data-slot="arrows"] button:hover {
+        background-color: rgba(0, 0, 0, 0.65);
+    }
+
+    [data-slot="arrows"] button:first-child {
+        inset-inline-start: 0.5rem;
+        inset-inline-end: auto;
+    }
+
+    [data-slot="arrows"] button:last-child {
+        inset-inline-start: auto;
+        inset-inline-end: 0.5rem;
     }
 }
