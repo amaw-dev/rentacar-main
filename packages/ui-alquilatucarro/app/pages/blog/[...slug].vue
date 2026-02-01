@@ -38,7 +38,7 @@
                 loading="lazy"
                 @error="avatarError = true"
               >
-              <div v-else class="w-8 h-8 rounded-full bg-red-700 flex items-center justify-center text-white text-xs font-bold shrink-0">
+              <div v-else class="w-8 h-8 rounded-full bg-blue-700 flex items-center justify-center text-white text-xs font-bold shrink-0">
                 {{ post.author.name.charAt(0) }}
               </div>
               <span>{{ post.author.name }}</span>
@@ -61,7 +61,7 @@
     </div>
 
     <!-- Breadcrumbs -->
-    <nav aria-label="Breadcrumb" class="bg-white border-b border-gray-100 px-4 md:px-8 py-3">
+    <nav aria-label="Breadcrumb" class="bg-gray-100 border-b border-gray-200 px-4 md:px-8 py-3">
       <ol class="max-w-7xl mx-auto flex items-center gap-2 text-sm text-gray-500">
         <li>
           <NuxtLink to="/" class="hover:text-red-700 transition-colors">Inicio</NuxtLink>
@@ -90,8 +90,8 @@
           <aside class="lg:w-1/3">
             <div class="sticky top-24 space-y-8">
               <!-- Table of Contents -->
-              <nav v-if="post.body?.toc?.links?.length" class="bg-gray-50 rounded-xl p-6">
-                <h3 class="font-bold text-gray-900 mb-4">Contenido</h3>
+              <nav v-if="post.body?.toc?.links?.length" class="hidden lg:block bg-gray-50 rounded-xl p-4">
+                <h3 class="font-bold text-gray-900 mb-3">Contenido</h3>
                 <ul class="space-y-2">
                   <li v-for="link in post.body.toc.links" :key="link.id">
                     <a
@@ -100,16 +100,6 @@
                     >
                       {{ link.text }}
                     </a>
-                    <ul v-if="link.children?.length" class="ml-4 mt-2 space-y-2">
-                      <li v-for="child in link.children" :key="child.id">
-                        <a
-                          :href="`#${child.id}`"
-                          class="text-xs text-gray-500 hover:text-red-700 underline underline-offset-2 transition-colors"
-                        >
-                          {{ child.text }}
-                        </a>
-                      </li>
-                    </ul>
                   </li>
                 </ul>
               </nav>
@@ -194,13 +184,13 @@
               loading="lazy"
               @error="avatarError = true"
             >
-            <div v-else class="w-20 h-20 rounded-full bg-red-700 flex items-center justify-center text-white text-2xl font-bold ring-2 ring-red-100 shrink-0">
+            <div v-else class="w-20 h-20 rounded-full bg-blue-700 flex items-center justify-center text-white text-2xl font-bold ring-2 ring-blue-100 shrink-0">
               {{ post.author.name.charAt(0) }}
             </div>
             <div class="text-center sm:text-left flex-1">
               <div class="flex items-center justify-center sm:justify-start gap-2">
                 <h3 class="text-lg font-bold text-gray-900">{{ post.author.name }}</h3>
-                <span class="inline-flex items-center gap-1 px-2 py-0.5 text-xs font-medium text-red-700 bg-red-100 rounded-full">
+                <span class="inline-flex items-center gap-1 px-2 py-0.5 text-xs font-medium text-green-700 bg-green-100 rounded-full">
                   <UIcon name="i-lucide-badge-check" class="size-3" />
                   Verificado
                 </span>
@@ -214,17 +204,10 @@
               <div class="mt-4 flex flex-col sm:flex-row items-center gap-3">
                 <NuxtLink
                   to="/"
-                  class="inline-flex items-center gap-2 bg-red-700 hover:bg-red-800 text-white px-5 py-2.5 rounded-lg font-medium transition-colors"
+                  class="inline-flex items-center gap-2 bg-green-700 hover:bg-green-800 text-white px-5 py-2.5 rounded-lg font-medium transition-colors"
                 >
                   <UIcon name="i-lucide-car" class="size-4" />
                   Reservar un Carro
-                </NuxtLink>
-                <NuxtLink
-                  to="/blog"
-                  class="inline-flex items-center gap-2 text-gray-600 hover:text-red-700 font-medium transition-colors"
-                >
-                  <UIcon name="i-lucide-book-open" class="size-4" />
-                  Más artículos
                 </NuxtLink>
               </div>
             </div>
@@ -303,12 +286,12 @@
     </section>
 
     <!-- Prev/Next Navigation -->
-    <section v-if="surroundings" class="bg-white py-8 px-4 md:px-8 border-t border-gray-200">
-      <div class="max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-4">
+    <section v-if="surroundings" class="bg-gray-100 py-8 px-4 md:px-8 border-t border-gray-200">
+      <div class="max-w-4xl mx-auto grid grid-cols-2 gap-4">
         <NuxtLink
           v-if="surroundings[0]"
           :to="surroundings[0].path"
-          class="group flex items-start gap-3 p-4 rounded-xl border border-gray-200 hover:border-red-200 hover:bg-red-50/50 transition-all"
+          class="group flex items-start gap-3 p-4 rounded-xl bg-white hover:bg-red-50/50 shadow-sm transition-all"
         >
           <UIcon name="i-lucide-arrow-left" class="size-5 text-gray-400 group-hover:text-red-700 mt-0.5 shrink-0 transition-colors" />
           <div class="min-w-0">
@@ -322,7 +305,7 @@
         <NuxtLink
           v-if="surroundings[1]"
           :to="surroundings[1].path"
-          class="group flex items-start gap-3 p-4 rounded-xl border border-gray-200 hover:border-red-200 hover:bg-red-50/50 transition-all sm:text-right sm:flex-row-reverse"
+          class="group flex items-start gap-3 p-4 rounded-xl bg-white hover:bg-red-50/50 shadow-sm transition-all text-right flex-row-reverse"
         >
           <UIcon name="i-lucide-arrow-right" class="size-5 text-gray-400 group-hover:text-red-700 mt-0.5 shrink-0 transition-colors" />
           <div class="min-w-0">
