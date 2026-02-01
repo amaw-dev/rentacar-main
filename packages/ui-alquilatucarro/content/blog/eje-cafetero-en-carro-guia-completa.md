@@ -6,7 +6,8 @@ alt: Paisaje del Eje Cafetero con montañas verdes y plantaciones de café
 author:
   name: Alquilatucarro
   avatar: https://firebasestorage.googleapis.com/v0/b/rentacar-403321.firebasestorage.app/o/rentacar-main%2Falquilatucarro%2Fimg%2Flogo.png?alt=media&token=975cfe04-c619-44bc-964a-e6231ca92dfe
-date: 2026-01-13
+date: 2026-01-06
+updated: 2026-01-31
 category: destinos
 tags:
   - eje cafetero

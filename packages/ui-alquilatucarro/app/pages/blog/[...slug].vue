@@ -10,12 +10,15 @@
 
     <!-- Hero Image -->
     <div class="relative w-full h-64 md:h-96 overflow-hidden">
-      <img
+      <NuxtImg
         :src="post.image"
         :alt="post.alt"
         class="w-full h-full object-cover"
+        width="1280"
+        height="384"
+        sizes="100vw"
         fetchpriority="high"
-      >
+      />
       <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent" />
       <div class="absolute bottom-0 left-0 right-0 p-6 md:p-12">
         <div class="max-w-4xl mx-auto">
@@ -40,6 +43,10 @@
               <UIcon name="i-lucide-calendar" class="size-4" />
               <time :datetime="post.date">{{ formatDate(post.date) }}</time>
             </span>
+            <span v-if="post.updated && post.updated !== post.date" class="inline-flex items-center gap-1.5">
+              <UIcon name="i-lucide-refresh-cw" class="size-4" />
+              Actualizado: <time :datetime="post.updated">{{ formatDate(post.updated) }}</time>
+            </span>
             <span class="inline-flex items-center gap-1.5">
               <UIcon name="i-lucide-clock" class="size-4" />
               {{ post.readingTime }} min de lectura
@@ -48,6 +55,23 @@
         </div>
       </div>
     </div>
+
+    <!-- Breadcrumbs -->
+    <nav aria-label="Breadcrumb" class="bg-white border-b border-gray-100 px-4 md:px-8 py-3">
+      <ol class="max-w-7xl mx-auto flex items-center gap-2 text-sm text-gray-500">
+        <li>
+          <NuxtLink to="/" class="hover:text-red-700 transition-colors">Inicio</NuxtLink>
+        </li>
+        <li class="flex items-center gap-2">
+          <UIcon name="i-lucide-chevron-right" class="size-3.5" />
+          <NuxtLink to="/blog" class="hover:text-red-700 transition-colors">Blog</NuxtLink>
+        </li>
+        <li class="flex items-center gap-2">
+          <UIcon name="i-lucide-chevron-right" class="size-3.5" />
+          <span class="text-gray-900 font-medium truncate max-w-xs">{{ post.title }}</span>
+        </li>
+      </ol>
+    </nav>
 
     <!-- Content Section -->
     <section class="bg-white py-8 md:py-12">
@@ -90,13 +114,14 @@
               <div v-if="post.tags?.length" class="bg-gray-50 rounded-xl p-6">
                 <h3 class="font-bold text-gray-900 mb-4">Etiquetas</h3>
                 <div class="flex flex-wrap gap-2">
-                  <span
+                  <NuxtLink
                     v-for="tag in post.tags"
                     :key="tag"
-                    class="px-3 py-1 text-xs bg-gray-200 text-gray-700 rounded-full"
+                    :to="{ path: '/blog', query: { tag } }"
+                    class="px-3 py-1 text-xs bg-gray-200 text-gray-700 rounded-full hover:bg-red-100 hover:text-red-700 transition-colors"
                   >
                     {{ tag }}
-                  </span>
+                  </NuxtLink>
                 </div>
               </div>
 
@@ -160,15 +185,22 @@
             <img
               :src="post.author.avatar"
               :alt="post.author.name"
-              class="w-20 h-20 rounded-full object-cover"
+              class="w-20 h-20 rounded-full object-cover ring-2 ring-red-100"
               loading="lazy"
             >
             <div class="text-center sm:text-left flex-1">
-              <h3 class="text-lg font-bold text-gray-900">{{ post.author.name }}</h3>
-              <p class="text-gray-600 mt-2 text-sm">
-                Somos tu mejor opción para alquilar carros en Colombia. Con presencia en más de 27 ciudades,
-                ofrecemos el mejor servicio sin anticipos y sin complicaciones. Nuestro equipo te acompaña
-                en cada paso de tu viaje.
+              <div class="flex items-center justify-center sm:justify-start gap-2">
+                <h3 class="text-lg font-bold text-gray-900">{{ post.author.name }}</h3>
+                <span class="inline-flex items-center gap-1 px-2 py-0.5 text-xs font-medium text-red-700 bg-red-100 rounded-full">
+                  <UIcon name="i-lucide-badge-check" class="size-3" />
+                  Verificado
+                </span>
+              </div>
+              <p class="text-sm text-gray-500 mt-0.5">Equipo Editorial · Guías de viaje en carro</p>
+              <p class="text-gray-600 mt-3 text-sm">
+                Creamos guías prácticas para viajeros en Colombia basadas en experiencia real.
+                Con más de 27 sedes en el país, nuestro equipo conoce las rutas, requisitos y
+                recomendaciones que necesitas para viajar tranquilo.
               </p>
               <div class="mt-4 flex flex-col sm:flex-row items-center gap-3">
                 <NuxtLink
@@ -192,6 +224,42 @@
       </div>
     </section>
 
+    <!-- Inline CTA Banner -->
+    <section class="bg-gradient-to-r from-gray-900 to-gray-800 py-10 px-4 md:px-8">
+      <div class="max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-6 md:gap-10">
+        <div class="flex-1 text-center md:text-left">
+          <div class="inline-flex items-center gap-2 px-3 py-1 text-xs font-semibold text-red-300 bg-red-900/30 rounded-full mb-3">
+            <UIcon name="i-lucide-car" class="size-3.5" />
+            Sin anticipos · 27 sedes en Colombia
+          </div>
+          <h2 class="text-xl md:text-2xl font-bold text-white mb-2">
+            ¿Te ayudamos a planear tu viaje?
+          </h2>
+          <p class="text-gray-400 text-sm">
+            Escríbenos por WhatsApp para recibir asesoría personalizada sobre rutas, vehículos y tarifas.
+          </p>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-3 shrink-0">
+          <NuxtLink
+            :to="franchise.whatsapp"
+            target="_blank"
+            rel="noopener"
+            class="inline-flex items-center justify-center gap-2 bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-xl font-bold transition-colors"
+          >
+            <UIcon name="i-lucide-message-circle" class="size-5" />
+            WhatsApp
+          </NuxtLink>
+          <NuxtLink
+            to="/"
+            class="inline-flex items-center justify-center gap-2 bg-red-700 hover:bg-red-800 text-white px-6 py-3 rounded-xl font-bold transition-colors"
+          >
+            <UIcon name="i-lucide-calendar" class="size-5" />
+            Reservar Ahora
+          </NuxtLink>
+        </div>
+      </div>
+    </section>
+
     <!-- Related Posts -->
     <section v-if="relatedPosts?.length" class="bg-gray-100 py-12 px-4 md:px-8">
       <div class="max-w-7xl mx-auto">
@@ -204,12 +272,15 @@
             class="group"
           >
             <article class="bg-white rounded-xl shadow-sm overflow-hidden hover:shadow-lg transition-shadow">
-              <img
+              <NuxtImg
                 :src="related.image"
                 :alt="related.alt"
                 class="w-full h-40 object-cover"
+                width="400"
+                height="160"
+                sizes="sm:100vw md:33vw"
                 loading="lazy"
-              >
+              />
               <div class="p-4">
                 <h3 class="font-bold text-gray-900 group-hover:text-red-700 transition-colors line-clamp-2">
                   {{ related.title }}
@@ -219,6 +290,39 @@
             </article>
           </NuxtLink>
         </div>
+      </div>
+    </section>
+
+    <!-- Prev/Next Navigation -->
+    <section v-if="surroundings" class="bg-white py-8 px-4 md:px-8 border-t border-gray-200">
+      <div class="max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <NuxtLink
+          v-if="surroundings[0]"
+          :to="surroundings[0].path"
+          class="group flex items-start gap-3 p-4 rounded-xl border border-gray-200 hover:border-red-200 hover:bg-red-50/50 transition-all"
+        >
+          <UIcon name="i-lucide-arrow-left" class="size-5 text-gray-400 group-hover:text-red-700 mt-0.5 shrink-0 transition-colors" />
+          <div class="min-w-0">
+            <span class="text-xs text-gray-500">Anterior</span>
+            <p class="text-sm font-medium text-gray-900 group-hover:text-red-700 line-clamp-2 transition-colors">
+              {{ surroundings[0].title }}
+            </p>
+          </div>
+        </NuxtLink>
+        <div v-else />
+        <NuxtLink
+          v-if="surroundings[1]"
+          :to="surroundings[1].path"
+          class="group flex items-start gap-3 p-4 rounded-xl border border-gray-200 hover:border-red-200 hover:bg-red-50/50 transition-all sm:text-right sm:flex-row-reverse"
+        >
+          <UIcon name="i-lucide-arrow-right" class="size-5 text-gray-400 group-hover:text-red-700 mt-0.5 shrink-0 transition-colors" />
+          <div class="min-w-0">
+            <span class="text-xs text-gray-500">Siguiente</span>
+            <p class="text-sm font-medium text-gray-900 group-hover:text-red-700 line-clamp-2 transition-colors">
+              {{ surroundings[1].title }}
+            </p>
+          </div>
+        </NuxtLink>
       </div>
     </section>
 
@@ -316,6 +420,11 @@ const { data: relatedPosts } = await useAsyncData(`related-${slug.value}`, async
     .all()
 })
 
+// Prev/Next navigation
+const { data: surroundings } = await useAsyncData(`surroundings-${slug.value}`, () =>
+  queryCollectionItemSurroundings<BlogPost>('blog', `/blog/${slug.value}`)
+)
+
 // Reading progress
 const articleRef = ref<HTMLElement | null>(null)
 const readingProgress = ref(0)
@@ -350,36 +459,7 @@ onUnmounted(() => {
   window.removeEventListener('scroll', updateReadingProgress)
 })
 
-// Format date
-function formatDate(dateStr: string): string {
-  return new Date(dateStr).toLocaleDateString('es-CO', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric'
-  })
-}
-
-// Format category
-function formatCategory(category: string): string {
-  const categories: Record<string, string> = {
-    guias: 'Guías',
-    destinos: 'Destinos',
-    tips: 'Tips',
-    rutas: 'Rutas'
-  }
-  return categories[category] || category
-}
-
-// Get category icon
-function getCategoryIcon(category: string): string {
-  const icons: Record<string, string> = {
-    guias: 'i-lucide-book-open',
-    destinos: 'i-lucide-map-pin',
-    tips: 'i-lucide-lightbulb',
-    rutas: 'i-lucide-route'
-  }
-  return icons[category] || 'i-lucide-file-text'
-}
+const { formatDate, formatCategory, getCategoryIcon } = useBlogUtils()
 
 // Share functions
 const linkCopied = ref(false)
@@ -438,7 +518,7 @@ if (post.value) {
     ogDescription: post.value.description,
     ogType: 'article',
     ogUrl: canonicalUrl,
-    ogImage: post.value.image,
+    ogImage: `${franchise.website}${post.value.image}`,
     ogImageAlt: post.value.alt,
     articlePublishedTime: post.value.date,
     articleModifiedTime: post.value.updated || post.value.date,
@@ -448,7 +528,7 @@ if (post.value) {
     twitterCard: 'summary_large_image',
     twitterTitle: post.value.title,
     twitterDescription: post.value.description,
-    twitterImage: post.value.image
+    twitterImage: `${franchise.website}${post.value.image}`
   })
 
   // BlogPosting schema
@@ -457,7 +537,7 @@ if (post.value) {
       '@type': 'BlogPosting',
       headline: post.value.title,
       description: post.value.description,
-      image: post.value.image,
+      image: `${franchise.website}${post.value.image}`,
       datePublished: post.value.date,
       dateModified: post.value.updated || post.value.date,
       author: {

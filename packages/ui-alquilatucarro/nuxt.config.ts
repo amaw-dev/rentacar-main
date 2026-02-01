@@ -440,7 +440,20 @@ export default defineNuxtConfig({
     },
   },
 
-  modules: ['@pinia/nuxt', '@nuxtjs/seo', '@nuxt/ui', 'nuxt-llms', 'nuxt-vitalizer', '@nuxt/content'],
+  modules: ['@pinia/nuxt', '@nuxtjs/seo', '@nuxt/ui', '@nuxt/image', 'nuxt-llms', 'nuxt-vitalizer', '@nuxt/content'],
+
+  // Optimización de imágenes
+  image: {
+    quality: 80,
+    format: ['webp', 'avif'],
+    screens: {
+      xs: 320,
+      sm: 640,
+      md: 768,
+      lg: 1024,
+      xl: 1280,
+    },
+  },
 
   // Optimización Core Web Vitals
   vitalizer: {
@@ -621,15 +634,7 @@ export default defineNuxtConfig({
       { loc: '/floridablanca', changefreq: 'monthly', priority: 0.8 },
       { loc: '/palmira', changefreq: 'monthly', priority: 0.8 },
       { loc: '/soledad', changefreq: 'monthly', priority: 0.8 },
-      // Blog - prioridad media-alta
-      { loc: '/blog', changefreq: 'weekly', priority: 0.8 },
-      { loc: '/blog/requisitos-alquilar-carro-colombia', changefreq: 'monthly', priority: 0.7 },
-      { loc: '/blog/pico-y-placa-colombia-2026', changefreq: 'monthly', priority: 0.7 },
-      { loc: '/blog/tipos-carros-alquilar-cual-elegir', changefreq: 'monthly', priority: 0.7 },
-      { loc: '/blog/rutas-carro-desde-bogota', changefreq: 'monthly', priority: 0.7 },
-      { loc: '/blog/eje-cafetero-en-carro-guia-completa', changefreq: 'monthly', priority: 0.7 },
-      { loc: '/blog/costa-caribe-cartagena-santa-marta-carro', changefreq: 'monthly', priority: 0.7 },
-      { loc: '/blog/viajar-carro-con-ninos-colombia', changefreq: 'monthly', priority: 0.7 },
+      // Blog URLs: generadas dinámicamente desde server/api/__sitemap__/urls.ts
     ],
     exclude: ['/pendiente', '/sindisponibilidad', '/reservado/**', '/*/buscar-vehiculos/**', '/seo/**'],
   },
