@@ -16,7 +16,10 @@ const CATEGORY_ICONS: Record<string, string> = {
 
 export function useBlogUtils() {
   function formatDate(dateStr: string): string {
-    return new Date(dateStr).toLocaleDateString('es-CO', {
+    // Parse date parts manually to avoid UTC→local timezone shift
+    // new Date('2025-12-18') = UTC midnight → COT (UTC-5) = Dec 17
+    const [year, month, day] = dateStr.split('T')[0].split('-').map(Number)
+    return new Date(year, month - 1, day).toLocaleDateString('es-CO', {
       year: 'numeric',
       month: 'long',
       day: 'numeric'
