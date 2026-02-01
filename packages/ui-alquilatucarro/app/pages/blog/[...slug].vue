@@ -90,7 +90,7 @@
           <aside class="lg:w-1/3">
             <div class="sticky top-24 space-y-8">
               <!-- Table of Contents -->
-              <nav v-if="post.body?.toc?.links?.length" class="hidden lg:block bg-gray-50 rounded-xl p-4">
+              <nav v-if="post.body?.toc?.links?.length" data-blog-toc class="bg-gray-50 rounded-xl p-4">
                 <h3 class="font-bold text-gray-900 mb-3">Contenido</h3>
                 <ul class="space-y-2">
                   <li v-for="link in post.body.toc.links" :key="link.id">

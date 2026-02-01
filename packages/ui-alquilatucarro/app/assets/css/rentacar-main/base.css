@@ -584,3 +584,15 @@ section[id] > [data-slot="container"] {
         inset-inline-end: 0.5rem;
     }
 }
+
+/* Fix: Blog ToC — Tailwind v4 scanner doesn't generate lg:block */
+/* when combined with hidden in template. Hide on mobile, show on desktop. */
+[data-blog-toc] {
+    display: none;
+}
+
+@media (min-width: 1024px) {
+    [data-blog-toc] {
+        display: block;
+    }
+}
