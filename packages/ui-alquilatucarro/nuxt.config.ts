@@ -603,6 +603,8 @@ export default defineNuxtConfig({
         '/blog/eje-cafetero-en-carro-guia-completa',
         '/blog/costa-caribe-cartagena-santa-marta-carro',
         '/blog/viajar-carro-con-ninos-colombia',
+        // RSS feed — pre-rendered porque queryCollectionWithEvent no funciona en Firebase runtime
+        '/rss.xml',
       ]
     }
   },
@@ -634,7 +636,15 @@ export default defineNuxtConfig({
       { loc: '/floridablanca', changefreq: 'monthly', priority: 0.8 },
       { loc: '/palmira', changefreq: 'monthly', priority: 0.8 },
       { loc: '/soledad', changefreq: 'monthly', priority: 0.8 },
-      // Blog URLs: generadas dinámicamente desde server/api/__sitemap__/urls.ts
+      // Blog — estáticas porque queryCollectionWithEvent falla en Firebase runtime
+      { loc: '/blog', changefreq: 'weekly', priority: 0.8 },
+      { loc: '/blog/requisitos-alquilar-carro-colombia', changefreq: 'monthly', priority: 0.7 },
+      { loc: '/blog/pico-y-placa-colombia-2026', changefreq: 'monthly', priority: 0.7 },
+      { loc: '/blog/tipos-carros-alquilar-cual-elegir', changefreq: 'monthly', priority: 0.7 },
+      { loc: '/blog/rutas-carro-desde-bogota', changefreq: 'monthly', priority: 0.7 },
+      { loc: '/blog/eje-cafetero-en-carro-guia-completa', changefreq: 'monthly', priority: 0.7 },
+      { loc: '/blog/costa-caribe-cartagena-santa-marta-carro', changefreq: 'monthly', priority: 0.7 },
+      { loc: '/blog/viajar-carro-con-ninos-colombia', changefreq: 'monthly', priority: 0.7 },
     ],
     exclude: ['/pendiente', '/sindisponibilidad', '/reservado/**', '/*/buscar-vehiculos/**', '/seo/**'],
   },
