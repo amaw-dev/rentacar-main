@@ -10,15 +10,14 @@
 
     <!-- Hero Image -->
     <div class="relative w-full h-64 md:h-96 overflow-hidden">
-      <NuxtImg
+      <img
         :src="post.image"
         :alt="post.alt"
         class="w-full h-full object-cover"
         width="1280"
         height="384"
-        sizes="100vw"
         fetchpriority="high"
-      />
+      >
       <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent" />
       <div class="absolute bottom-0 left-0 right-0 p-6 md:p-12">
         <div class="max-w-4xl mx-auto">
@@ -32,11 +31,16 @@
           <div class="flex flex-wrap items-center gap-4 text-sm text-gray-300">
             <div class="flex items-center gap-2">
               <img
+                v-if="!avatarError"
                 :src="post.author.avatar"
                 :alt="post.author.name"
                 class="w-8 h-8 rounded-full"
                 loading="lazy"
+                @error="avatarError = true"
               >
+              <div v-else class="w-8 h-8 rounded-full bg-red-700 flex items-center justify-center text-white text-xs font-bold shrink-0">
+                {{ post.author.name.charAt(0) }}
+              </div>
               <span>{{ post.author.name }}</span>
             </div>
             <span class="inline-flex items-center gap-1.5">
@@ -183,11 +187,16 @@
         <div class="bg-gray-50 rounded-2xl p-6 md:p-8">
           <div class="flex flex-col sm:flex-row items-center sm:items-start gap-6">
             <img
+              v-if="!avatarError"
               :src="post.author.avatar"
               :alt="post.author.name"
               class="w-20 h-20 rounded-full object-cover ring-2 ring-red-100"
               loading="lazy"
+              @error="avatarError = true"
             >
+            <div v-else class="w-20 h-20 rounded-full bg-red-700 flex items-center justify-center text-white text-2xl font-bold ring-2 ring-red-100 shrink-0">
+              {{ post.author.name.charAt(0) }}
+            </div>
             <div class="text-center sm:text-left flex-1">
               <div class="flex items-center justify-center sm:justify-start gap-2">
                 <h3 class="text-lg font-bold text-gray-900">{{ post.author.name }}</h3>
@@ -420,10 +429,19 @@ const { data: relatedPosts } = await useAsyncData(`related-${slug.value}`, async
     .all()
 })
 
-// Prev/Next navigation
-const { data: surroundings } = await useAsyncData(`surroundings-${slug.value}`, () =>
-  queryCollectionItemSurroundings<BlogPost>('blog', `/blog/${slug.value}`)
-)
+// Prev/Next navigation (by date, not alphabetical path)
+const { data: surroundings } = await useAsyncData(`surroundings-${slug.value}`, async () => {
+  if (!post.value) return [null, null]
+  const allPosts = await queryCollection<BlogPost>('blog')
+    .order('date', 'DESC')
+    .all()
+  const currentIndex = allPosts.findIndex(p => p.path === post.value!.path)
+  if (currentIndex === -1) return [null, null]
+  // In DESC order: index+1 = older (prev), index-1 = newer (next)
+  const prev = currentIndex < allPosts.length - 1 ? allPosts[currentIndex + 1] : null
+  const next = currentIndex > 0 ? allPosts[currentIndex - 1] : null
+  return [prev, next]
+})
 
 // Reading progress
 const articleRef = ref<HTMLElement | null>(null)
@@ -460,6 +478,9 @@ onUnmounted(() => {
 })
 
 const { formatDate, formatCategory, getCategoryIcon } = useBlogUtils()
+
+// Avatar fallback
+const avatarError = ref(false)
 
 // Share functions
 const linkCopied = ref(false)
