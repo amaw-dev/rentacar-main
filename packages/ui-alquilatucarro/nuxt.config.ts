@@ -603,8 +603,6 @@ export default defineNuxtConfig({
         '/blog/eje-cafetero-en-carro-guia-completa',
         '/blog/costa-caribe-cartagena-santa-marta-carro',
         '/blog/viajar-carro-con-ninos-colombia',
-        // RSS feed — pre-rendered porque queryCollectionWithEvent no funciona en Firebase runtime
-        '/rss.xml',
       ]
     }
   },

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Blog de Alquilatucarro</title>
+    <link>https://alquilatucarro.com/blog</link>
+    <description>Guías, tips y consejos para alquilar carros en Colombia. Rutas, requisitos y recomendaciones para tu viaje.</description>
+    <language>es-co</language>
+    <lastBuildDate>Sat, 31 Jan 2026 00:00:00 GMT</lastBuildDate>
+    <atom:link href="https://alquilatucarro.com/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Pico y Placa en Colombia 2026: Guía Completa por Ciudad</title>
+      <link>https://alquilatucarro.com/blog/pico-y-placa-colombia-2026</link>
+      <guid isPermaLink="true">https://alquilatucarro.com/blog/pico-y-placa-colombia-2026</guid>
+      <description>Horarios actualizados de pico y placa en Bogotá, Medellín, Cali, Barranquilla y todas las ciudades de Colombia. Evita multas conociendo las restricciones.</description>
+      <pubDate>Sat, 24 Jan 2026 00:00:00 GMT</pubDate>
+      <category>guias</category>
+    </item>
+    <item>
+      <title>Costa Caribe en Carro: Ruta Cartagena a Santa Marta 2026</title>
+      <link>https://alquilatucarro.com/blog/costa-caribe-cartagena-santa-marta-carro</link>
+      <guid isPermaLink="true">https://alquilatucarro.com/blog/costa-caribe-cartagena-santa-marta-carro</guid>
+      <description>Guía completa para recorrer la costa caribe colombiana en carro. Ruta Cartagena-Barranquilla-Santa Marta, playas, Parque Tayrona y más. Alquila tu carro hoy.</description>
+      <pubDate>Thu, 15 Jan 2026 00:00:00 GMT</pubDate>
+      <category>rutas</category>
+    </item>
+    <item>
+      <title>Eje Cafetero en Carro: Guía Completa de Ruta 2026</title>
+      <link>https://alquilatucarro.com/blog/eje-cafetero-en-carro-guia-completa</link>
+      <guid isPermaLink="true">https://alquilatucarro.com/blog/eje-cafetero-en-carro-guia-completa</guid>
+      <description>Descubre la mejor ruta para recorrer el Eje Cafetero en carro. Itinerarios de 3, 5 y 7 días por Pereira, Armenia y Manizales. Alquila tu carro hoy.</description>
+      <pubDate>Tue, 06 Jan 2026 00:00:00 GMT</pubDate>
+      <category>destinos</category>
+    </item>
+    <item>
+      <title>7 Rutas en Carro desde Bogotá: Escapadas Imperdibles 2026</title>
+      <link>https://alquilatucarro.com/blog/rutas-carro-desde-bogota</link>
+      <guid isPermaLink="true">https://alquilatucarro.com/blog/rutas-carro-desde-bogota</guid>
+      <description>Descubre las mejores rutas en carro desde Bogotá: Villa de Leyva, Guatavita, Girardot y más. Distancias, tiempos y tips para tu próximo viaje. ¡Reserva ya!</description>
+      <pubDate>Sat, 27 Dec 2025 00:00:00 GMT</pubDate>
+      <category>rutas</category>
+    </item>
+    <item>
+      <title>Viajar en Carro con Niños en Colombia: Guía Completa</title>
+      <link>https://alquilatucarro.com/blog/viajar-carro-con-ninos-colombia</link>
+      <guid isPermaLink="true">https://alquilatucarro.com/blog/viajar-carro-con-ninos-colombia</guid>
+      <description>Tips esenciales para viajar con niños en carro por Colombia: sillas de bebé, entretenimiento, paradas y seguridad. Planifica tu viaje familiar hoy.</description>
+      <pubDate>Thu, 18 Dec 2025 00:00:00 GMT</pubDate>
+      <category>tips</category>
+    </item>
+    <item>
+      <title>Tipos de Carros para Alquilar: Cuál Elegir Según tu Viaje</title>
+      <link>https://alquilatucarro.com/blog/tipos-carros-alquilar-cual-elegir</link>
+      <guid isPermaLink="true">https://alquilatucarro.com/blog/tipos-carros-alquilar-cual-elegir</guid>
+      <description>Guía completa para elegir el carro ideal: compacto, sedán, SUV, camioneta o van. Compara precios, capacidad y consumo. Encuentra tu vehículo perfecto.</description>
+      <pubDate>Wed, 10 Dec 2025 00:00:00 GMT</pubDate>
+      <category>guias</category>
+    </item>
+    <item>
+      <title>Requisitos para Alquilar un Carro en Colombia 2026</title>
+      <link>https://alquilatucarro.com/blog/requisitos-alquilar-carro-colombia</link>
+      <guid isPermaLink="true">https://alquilatucarro.com/blog/requisitos-alquilar-carro-colombia</guid>
+      <description>Guía completa con todos los documentos y requisitos necesarios para alquilar un carro en Colombia. Conoce qué necesitas antes de tu viaje.</description>
+      <pubDate>Tue, 02 Dec 2025 00:00:00 GMT</pubDate>
+      <category>guias</category>
+    </item>
+  </channel>
+</rss>
