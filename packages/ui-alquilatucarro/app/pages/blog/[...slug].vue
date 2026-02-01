@@ -88,7 +88,7 @@
 
           <!-- Sidebar -->
           <aside class="lg:w-1/3">
-            <div class="sticky top-24 space-y-8">
+            <div class="space-y-8">
               <!-- Table of Contents -->
               <nav v-if="post.body?.toc?.links?.length" data-blog-toc class="bg-gray-50 rounded-xl p-4">
                 <h3 class="font-bold text-gray-900 mb-3">Contenido</h3>
@@ -216,42 +216,6 @@
       </div>
     </section>
 
-    <!-- Inline CTA Banner -->
-    <section class="bg-gradient-to-r from-gray-900 to-gray-800 py-10 px-4 md:px-8">
-      <div class="max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-6 md:gap-10">
-        <div class="flex-1 text-center md:text-left">
-          <div class="inline-flex items-center gap-2 px-3 py-1 text-xs font-semibold text-red-300 bg-red-900/30 rounded-full mb-3">
-            <UIcon name="i-lucide-car" class="size-3.5" />
-            Sin anticipos · 27 sedes en Colombia
-          </div>
-          <h2 class="text-xl md:text-2xl font-bold text-white mb-2">
-            ¿Te ayudamos a planear tu viaje?
-          </h2>
-          <p class="text-gray-400 text-sm">
-            Escríbenos por WhatsApp para recibir asesoría personalizada sobre rutas, vehículos y tarifas.
-          </p>
-        </div>
-        <div class="flex flex-col sm:flex-row gap-3 shrink-0">
-          <NuxtLink
-            :to="franchise.whatsapp"
-            target="_blank"
-            rel="noopener"
-            class="inline-flex items-center justify-center gap-2 bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-xl font-bold transition-colors"
-          >
-            <UIcon name="i-lucide-message-circle" class="size-5" />
-            WhatsApp
-          </NuxtLink>
-          <NuxtLink
-            to="/"
-            class="inline-flex items-center justify-center gap-2 bg-red-700 hover:bg-red-800 text-white px-6 py-3 rounded-xl font-bold transition-colors"
-          >
-            <UIcon name="i-lucide-calendar" class="size-5" />
-            Reservar Ahora
-          </NuxtLink>
-        </div>
-      </div>
-    </section>
-
     <!-- Related Posts -->
     <section v-if="relatedPosts?.length" class="bg-gray-100 py-12 px-4 md:px-8">
       <div class="max-w-7xl mx-auto">
@@ -285,49 +249,63 @@
       </div>
     </section>
 
-    <!-- Prev/Next Navigation -->
-    <section v-if="surroundings" class="bg-gray-100 py-8 px-4 md:px-8 border-t border-gray-200">
-      <div class="max-w-4xl mx-auto grid grid-cols-2 gap-4">
-        <NuxtLink
-          v-if="surroundings[0]"
-          :to="surroundings[0].path"
-          class="group flex items-start gap-3 p-4 rounded-xl bg-white hover:bg-red-50/50 shadow-sm transition-all"
-        >
-          <UIcon name="i-lucide-arrow-left" class="size-5 text-gray-400 group-hover:text-red-700 mt-0.5 shrink-0 transition-colors" />
-          <div class="min-w-0">
-            <span class="text-xs text-gray-500">Anterior</span>
-            <p class="text-sm font-medium text-gray-900 group-hover:text-red-700 line-clamp-2 transition-colors">
-              {{ surroundings[0].title }}
-            </p>
-          </div>
-        </NuxtLink>
-        <div v-else />
-        <NuxtLink
-          v-if="surroundings[1]"
-          :to="surroundings[1].path"
-          class="group flex items-start gap-3 p-4 rounded-xl bg-white hover:bg-red-50/50 shadow-sm transition-all text-right flex-row-reverse"
-        >
-          <UIcon name="i-lucide-arrow-right" class="size-5 text-gray-400 group-hover:text-red-700 mt-0.5 shrink-0 transition-colors" />
-          <div class="min-w-0">
-            <span class="text-xs text-gray-500">Siguiente</span>
-            <p class="text-sm font-medium text-gray-900 group-hover:text-red-700 line-clamp-2 transition-colors">
-              {{ surroundings[1].title }}
-            </p>
-          </div>
-        </NuxtLink>
+    <!-- Prev/Next Navigation + Back to Blog -->
+    <section class="bg-gray-100 py-8 px-4 md:px-8 border-t border-gray-200">
+      <div class="max-w-4xl mx-auto space-y-4">
+        <div v-if="surroundings" class="grid grid-cols-2 gap-4">
+          <NuxtLink
+            v-if="surroundings[0]"
+            :to="surroundings[0].path"
+            class="group flex items-start gap-3 p-4 rounded-xl bg-white hover:bg-red-50/50 shadow-sm transition-all"
+          >
+            <UIcon name="i-lucide-arrow-left" class="size-5 text-gray-400 group-hover:text-red-700 mt-0.5 shrink-0 transition-colors" />
+            <div class="min-w-0">
+              <span class="text-xs text-gray-500">Anterior</span>
+              <p class="text-sm font-medium text-gray-900 group-hover:text-red-700 line-clamp-2 transition-colors">
+                {{ surroundings[0].title }}
+              </p>
+            </div>
+          </NuxtLink>
+          <div v-else />
+          <NuxtLink
+            v-if="surroundings[1]"
+            :to="surroundings[1].path"
+            class="group flex items-start gap-3 p-4 rounded-xl bg-white hover:bg-red-50/50 shadow-sm transition-all text-right flex-row-reverse"
+          >
+            <UIcon name="i-lucide-arrow-right" class="size-5 text-gray-400 group-hover:text-red-700 mt-0.5 shrink-0 transition-colors" />
+            <div class="min-w-0">
+              <span class="text-xs text-gray-500">Siguiente</span>
+              <p class="text-sm font-medium text-gray-900 group-hover:text-red-700 line-clamp-2 transition-colors">
+                {{ surroundings[1].title }}
+              </p>
+            </div>
+          </NuxtLink>
+        </div>
+        <div class="text-center">
+          <NuxtLink
+            to="/blog"
+            class="inline-flex items-center gap-2 px-6 py-3 bg-white hover:bg-gray-50 text-gray-700 font-medium rounded-xl shadow-sm transition-colors"
+          >
+            <span>&larr;</span>
+            <span>Volver al Blog</span>
+          </NuxtLink>
+        </div>
       </div>
     </section>
 
-    <!-- Back to Blog -->
-    <section class="bg-white py-8 px-4">
+    <!-- Inline CTA Banner -->
+    <section class="bg-gradient-to-r from-gray-900 to-gray-800 py-10 px-4 md:px-8">
       <div class="max-w-4xl mx-auto text-center">
-        <NuxtLink
-          to="/blog"
-          class="inline-flex items-center gap-2 px-6 py-3 bg-gray-200 hover:bg-gray-300 text-black font-medium rounded-lg transition-colors"
-        >
-          <span>&larr;</span>
-          <span>Volver al Blog</span>
-        </NuxtLink>
+        <div class="inline-flex items-center gap-2 px-3 py-1 text-xs font-semibold text-red-300 bg-red-900/30 rounded-full mb-3">
+          <UIcon name="i-lucide-car" class="size-3.5" />
+          Sin anticipos · 27 sedes en Colombia
+        </div>
+        <h2 class="text-xl md:text-2xl font-bold text-white mb-2">
+          ¿Te ayudamos a planear tu viaje?
+        </h2>
+        <p class="text-gray-400 text-sm">
+          Escríbenos por WhatsApp para recibir asesoría personalizada sobre rutas, vehículos y tarifas.
+        </p>
       </div>
     </section>
 
