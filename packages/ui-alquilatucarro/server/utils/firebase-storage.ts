@@ -1,8 +1,17 @@
 import admin from 'firebase-admin'
+import { useRuntimeConfig } from '#imports'
 import { logger } from './logger'
 import { BlogApiError } from './error-handler'
 
 let app: admin.app.App | null = null
+
+/**
+ * Reset app singleton for testing purposes
+ * @internal
+ */
+export function _resetAppForTesting() {
+  app = null
+}
 
 /**
  * Get or initialize Firebase Admin app (singleton pattern)

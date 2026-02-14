@@ -56,8 +56,12 @@ vi.mock('../error-handler', () => ({
 }))
 
 describe('Firebase Storage Client', () => {
-  beforeEach(() => {
+  beforeEach(async () => {
     vi.clearAllMocks()
+
+    // Reset singleton
+    const { _resetAppForTesting } = await import('../firebase-storage')
+    _resetAppForTesting()
 
     // Setup default mock behavior
     mockSave.mockResolvedValue(undefined)
@@ -66,31 +70,31 @@ describe('Firebase Storage Client', () => {
     mockDownload.mockResolvedValue([Buffer.from('test content')])
     mockGetFiles.mockResolvedValue([[{ name: 'test-file.webp' }]])
 
-    mockFileInstance.mockReturnValue({
+    mockFileInstance.mockImplementation((path: string) => ({
       save: mockSave,
       makePublic: mockMakePublic,
       exists: mockExists,
       download: mockDownload,
-      name: 'test-file.webp'
-    })
+      name: path
+    }))
 
-    mockBucket.mockReturnValue({
+    mockBucket.mockImplementation(() => ({
       file: mockFileInstance,
       getFiles: mockGetFiles,
       name: 'test-bucket.appspot.com'
-    })
+    }))
 
-    mockStorage.mockReturnValue({
+    mockStorage.mockImplementation(() => ({
       bucket: mockBucket
-    })
+    }))
 
-    mockApp.mockReturnValue({
+    mockApp.mockImplementation(() => ({
       storage: mockStorage
-    })
+    }))
 
-    mockInitializeApp.mockReturnValue({
+    mockInitializeApp.mockImplementation(() => ({
       storage: mockStorage
-    })
+    }))
 
     mockCert.mockReturnValue({ mock: 'credential' })
   })
