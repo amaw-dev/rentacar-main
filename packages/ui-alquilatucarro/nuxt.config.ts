@@ -488,6 +488,16 @@ export default defineNuxtConfig({
     gscClientId: '',
     gscClientSecret: '',
     gscRedirectUri: '',
+    // Firebase Admin SDK config (server-only)
+    // Override with NUXT_FIREBASE_* env vars
+    firebaseProjectId: '',
+    firebaseClientEmail: '',
+    firebasePrivateKey: '',
+    firebaseStorageBucket: '',
+    // Blog API security config (server-only)
+    // Override with NUXT_BLOG_API_* env vars
+    blogApiKey: '',
+    blogApiAllowedIps: '',
     // Public config (exposed to client)
     public: {
       rentacarFranchise: "alquilatucarro",
@@ -542,6 +552,7 @@ export default defineNuxtConfig({
       nodeVersion: "20",
       httpsOptions: {
         maxInstances: 1,
+        memory: '1GiB',  // Increased for Sharp image processing
       },
     },
     esbuild: {
