@@ -164,7 +164,7 @@ describe('wordpress-to-nuxt', () => {
 
       const result = transformWordPressToNuxt(wpPost)
 
-      expect(result.frontmatter).toContain('tags:\n  - requisitos\n  - documentos\n  - colombia')
+      expect(result.frontmatter).toContain('tags:\n  - "requisitos"\n  - "documentos"\n  - "colombia"')
     })
 
     it('should handle missing tags', () => {
@@ -333,6 +333,112 @@ describe('wordpress-to-nuxt', () => {
 
       // Should not throw
       expect(() => transformWordPressToNuxt(wpPost)).not.toThrow()
+    })
+  })
+
+  describe('YAML escaping', () => {
+    it('should escape quotes in title and description', () => {
+      const wpPost: WordPressPost = {
+        id: 1,
+        title: { rendered: 'Alquilar un "carro" en Colombia' },
+        content: { rendered: '<p>Test content</p>' },
+        excerpt: { rendered: 'Description with "quotes"' },
+        date: '2026-02-13T10:30:00',
+        modified: '2026-02-13T12:00:00',
+        slug: 'test'
+      }
+
+      const result = transformWordPressToNuxt(wpPost)
+
+      expect(result.frontmatter).toContain('title: "Alquilar un \\"carro\\" en Colombia"')
+      expect(result.frontmatter).toContain('description: "Description with \\"quotes\\""')
+    })
+
+    it('should escape multiple quotes in title', () => {
+      const wpPost: WordPressPost = {
+        id: 1,
+        title: { rendered: 'The "best" car to "rent" in Colombia' },
+        content: { rendered: '<p>Test content</p>' },
+        excerpt: { rendered: 'Simple description' },
+        date: '2026-02-13T10:30:00',
+        modified: '2026-02-13T12:00:00',
+        slug: 'test'
+      }
+
+      const result = transformWordPressToNuxt(wpPost)
+
+      expect(result.frontmatter).toContain('title: "The \\"best\\" car to \\"rent\\" in Colombia"')
+    })
+
+    it('should handle complex special characters combinations', () => {
+      const wpPost: WordPressPost = {
+        id: 1,
+        title: { rendered: 'Cars & "SUVs" - Rental Guide' },
+        content: { rendered: '<p>Test content</p>' },
+        excerpt: { rendered: 'Affordable "luxury" cars' },
+        date: '2026-02-13T10:30:00',
+        modified: '2026-02-13T12:00:00',
+        slug: 'test'
+      }
+
+      const result = transformWordPressToNuxt(wpPost)
+
+      expect(result.frontmatter).toContain('title: "Cars & \\"SUVs\\" - Rental Guide"')
+      expect(result.frontmatter).toContain('description: "Affordable \\"luxury\\" cars"')
+    })
+
+    it('should escape special characters in tags', () => {
+      const wpPost: WordPressPost = {
+        id: 1,
+        title: { rendered: 'Test' },
+        content: { rendered: '<p>Content</p>' },
+        excerpt: { rendered: 'Test' },
+        date: '2026-02-13T10:30:00',
+        modified: '2026-02-13T12:00:00',
+        slug: 'test',
+        _embedded: {
+          'wp:term': [
+            [{ name: 'Guías' }],
+            [
+              { name: 'colombia: guía' },
+              { name: 'tag with "quotes"' },
+              { name: 'backslash\\test' }
+            ]
+          ]
+        }
+      }
+
+      const result = transformWordPressToNuxt(wpPost)
+
+      expect(result.frontmatter).toContain('- "colombia: guía"')
+      expect(result.frontmatter).toContain('- "tag with \\"quotes\\""')
+      expect(result.frontmatter).toContain('- "backslash\\\\test"')
+    })
+
+    it('should quote all tags even without special characters', () => {
+      const wpPost: WordPressPost = {
+        id: 1,
+        title: { rendered: 'Test' },
+        content: { rendered: '<p>Content</p>' },
+        excerpt: { rendered: 'Test' },
+        date: '2026-02-13T10:30:00',
+        modified: '2026-02-13T12:00:00',
+        slug: 'test',
+        _embedded: {
+          'wp:term': [
+            [{ name: 'Guías' }],
+            [
+              { name: 'colombia' },
+              { name: 'viajes' }
+            ]
+          ]
+        }
+      }
+
+      const result = transformWordPressToNuxt(wpPost)
+
+      expect(result.frontmatter).toContain('- "colombia"')
+      expect(result.frontmatter).toContain('- "viajes"')
     })
   })
 })

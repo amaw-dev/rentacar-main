@@ -45,7 +45,7 @@ const CATEGORY_MAP: Record<string, string> = {
  */
 const DEFAULT_AUTHOR = {
   name: 'Alquilatucarro',
-  avatar: 'https://firebasestorage.googleapis.com/.../logo.png'
+  avatar: 'https://storage.googleapis.com/rentacar-403321.appspot.com/assets/logo.png'
 }
 
 /**
@@ -55,6 +55,19 @@ const turndownService = new Turndown({
   headingStyle: 'atx',
   codeBlockStyle: 'fenced'
 })
+
+/**
+ * Escapes special characters for safe YAML string values
+ * @param str String to escape
+ * @returns Escaped string safe for YAML
+ */
+function escapeYaml(str: string): string {
+  return str
+    .replace(/\\/g, '\\\\')  // Escape backslashes first
+    .replace(/"/g, '\\"')     // Escape double quotes
+    .replace(/\n/g, '\\n')    // Escape newlines
+    .replace(/\r/g, '\\r')    // Escape carriage returns
+}
 
 /**
  * Strip HTML tags from a string
@@ -142,8 +155,8 @@ function buildFrontmatter(data: {
 }): string {
   const lines = ['---']
 
-  lines.push(`title: "${data.title}"`)
-  lines.push(`description: "${data.description}"`)
+  lines.push(`title: "${escapeYaml(data.title)}"`)
+  lines.push(`description: "${escapeYaml(data.description)}"`)
 
   if (data.image) {
     lines.push(`image: ${data.image}`)
@@ -164,7 +177,7 @@ function buildFrontmatter(data: {
   if (data.tags.length > 0) {
     lines.push('tags:')
     data.tags.forEach(tag => {
-      lines.push(`  - ${tag}`)
+      lines.push(`  - "${escapeYaml(tag)}"`)
     })
   } else {
     lines.push('tags: []')
