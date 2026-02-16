@@ -111,6 +111,10 @@ tmp/
 temp/
 *.tmp
 
+# Dynamic blog content
+content-dynamic/
+blog-posts/
+
 # Playwright MCP test artifacts (if using Playwright MCP server)
 test-results/
 playwright-report/
