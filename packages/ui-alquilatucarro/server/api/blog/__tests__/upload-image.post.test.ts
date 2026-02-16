@@ -100,7 +100,9 @@ describe('POST /api/blog/upload-image', () => {
         'image/webp'
       )
       expect(result).toEqual({
+        success: true,
         url: 'https://storage.googleapis.com/test-bucket/blog-images/featured/123-abc.webp',
+        filename: expect.stringMatching(/^\d+-[a-z0-9]+\.webp$/),
         originalSize: 1000000,
         optimizedSize: 200000,
         savings: '80.0%'
@@ -126,7 +128,11 @@ describe('POST /api/blog/upload-image', () => {
         expect.stringMatching(/^blog-images\/content\/\d+-[a-z0-9]+\.webp$/),
         'image/webp'
       )
-      expect(result.url).toBeDefined()
+      expect(result).toMatchObject({
+        success: true,
+        url: expect.any(String),
+        filename: expect.any(String)
+      })
     })
 
     it('should default to content type if not specified', async () => {
@@ -346,6 +352,128 @@ describe('POST /api/blog/upload-image', () => {
           savings: '80.0%'
         })
       )
+    })
+  })
+
+  describe('file size validation', () => {
+    it('should reject files larger than 10MB', async () => {
+      // Create buffer larger than 10MB (10 * 1024 * 1024 bytes)
+      const largeBuffer = Buffer.alloc(11 * 1024 * 1024) // 11MB
+      const formData = [
+        { name: 'file', data: largeBuffer, filename: 'large.jpg', type: 'image/jpeg' }
+      ]
+
+      mockReadMultipartFormData.mockResolvedValue(formData)
+
+      const event = { mockEvent: true }
+      await handler(event)
+
+      expect(mockHandleBlogApiError).toHaveBeenCalledWith(
+        expect.objectContaining({
+          message: expect.stringContaining('File too large'),
+          statusCode: 413
+        }),
+        'upload-image'
+      )
+    })
+
+    it('should accept files exactly at 10MB limit', async () => {
+      const maxBuffer = Buffer.alloc(10 * 1024 * 1024) // Exactly 10MB
+      const formData = [
+        { name: 'file', data: maxBuffer, filename: 'max.jpg', type: 'image/jpeg' }
+      ]
+
+      mockReadMultipartFormData.mockResolvedValue(formData)
+
+      const event = { mockEvent: true }
+      const result = await handler(event)
+
+      expect(mockHandleBlogApiError).not.toHaveBeenCalled()
+      expect(result.success).toBe(true)
+    })
+  })
+
+  describe('type parameter validation', () => {
+    it('should reject invalid type values', async () => {
+      const imageBuffer = Buffer.from('test-image-data')
+      const formData = [
+        { name: 'file', data: imageBuffer },
+        { name: 'type', data: Buffer.from('../../../etc/passwd') }
+      ]
+
+      mockReadMultipartFormData.mockResolvedValue(formData)
+
+      const event = { mockEvent: true }
+      await handler(event)
+
+      expect(mockHandleBlogApiError).toHaveBeenCalledWith(
+        expect.objectContaining({
+          message: expect.stringContaining('Invalid type'),
+          statusCode: 400
+        }),
+        'upload-image'
+      )
+    })
+
+    it('should only accept featured or content as type values', async () => {
+      const invalidTypes = ['gallery', 'thumbnail', 'admin', '../../../']
+
+      for (const invalidType of invalidTypes) {
+        vi.clearAllMocks()
+
+        const imageBuffer = Buffer.from('test-image-data')
+        const formData = [
+          { name: 'file', data: imageBuffer },
+          { name: 'type', data: Buffer.from(invalidType) }
+        ]
+
+        mockReadMultipartFormData.mockResolvedValue(formData)
+
+        const event = { mockEvent: true }
+        await handler(event)
+
+        expect(mockHandleBlogApiError).toHaveBeenCalledWith(
+          expect.objectContaining({
+            message: expect.stringMatching(/Invalid type.*Must be 'featured' or 'content'/),
+            statusCode: 400
+          }),
+          'upload-image'
+        )
+      }
+    })
+  })
+
+  describe('alt parameter extraction', () => {
+    it('should extract alt text when provided', async () => {
+      const imageBuffer = Buffer.from('test-image-data')
+      const formData = [
+        { name: 'file', data: imageBuffer },
+        { name: 'alt', data: Buffer.from('Test image description') }
+      ]
+
+      mockReadMultipartFormData.mockResolvedValue(formData)
+
+      const event = { mockEvent: true }
+      const result = await handler(event)
+
+      // Alt text is extracted but not returned in response (stored for WordPress sync)
+      expect(result.success).toBe(true)
+      expect(mockHandleBlogApiError).not.toHaveBeenCalled()
+    })
+
+    it('should handle missing alt parameter gracefully', async () => {
+      const imageBuffer = Buffer.from('test-image-data')
+      const formData = [
+        { name: 'file', data: imageBuffer }
+      ]
+
+      mockReadMultipartFormData.mockResolvedValue(formData)
+
+      const event = { mockEvent: true }
+      const result = await handler(event)
+
+      expect(result.success).toBe(true)
+      expect(mockHandleBlogApiError).not.toHaveBeenCalled()
     })
   })
 })

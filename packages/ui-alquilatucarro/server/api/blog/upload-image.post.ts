@@ -19,12 +19,30 @@ export default defineEventHandler(async (event) => {
     // Extract file and type
     const fileEntry = formData.find(item => item.name === 'file')
     const typeEntry = formData.find(item => item.name === 'type')
+    const altEntry = formData.find(item => item.name === 'alt')
 
     if (!fileEntry || !fileEntry.data) {
       throw new BlogApiError('No image file provided', 400)
     }
 
-    const type = (typeEntry?.data?.toString() as 'featured' | 'content') || 'content'
+    // Validate file size (max 10MB)
+    const MAX_FILE_SIZE = 10 * 1024 * 1024 // 10MB
+    if (fileEntry.data.length > MAX_FILE_SIZE) {
+      throw new BlogApiError(
+        `File too large: ${(fileEntry.data.length / 1024 / 1024).toFixed(1)}MB. Maximum: 10MB`,
+        413  // Payload Too Large
+      )
+    }
+
+    // Validate and sanitize type parameter
+    const typeRaw = typeEntry?.data?.toString() || 'content'
+    if (typeRaw !== 'featured' && typeRaw !== 'content') {
+      throw new BlogApiError(`Invalid type: ${typeRaw}. Must be 'featured' or 'content'`, 400)
+    }
+    const type: 'featured' | 'content' = typeRaw as 'featured' | 'content'
+
+    // Extract alt text for future WordPress sync
+    const altText = altEntry?.data?.toString() || ''
 
     // Validate image type from buffer using Sharp
     const metadata = await sharp(fileEntry.data).metadata()
@@ -64,9 +82,11 @@ export default defineEventHandler(async (event) => {
       savings: optimizedResult.savings
     })
 
-    // Return response
+    // Return response (API contract compliance)
     return {
+      success: true,
       url: publicUrl,
+      filename: filename,
       originalSize: optimizedResult.originalSize,
       optimizedSize: optimizedResult.optimizedSize,
       savings: optimizedResult.savings
