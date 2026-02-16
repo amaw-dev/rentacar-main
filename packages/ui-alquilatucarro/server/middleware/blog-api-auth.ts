@@ -9,56 +9,42 @@
  * Only applies to /api/blog/* endpoints (except public endpoints)
  */
 
+import { getDatabase } from 'firebase-admin/database'
 import { logger } from '../utils/logger'
 
-// Rate limit storage
-interface RateLimitEntry {
-  requests: number
+// Rate limit constants
+const RATE_LIMIT_WINDOW = 60 * 60 * 1000 // 1 hour in ms
+const RATE_LIMIT_MAX_REQUESTS = 100
+
+// Rate limit result interface
+interface RateLimitResult {
+  allowed: boolean
+  remaining: number
   resetAt: number
-}
-
-const rateLimitStore = new Map<string, RateLimitEntry>()
-
-// Clean up old entries every 5 minutes to prevent memory leak
-const CLEANUP_INTERVAL = 5 * 60 * 1000 // 5 minutes
-let lastCleanup = Date.now()
-
-/**
- * Clean up expired rate limit entries
- */
-function cleanupRateLimitStore() {
-  const now = Date.now()
-  if (now - lastCleanup < CLEANUP_INTERVAL) {
-    return
-  }
-
-  const expiredKeys: string[] = []
-  for (const [ip, entry] of rateLimitStore.entries()) {
-    if (now > entry.resetAt) {
-      expiredKeys.push(ip)
-    }
-  }
-
-  for (const key of expiredKeys) {
-    rateLimitStore.delete(key)
-  }
-
-  lastCleanup = now
 }
 
 /**
  * Extract client IP from request
+ * Only trusts x-forwarded-for when behind trusted proxy (Firebase/GCP)
  */
 function getClientIp(event: any): string {
-  // Prefer x-forwarded-for header (for proxies/load balancers)
-  const forwardedFor = event.node.req.headers['x-forwarded-for']
-  if (forwardedFor) {
-    // x-forwarded-for can contain multiple IPs, use first one (client IP)
-    return forwardedFor.split(',')[0].trim()
+  const socketIp = event.node.req.socket.remoteAddress || 'unknown'
+
+  // Only trust X-Forwarded-For from Firebase/GCP proxy ranges (private networks)
+  const isBehindTrustedProxy =
+    socketIp.startsWith('10.') ||
+    socketIp.startsWith('172.') ||
+    socketIp.startsWith('192.168.')
+
+  if (isBehindTrustedProxy) {
+    const forwardedFor = event.node.req.headers['x-forwarded-for']
+    if (forwardedFor) {
+      // Take first IP (actual client)
+      return forwardedFor.split(',')[0].trim()
+    }
   }
 
-  // Fallback to socket remote address
-  return event.node.req.socket.remoteAddress || 'unknown'
+  return socketIp
 }
 
 /**
@@ -87,37 +73,36 @@ function isApiKeyValid(apiKey: string | undefined, expectedKey: string): boolean
 }
 
 /**
- * Check rate limit for IP
- * Returns: { allowed: boolean, remaining: number, resetAt: number }
+ * Check rate limit for IP using Firebase Realtime Database
+ * Ensures global state across all serverless instances
  */
-function checkRateLimit(ip: string): { allowed: boolean; remaining: number; resetAt: number } {
-  const now = Date.now()
-  const RATE_LIMIT = 100 // requests per hour
-  const WINDOW = 60 * 60 * 1000 // 1 hour in milliseconds
+async function checkRateLimit(clientIp: string): Promise<RateLimitResult> {
+  const db = getDatabase()
+  const rateLimitRef = db.ref(`blog-api/rate-limits/${clientIp}`)
 
-  let entry = rateLimitStore.get(ip)
+  const snapshot = await rateLimitRef.transaction((current) => {
+    const now = Date.now()
 
-  // Initialize or reset if expired
-  if (!entry || now > entry.resetAt) {
-    entry = {
-      requests: 0,
-      resetAt: now + WINDOW
+    // Reset if window expired or first request
+    if (!current || now >= current.resetAt) {
+      return {
+        count: 1,
+        resetAt: now + RATE_LIMIT_WINDOW
+      }
     }
-    rateLimitStore.set(ip, entry)
-  }
 
-  // Increment request count
-  entry.requests++
+    // Increment counter
+    return {
+      count: current.count + 1,
+      resetAt: current.resetAt
+    }
+  })
 
-  // Check if limit exceeded
-  const allowed = entry.requests <= RATE_LIMIT
-  const remaining = Math.max(0, RATE_LIMIT - entry.requests)
+  const { count, resetAt } = snapshot.snapshot.val()
+  const allowed = count <= RATE_LIMIT_MAX_REQUESTS
+  const remaining = Math.max(0, RATE_LIMIT_MAX_REQUESTS - count)
 
-  return {
-    allowed,
-    remaining,
-    resetAt: entry.resetAt
-  }
+  return { allowed, remaining, resetAt }
 }
 
 /**
@@ -181,31 +166,29 @@ export default defineEventHandler(async (event) => {
   }
 
   // 3. Rate limiting
-  const rateLimit = checkRateLimit(clientIp)
-  if (!rateLimit.allowed) {
-    logger.error('blog-api-auth', new Error('Rate limit exceeded'), {
+  const rateLimitResult = await checkRateLimit(clientIp)
+
+  // Set headers BEFORE checking if allowed (ensure headers on ALL responses)
+  event.node.res.setHeader('X-RateLimit-Limit', RATE_LIMIT_MAX_REQUESTS.toString())
+  event.node.res.setHeader('X-RateLimit-Remaining', rateLimitResult.remaining.toString())
+  event.node.res.setHeader('X-RateLimit-Reset', rateLimitResult.resetAt.toString())
+
+  if (!rateLimitResult.allowed) {
+    logger.error('blog-api-auth-rate-limit', new Error('Rate limit exceeded'), {
       ip: clientIp,
-      path: event.path,
-      reason: 'Rate limit exceeded'
+      limit: RATE_LIMIT_MAX_REQUESTS
     })
 
     throw createError({
       statusCode: 429,
-      message: 'Too Many Requests: Rate limit exceeded'
+      message: 'Too many requests. Please try again later.'
     })
   }
-
-  // Set rate limit headers
-  event.node.res.setHeader('X-RateLimit-Remaining', rateLimit.remaining.toString())
-  event.node.res.setHeader('X-RateLimit-Reset', rateLimit.resetAt.toString())
-
-  // Clean up old entries periodically
-  cleanupRateLimitStore()
 
   // Log successful authentication
   logger.info('blog-api-auth', {
     ip: clientIp,
     path: event.path,
-    remaining: rateLimit.remaining
+    remaining: rateLimitResult.remaining
   })
 })

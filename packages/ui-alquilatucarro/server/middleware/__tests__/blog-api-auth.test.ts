@@ -16,6 +16,35 @@ global.useRuntimeConfig = mockUseRuntimeConfig as any
 global.createError = mockCreateError as any
 global.defineEventHandler = mockDefineEventHandler as any
 
+// Mock Firebase Realtime Database - state storage per IP
+const rateLimitState: Record<string, { count: number; resetAt: number } | null> = {}
+
+const mockTransaction = vi.fn()
+const mockRef = vi.fn((path: string) => {
+  // Extract IP from path: blog-api/rate-limits/{ip}
+  const ip = path.split('/').pop() || 'unknown'
+
+  return {
+    transaction: vi.fn(async (updateFn) => {
+      const current = rateLimitState[ip] || null
+      const updated = updateFn(current)
+      rateLimitState[ip] = updated
+      return Promise.resolve({
+        snapshot: {
+          val: () => updated
+        }
+      })
+    })
+  }
+})
+const mockGetDatabase = vi.fn(() => ({
+  ref: mockRef
+}))
+
+vi.mock('firebase-admin/database', () => ({
+  getDatabase: mockGetDatabase
+}))
+
 // Mock logger
 vi.mock('../../utils/logger', () => ({
   logger: {
@@ -34,6 +63,9 @@ describe('blog-api-auth middleware', () => {
   beforeEach(async () => {
     // Reset mocks
     vi.clearAllMocks()
+
+    // Clear rate limit state
+    Object.keys(rateLimitState).forEach(key => delete rateLimitState[key])
 
     // Mock runtime config
     mockUseRuntimeConfig.mockReturnValue({
@@ -137,9 +169,9 @@ describe('blog-api-auth middleware', () => {
       )
     })
 
-    it('should extract IP from x-forwarded-for header', async () => {
+    it('should extract IP from x-forwarded-for header when behind trusted proxy', async () => {
       mockEvent.node!.req.headers['x-forwarded-for'] = '10.0.0.1'
-      mockEvent.node!.req.socket.remoteAddress = '127.0.0.1' // Should be ignored
+      mockEvent.node!.req.socket.remoteAddress = '10.1.2.3' // Trusted proxy (private network)
 
       const result = await middleware(mockEvent as H3Event)
 
@@ -154,6 +186,7 @@ describe('blog-api-auth middleware', () => {
 
     it('should handle multiple IPs in x-forwarded-for (use first)', async () => {
       mockEvent.node!.req.headers['x-forwarded-for'] = '192.168.1.1, 10.0.0.2, 127.0.0.1'
+      mockEvent.node!.req.socket.remoteAddress = '172.16.0.1' // Trusted proxy
 
       const result = await middleware(mockEvent as H3Event)
 
@@ -162,6 +195,22 @@ describe('blog-api-auth middleware', () => {
         'blog-api-auth',
         expect.objectContaining({
           ip: '192.168.1.1'
+        })
+      )
+    })
+
+    it('should NOT trust x-forwarded-for from untrusted IP', async () => {
+      mockEvent.node!.req.headers['x-forwarded-for'] = '192.168.1.1' // Would be allowed
+      mockEvent.node!.req.socket.remoteAddress = '1.2.3.4' // Untrusted public IP
+
+      await expect(middleware(mockEvent as H3Event)).rejects.toThrow()
+
+      expect(logger.error).toHaveBeenCalledWith(
+        'blog-api-auth',
+        expect.any(Error),
+        expect.objectContaining({
+          ip: '1.2.3.4', // Should use socket IP, not x-forwarded-for
+          reason: 'IP not allowed'
         })
       )
     })
@@ -227,10 +276,11 @@ describe('blog-api-auth middleware', () => {
       await expect(middleware(mockEvent as H3Event)).rejects.toThrow()
 
       expect(logger.error).toHaveBeenCalledWith(
-        'blog-api-auth',
+        'blog-api-auth-rate-limit',
         expect.any(Error),
         expect.objectContaining({
-          reason: 'Rate limit exceeded'
+          ip: '192.168.1.1',
+          limit: 100
         })
       )
     })
@@ -283,10 +333,14 @@ describe('blog-api-auth middleware', () => {
       vi.useRealTimers()
     })
 
-    it('should set rate limit headers', async () => {
+    it('should set rate limit headers on success', async () => {
       await middleware(mockEvent as H3Event)
 
       const mockSetHeader = mockEvent.node!.res.setHeader as any
+      expect(mockSetHeader).toHaveBeenCalledWith(
+        'X-RateLimit-Limit',
+        '100'
+      )
       expect(mockSetHeader).toHaveBeenCalledWith(
         'X-RateLimit-Remaining',
         expect.stringMatching(/^\d+$/)
@@ -295,6 +349,26 @@ describe('blog-api-auth middleware', () => {
         'X-RateLimit-Reset',
         expect.stringMatching(/^\d+$/)
       )
+    })
+
+    it('should set rate limit headers on 429 error', async () => {
+      // Make 100 requests
+      for (let i = 0; i < 100; i++) {
+        await middleware(mockEvent as H3Event)
+      }
+
+      // 101st request should fail but should have headers
+      try {
+        await middleware(mockEvent as H3Event)
+        expect.fail('Should have thrown 429 error')
+      } catch (error: any) {
+        expect(error.statusCode).toBe(429)
+      }
+
+      const mockSetHeader = mockEvent.node!.res.setHeader as any
+      expect(mockSetHeader).toHaveBeenCalledWith('X-RateLimit-Limit', '100')
+      expect(mockSetHeader).toHaveBeenCalledWith('X-RateLimit-Remaining', '0')
+      expect(mockSetHeader).toHaveBeenCalledWith('X-RateLimit-Reset', expect.stringMatching(/^\d+$/))
     })
   })
 
@@ -335,7 +409,7 @@ describe('blog-api-auth middleware', () => {
         expect.fail('Should have thrown error')
       } catch (error: any) {
         expect(error.statusCode).toBe(429)
-        expect(error.message).toContain('Too Many Requests')
+        expect(error.message).toContain('Too many requests')
       }
     })
   })
