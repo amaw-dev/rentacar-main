@@ -48,7 +48,7 @@ robots.txt
 .claude/
 .specify/
 advancedrentalcar/
-scripts/
+scripts/*/
 *.zip
 nul
 CLAUDE.md
