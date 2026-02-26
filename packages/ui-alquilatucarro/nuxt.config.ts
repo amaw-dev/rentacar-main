@@ -11,6 +11,10 @@ export default defineNuxtConfig({
 
   devtools: { enabled: false },
 
+  devServer: {
+    port: 3000
+  },
+
   // Component Islands: renderiza componentes estáticos sin hidratación Vue
   // Reduce JavaScript en el cliente para mejorar LCP
   // TEMPORALMENTE DESACTIVADO: Puede interferir con Pinia hydration
@@ -494,6 +498,7 @@ export default defineNuxtConfig({
     firebaseClientEmail: '',
     firebasePrivateKey: '',
     firebaseStorageBucket: '',
+    firebaseDatabaseUrl: '',
     // Blog API security config (server-only)
     // Override with NUXT_BLOG_API_* env vars
     blogApiKey: '',

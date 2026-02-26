@@ -61,7 +61,7 @@ alquilame_gsc/
 .worktrees/
 
 # AI Framework runtime files (auto-added)
-/.claude/
+/.claude/*
 /.specify/
 /CLAUDE.md
 /.playwright-mcp/
@@ -109,3 +109,10 @@ docs/seo/data/.tokens/
 
 # Build artifacts
 *.tsbuildinfo
+
+# AI Framework runtime files (auto-added)
+!/.claude/rules/
+/.ralph/
+
+# AI Framework runtime files (auto-added)
+/.claude/
