@@ -373,11 +373,10 @@ const slug = computed(() => {
   return Array.isArray(params) ? params.join('/') : params
 })
 
-// Fetch the blog post
+// Fetch the blog post from Firebase Storage via API (dynamic posts)
 const { data: post } = await useAsyncData(`blog-${slug.value}`, () =>
-  queryCollection<BlogPost>('blog')
-    .path(`/blog/${slug.value}`)
-    .first()
+  $fetch<BlogPost>(`/api/blog/post/${slug.value}`)
+    .catch(() => null)
 )
 
 // Fetch related posts (same category, excluding current)

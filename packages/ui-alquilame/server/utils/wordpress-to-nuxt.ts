@@ -163,7 +163,7 @@ function buildFrontmatter(data: {
   }
 
   if (data.alt) {
-    lines.push(`alt: "${escapeYaml(data.alt)}"`)
+    lines.push(`alt: ${data.alt}`)
   }
 
   lines.push('author:')

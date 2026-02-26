@@ -301,9 +301,8 @@ const slug = computed(() => {
 
 // Fetch the blog post
 const { data: post } = await useAsyncData(`blog-${slug.value}`, () =>
-  queryCollection<BlogPost>('blog')
-    .path(`/blog/${slug.value}`)
-    .first()
+  $fetch<BlogPost>(`/api/blog/post/${slug.value}`)
+    .catch(() => null)
 )
 
 // Fetch related posts (same category, excluding current)

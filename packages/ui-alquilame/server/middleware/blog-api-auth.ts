@@ -173,6 +173,7 @@ export default defineEventHandler(async (event) => {
   }
 
   if (ipUndetectable && !isDev) {
+    // In production, undetectable IP is suspicious — reject
     throw createError({
       statusCode: 403,
       message: 'Forbidden: IP not allowed'
