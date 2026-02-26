@@ -245,7 +245,39 @@ describe('wordpress-to-nuxt', () => {
       const result = transformWordPressToNuxt(wpPost)
 
       expect(result.frontmatter).toContain('image: https://example.com/image.jpg')
-      expect(result.frontmatter).toContain('alt: Test image')
+      expect(result.frontmatter).toContain('alt: "Test image"')
+    })
+
+    it('should quote alt text containing colon-space to prevent YAML parsing corruption', () => {
+      // Regression: "Renting de Carros en Colombia: Guía Completa 2023" as alt_text
+      // caused YAML to interpret "Colombia:" as a mapping key, absorbing all
+      // subsequent frontmatter fields (author, date, category...) into alt.
+      const wpPost: WordPressPost = {
+        id: 1,
+        title: { rendered: 'Renting de Carros en Colombia: Guía Completa 2023' },
+        content: { rendered: '<p>Content</p>' },
+        excerpt: { rendered: 'Test' },
+        date: '2026-02-13T10:30:00',
+        modified: '2026-02-13T12:00:00',
+        slug: 'renting-colombia',
+        _embedded: {
+          'wp:featuredmedia': [
+            {
+              source_url: 'https://example.com/image.jpg',
+              alt_text: 'Renting de Carros en Colombia: Guía Completa 2023'
+            }
+          ]
+        }
+      }
+
+      const result = transformWordPressToNuxt(wpPost)
+
+      // alt must be quoted so YAML parsers don't split on ": "
+      expect(result.frontmatter).toContain('alt: "Renting de Carros en Colombia: Guía Completa 2023"')
+      // All subsequent fields must still be present at top level (not absorbed into alt)
+      expect(result.frontmatter).toContain('author:')
+      expect(result.frontmatter).toContain('date: 2026-02-13T10:30:00')
+      expect(result.frontmatter).toContain('category: guias')
     })
 
     it('should handle missing featured media', () => {
