@@ -77,8 +77,7 @@ jobs:
                   "function": "rentacar_main_alquilatucarro",
                   "tag_prefix": "alquilatucarro-v",
                   "firebase_project": "rentacar-403321",
-                  "domain": "alquilatucarro.com",
-                  "port": 3000
+                  "domain": "alquilatucarro.com"
                 }]')
                 ;;
               alquilame)
@@ -89,8 +88,7 @@ jobs:
                   "function": "rentacar_main_alquilame",
                   "tag_prefix": "alquilame-v",
                   "firebase_project": "rentacar-403321",
-                  "domain": "alquilame.co",
-                  "port": 3001
+                  "domain": "alquilame.co"
                 }]')
                 ;;
               alquicarros)
@@ -101,8 +99,7 @@ jobs:
                   "function": "rentacar_main_alquicarros",
                   "tag_prefix": "alquicarros-v",
                   "firebase_project": "rentacar-403321",
-                  "domain": "alquicarros.com",
-                  "port": 3002
+                  "domain": "alquicarros.com"
                 }]')
                 ;;
             esac
