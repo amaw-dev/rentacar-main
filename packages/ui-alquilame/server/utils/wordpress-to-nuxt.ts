@@ -44,7 +44,7 @@ const CATEGORY_MAP: Record<string, string> = {
  * Default author information for blog posts
  */
 const DEFAULT_AUTHOR = {
-  name: 'Alquilatucarro',
+  name: 'Alquilame',
   avatar: 'https://storage.googleapis.com/rentacar-403321.appspot.com/assets/logo.png'
 }
 

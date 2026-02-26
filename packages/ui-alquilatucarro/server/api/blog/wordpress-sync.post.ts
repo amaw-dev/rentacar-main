@@ -25,6 +25,11 @@ export default defineEventHandler(async (event) => {
       throw new BlogApiError('Missing required fields: title, content, slug', 400)
     }
 
+    // Validate slug format to prevent path traversal
+    if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(wpPost.slug)) {
+      throw new BlogApiError('Invalid slug format: must be lowercase alphanumeric with hyphens', 400)
+    }
+
     // Log sync request
     logger.info('wordpress-sync-start', { slug: wpPost.slug, id: wpPost.id })
 

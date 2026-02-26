@@ -41,10 +41,10 @@ function getClientIp(event: any): string {
     ip = '127.0.0.1'
   }
 
-  // Only trust X-Forwarded-For from Firebase/GCP proxy ranges (private networks)
+  // Only trust X-Forwarded-For from Firebase/GCP proxy ranges (RFC1918 private networks)
   const isBehindTrustedProxy =
     ip.startsWith('10.') ||
-    ip.startsWith('172.') ||
+    /^172\.(1[6-9]|2\d|3[01])\./.test(ip) ||
     ip.startsWith('192.168.')
 
   if (isBehindTrustedProxy) {
@@ -115,8 +115,11 @@ async function checkRateLimit(clientIp: string): Promise<RateLimitResult> {
 
     return { allowed, remaining, resetAt }
   } catch {
-    // Firebase not available (e.g. local dev) — fail open
-    return { allowed: true, remaining: RATE_LIMIT_MAX_REQUESTS, resetAt: Date.now() + RATE_LIMIT_WINDOW }
+    // Firebase not available — fail open in dev only, fail closed in production
+    if (process.env.NODE_ENV === 'development') {
+      return { allowed: true, remaining: RATE_LIMIT_MAX_REQUESTS, resetAt: Date.now() + RATE_LIMIT_WINDOW }
+    }
+    return { allowed: false, remaining: 0, resetAt: Date.now() + RATE_LIMIT_WINDOW }
   }
 }
 

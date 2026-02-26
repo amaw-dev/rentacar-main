@@ -31,7 +31,12 @@ vi.mock('~/server/utils/logger', () => ({
 }))
 
 vi.mock('~/server/utils/error-handler', () => {
-  const { createError } = vi.importActual('h3') as any
+  const createError = (error: { statusCode: number; message: string; data?: any }) => {
+    const err = new Error(error.message) as any
+    err.statusCode = error.statusCode
+    err.data = error.data
+    return err
+  }
   return {
     BlogApiError: class BlogApiError extends Error {
       statusCode: number
@@ -59,6 +64,11 @@ vi.mock('~/server/utils/error-handler', () => {
     })
   }
 })
+
+// Stub Nitro auto-imports not available in test environment
+vi.stubGlobal('useRuntimeConfig', vi.fn(() => ({
+  public: { rentacarFranchise: 'alquilatucarro' }
+})))
 
 // Import handler after mocks
 import handler from '../wordpress-sync.post'
@@ -117,7 +127,7 @@ describe('POST /api/blog/wordpress-sync', () => {
     expect(transformWordPressToNuxt).toHaveBeenCalledWith(mockWordPressPost)
     expect(uploadToStorage).toHaveBeenCalledWith(
       expect.any(Buffer),
-      'blog-posts/test-post-title.md',
+      'blog-posts/alquilatucarro/test-post-title.md',
       'text/markdown'
     )
     expect(logger.info).toHaveBeenCalledWith('wordpress-sync-start', {
@@ -131,7 +141,7 @@ describe('POST /api/blog/wordpress-sync', () => {
     expect(result).toEqual({
       success: true,
       filename: 'test-post-title.md',
-      path: 'blog-posts/test-post-title.md',
+      path: 'blog-posts/alquilatucarro/test-post-title.md',
       size: expect.any(Number)
     })
   })
@@ -236,7 +246,7 @@ describe('POST /api/blog/wordpress-sync', () => {
 
     // Assert
     const uploadCall = vi.mocked(uploadToStorage).mock.calls[0]
-    expect(uploadCall[1]).toBe('blog-posts/test-post-title.md')
+    expect(uploadCall[1]).toBe('blog-posts/alquilatucarro/test-post-title.md')
     expect(uploadCall[2]).toBe('text/markdown')
   })
 
@@ -277,7 +287,7 @@ describe('POST /api/blog/wordpress-sync', () => {
     // Assert
     expect(result).toHaveProperty('success', true)
     expect(result).toHaveProperty('filename', 'test-post-title.md')
-    expect(result).toHaveProperty('path', 'blog-posts/test-post-title.md')
+    expect(result).toHaveProperty('path', 'blog-posts/alquilatucarro/test-post-title.md')
     expect(result).toHaveProperty('size')
     expect(typeof result.size).toBe('number')
   })
