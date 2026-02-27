@@ -470,6 +470,15 @@ export default defineNuxtConfig({
     gscClientId: '',
     gscClientSecret: '',
     gscRedirectUri: '',
+    // Firebase credentials (server-only for blog API)
+    firebaseProjectId: '',
+    firebaseClientEmail: '',
+    firebasePrivateKey: '',
+    firebaseStorageBucket: '',
+    firebaseDatabaseUrl: '',
+    // Blog API security
+    blogApiKey: '',
+    blogApiAllowedIps: '',
     // Public config (exposed to client)
     public: {
       rentacarFranchise: "alquicarros",

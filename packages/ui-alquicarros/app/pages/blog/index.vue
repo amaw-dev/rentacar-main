@@ -191,11 +191,10 @@ function setCategory(category: string) {
 }
 
 // Query all blog posts
-const { data: allPosts } = await useAsyncData('blog-posts', () =>
-  queryCollection<BlogPost>('blog')
-    .order('date', 'DESC')
-    .all()
-)
+const { data: allPosts } = await useAsyncData('blog-posts', async () => {
+  const result = await $fetch<{ success: boolean; posts: BlogPost[] }>('/api/blog/posts')
+  return result?.posts ?? []
+})
 
 // Get featured post (first featured=true or most recent)
 const featuredPost = computed(() => {
