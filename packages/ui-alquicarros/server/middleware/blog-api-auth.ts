@@ -9,6 +9,7 @@
  * Only applies to /api/blog/* endpoints (except public endpoints)
  */
 
+import { createHmac, timingSafeEqual } from 'crypto'
 import { getDatabase } from 'firebase-admin/database'
 import { logger } from '../utils/logger'
 
@@ -66,20 +67,15 @@ function isIpAllowed(ip: string, allowedIps: string[]): boolean {
 
 /**
  * Validate API key using constant-time comparison
- * Prevents timing attacks
+ * Prevents byte-by-byte and length timing attacks via HMAC normalization
  */
 function isApiKeyValid(apiKey: string | undefined, expectedKey: string): boolean {
-  if (!apiKey || apiKey.length !== expectedKey.length) {
-    return false
-  }
-
-  // Constant-time comparison
-  let result = 0
-  for (let i = 0; i < apiKey.length; i++) {
-    result |= apiKey.charCodeAt(i) ^ expectedKey.charCodeAt(i)
-  }
-
-  return result === 0
+  if (!apiKey) return false
+  // HMAC normalizes both inputs to fixed-length digest — eliminates length timing attack
+  const hmacKey = Buffer.alloc(32, 0)
+  const a = createHmac('sha256', hmacKey).update(apiKey).digest()
+  const b = createHmac('sha256', hmacKey).update(expectedKey).digest()
+  return timingSafeEqual(a, b)
 }
 
 /**

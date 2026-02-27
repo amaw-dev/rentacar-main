@@ -159,11 +159,11 @@ function buildFrontmatter(data: {
   lines.push(`description: "${escapeYaml(data.description)}"`)
 
   if (data.image) {
-    lines.push(`image: ${data.image}`)
+    lines.push(`image: "${escapeYaml(data.image)}"`)
   }
 
   if (data.alt) {
-    lines.push(`alt: ${data.alt}`)
+    lines.push(`alt: "${escapeYaml(data.alt)}"`)
   }
 
   lines.push('author:')

@@ -35,7 +35,7 @@ export default defineEventHandler(async (event) => {
           description: fm.description ?? '',
           image: fm.image ?? null,
           alt: fm.alt ?? null,
-          author: fm.author ?? { name: 'Alquilatucarro', avatar: '' },
+          author: fm.author ?? { name: 'Alquicarros', avatar: '' },
           date: fm.date ?? '',
           updated: fm.updated ?? null,
           category: fm.category ?? 'guias',

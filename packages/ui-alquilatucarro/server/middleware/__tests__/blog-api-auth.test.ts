@@ -11,10 +11,14 @@ const mockCreateError = vi.fn((options) => {
 })
 const mockDefineEventHandler = vi.fn((handler) => handler)
 
+// Mock getRequestIP (H3 auto-import not available in test environment)
+const mockGetRequestIP = vi.fn((event: any) => event?.node?.req?.socket?.remoteAddress || null)
+
 // Setup global mocks
 global.useRuntimeConfig = mockUseRuntimeConfig as any
 global.createError = mockCreateError as any
 global.defineEventHandler = mockDefineEventHandler as any
+global.getRequestIP = mockGetRequestIP as any
 
 // Mock Firebase Realtime Database - state storage per IP
 const rateLimitState: Record<string, { count: number; resetAt: number } | null> = {}

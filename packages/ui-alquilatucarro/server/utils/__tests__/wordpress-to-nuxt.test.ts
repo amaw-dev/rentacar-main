@@ -244,7 +244,7 @@ describe('wordpress-to-nuxt', () => {
 
       const result = transformWordPressToNuxt(wpPost)
 
-      expect(result.frontmatter).toContain('image: https://example.com/image.jpg')
+      expect(result.frontmatter).toContain('image: "https://example.com/image.jpg"')
       expect(result.frontmatter).toContain('alt: "Test image"')
     })
 
