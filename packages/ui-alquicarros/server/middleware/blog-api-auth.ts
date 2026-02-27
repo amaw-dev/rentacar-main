@@ -85,7 +85,9 @@ function isApiKeyValid(apiKey: string | undefined, expectedKey: string): boolean
 async function checkRateLimit(clientIp: string): Promise<RateLimitResult> {
   try {
     const db = getDatabase()
-    const rateLimitRef = db.ref(`blog-api/rate-limits/${clientIp}`)
+    // Sanitize IP for use as Firebase RTDB key: dots and slashes are path separators in RTDB
+    const safeIpKey = clientIp.replace(/[.#$[\]/]/g, '_')
+    const rateLimitRef = db.ref(`blog-api/rate-limits/${safeIpKey}`)
 
     const snapshot = await rateLimitRef.transaction((current) => {
       const now = Date.now()
