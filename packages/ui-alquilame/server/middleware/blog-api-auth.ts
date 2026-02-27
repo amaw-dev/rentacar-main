@@ -51,7 +51,10 @@ function getClientIp(event: any): string {
   if (isBehindTrustedProxy) {
     const forwardedFor = event.node.req.headers['x-forwarded-for']
     if (forwardedFor) {
-      return forwardedFor.split(',')[0].trim()
+      // Use rightmost IP: GCP load balancer appends the real client IP at the end.
+      // Leftmost is attacker-controlled and must not be trusted.
+      const ips = forwardedFor.split(',').map((s: string) => s.trim())
+      return ips[ips.length - 1]
     }
   }
 

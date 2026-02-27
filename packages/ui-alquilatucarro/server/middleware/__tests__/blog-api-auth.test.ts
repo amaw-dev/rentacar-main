@@ -188,8 +188,9 @@ describe('blog-api-auth middleware', () => {
       )
     })
 
-    it('should handle multiple IPs in x-forwarded-for (use first)', async () => {
-      mockEvent.node!.req.headers['x-forwarded-for'] = '192.168.1.1, 10.0.0.2, 127.0.0.1'
+    it('should handle multiple IPs in x-forwarded-for (use last/rightmost)', async () => {
+      // GCP LB appends the real client IP at the rightmost position; leftmost is attacker-controlled
+      mockEvent.node!.req.headers['x-forwarded-for'] = '10.0.0.2, 127.0.0.1, 192.168.1.1'
       mockEvent.node!.req.socket.remoteAddress = '172.16.0.1' // Trusted proxy
 
       const result = await middleware(mockEvent as H3Event)
@@ -198,7 +199,7 @@ describe('blog-api-auth middleware', () => {
       expect(logger.info).toHaveBeenCalledWith(
         'blog-api-auth',
         expect.objectContaining({
-          ip: '192.168.1.1'
+          ip: '192.168.1.1'  // rightmost = real client IP as appended by GCP load balancer
         })
       )
     })
