@@ -176,7 +176,8 @@ jobs:
       - name: Fix Firebase Functions dependencies
         working-directory: packages/${{ matrix.config.package }}/.output/server
         run: |
-          rm -rf node_modules
+          rm -rf node_modules package-lock.json
+          echo "libc=glibc" > .npmrc
           npm install --omit=dev
 
       - name: Deploy to Firebase Hosting
