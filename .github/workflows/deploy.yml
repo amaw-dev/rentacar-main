@@ -34,6 +34,14 @@ jobs:
         run: |
           BRANCH="${{ github.ref_name }}"
 
+          # Guard: workflow_dispatch is only permitted on protected branches
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            if [ "$BRANCH" != "main" ] && [ "$BRANCH" != "alquicarros" ]; then
+              echo "workflow_dispatch is only permitted on main or alquicarros branches"
+              exit 1
+            fi
+          fi
+
           # Get changed files
           if [ "${{ github.event.before }}" = "0000000000000000000000000000000000000000" ] || [ -z "${{ github.event.before }}" ]; then
             # First push to branch or before is empty, compare with HEAD~1
@@ -46,14 +54,6 @@ jobs:
           echo "$CHANGED_FILES"
 
           DEPLOY_BRANDS=()
-
-          # Guard: workflow_dispatch is only permitted on protected branches
-          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
-            if [ "$BRANCH" != "main" ] && [ "$BRANCH" != "alquicarros" ]; then
-              echo "workflow_dispatch is only permitted on main or alquicarros branches"
-              exit 1
-            fi
-          fi
 
           # Manual trigger: force deploy all brands
           if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${{ inputs.force_all_brands }}" = "true" ]; then
@@ -138,6 +138,12 @@ jobs:
             esac
           done
 
+          if [ "$BRANDS_JSON" = "[]" ]; then
+            echo "No brands detected for deployment."
+            if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+              echo "Manual trigger detected: use force_all_brands=true to force a full redeploy."
+            fi
+          fi
           echo "Brands to deploy: $BRANDS_JSON"
           echo "brands=$BRANDS_JSON" >> $GITHUB_OUTPUT
 
