@@ -39,13 +39,21 @@ jobs:
             # First push to branch or before is empty, compare with HEAD~1
             CHANGED_FILES=$(git diff --name-only HEAD~1 HEAD 2>/dev/null || echo "")
           else
-            CHANGED_FILES=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }})
+            CHANGED_FILES=$(git diff --name-only "${{ github.event.before }}" "${{ github.sha }}")
           fi
 
           echo "Changed files:"
           echo "$CHANGED_FILES"
 
           DEPLOY_BRANDS=()
+
+          # Guard: workflow_dispatch is only permitted on protected branches
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            if [ "$BRANCH" != "main" ] && [ "$BRANCH" != "alquicarros" ]; then
+              echo "workflow_dispatch is only permitted on main or alquicarros branches"
+              exit 1
+            fi
+          fi
 
           # Manual trigger: force deploy all brands
           if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${{ inputs.force_all_brands }}" = "true" ]; then
@@ -57,7 +65,7 @@ jobs:
           fi
 
           # Deploy workflow changed: pipeline fix needs all brands redeployed
-          if echo "$CHANGED_FILES" | grep -q "^\.github/workflows/deploy\.yml"; then
+          if echo "$CHANGED_FILES" | grep -q "^\.github/workflows/deploy\.yml$"; then
             if [ "$BRANCH" = "main" ]; then
               DEPLOY_BRANDS+=("alquilatucarro" "alquicarros" "alquilame")
             else
