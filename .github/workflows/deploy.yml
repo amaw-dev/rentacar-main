@@ -216,7 +216,16 @@ jobs:
         working-directory: packages/${{ matrix.config.package }}/.output/server
         run: |
           rm -rf node_modules package-lock.json
-          echo "libc=glibc" > .npmrc
+          # Remove musl-only sharp packages to prevent EBADPLATFORM on glibc runners.
+          # libc=glibc is a pnpm setting; npm ignores it, so we patch package.json directly.
+          node -e "
+          const fs = require('fs');
+          const pkg = JSON.parse(fs.readFileSync('package.json', 'utf8'));
+          const musl = ['@img/sharp-libvips-linuxmusl-x64','@img/sharp-libvips-linuxmusl-arm64','@img/sharp-linuxmusl-x64','@img/sharp-linuxmusl-arm64'];
+          musl.forEach(p => { delete (pkg.dependencies||{})[p]; delete (pkg.optionalDependencies||{})[p]; });
+          fs.writeFileSync('package.json', JSON.stringify(pkg, null, 2));
+          console.log('Removed musl packages:', musl.join(', '));
+          "
           npm install --omit=dev
 
       - name: Deploy to Firebase Hosting
