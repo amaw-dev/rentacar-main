@@ -5,6 +5,13 @@ on:
     branches:
       - main
       - alquicarros
+  workflow_dispatch:
+    inputs:
+      force_all_brands:
+        description: 'Force deploy all brands regardless of changed files'
+        required: false
+        type: boolean
+        default: false
 
 env:
   NODE_VERSION: '20'
@@ -40,26 +47,44 @@ jobs:
 
           DEPLOY_BRANDS=()
 
-          # Detect if logic package changed (affects all brands in scope)
+          # Manual trigger: force deploy all brands
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${{ inputs.force_all_brands }}" = "true" ]; then
+            if [ "$BRANCH" = "main" ]; then
+              DEPLOY_BRANDS+=("alquilatucarro" "alquicarros" "alquilame")
+            else
+              DEPLOY_BRANDS+=("alquicarros" "alquilame")
+            fi
+          fi
+
+          # Deploy workflow changed: pipeline fix needs all brands redeployed
+          if echo "$CHANGED_FILES" | grep -q "^\.github/workflows/deploy\.yml"; then
+            if [ "$BRANCH" = "main" ]; then
+              DEPLOY_BRANDS+=("alquilatucarro" "alquicarros" "alquilame")
+            else
+              DEPLOY_BRANDS+=("alquicarros" "alquilame")
+            fi
+          fi
+
+          # Logic package changed: affects all brands in scope
           if echo "$CHANGED_FILES" | grep -q "^packages/logic/"; then
             if [ "$BRANCH" = "main" ]; then
               DEPLOY_BRANDS+=("alquilatucarro" "alquicarros" "alquilame")
             else
               DEPLOY_BRANDS+=("alquicarros" "alquilame")
             fi
-          else
-            # Detect changes per specific UI package
-            if echo "$CHANGED_FILES" | grep -q "^packages/ui-alquilatucarro/"; then
-              [ "$BRANCH" = "main" ] && DEPLOY_BRANDS+=("alquilatucarro")
-            fi
+          fi
 
-            if echo "$CHANGED_FILES" | grep -q "^packages/ui-alquicarros/"; then
-              DEPLOY_BRANDS+=("alquicarros")
-            fi
+          # Specific UI package changes
+          if echo "$CHANGED_FILES" | grep -q "^packages/ui-alquilatucarro/"; then
+            [ "$BRANCH" = "main" ] && DEPLOY_BRANDS+=("alquilatucarro")
+          fi
 
-            if echo "$CHANGED_FILES" | grep -q "^packages/ui-alquilame/"; then
-              DEPLOY_BRANDS+=("alquilame")
-            fi
+          if echo "$CHANGED_FILES" | grep -q "^packages/ui-alquicarros/"; then
+            DEPLOY_BRANDS+=("alquicarros")
+          fi
+
+          if echo "$CHANGED_FILES" | grep -q "^packages/ui-alquilame/"; then
+            DEPLOY_BRANDS+=("alquilame")
           fi
 
           # Remove duplicates
