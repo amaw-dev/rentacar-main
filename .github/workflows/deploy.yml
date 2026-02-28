@@ -5,6 +5,13 @@ on:
     branches:
       - main
       - alquicarros
+  workflow_dispatch:
+    inputs:
+      force_all_brands:
+        description: 'Force deploy all brands regardless of changed files'
+        required: false
+        type: boolean
+        default: false
 
 env:
   NODE_VERSION: '20'
@@ -27,12 +34,20 @@ jobs:
         run: |
           BRANCH="${{ github.ref_name }}"
 
+          # Guard: workflow_dispatch is only permitted on protected branches
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            if [ "$BRANCH" != "main" ] && [ "$BRANCH" != "alquicarros" ]; then
+              echo "workflow_dispatch is only permitted on main or alquicarros branches"
+              exit 1
+            fi
+          fi
+
           # Get changed files
           if [ "${{ github.event.before }}" = "0000000000000000000000000000000000000000" ] || [ -z "${{ github.event.before }}" ]; then
             # First push to branch or before is empty, compare with HEAD~1
             CHANGED_FILES=$(git diff --name-only HEAD~1 HEAD 2>/dev/null || echo "")
           else
-            CHANGED_FILES=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }})
+            CHANGED_FILES=$(git diff --name-only "${{ github.event.before }}" "${{ github.sha }}")
           fi
 
           echo "Changed files:"
@@ -40,26 +55,44 @@ jobs:
 
           DEPLOY_BRANDS=()
 
-          # Detect if logic package changed (affects all brands in scope)
+          # Manual trigger: force deploy all brands
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${{ inputs.force_all_brands }}" = "true" ]; then
+            if [ "$BRANCH" = "main" ]; then
+              DEPLOY_BRANDS+=("alquilatucarro" "alquicarros" "alquilame")
+            else
+              DEPLOY_BRANDS+=("alquicarros" "alquilame")
+            fi
+          fi
+
+          # Deploy workflow changed: pipeline fix needs all brands redeployed
+          if echo "$CHANGED_FILES" | grep -q "^\.github/workflows/deploy\.yml$"; then
+            if [ "$BRANCH" = "main" ]; then
+              DEPLOY_BRANDS+=("alquilatucarro" "alquicarros" "alquilame")
+            else
+              DEPLOY_BRANDS+=("alquicarros" "alquilame")
+            fi
+          fi
+
+          # Logic package changed: affects all brands in scope
           if echo "$CHANGED_FILES" | grep -q "^packages/logic/"; then
             if [ "$BRANCH" = "main" ]; then
               DEPLOY_BRANDS+=("alquilatucarro" "alquicarros" "alquilame")
             else
               DEPLOY_BRANDS+=("alquicarros" "alquilame")
             fi
-          else
-            # Detect changes per specific UI package
-            if echo "$CHANGED_FILES" | grep -q "^packages/ui-alquilatucarro/"; then
-              [ "$BRANCH" = "main" ] && DEPLOY_BRANDS+=("alquilatucarro")
-            fi
+          fi
 
-            if echo "$CHANGED_FILES" | grep -q "^packages/ui-alquicarros/"; then
-              DEPLOY_BRANDS+=("alquicarros")
-            fi
+          # Specific UI package changes
+          if echo "$CHANGED_FILES" | grep -q "^packages/ui-alquilatucarro/"; then
+            [ "$BRANCH" = "main" ] && DEPLOY_BRANDS+=("alquilatucarro")
+          fi
 
-            if echo "$CHANGED_FILES" | grep -q "^packages/ui-alquilame/"; then
-              DEPLOY_BRANDS+=("alquilame")
-            fi
+          if echo "$CHANGED_FILES" | grep -q "^packages/ui-alquicarros/"; then
+            DEPLOY_BRANDS+=("alquicarros")
+          fi
+
+          if echo "$CHANGED_FILES" | grep -q "^packages/ui-alquilame/"; then
+            DEPLOY_BRANDS+=("alquilame")
           fi
 
           # Remove duplicates
@@ -105,6 +138,12 @@ jobs:
             esac
           done
 
+          if [ "$BRANDS_JSON" = "[]" ]; then
+            echo "No brands detected for deployment."
+            if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+              echo "Manual trigger detected: use force_all_brands=true to force a full redeploy."
+            fi
+          fi
           echo "Brands to deploy: $BRANDS_JSON"
           echo "brands=$BRANDS_JSON" >> $GITHUB_OUTPUT
 
