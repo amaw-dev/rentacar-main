@@ -228,6 +228,14 @@ jobs:
           "
           npm install --omit=dev
 
+      - name: Inject runtime env vars into Firebase Functions source
+        working-directory: packages/${{ matrix.config.package }}
+        run: |
+          # Firebase CLI deploys .env files from the functions source directory as
+          # runtime environment variables. nuxt build does not read .env.prod (wrong name),
+          # so private runtimeConfig (NUXT_FIREBASE_*) would be empty at runtime without this.
+          cp .env.prod .output/server/.env
+
       - name: Deploy to Firebase Hosting
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
