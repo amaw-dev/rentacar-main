@@ -37,6 +37,7 @@ vi.mock('#imports', () => ({
 vi.mock('../logger', () => ({
   logger: {
     info: vi.fn(),
+    warn: vi.fn(),
     error: vi.fn(),
     metric: vi.fn()
   }
@@ -276,6 +277,96 @@ describe('Firebase Storage Client', () => {
           privateKey: expect.stringContaining('\n')
         })
       )
+    })
+  })
+
+  describe('ADC (Application Default Credentials) init paths', () => {
+    it('should initialize without credential when no explicit creds are provided (ADC path)', async () => {
+      const { useRuntimeConfig } = await import('#imports')
+      vi.mocked(useRuntimeConfig).mockReturnValueOnce({
+        firebaseProjectId: '',
+        firebaseClientEmail: '',
+        firebasePrivateKey: '',
+        firebaseStorageBucket: 'my-bucket.firebasestorage.app',
+      } as ReturnType<typeof useRuntimeConfig>)
+
+      const { listFilesInStorage } = await import('../firebase-storage')
+      await listFilesInStorage('blog-posts/')
+
+      expect(mockInitializeApp).toHaveBeenCalledWith(
+        expect.objectContaining({ storageBucket: 'my-bucket.firebasestorage.app' })
+      )
+      // No credential field when using ADC
+      expect(mockInitializeApp).toHaveBeenCalledWith(
+        expect.not.objectContaining({ credential: expect.anything() })
+      )
+      expect(mockCert).not.toHaveBeenCalled()
+    })
+
+    it('should derive bucket from GCLOUD_PROJECT when firebaseStorageBucket is not set', async () => {
+      const { useRuntimeConfig } = await import('#imports')
+      vi.mocked(useRuntimeConfig).mockReturnValueOnce({
+        firebaseProjectId: '',
+        firebaseClientEmail: '',
+        firebasePrivateKey: '',
+        firebaseStorageBucket: '',
+      } as ReturnType<typeof useRuntimeConfig>)
+
+      const originalGcloudProject = process.env.GCLOUD_PROJECT
+      process.env.GCLOUD_PROJECT = 'my-gcp-project'
+
+      try {
+        const { listFilesInStorage } = await import('../firebase-storage')
+        await listFilesInStorage('blog-posts/')
+
+        expect(mockInitializeApp).toHaveBeenCalledWith(
+          expect.objectContaining({ storageBucket: 'my-gcp-project.firebasestorage.app' })
+        )
+      } finally {
+        process.env.GCLOUD_PROJECT = originalGcloudProject
+      }
+    })
+
+    it('should throw when neither firebaseStorageBucket nor GCLOUD_PROJECT is available', async () => {
+      const { useRuntimeConfig } = await import('#imports')
+      vi.mocked(useRuntimeConfig).mockReturnValueOnce({
+        firebaseProjectId: '',
+        firebaseClientEmail: '',
+        firebasePrivateKey: '',
+        firebaseStorageBucket: '',
+      } as ReturnType<typeof useRuntimeConfig>)
+
+      const originalGcloudProject = process.env.GCLOUD_PROJECT
+      delete process.env.GCLOUD_PROJECT
+
+      try {
+        const { BlogApiError } = await import('../error-handler')
+        const { listFilesInStorage } = await import('../firebase-storage')
+
+        await expect(listFilesInStorage('blog-posts/')).rejects.toThrow(BlogApiError)
+      } finally {
+        process.env.GCLOUD_PROJECT = originalGcloudProject
+      }
+    })
+
+    it('should log a warning when only partial credentials are present', async () => {
+      const { useRuntimeConfig } = await import('#imports')
+      vi.mocked(useRuntimeConfig).mockReturnValueOnce({
+        firebaseProjectId: 'my-project',
+        firebaseClientEmail: '',
+        firebasePrivateKey: '',
+        firebaseStorageBucket: 'my-bucket.firebasestorage.app',
+      } as ReturnType<typeof useRuntimeConfig>)
+
+      const { logger } = await import('../logger')
+      const { listFilesInStorage } = await import('../firebase-storage')
+      await listFilesInStorage('blog-posts/')
+
+      expect(logger.warn).toHaveBeenCalledWith(
+        'firebase-storage-init',
+        expect.objectContaining({ presentCount: 1 })
+      )
+      expect(mockCert).not.toHaveBeenCalled()
     })
   })
 })

@@ -23,30 +23,46 @@ function getFirebaseApp(): admin.app.App {
 
   const config = useRuntimeConfig()
 
-  // Validate required config
-  if (!config.firebaseProjectId || !config.firebaseClientEmail || !config.firebasePrivateKey || !config.firebaseStorageBucket) {
-    throw new BlogApiError(
-      'Firebase configuration incomplete',
-      500,
-      { missing: ['projectId', 'clientEmail', 'privateKey', 'storageBucket'].filter(key => !config[`firebase${key.charAt(0).toUpperCase()}${key.slice(1)}`]) }
-    )
+  // Only storageBucket is required. In Firebase Functions Gen 2 (Cloud Run),
+  // ADC (Application Default Credentials) handles auth automatically via the
+  // attached service account — no explicit credentials needed.
+  // Fallback: derive bucket from GCLOUD_PROJECT env var set by Cloud Run.
+  const bucket = (config.firebaseStorageBucket as string) ||
+    (process.env.GCLOUD_PROJECT ? `${process.env.GCLOUD_PROJECT}.firebasestorage.app` : '')
+
+  if (!bucket) {
+    throw new BlogApiError('Firebase Storage bucket not configured', 500, {})
   }
+
+  // Use explicit credentials only when ALL three are provided (e.g., local dev or cross-project).
+  // In Firebase Functions Gen 2 (Cloud Run), ADC handles auth without explicit credentials.
+  const presentCreds = [config.firebaseProjectId, config.firebaseClientEmail, config.firebasePrivateKey]
+    .filter(Boolean).length
+  if (presentCreds > 0 && presentCreds < 3) {
+    logger.warn('firebase-storage-init', {
+      message: 'Partial Firebase credentials detected — falling back to ADC. Check CI secrets.',
+      presentCount: presentCreds,
+    })
+  }
+  const hasExplicitCreds = presentCreds === 3
 
   try {
     app = admin.initializeApp({
-      credential: admin.credential.cert({
-        projectId: config.firebaseProjectId,
-        clientEmail: config.firebaseClientEmail,
-        // Handle newline characters (environment variables may escape them)
-        privateKey: config.firebasePrivateKey.replace(/\\n/g, '\n')
-      }),
-      storageBucket: config.firebaseStorageBucket,
-      ...(config.firebaseDatabaseUrl ? { databaseURL: config.firebaseDatabaseUrl } : {})
+      storageBucket: bucket,
+      ...(hasExplicitCreds ? {
+        credential: admin.credential.cert({
+          projectId: config.firebaseProjectId as string,
+          clientEmail: config.firebaseClientEmail as string,
+          // Handle newline characters (environment variables may escape them)
+          privateKey: (config.firebasePrivateKey as string).replace(/\\n/g, '\n')
+        })
+      } : {}),
+      ...(config.firebaseDatabaseUrl ? { databaseURL: config.firebaseDatabaseUrl as string } : {})
     })
 
     logger.info('firebase-storage-init', {
-      bucket: config.firebaseStorageBucket,
-      projectId: config.firebaseProjectId
+      bucket,
+      usingADC: !hasExplicitCreds
     })
 
     return app
