@@ -1,20 +1,16 @@
 import { listFilesInStorage } from '../../utils/firebase-storage'
 
 /**
- * GET /api/blog/debug?key=<blogApiKey>
+ * GET /api/blog/debug
  *
  * Temporary diagnostic endpoint — exposes Firebase config state and storage
  * listing result to diagnose why /api/blog/posts returns count: 0.
  *
- * Protected by blogApiKey query param. Remove after debugging is complete.
+ * Protected by the blog-api-auth middleware (X-API-Key header + IP whitelist).
+ * Remove after debugging is complete.
  */
-export default defineEventHandler(async (event) => {
+export default defineEventHandler(async (_event) => {
   const config = useRuntimeConfig()
-  const { key } = getQuery(event)
-
-  if (!key || key !== config.blogApiKey) {
-    throw createError({ statusCode: 401, message: 'Unauthorized' })
-  }
 
   const diagnostics: Record<string, unknown> = {
     timestamp: new Date().toISOString(),
