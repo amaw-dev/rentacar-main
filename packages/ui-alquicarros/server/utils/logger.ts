@@ -26,6 +26,15 @@ export const logger = {
     }))
   },
 
+  warn: (operation: string, data?: any) => {
+    console.warn(JSON.stringify({
+      level: 'WARN',
+      timestamp: new Date().toISOString(),
+      operation,
+      data
+    }))
+  },
+
   metric: (operation: string, duration: number, metadata?: any) => {
     console.log(JSON.stringify({
       level: 'METRIC',
