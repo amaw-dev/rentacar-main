@@ -610,24 +610,7 @@ export default defineNuxtConfig({
         '/gana',
         '/gana/terminos-condiciones',
         '/gana/politicas-privacidad',
-        // Blog
-        '/blog',
-        '/blog/requisitos-alquilar-carro-colombia',
-        '/blog/pico-y-placa-colombia-2026',
-        '/blog/tipos-carros-alquilar-cual-elegir',
-        '/blog/rutas-carro-desde-bogota',
-        '/blog/eje-cafetero-en-carro-guia-completa',
-        '/blog/costa-caribe-cartagena-santa-marta-carro',
-        '/blog/viajar-carro-con-ninos-colombia',
-        '/blog/viajar-por-carretera-colombia-guia',
-        '/blog/precios-alquiler-carros-colombia',
-        '/blog/mejores-destinos-viajar-carro-colombia',
-        '/blog/turismo-santander-en-carro',
-        '/blog/turismo-boyaca-en-carro',
-        '/blog/alquilar-carro-bogota-guia',
-        '/blog/alquilar-carro-medellin-guia',
-        '/blog/alquilar-carro-cartagena-guia',
-        '/blog/rutas-carro-desde-medellin',
+        // Blog — SSR (not prerendered: content comes from Firebase Storage at runtime)
       ]
     }
   },
