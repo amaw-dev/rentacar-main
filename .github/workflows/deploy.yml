@@ -202,7 +202,7 @@ jobs:
           echo "NUXT_GSC_CLIENT_SECRET=${{ secrets.GSC_CLIENT_SECRET }}" >> .env.prod
           echo "NUXT_GSC_REDIRECT_URI=https://${{ matrix.config.domain }}/api/auth/gsc/callback" >> .env.prod
           echo "NUXT_FIREBASE_PROJECT_ID=${{ matrix.config.firebase_project }}" >> .env.prod
-          echo "NUXT_FIREBASE_STORAGE_BUCKET=${{ matrix.config.firebase_project }}.appspot.com" >> .env.prod
+          echo "NUXT_FIREBASE_STORAGE_BUCKET=${{ matrix.config.firebase_project }}.firebasestorage.app" >> .env.prod
           echo "NUXT_FIREBASE_DATABASE_URL=https://${{ matrix.config.firebase_project }}-default-rtdb.firebaseio.com" >> .env.prod
           echo "NUXT_FIREBASE_CLIENT_EMAIL=${{ secrets.FIREBASE_CLIENT_EMAIL }}" >> .env.prod
           echo "NUXT_FIREBASE_PRIVATE_KEY=${{ secrets.FIREBASE_PRIVATE_KEY }}" >> .env.prod
@@ -231,9 +231,10 @@ jobs:
       - name: Inject runtime env vars into Firebase Functions source
         working-directory: packages/${{ matrix.config.package }}
         run: |
-          # Firebase CLI deploys .env files from the functions source directory as
-          # runtime environment variables. nuxt build does not read .env.prod (wrong name),
-          # so private runtimeConfig (NUXT_FIREBASE_*) would be empty at runtime without this.
+          # Firebase CLI reads .env from the firebase.json directory (Gen 2 / Cloud Run)
+          # and from the functions source directory (Gen 1). Copy to both locations
+          # to be safe. nuxt build does not read .env.prod (non-standard name).
+          cp .env.prod .env
           cp .env.prod .output/server/.env
 
       - name: Deploy to Firebase Hosting
