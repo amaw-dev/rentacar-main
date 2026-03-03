@@ -24,7 +24,7 @@ export default defineEventHandler(async (event) => {
       firebasePrivateKey: config.firebasePrivateKey
         ? `SET (${(config.firebasePrivateKey as string).length} chars)`
         : 'MISSING',
-      firebaseStorageBucket: (config.firebaseStorageBucket as string) || 'MISSING',
+      firebaseStorageBucket: config.firebaseStorageBucket ? 'SET' : 'MISSING',
       franchise: config.public.rentacarFranchise,
     },
   }
@@ -37,7 +37,6 @@ export default defineEventHandler(async (event) => {
       success: true,
       prefix,
       count: files.length,
-      sample: files.slice(0, 5),
     }
   } catch (error) {
     diagnostics.storage = {

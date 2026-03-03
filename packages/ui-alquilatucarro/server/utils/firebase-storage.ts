@@ -36,7 +36,15 @@ function getFirebaseApp(): admin.app.App {
 
   // Use explicit credentials only when ALL three are provided (e.g., local dev or cross-project).
   // In Firebase Functions Gen 2 (Cloud Run), ADC handles auth without explicit credentials.
-  const hasExplicitCreds = config.firebaseProjectId && config.firebaseClientEmail && config.firebasePrivateKey
+  const presentCreds = [config.firebaseProjectId, config.firebaseClientEmail, config.firebasePrivateKey]
+    .filter(Boolean).length
+  if (presentCreds > 0 && presentCreds < 3) {
+    logger.warn('firebase-storage-init', {
+      message: 'Partial Firebase credentials detected — falling back to ADC. Check CI secrets.',
+      presentCount: presentCreds,
+    })
+  }
+  const hasExplicitCreds = presentCreds === 3
 
   try {
     app = admin.initializeApp({
