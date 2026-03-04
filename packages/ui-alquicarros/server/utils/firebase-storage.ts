@@ -14,9 +14,11 @@ export function _resetAppForTesting() {
 }
 
 /**
- * Get or initialize Firebase Admin app (singleton pattern)
+ * Get or initialize Firebase Admin app (singleton pattern).
+ * Exported so other server utilities (e.g. middleware) can guarantee Firebase
+ * is initialized before calling firebase-admin services directly.
  */
-function getFirebaseApp(): admin.app.App {
+export function getFirebaseApp(): admin.app.App {
   if (app) {
     return app
   }

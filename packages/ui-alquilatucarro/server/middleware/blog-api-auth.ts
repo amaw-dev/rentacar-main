@@ -2,16 +2,16 @@
  * Blog API Security Middleware
  *
  * Protection layers:
- * 1. IP whitelist validation
- * 2. API key authentication
- * 3. Rate limiting (100 requests/hour per IP)
+ * 1. API key authentication (X-Api-Key header)
+ * 2. Rate limiting (100 requests/hour per IP, backed by Firebase RTDB)
  *
- * Only applies to /api/blog/* endpoints (except public endpoints)
+ * Only applies to /api/blog/* endpoints (except public read endpoints).
  */
 
 import { createHmac, timingSafeEqual } from 'crypto'
 import { getDatabase } from 'firebase-admin/database'
 import { logger } from '../utils/logger'
+import { getFirebaseApp } from '../utils/firebase-storage'
 
 // Rate limit constants
 const RATE_LIMIT_WINDOW = 60 * 60 * 1000 // 1 hour in ms
@@ -62,13 +62,6 @@ function getClientIp(event: any): string {
 }
 
 /**
- * Check if IP is in whitelist
- */
-function isIpAllowed(ip: string, allowedIps: string[]): boolean {
-  return allowedIps.includes(ip)
-}
-
-/**
  * Validate API key using constant-time comparison
  * Prevents byte-by-byte and length timing attacks via HMAC normalization
  */
@@ -87,6 +80,8 @@ function isApiKeyValid(apiKey: string | undefined, expectedKey: string): boolean
  */
 async function checkRateLimit(clientIp: string): Promise<RateLimitResult> {
   try {
+    // Ensure Firebase is initialized before accessing the database
+    getFirebaseApp()
     const db = getDatabase()
     // Sanitize IP for use as Firebase RTDB key: dots and slashes are path separators in RTDB
     const safeIpKey = clientIp.replace(/[.#$[\]/]/g, '_')
@@ -116,11 +111,8 @@ async function checkRateLimit(clientIp: string): Promise<RateLimitResult> {
 
     return { allowed, remaining, resetAt }
   } catch {
-    // Firebase not available — fail open in dev only, fail closed in production
-    if (process.env.NODE_ENV === 'development') {
-      return { allowed: true, remaining: RATE_LIMIT_MAX_REQUESTS, resetAt: Date.now() + RATE_LIMIT_WINDOW }
-    }
-    return { allowed: false, remaining: 0, resetAt: Date.now() + RATE_LIMIT_WINDOW }
+    // Firebase not available — fail open (rate limiting disabled, auth still enforced via API key)
+    return { allowed: true, remaining: RATE_LIMIT_MAX_REQUESTS, resetAt: Date.now() + RATE_LIMIT_WINDOW }
   }
 }
 
@@ -143,47 +135,18 @@ export default defineEventHandler(async (event) => {
   // Get runtime config
   const config = useRuntimeConfig()
 
-  // Validate configuration
-  if (!config.blogApiKey || !config.blogApiAllowedIps) {
+  // Validate configuration — only API key required (no IP whitelist)
+  if (!config.blogApiKey) {
     throw createError({
       statusCode: 500,
       message: 'Blog API not configured properly'
     })
   }
 
-  // Extract client IP
+  // Extract client IP (for rate limiting and logging)
   const clientIp = getClientIp(event)
 
-  // Parse allowed IPs
-  const allowedIps = config.blogApiAllowedIps.split(',').map((ip: string) => ip.trim())
-
-  // 1. IP Whitelist validation
-  // In Nitro dev server the socket is an internal IPC — remoteAddress is unavailable.
-  // Skip IP check only when undetectable in development; production always enforces it.
-  const ipUndetectable = clientIp === 'unknown'
-  const isDev = process.env.NODE_ENV === 'development'
-
-  if (!ipUndetectable && !isIpAllowed(clientIp, allowedIps)) {
-    logger.error('blog-api-auth', new Error('IP not allowed'), {
-      ip: clientIp,
-      path: event.path,
-      reason: 'IP not allowed'
-    })
-
-    throw createError({
-      statusCode: 403,
-      message: 'Forbidden: IP not allowed'
-    })
-  }
-
-  if (ipUndetectable && !isDev) {
-    throw createError({
-      statusCode: 403,
-      message: 'Forbidden: IP not allowed'
-    })
-  }
-
-  // 2. API Key validation
+  // 1. API Key validation
   const apiKey = event.node.req.headers['x-api-key'] as string | undefined
   if (!isApiKeyValid(apiKey, config.blogApiKey)) {
     logger.error('blog-api-auth', new Error('Invalid API key'), {
@@ -198,7 +161,7 @@ export default defineEventHandler(async (event) => {
     })
   }
 
-  // 3. Rate limiting
+  // 2. Rate limiting
   const rateLimitResult = await checkRateLimit(clientIp)
 
   // Set headers BEFORE checking if allowed (ensure headers on ALL responses)
