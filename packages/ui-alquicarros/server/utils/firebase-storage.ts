@@ -175,6 +175,38 @@ export async function downloadFromStorage(path: string): Promise<Buffer> {
 }
 
 /**
+ * Delete a file from Firebase Storage
+ * @param path File path in storage (e.g., "blog-posts/franchise/my-post.md")
+ * @throws BlogApiError 404 if file does not exist, 500 on storage error
+ */
+export async function deleteFromStorage(path: string): Promise<void> {
+  const startTime = Date.now()
+
+  try {
+    const bucket = getFirebaseApp().storage().bucket()
+    const file = bucket.file(path)
+
+    const [exists] = await file.exists()
+    if (!exists) {
+      throw new BlogApiError('File not found in storage', 404, { path })
+    }
+
+    await file.delete()
+
+    logger.metric('firebase-storage-delete', Date.now() - startTime, { path })
+  } catch (error) {
+    if (error instanceof BlogApiError) throw error
+
+    logger.error('firebase-storage-delete', error, { path })
+    throw new BlogApiError(
+      'Failed to delete file from storage',
+      500,
+      { path, error: error instanceof Error ? error.message : String(error) }
+    )
+  }
+}
+
+/**
  * List all files with a specific prefix in Firebase Storage
  * @param prefix Path prefix (e.g., "blog-posts/" or "blog-images/featured/")
  * @returns Array of file paths
