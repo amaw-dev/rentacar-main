@@ -47,6 +47,10 @@ export default defineEventHandler(async (event) => {
     const bucket = (config.firebaseStorageBucket as string) ||
       (process.env.GCLOUD_PROJECT ? `${process.env.GCLOUD_PROJECT}.firebasestorage.app` : '')
 
+    if (!bucket) {
+      logger.error('blog-delete-config', new Error('firebaseStorageBucket not configured — images will not be deleted'), { slug })
+    }
+
     const postPath = `blog-posts/${franchise}/${slug}.md`
 
     logger.info('blog-delete-start', { slug, postPath })
