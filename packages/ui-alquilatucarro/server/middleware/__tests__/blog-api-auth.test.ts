@@ -20,10 +20,14 @@ global.createError = mockCreateError as any
 global.defineEventHandler = mockDefineEventHandler as any
 global.getRequestIP = mockGetRequestIP as any
 
+// Mock firebase-storage (avoids #imports Nuxt virtual module not available in tests)
+vi.mock('../../utils/firebase-storage', () => ({
+  getFirebaseApp: vi.fn(() => ({}))
+}))
+
 // Mock Firebase Realtime Database - state storage per IP
 const rateLimitState: Record<string, { count: number; resetAt: number } | null> = {}
 
-const mockTransaction = vi.fn()
 const mockRef = vi.fn((path: string) => {
   // Extract IP from path: blog-api/rate-limits/{ip}
   const ip = path.split('/').pop() || 'unknown'
@@ -53,7 +57,8 @@ vi.mock('firebase-admin/database', () => ({
 vi.mock('../../utils/logger', () => ({
   logger: {
     info: vi.fn(),
-    error: vi.fn()
+    error: vi.fn(),
+    warn: vi.fn()
   }
 }))
 
@@ -74,14 +79,13 @@ describe('blog-api-auth middleware', () => {
     // Mock runtime config
     mockUseRuntimeConfig.mockReturnValue({
       blogApiKey: 'test-key-abc',
-      blogApiAllowedIps: '192.168.1.1,10.0.0.1'
     })
 
     // Import middleware fresh for each test
     const module = await import('../blog-api-auth')
     middleware = module.default
 
-    // Create mock event
+    // Create mock event — remoteAddress can be any IP (no whitelist)
     mockEvent = {
       path: '/api/blog/upload',
       node: {
@@ -90,7 +94,7 @@ describe('blog-api-auth middleware', () => {
             'x-api-key': 'test-key-abc'
           },
           socket: {
-            remoteAddress: '192.168.1.1'
+            remoteAddress: '1.2.3.4'
           }
         },
         res: {
@@ -123,6 +127,24 @@ describe('blog-api-auth middleware', () => {
       expect(logger.info).not.toHaveBeenCalled()
     })
 
+    it('should skip posts endpoint (public)', async () => {
+      mockEvent.path = '/api/blog/posts'
+
+      const result = await middleware(mockEvent as H3Event)
+
+      expect(result).toBeUndefined()
+      expect(logger.info).not.toHaveBeenCalled()
+    })
+
+    it('should skip dynamic post endpoint (public)', async () => {
+      mockEvent.path = '/api/blog/post/my-slug'
+
+      const result = await middleware(mockEvent as H3Event)
+
+      expect(result).toBeUndefined()
+      expect(logger.info).not.toHaveBeenCalled()
+    })
+
     it('should apply security to /api/blog/* endpoints', async () => {
       mockEvent.path = '/api/blog/upload'
 
@@ -132,49 +154,24 @@ describe('blog-api-auth middleware', () => {
       expect(logger.info).toHaveBeenCalledWith(
         'blog-api-auth',
         expect.objectContaining({
-          ip: '192.168.1.1',
           path: '/api/blog/upload'
         })
       )
     })
   })
 
-  describe('IP whitelist validation', () => {
-    it('should allow whitelisted IP', async () => {
-      mockEvent.node!.req.socket.remoteAddress = '192.168.1.1'
-
-      const result = await middleware(mockEvent as H3Event)
-
-      expect(result).toBeUndefined()
-      expect(logger.error).not.toHaveBeenCalled()
-    })
-
-    it('should allow second whitelisted IP', async () => {
-      mockEvent.node!.req.socket.remoteAddress = '10.0.0.1'
-
-      const result = await middleware(mockEvent as H3Event)
-
-      expect(result).toBeUndefined()
-      expect(logger.error).not.toHaveBeenCalled()
-    })
-
-    it('should reject non-whitelisted IP', async () => {
+  describe('IP extraction (for rate limiting and logging)', () => {
+    it('should allow requests from any IP with valid API key', async () => {
       mockEvent.node!.req.socket.remoteAddress = '1.2.3.4'
 
-      await expect(middleware(mockEvent as H3Event)).rejects.toThrow()
+      const result = await middleware(mockEvent as H3Event)
 
-      expect(logger.error).toHaveBeenCalledWith(
-        'blog-api-auth',
-        expect.any(Error),
-        expect.objectContaining({
-          ip: '1.2.3.4',
-          reason: 'IP not allowed'
-        })
-      )
+      expect(result).toBeUndefined()
+      expect(logger.error).not.toHaveBeenCalled()
     })
 
     it('should extract IP from x-forwarded-for header when behind trusted proxy', async () => {
-      mockEvent.node!.req.headers['x-forwarded-for'] = '10.0.0.1'
+      mockEvent.node!.req.headers['x-forwarded-for'] = '203.0.113.42'
       mockEvent.node!.req.socket.remoteAddress = '10.1.2.3' // Trusted proxy (private network)
 
       const result = await middleware(mockEvent as H3Event)
@@ -183,14 +180,14 @@ describe('blog-api-auth middleware', () => {
       expect(logger.info).toHaveBeenCalledWith(
         'blog-api-auth',
         expect.objectContaining({
-          ip: '10.0.0.1'
+          ip: '203.0.113.42'
         })
       )
     })
 
     it('should handle multiple IPs in x-forwarded-for (use last/rightmost)', async () => {
       // GCP LB appends the real client IP at the rightmost position; leftmost is attacker-controlled
-      mockEvent.node!.req.headers['x-forwarded-for'] = '10.0.0.2, 127.0.0.1, 192.168.1.1'
+      mockEvent.node!.req.headers['x-forwarded-for'] = '10.0.0.2, 127.0.0.1, 203.0.113.42'
       mockEvent.node!.req.socket.remoteAddress = '172.16.0.1' // Trusted proxy
 
       const result = await middleware(mockEvent as H3Event)
@@ -199,23 +196,23 @@ describe('blog-api-auth middleware', () => {
       expect(logger.info).toHaveBeenCalledWith(
         'blog-api-auth',
         expect.objectContaining({
-          ip: '192.168.1.1'  // rightmost = real client IP as appended by GCP load balancer
+          ip: '203.0.113.42'  // rightmost = real client IP as appended by GCP load balancer
         })
       )
     })
 
     it('should NOT trust x-forwarded-for from untrusted IP', async () => {
-      mockEvent.node!.req.headers['x-forwarded-for'] = '192.168.1.1' // Would be allowed
-      mockEvent.node!.req.socket.remoteAddress = '1.2.3.4' // Untrusted public IP
+      mockEvent.node!.req.headers['x-forwarded-for'] = '203.0.113.99'
+      mockEvent.node!.req.socket.remoteAddress = '5.6.7.8' // Untrusted public IP
 
-      await expect(middleware(mockEvent as H3Event)).rejects.toThrow()
+      const result = await middleware(mockEvent as H3Event)
 
-      expect(logger.error).toHaveBeenCalledWith(
+      // Still passes (no whitelist), but uses socket IP for logging
+      expect(result).toBeUndefined()
+      expect(logger.info).toHaveBeenCalledWith(
         'blog-api-auth',
-        expect.any(Error),
         expect.objectContaining({
-          ip: '1.2.3.4', // Should use socket IP, not x-forwarded-for
-          reason: 'IP not allowed'
+          ip: '5.6.7.8', // Should use socket IP, not x-forwarded-for
         })
       )
     })
@@ -284,7 +281,6 @@ describe('blog-api-auth middleware', () => {
         'blog-api-auth-rate-limit',
         expect.any(Error),
         expect.objectContaining({
-          ip: '192.168.1.1',
           limit: 100
         })
       )
@@ -297,7 +293,7 @@ describe('blog-api-auth middleware', () => {
         node: {
           req: {
             headers: { 'x-api-key': 'test-key-abc' },
-            socket: { remoteAddress: '10.0.0.1' }
+            socket: { remoteAddress: '9.8.7.6' }
           },
           res: {
             setHeader: vi.fn()
@@ -390,18 +386,6 @@ describe('blog-api-auth middleware', () => {
       }
     })
 
-    it('should return 403 for non-whitelisted IP', async () => {
-      mockEvent.node!.req.socket.remoteAddress = '1.2.3.4'
-
-      try {
-        await middleware(mockEvent as H3Event)
-        expect.fail('Should have thrown error')
-      } catch (error: any) {
-        expect(error.statusCode).toBe(403)
-        expect(error.message).toContain('Forbidden')
-      }
-    })
-
     it('should return 429 for rate limit exceeded', async () => {
       // Make 100 requests
       for (let i = 0; i < 100; i++) {
@@ -423,7 +407,6 @@ describe('blog-api-auth middleware', () => {
     it('should throw 500 if API key not configured', async () => {
       mockUseRuntimeConfig.mockReturnValue({
         blogApiKey: '',
-        blogApiAllowedIps: '192.168.1.1'
       })
 
       // Re-import middleware with new config
@@ -440,10 +423,10 @@ describe('blog-api-auth middleware', () => {
       }
     })
 
-    it('should throw 500 if allowed IPs not configured', async () => {
+    it('should succeed even if blogApiAllowedIps is not configured (no longer required)', async () => {
       mockUseRuntimeConfig.mockReturnValue({
         blogApiKey: 'test-key-abc',
-        blogApiAllowedIps: ''
+        blogApiAllowedIps: '' // not required anymore
       })
 
       // Re-import middleware with new config
@@ -451,13 +434,8 @@ describe('blog-api-auth middleware', () => {
       const module = await import('../blog-api-auth')
       const freshMiddleware = module.default
 
-      try {
-        await freshMiddleware(mockEvent as H3Event)
-        expect.fail('Should have thrown error')
-      } catch (error: any) {
-        expect(error.statusCode).toBe(500)
-        expect(error.message).toContain('not configured')
-      }
+      const result = await freshMiddleware(mockEvent as H3Event)
+      expect(result).toBeUndefined() // Should pass — no IP whitelist
     })
   })
 })
