@@ -11,6 +11,14 @@ export default defineNitroPlugin((nitroApp) => {
   logger.info('content-dynamic-loader', { status: 'initialized', ttl: '5min' })
 })
 
+/**
+ * Invalidate the in-memory post cache.
+ * Call after mutating blog posts in storage so the next request fetches fresh data.
+ */
+export function invalidateCache(): void {
+  cache.lastFetch = 0
+}
+
 export async function loadDynamicPosts(): Promise<any[]> {
   const now = Date.now()
 

@@ -136,13 +136,33 @@ describe('blog-api-auth middleware', () => {
       expect(logger.info).not.toHaveBeenCalled()
     })
 
-    it('should skip dynamic post endpoint (public)', async () => {
+    it('should skip dynamic post endpoint for GET (public read)', async () => {
       mockEvent.path = '/api/blog/post/my-slug'
+      mockEvent.method = 'GET'
 
       const result = await middleware(mockEvent as H3Event)
 
       expect(result).toBeUndefined()
       expect(logger.info).not.toHaveBeenCalled()
+    })
+
+    it('should NOT bypass auth for DELETE /api/blog/post/:slug', async () => {
+      mockUseRuntimeConfig.mockReturnValue({ blogApiKey: 'test-key-abc' })
+
+      const mockEvent = {
+        path: '/api/blog/post/my-post',
+        method: 'DELETE',
+        node: {
+          req: {
+            headers: {}, // No X-Api-Key header
+            socket: { remoteAddress: '127.0.0.1' }
+          },
+          res: { setHeader: vi.fn() }
+        }
+      }
+
+      const freshMiddleware = (await import('../../middleware/blog-api-auth')).default
+      await expect(freshMiddleware(mockEvent as H3Event)).rejects.toThrow()
     })
 
     it('should apply security to /api/blog/* endpoints', async () => {

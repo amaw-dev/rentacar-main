@@ -41,3 +41,11 @@ export async function loadDynamicPosts(): Promise<any[]> {
     return cache.posts // Return stale cache on error
   }
 }
+
+/**
+ * Invalidate the in-memory post cache.
+ * Call after mutating blog posts in storage so the next request fetches fresh data.
+ */
+export function invalidateCache(): void {
+  cache.lastFetch = 0
+}
