@@ -206,7 +206,7 @@ jobs:
           echo "NUXT_FIREBASE_DATABASE_URL=https://${{ matrix.config.firebase_project }}-default-rtdb.firebaseio.com" >> .env.prod
           echo "NUXT_FIREBASE_CLIENT_EMAIL=${{ secrets.FIREBASE_CLIENT_EMAIL }}" >> .env.prod
           echo "NUXT_FIREBASE_PRIVATE_KEY=${{ secrets.FIREBASE_PRIVATE_KEY }}" >> .env.prod
-          echo "NUXT_BLOG_API_KEY=${{ secrets.BLOG_API_KEY }}" >> .env.prod
+          echo "NUXT_BLOG_API_KEY=${{ secrets.NUXT_BLOG_API_KEY }}" >> .env.prod
           echo "NUXT_BLOG_API_ALLOWED_IPS=${{ secrets.BLOG_API_ALLOWED_IPS }}" >> .env.prod
 
       - name: Build ${{ matrix.config.name }}
