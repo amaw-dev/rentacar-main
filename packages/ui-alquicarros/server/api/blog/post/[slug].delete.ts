@@ -8,8 +8,9 @@ import { BlogApiError, handleBlogApiError } from '../../../utils/error-handler'
  * Matches: https://storage.googleapis.com/{bucket}/blog-images/{type}/{filename}
  */
 function extractImagePaths(markdownContent: string, bucketName: string): string[] {
+  const escapedBucket = bucketName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
   const urlPattern = new RegExp(
-    `https://storage\\.googleapis\\.com/${bucketName}/(blog-images/[^\\s)"']+)`,
+    `https://storage\\.googleapis\\.com/${escapedBucket}/(blog-images/[^\\s)"']+)`,
     'g'
   )
   const paths: string[] = []
@@ -47,8 +48,9 @@ export default defineEventHandler(async (event) => {
     const bucket = (config.firebaseStorageBucket as string) ||
       (process.env.GCLOUD_PROJECT ? `${process.env.GCLOUD_PROJECT}.firebasestorage.app` : '')
 
-    if (!bucket) {
-      logger.error('blog-delete-config', new Error('firebaseStorageBucket not configured — images will not be deleted'), { slug })
+    const bucketMissing = !bucket
+    if (bucketMissing) {
+      logger.error('blog-delete-config', new Error('firebaseStorageBucket not configured — image cleanup skipped'), { slug })
     }
 
     const postPath = `blog-posts/${franchise}/${slug}.md`
@@ -63,17 +65,17 @@ export default defineEventHandler(async (event) => {
     const imagePaths = extractImagePaths(markdownContent, bucket)
 
     // Delete images best-effort (don't fail the whole operation for orphaned images)
-    const deletedImages: string[] = []
-    await Promise.all(
+    const deletedImages = (await Promise.all(
       imagePaths.map(async (imagePath) => {
         try {
           await deleteFromStorage(imagePath)
-          deletedImages.push(imagePath)
+          return imagePath
         } catch (error) {
-          logger.error('blog-delete-image-warn', error, { imagePath, slug })
+          logger.warn('blog-delete-image-warn', error, { imagePath, slug })
+          return null
         }
       })
-    )
+    )).filter((p): p is string => p !== null)
 
     // Delete the markdown post (must succeed — this is the primary operation)
     await deleteFromStorage(postPath)
@@ -92,7 +94,8 @@ export default defineEventHandler(async (event) => {
       deleted: {
         post: postPath,
         images: deletedImages
-      }
+      },
+      ...(bucketMissing ? { warning: 'Image cleanup skipped: storage bucket not configured' } : {})
     }
   } catch (error) {
     return handleBlogApiError(error, 'blog-delete')

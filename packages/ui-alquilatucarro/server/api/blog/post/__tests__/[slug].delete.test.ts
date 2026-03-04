@@ -29,7 +29,7 @@ vi.mock('../../../../plugins/content-dynamic-loader', () => ({
 
 // Mock logger
 vi.mock('../../../../utils/logger', () => ({
-  logger: { info: vi.fn(), error: vi.fn(), metric: vi.fn() }
+  logger: { info: vi.fn(), warn: vi.fn(), error: vi.fn(), metric: vi.fn() }
 }))
 
 // Mock error-handler
