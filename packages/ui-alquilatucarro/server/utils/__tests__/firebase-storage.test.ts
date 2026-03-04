@@ -5,6 +5,7 @@ const mockSave = vi.fn()
 const mockMakePublic = vi.fn()
 const mockExists = vi.fn()
 const mockDownload = vi.fn()
+const mockDelete = vi.fn()
 const mockGetFiles = vi.fn()
 const mockFileInstance = vi.fn()
 const mockBucket = vi.fn()
@@ -69,6 +70,7 @@ describe('Firebase Storage Client', () => {
     mockMakePublic.mockResolvedValue(undefined)
     mockExists.mockResolvedValue([true])
     mockDownload.mockResolvedValue([Buffer.from('test content')])
+    mockDelete.mockResolvedValue(undefined)
     mockGetFiles.mockResolvedValue([[{ name: 'test-file.webp' }]])
 
     mockFileInstance.mockImplementation((path: string) => ({
@@ -76,6 +78,7 @@ describe('Firebase Storage Client', () => {
       makePublic: mockMakePublic,
       exists: mockExists,
       download: mockDownload,
+      delete: mockDelete,
       name: path
     }))
 
@@ -277,6 +280,43 @@ describe('Firebase Storage Client', () => {
           privateKey: expect.stringContaining('\n')
         })
       )
+    })
+  })
+
+  describe('deleteFromStorage', () => {
+    it('should delete a file that exists', async () => {
+      const { deleteFromStorage } = await import('../firebase-storage')
+      const { logger } = await import('../logger')
+
+      await deleteFromStorage('blog-posts/alquilatucarro/my-post.md')
+
+      expect(mockExists).toHaveBeenCalled()
+      expect(mockDelete).toHaveBeenCalled()
+      expect(logger.metric).toHaveBeenCalledWith(
+        'firebase-storage-delete',
+        expect.any(Number),
+        { path: 'blog-posts/alquilatucarro/my-post.md' }
+      )
+    })
+
+    it('should throw 404 when file does not exist', async () => {
+      const { deleteFromStorage } = await import('../firebase-storage')
+      const { BlogApiError } = await import('../error-handler')
+
+      mockExists.mockResolvedValueOnce([false])
+
+      await expect(deleteFromStorage('blog-posts/alquilatucarro/ghost.md'))
+        .rejects.toThrow(BlogApiError)
+    })
+
+    it('should wrap storage errors in BlogApiError', async () => {
+      const { deleteFromStorage } = await import('../firebase-storage')
+      const { BlogApiError } = await import('../error-handler')
+
+      mockDelete.mockRejectedValueOnce(new Error('Storage unavailable'))
+
+      await expect(deleteFromStorage('blog-posts/alquilatucarro/my-post.md'))
+        .rejects.toThrow(BlogApiError)
     })
   })
 
