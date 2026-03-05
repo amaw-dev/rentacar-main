@@ -117,8 +117,7 @@ test.describe('Date Range Picker - URL Synchronization', () => {
     const march10 = page.locator('[data-value="2026-03-10"], [aria-label*="10 de marzo"]').first();
     await march10.click();
 
-    // Calendar should auto-close within 600ms
-    await page.waitForTimeout(600);
+    // Calendar should auto-close (300ms delay + buffer)
     await expect(calendarGrid).not.toBeVisible({ timeout: 2000 });
   });
 

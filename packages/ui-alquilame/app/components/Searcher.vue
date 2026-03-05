@@ -484,7 +484,9 @@ onMounted(() => {
    * UX Flow: User opens picker → selects start date → selects end date → popover auto-closes.
    * Works regardless of whether the picker was opened empty or with existing dates.
    *
-   * The 300ms delay gives visual feedback before closing (user sees their selection).
+   * The 300ms delay is a UX heuristic (not tied to actual animation duration) that gives
+   * visual feedback before closing (user sees their selection).
+   * TODO: Replace with transitionend event when UPopover lifecycle API exposes it.
    */
   watch(() => dateRange.value?.end, (end, oldEnd) => {
     const endChanged = end && (!oldEnd || end.compare(oldEnd) !== 0)
