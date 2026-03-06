@@ -265,7 +265,6 @@ const horaRecogida = ref<string | null>(null);
 const horaDevolucion = ref<string | null>(null);
 const referido = ref<string | null>(null);
 const minPickupDate = ref<any>(null);
-const maxReturnDate = ref<any>(null);
 const selectedPickupDate = ref<any>(null);
 const selectedReturnDate = ref<any>(null);
 const pendingSearching = ref<boolean>(false);
@@ -305,6 +304,14 @@ const dateRange = ref<{ start: CalendarDate | null, end: CalendarDate | null }>(
   start: null,
   end: null
 })
+
+// Derived synchronously from dateRange.start so UCalendar always sees the correct
+// max-value in the same reactive cycle — no async watcher lag.
+const maxReturnDate = computed(() =>
+  dateRange.value?.start
+    ? dateRange.value.start.add({ days: MAX_RENTAL_DAYS })
+    : null
+)
 
 // Responsive: 2 meses en desktop, 1 en móvil
 const numberOfMonths = computed(() => isDesktop.value ? 2 : 1)
@@ -376,7 +383,6 @@ onMounted(() => {
   watch(() => formRefs.horaDevolucion.value, (val) => horaDevolucion.value = val, { immediate: true });
   watch(() => formRefs.referido.value, (val) => referido.value = val, { immediate: true });
   watch(() => formRefs.minPickupDate.value, (val) => minPickupDate.value = val, { immediate: true });
-  watch(() => formRefs.maxReturnDate.value, (val) => maxReturnDate.value = val, { immediate: true });
   watch(() => formRefs.selectedPickupDate.value, (val) => selectedPickupDate.value = val, { immediate: true });
   watch(() => formRefs.selectedReturnDate.value, (val) => selectedReturnDate.value = val, { immediate: true });
   watch(() => searchRefs.pending.value, (val) => pendingSearching.value = val, { immediate: true });
