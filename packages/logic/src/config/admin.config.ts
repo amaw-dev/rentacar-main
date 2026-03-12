@@ -111,6 +111,39 @@ export const adminDataConfig: AdminData = {
       active: 1,
     },
     {
+      id: "CX",
+      identification: "CX",
+      name: "Gama CX",
+      category: "Gama CX Económico Automático",
+      description:
+        "Vehículo compacto con transmisión automática, ideal para desplazamientos urbanos con máxima comodidad. Equipado con dirección asistida eléctrica, aire acondicionado, vidrios eléctricos y un completo paquete de seguridad con 6 airbags y frenos ABS.",
+      image:
+        "https://storage.googleapis.com/aw-rentcar/carcategories/kia-picanto-zenith.webp",
+      ad: "",
+      models: [
+        {
+          name: "Kia Picanto Zenith 1.2 AT",
+          image:
+            "https://storage.googleapis.com/aw-rentcar/carcategories/kia-picanto-zenith.webp",
+          description: "o similar",
+          default: true,
+        },
+      ],
+      month_prices: [
+        {
+          "1k_kms": 3445000,
+          "2k_kms": 3849000,
+          "3k_kms": 3849000,
+          init_date: "15-01-2024",
+          end_date: "30-12-2025",
+          total_insurance_price: 476000,
+          one_day_price: 220000,
+        },
+      ],
+      total_coverage_unit_charge: 67000,
+      active: 1,
+    },
+    {
       id: "F",
       identification: "F",
       name: "Gama F",
