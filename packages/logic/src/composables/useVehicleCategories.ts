@@ -51,6 +51,31 @@ export default function useVehicleCategories() {
               "Cierre centralizado básico"
             ]
           },
+          "CX": {
+            "grupo": "Económico",
+            "modelos": [
+              {
+                "nombre": "Kia Picanto Zenith",
+                "imagenes": {
+                  "avif": "https://firebasestorage.googleapis.com/v0/b/rentacar-403321.firebasestorage.app/o/rentacar-main%2Fcategorias%2Fgamac%2Fgrupo-c-kia-picanto-alquiler-de-carros.avif?alt=media",
+                  "webp": "https://firebasestorage.googleapis.com/v0/b/rentacar-403321.firebasestorage.app/o/rentacar-main%2Fcategorias%2Fgamac%2Fgrupo-c-kia-picanto-alquiler-de-carros.webp?alt=media",
+                  "jpg": "https://firebasestorage.googleapis.com/v0/b/rentacar-403321.firebasestorage.app/o/rentacar-main%2Fcategorias%2Fgamac%2Fgrupo-c-kia-picanto-alquiler-de-carros.jpg?alt=media"
+                }
+              }
+            ],
+            "descripcion_corta": "Económico Automático",
+            "descripcion_larga": "Vehículo compacto con transmisión automática, ideal para desplazamientos urbanos con máxima comodidad. Equipado con dirección asistida eléctrica, aire acondicionado, vidrios eléctricos y un completo paquete de seguridad con 6 airbags y frenos ABS. Su tamaño compacto facilita el estacionamiento y su bajo consumo lo hace perfecto para quienes buscan economía sin sacrificar confort ni tecnología.",
+            "tags": [
+              "Transmisión Automática",
+              "Capacidad: 5 personas",
+              "1 maleta grande, 1 maleta pequeña",
+              "Aire acondicionado",
+              "Eleva vidrios eléctricos",
+              "Dirección asistida eléctrica",
+              "6 airbags",
+              "Frenos ABS"
+            ]
+          },
           "FL": {
             "grupo": "Económico",
             "modelos": [

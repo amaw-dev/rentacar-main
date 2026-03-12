@@ -205,6 +205,22 @@ const useStoreSearchData = defineStore("storeSearchData", () => {
           } else return true;
         }
         return true;
+      })
+      .filter((category: CategoryAvailabilityData) => {
+        // filter category CX: only allowed in 7 cities
+        if(pickupLocationCity){
+          const onlyCategoryCXCityAllowed = [
+            "barranquilla", "bogota", "bucaramanga", "cali",
+            "cartagena", "medellin", "santa-marta"
+          ];
+          if (
+            !onlyCategoryCXCityAllowed.includes(pickupLocationCity) &&
+            category.categoryCode == "CX"
+          ) {
+            return false;
+          } else return true;
+        }
+        return true;
       });
 
   });
