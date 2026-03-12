@@ -1,5 +1,6 @@
 export type CategoryType =
   | "C"
+  | "CX"
   | "F"
   | "FL"
   | "FX"
