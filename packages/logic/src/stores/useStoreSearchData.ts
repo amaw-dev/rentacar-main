@@ -221,6 +221,22 @@ const useStoreSearchData = defineStore("storeSearchData", () => {
           } else return true;
         }
         return true;
+      })
+      .filter((category: CategoryAvailabilityData) => {
+        // filter category GY: only allowed in 8 cities (same as GR)
+        if(pickupLocationCity){
+          const onlyCategoryGYCityAllowed = [
+            "bogota", "bucaramanga", "cali", "medellin",
+            "barranquilla", "soledad", "cartagena", "santa-marta"
+          ];
+          if (
+            !onlyCategoryGYCityAllowed.includes(pickupLocationCity) &&
+            category.categoryCode == "GY"
+          ) {
+            return false;
+          } else return true;
+        }
+        return true;
       });
 
   });

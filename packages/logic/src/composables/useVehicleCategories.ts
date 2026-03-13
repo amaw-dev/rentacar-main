@@ -420,6 +420,31 @@ export default function useVehicleCategories() {
               "Cierre centralizado con acceso sin llave"
             ]
           },
+          "GY": {
+            "grupo": "Prémium",
+            "modelos": [
+              {
+                "nombre": "Hyundai Santa Fe 1.6",
+                "imagenes": {
+                  "avif": "https://firebasestorage.googleapis.com/v0/b/rentacar-403321.firebasestorage.app/o/rentacar-main%2Fcategorias%2Fgamagy%2Fgrupo-gy-hyundai-santa-fe-alquiler-de-carros.avif?alt=media",
+                  "webp": "https://firebasestorage.googleapis.com/v0/b/rentacar-403321.firebasestorage.app/o/rentacar-main%2Fcategorias%2Fgamagy%2Fgrupo-gy-hyundai-santa-fe-alquiler-de-carros.webp?alt=media",
+                  "jpg": "https://firebasestorage.googleapis.com/v0/b/rentacar-403321.firebasestorage.app/o/rentacar-main%2Fcategorias%2Fgamagy%2Fgrupo-gy-hyundai-santa-fe-alquiler-de-carros.jpg?alt=media"
+                }
+              }
+            ],
+            "descripcion_corta": "SUV Automática 7 puestos",
+            "descripcion_larga": "SUV espaciosa con transmisión automática y capacidad para 7 pasajeros, ideal para familias o grupos. Equipada con motor 1.6 turbo, dirección asistida eléctrica, aire acondicionado, vidrios eléctricos y 7 airbags (frontales, laterales y cortina). Frenos ABS y 5 puertas.",
+            "tags": [
+              "Transmisión Automática",
+              "Capacidad: 7 personas",
+              "Aire acondicionado",
+              "Eleva vidrios eléctricos",
+              "Dirección asistida eléctrica",
+              "7 airbags",
+              "Frenos ABS",
+              "5 puertas"
+            ]
+          },
           "GR": {
             "grupo": "Prémium",
             "modelos": [
