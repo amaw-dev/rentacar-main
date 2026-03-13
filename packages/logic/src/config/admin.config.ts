@@ -642,7 +642,7 @@ export const adminDataConfig: AdminData = {
         },
       ],
       total_coverage_unit_charge: 102011,
-      active: 1,
+      active: 0,
     },
     {
       id: "FL",
