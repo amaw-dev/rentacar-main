@@ -158,16 +158,6 @@ const useStoreSearchData = defineStore("storeSearchData", () => {
     
     const bogotaBranches = ["AABOT", "ACBOT", "ACBEX", "ACBNN", "ACBOJ"];
     const onlyBogotaCategories: CategoryType[] = ["FU", "FL", "GL"];
-    const onlyCategoryGRCityAllowed = [
-      "bogota", 
-      "bucaramanga", 
-      "cali", 
-      "medellin", 
-      "barranquilla",
-      "soledad",
-      "cartagena",
-      "santa-marta",
-    ];
     const pickupLocationCode = selectedPickupLocation.value?.code;
     const pickupLocationCity = selectedPickupLocation.value?.city;
     
@@ -188,18 +178,6 @@ const useStoreSearchData = defineStore("storeSearchData", () => {
           if (
             !bogotaBranches.includes(pickupLocationCode) &&
             onlyBogotaCategories.includes(category.categoryCode)
-          ) {
-            return false;
-          } else return true;
-        }
-        return true;
-      })
-      .filter((category: CategoryAvailabilityData) => {
-        // filter category GR that are not available when selected allowed city
-        if(pickupLocationCity){
-          if (
-            !onlyCategoryGRCityAllowed.includes(pickupLocationCity) &&
-            category.categoryCode == "GR"
           ) {
             return false;
           } else return true;
