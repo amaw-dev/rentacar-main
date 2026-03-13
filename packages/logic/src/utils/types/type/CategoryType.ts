@@ -12,6 +12,7 @@ export type CategoryType =
   | "GC"
   | "GL"
   | "GR"
+  | "GY"
   | "G4"
   | "V"
   | "LE"

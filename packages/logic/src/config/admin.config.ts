@@ -572,6 +572,39 @@ export const adminDataConfig: AdminData = {
       active: 1,
     },
     {
+      id: "GY",
+      identification: "GY",
+      name: "Gama GY",
+      category: "Gama GY SUV Automática 7 puestos",
+      description:
+        "SUV espaciosa con transmisión automática y capacidad para 7 pasajeros. Motor 1.6 turbo, dirección asistida eléctrica, aire acondicionado, vidrios eléctricos y 7 airbags. Frenos ABS.",
+      image:
+        "https://storage.googleapis.com/aw-rentcar/carcategories/hyundai-santa-fe-16.webp",
+      ad: "",
+      models: [
+        {
+          name: "Hyundai Santa Fe 1.6 AT",
+          image:
+            "https://storage.googleapis.com/aw-rentcar/carcategories/hyundai-santa-fe-16.webp",
+          description: "o similar",
+          default: true,
+        },
+      ],
+      month_prices: [
+        {
+          "1k_kms": 10641000,
+          "2k_kms": 11987000,
+          "3k_kms": 11987000,
+          init_date: "15-01-2024",
+          end_date: "30-12-2025",
+          total_insurance_price: 595000,
+          one_day_price: 550000,
+        },
+      ],
+      total_coverage_unit_charge: 102011,
+      active: 1,
+    },
+    {
       id: "GR",
       identification: "GR",
       name: "Gama GR",
