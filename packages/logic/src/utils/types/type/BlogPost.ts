@@ -33,4 +33,5 @@ export interface BlogPost {
   tags: string[]
   readingTime: number
   featured?: boolean
+  faqItems?: Array<{ question: string; answer: string }>
 }

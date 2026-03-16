@@ -19,6 +19,7 @@ export interface WordPressPost {
     }>
     'wp:term'?: Array<Array<{ name: string }>>
   }
+  faqItems?: Array<{ question: string; answer: string }>
 }
 
 /**
@@ -152,6 +153,7 @@ function buildFrontmatter(data: {
   category: string
   tags: string[]
   readingTime: number
+  faqItems?: Array<{ question: string; answer: string }>
 }): string {
   const lines = ['---']
 
@@ -185,6 +187,15 @@ function buildFrontmatter(data: {
 
   lines.push(`readingTime: ${data.readingTime}`)
   lines.push('featured: false')
+
+  if (data.faqItems && data.faqItems.length > 0) {
+    lines.push('faqItems:')
+    data.faqItems.forEach(item => {
+      lines.push(`  - question: "${escapeYaml(item.question)}"`)
+      lines.push(`    answer: "${escapeYaml(item.answer)}"`)
+    })
+  }
+
   lines.push('---')
 
   return lines.join('\n')
@@ -232,10 +243,11 @@ export function transformWordPressToNuxt(wpPost: WordPressPost): NuxtContentPost
       image,
       alt,
       date: wpPost.date,
-      updated: wpPost.modified,
+      updated: wpPost.modified ?? wpPost.date,
       category,
       tags,
-      readingTime
+      readingTime,
+      faqItems: wpPost.faqItems,
     })
 
     const duration = Date.now() - startTime

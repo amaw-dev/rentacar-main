@@ -20,6 +20,10 @@ export default defineContentConfig({
         tags: z.array(z.string()),
         readingTime: z.number(),
         featured: z.boolean().optional(),
+        faqItems: z.array(z.object({
+          question: z.string(),
+          answer: z.string(),
+        })).optional(),
       }),
     }),
   },
