@@ -34,5 +34,15 @@ export function useBlogUtils() {
     return CATEGORY_ICONS[category] || 'i-lucide-file-text'
   }
 
-  return { formatDate, formatCategory, getCategoryIcon }
+  /**
+   * Resolve an image URL — if already absolute (starts with http), return as-is.
+   * Otherwise prepend the site base URL.
+   */
+  function resolveImageUrl(imageUrl: string | undefined, baseUrl: string): string {
+    if (!imageUrl) return ''
+    if (imageUrl.startsWith('http')) return imageUrl
+    return `${baseUrl}${imageUrl}`
+  }
+
+  return { formatDate, formatCategory, getCategoryIcon, resolveImageUrl }
 }

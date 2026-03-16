@@ -443,7 +443,7 @@ onUnmounted(() => {
   window.removeEventListener('scroll', updateReadingProgress)
 })
 
-const { formatDate, formatCategory, getCategoryIcon } = useBlogUtils()
+const { formatDate, formatCategory, getCategoryIcon, resolveImageUrl } = useBlogUtils()
 
 // Avatar fallback
 const avatarError = ref(false)
@@ -505,17 +505,17 @@ if (post.value) {
     ogDescription: post.value.description,
     ogType: 'article',
     ogUrl: canonicalUrl,
-    ogImage: `${franchise.website}${post.value.image}`,
+    ogImage: resolveImageUrl(post.value.image, franchise.website),
     ogImageAlt: post.value.alt,
     articlePublishedTime: post.value.date,
-    articleModifiedTime: post.value.updated || post.value.date,
+    articleModifiedTime: post.value.updated ?? post.value.date,
     articleAuthor: post.value.author.name,
     articleSection: post.value.category,
-    articleTag: post.value.tags?.join(', '),
+    articleTag: post.value.tags?.join(', ') || undefined,
     twitterCard: 'summary_large_image',
     twitterTitle: post.value.title,
     twitterDescription: post.value.description,
-    twitterImage: `${franchise.website}${post.value.image}`
+    twitterImage: resolveImageUrl(post.value.image, franchise.website)
   })
 
   // BlogPosting schema
@@ -524,9 +524,9 @@ if (post.value) {
       '@type': 'BlogPosting',
       headline: post.value.title,
       description: post.value.description,
-      image: `${franchise.website}${post.value.image}`,
+      image: resolveImageUrl(post.value.image, franchise.website),
       datePublished: post.value.date,
-      dateModified: post.value.updated || post.value.date,
+      dateModified: post.value.updated ?? post.value.date,
       author: {
         '@type': 'Organization',
         name: post.value.author.name,
