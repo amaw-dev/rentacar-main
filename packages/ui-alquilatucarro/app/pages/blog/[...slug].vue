@@ -228,15 +228,14 @@
             class="group"
           >
             <article class="bg-white rounded-xl shadow-sm overflow-hidden hover:shadow-lg transition-shadow">
-              <NuxtImg
+              <img
                 :src="related.image"
                 :alt="related.alt"
                 class="w-full h-40 object-cover"
                 width="400"
                 height="160"
-                sizes="sm:100vw md:33vw"
                 loading="lazy"
-              />
+              >
               <div class="p-4">
                 <h3 class="font-bold text-gray-900 group-hover:text-red-700 transition-colors line-clamp-2">
                   {{ related.title }}
