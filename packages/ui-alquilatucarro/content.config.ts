@@ -24,6 +24,7 @@ export default defineContentConfig({
           question: z.string(),
           answer: z.string(),
         })).optional(),
+        metaTitle: z.string().optional(),
       }),
     }),
   },

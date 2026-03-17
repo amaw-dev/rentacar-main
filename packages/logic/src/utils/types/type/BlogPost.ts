@@ -34,4 +34,5 @@ export interface BlogPost {
   readingTime: number
   featured?: boolean
   faqItems?: Array<{ question: string; answer: string }>
+  metaTitle?: string
 }

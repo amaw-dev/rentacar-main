@@ -299,6 +299,58 @@ describe('wordpress-to-nuxt', () => {
     })
   })
 
+  describe('metaTitle field', () => {
+    it('should include metaTitle in frontmatter when provided', () => {
+      const wpPost: WordPressPost = {
+        id: 1,
+        title: { rendered: 'Test Post Title' },
+        content: { rendered: '<p>Content</p>' },
+        excerpt: { rendered: 'Test' },
+        date: '2026-02-13T10:30:00',
+        modified: '2026-02-13T12:00:00',
+        slug: 'test',
+        metaTitle: 'Alquiler Carros Colombia | Blog'
+      }
+
+      const result = transformWordPressToNuxt(wpPost)
+
+      expect(result.frontmatter).toContain('metaTitle: "Alquiler Carros Colombia | Blog"')
+    })
+
+    it('should omit metaTitle from frontmatter when not provided', () => {
+      const wpPost: WordPressPost = {
+        id: 1,
+        title: { rendered: 'Test Post Title' },
+        content: { rendered: '<p>Content</p>' },
+        excerpt: { rendered: 'Test' },
+        date: '2026-02-13T10:30:00',
+        modified: '2026-02-13T12:00:00',
+        slug: 'test'
+      }
+
+      const result = transformWordPressToNuxt(wpPost)
+
+      expect(result.frontmatter).not.toContain('metaTitle:')
+    })
+
+    it('should escape special characters in metaTitle', () => {
+      const wpPost: WordPressPost = {
+        id: 1,
+        title: { rendered: 'Test' },
+        content: { rendered: '<p>Content</p>' },
+        excerpt: { rendered: 'Test' },
+        date: '2026-02-13T10:30:00',
+        modified: '2026-02-13T12:00:00',
+        slug: 'test',
+        metaTitle: 'Alquiler "Carros" | Blog'
+      }
+
+      const result = transformWordPressToNuxt(wpPost)
+
+      expect(result.frontmatter).toContain('metaTitle: "Alquiler \\"Carros\\" | Blog"')
+    })
+  })
+
   describe('Complete transformation', () => {
     it('should transform complete WordPress post to Nuxt Content format', () => {
       const wpPost: WordPressPost = {

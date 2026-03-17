@@ -20,6 +20,7 @@ export interface WordPressPost {
     'wp:term'?: Array<Array<{ name: string }>>
   }
   faqItems?: Array<{ question: string; answer: string }>
+  metaTitle?: string
 }
 
 /**
@@ -172,10 +173,14 @@ function buildFrontmatter(data: {
   tags: string[]
   readingTime: number
   faqItems?: Array<{ question: string; answer: string }>
+  metaTitle?: string
 }): string {
   const lines = ['---']
 
   lines.push(`title: "${escapeYaml(data.title)}"`)
+  if (data.metaTitle) {
+    lines.push(`metaTitle: "${escapeYaml(data.metaTitle)}"`)
+  }
   lines.push(`description: "${escapeYaml(data.description)}"`)
 
   if (data.image) {
@@ -266,6 +271,7 @@ export function transformWordPressToNuxt(wpPost: WordPressPost): NuxtContentPost
       tags,
       readingTime,
       faqItems: wpPost.faqItems,
+      metaTitle: wpPost.metaTitle,
     })
 
     const duration = Date.now() - startTime

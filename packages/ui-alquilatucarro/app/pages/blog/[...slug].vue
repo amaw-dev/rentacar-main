@@ -491,14 +491,14 @@ if (post.value) {
   const canonicalUrl = `${franchise.website}/blog/${slug.value}`
 
   useHead({
-    title: `${post.value.title} | ${franchise.shortname}`,
+    title: `${post.value.metaTitle ?? post.value.title} | ${franchise.shortname}`,
     link: [
       { rel: 'canonical', href: canonicalUrl }
     ]
   })
 
   useSeoMeta({
-    title: post.value.title,
+    title: post.value.metaTitle ?? post.value.title,
     description: post.value.description,
     ogTitle: post.value.title,
     ogDescription: post.value.description,
@@ -512,7 +512,7 @@ if (post.value) {
     articleSection: post.value.category,
     articleTag: post.value.tags?.join(', ') || undefined,
     twitterCard: 'summary_large_image',
-    twitterTitle: post.value.title,
+    twitterTitle: post.value.metaTitle ?? post.value.title,
     twitterDescription: post.value.description,
     twitterImage: resolveImageUrl(post.value.image, franchise.website)
   })
