@@ -57,6 +57,24 @@ const turndownService = new Turndown({
   codeBlockStyle: 'fenced'
 })
 
+// Preserve <details>/<summary> as raw HTML in markdown (Nuxt Content renders it)
+turndownService.addRule('details', {
+  filter: 'details',
+  replacement: (_content, node) => {
+    return '\n\n' + (node as HTMLElement).outerHTML + '\n\n'
+  }
+})
+
+// Preserve <section class="faq"> as raw HTML
+turndownService.addRule('faqSection', {
+  filter: (node) => {
+    return node.nodeName === 'SECTION' && (node as HTMLElement).classList?.contains('faq')
+  },
+  replacement: (_content, node) => {
+    return '\n\n' + (node as HTMLElement).outerHTML + '\n\n'
+  }
+})
+
 /**
  * Escapes special characters for safe YAML string values
  * @param str String to escape
