@@ -167,6 +167,47 @@ describe('wordpress-to-nuxt', () => {
       expect(result.frontmatter).toContain('tags:\n  - "requisitos"\n  - "documentos"\n  - "colombia"')
     })
 
+    it('should use flat tags array when provided (nuxt-blog connector)', () => {
+      const wpPost: WordPressPost = {
+        id: 1,
+        title: { rendered: 'Test' },
+        content: { rendered: '<p>Content</p>' },
+        excerpt: { rendered: 'Test' },
+        date: '2026-02-13T10:30:00',
+        modified: '2026-02-13T12:00:00',
+        slug: 'test',
+        tags: ['medellín', 'alquiler', 'automático']
+      }
+
+      const result = transformWordPressToNuxt(wpPost)
+
+      expect(result.frontmatter).toContain('tags:\n  - "medellín"\n  - "alquiler"\n  - "automático"')
+    })
+
+    it('should prefer flat tags over _embedded wp:term', () => {
+      const wpPost: WordPressPost = {
+        id: 1,
+        title: { rendered: 'Test' },
+        content: { rendered: '<p>Content</p>' },
+        excerpt: { rendered: 'Test' },
+        date: '2026-02-13T10:30:00',
+        modified: '2026-02-13T12:00:00',
+        slug: 'test',
+        tags: ['flat-tag'],
+        _embedded: {
+          'wp:term': [
+            [{ name: 'Guías' }],
+            [{ name: 'embedded-tag' }]
+          ]
+        }
+      }
+
+      const result = transformWordPressToNuxt(wpPost)
+
+      expect(result.frontmatter).toContain('"flat-tag"')
+      expect(result.frontmatter).not.toContain('embedded-tag')
+    })
+
     it('should handle missing tags', () => {
       const wpPost: WordPressPost = {
         id: 1,

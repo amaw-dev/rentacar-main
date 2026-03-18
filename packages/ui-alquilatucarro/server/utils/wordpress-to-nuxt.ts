@@ -21,6 +21,7 @@ export interface WordPressPost {
   }
   faqItems?: Array<{ question: string; answer: string }>
   metaTitle?: string
+  tags?: string[]
 }
 
 /**
@@ -248,8 +249,8 @@ export function transformWordPressToNuxt(wpPost: WordPressPost): NuxtContentPost
     // 4. Map category using CATEGORY_MAP (default: 'guias')
     const category = mapCategory(wpPost._embedded?.['wp:term'])
 
-    // 5. Extract tags from _embedded.wp:term[1]
-    const tags = extractTags(wpPost._embedded?.['wp:term'])
+    // 5. Extract tags — prefer flat array from nuxt-blog connector, fall back to _embedded
+    const tags = wpPost.tags?.length ? wpPost.tags : extractTags(wpPost._embedded?.['wp:term'])
 
     // 6. Calculate readingTime (words / 200)
     const readingTime = calculateReadingTime(body)
