@@ -11,6 +11,7 @@ export default interface LocalizaErrorResponse extends Response {
     | "inferior_pickup_date"
     | "inferior_return_date"
     | "unknown_error"
-    | "connection_timeout";
+    | "connection_timeout"
+    | "server_error";
   message: string;
 }
