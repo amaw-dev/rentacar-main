@@ -1,5 +1,25 @@
 <template>
-  <div v-if="!hasAvailableCategories && !pendingSearch" class="text-center">
+  <div v-if="isServerError && !pendingSearch" class="text-center">
+    <div class="text-white text-center">
+      <div class="text-3xl">Servicio temporalmente no disponible</div>
+      <p class="text-lg mt-2">
+        Estamos experimentando problemas técnicos. Por favor, intenta de nuevo en unos minutos.
+      </p>
+      <p class="text-lg mt-2">Si deseas hacer una reserva, contáctanos:</p>
+      <p class="text-lg mt-1">
+        <a :href="`https://wa.me/57${whatsappContact.phone}`" target="_blank" rel="noopener" class="text-yellow-400 underline">
+          WhatsApp {{ whatsappContact.display }}
+        </a>
+      </p>
+      <p class="text-base mt-2 font-semibold">Horario de atención</p>
+      <p class="text-sm text-gray-300">
+        Lunes a viernes: 07:00am - 07:00pm<br>
+        Sábados: 07:00am - 04:00pm<br>
+        Domingos y festivos: Cerrado
+      </p>
+    </div>
+  </div>
+  <div v-else-if="!hasAvailableCategories && !pendingSearch" class="text-center">
     <div class="text-white text-center">
       <div class="text-3xl">¡Oops!</div>
       <div class="text-lg">
@@ -191,8 +211,18 @@ const {
   selectedCategory,
   filteredCategories,
   hasAvailableCategories,
+  error: searchError,
 } = storeToRefs(storeSearch);
 const { vehiculo, humanFormattedPickupDate, isSubmittingForm, selectedPickupLocation } = storeToRefs(storeForm);
+
+const isServerError = computed(() => searchError.value?.error === 'server_error');
+const config = useRuntimeConfig();
+const whatsappContacts: Record<string, { phone: string; display: string }> = {
+  alquilatucarro: { phone: "3016729250", display: "301 672 9250" },
+  alquilame: { phone: "3002436677", display: "300 243 6677" },
+  alquicarros: { phone: "3187703670", display: "318 770 3670" },
+};
+const whatsappContact = whatsappContacts[config.public.rentacarFranchise as string] ?? whatsappContacts.alquilatucarro;
 const { vehicleCategories } = useVehicleCategories();
 const slideoverReservationResume = ref<boolean>(false);
 const slideoverReservationForm = ref<boolean>(false);

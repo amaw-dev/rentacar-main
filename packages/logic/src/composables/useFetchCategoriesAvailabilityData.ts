@@ -43,7 +43,14 @@ export default async function useFetchCategoriesAvailabilityData() {
     data.value = response;
   } catch (e: any) {
     const er = e as FetchError;
-    error.value = er.data as LocalizaErrorResponse;
+    if (er.data && typeof er.data === 'object' && 'error' in er.data) {
+      error.value = er.data as LocalizaErrorResponse;
+    } else {
+      error.value = {
+        error: 'server_error',
+        message: 'El servicio no está disponible en este momento. Por favor, intenta de nuevo en unos minutos.',
+      } as LocalizaErrorResponse;
+    }
   }
 
   return { data, error };
