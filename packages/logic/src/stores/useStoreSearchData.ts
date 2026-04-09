@@ -68,7 +68,7 @@ const useStoreSearchData = defineStore("storeSearchData", () => {
       else {
         const dataArray = Array.isArray(data.value) ? data.value : [];
         categoriesAvailabilityData.value = categoriesAdminData?.filter((categoryAdmin: CategoryData) =>
-          !(categoryAdmin.identification in noMonthlyCategories)
+          !noMonthlyCategories.includes(categoryAdmin.identification)
         ) // filter out categories FU, FL and GL when have monthly reservation
         .map((categoryAdmin: CategoryData) =>
           // create a category availability object for each category
