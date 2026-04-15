@@ -1,5 +1,10 @@
 # Date Range Picker - Plan de Implementación
 
+> **REVERSADO el 2026-04-15** — Este feature fue declarado un fracaso según directiva del producto.
+> El widget unificado de rango de fechas fue removido y se restauraron los dos inputs separados (recogida/devolución).
+> Ver: [`2026-04-15-revert-date-range-picker.md`](./2026-04-15-revert-date-range-picker.md).
+> Documento conservado como registro histórico — NO ejecutar este plan.
+
 > **Para Claude:** REQUERIDO: Usar superpowers:executing-plans para implementar este plan tarea por tarea.
 
 **Objetivo:** Reemplazar componentes separados de fecha de recogida/devolución con un único date-range picker de Nuxt UI

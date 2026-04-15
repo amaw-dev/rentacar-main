@@ -101,36 +101,12 @@ header .text-highlighted,
     }
 }
 
-/* Fix: UHeader hamburger/desktop nav — Tailwind v4 scanner doesn't generate */
-/* hidden/block/lg:hidden/lg:block when used dynamically in templates. */
-/* Use structural selectors: first-child = desktop nav, last-child = hamburger */
-
-/* Desktop navigation: hidden on mobile, visible on desktop */
-header [data-slot="right"] > div > div:first-child {
-    display: none;
-}
-@media (min-width: 1024px) {
-    header [data-slot="right"] > div > div:first-child {
-        display: block !important;
-    }
-}
-
-/* Hamburger toggle: visible on mobile, hidden on desktop */
-header [data-slot="right"] > div > div:last-child {
-    display: block;
-}
-@media (min-width: 1024px) {
-    header [data-slot="right"] > div > div:last-child {
-        display: none !important;
-    }
-}
-
-/* Force white color on hamburger button and its Iconify icon */
-header [data-slot="right"] button {
+/* UHeader hamburger menu button - force white color */
+header button.lg\:hidden {
     color: white !important;
 }
-header [data-slot="right"] button .iconify {
-    background-color: white !important;
+header button.lg\:hidden:hover {
+    color: white !important;
 }
 
 /* UHeader slideover panel - white background with dark text */
@@ -437,19 +413,10 @@ header [data-highlighted],
 }
 
 /* Fix navigation buttons positioning - all buttons were stacked with position:absolute */
-/* Force all calendar buttons to relative positioning and visibility */
-.calendar-light button {
+.calendar-light > div:first-child button {
     position: relative !important;
     left: auto !important;
     right: auto !important;
-    transform: none !important;
-}
-
-/* Ensure header/navigation area uses flexbox layout */
-.calendar-light > div:first-child {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: space-between !important;
 }
 
 /* Fix: UModal centering — Tailwind v4/v3 double-translate conflict */
@@ -478,8 +445,7 @@ header [data-highlighted],
 }
 
 /* Position close button higher to differentiate from content */
-/* Exclude calendar navigation buttons from absolute positioning */
-[role="dialog"] [data-slot="header"] button:not(.calendar-light button) {
+[role="dialog"] [data-slot="header"] button {
     position: absolute !important;
     top: 0.5rem !important;
     right: 0.75rem !important;
@@ -616,17 +582,5 @@ section[id] > [data-slot="container"] {
     [data-slot="arrows"] button:last-child {
         inset-inline-start: auto;
         inset-inline-end: 0.5rem;
-    }
-}
-
-/* Fix: Blog ToC — Tailwind v4 scanner doesn't generate lg:block */
-/* when combined with hidden in template. Hide on mobile, show on desktop. */
-[data-blog-toc] {
-    display: none;
-}
-
-@media (min-width: 1024px) {
-    [data-blog-toc] {
-        display: block;
     }
 }

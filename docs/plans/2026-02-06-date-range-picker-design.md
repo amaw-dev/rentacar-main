@@ -1,5 +1,10 @@
 # Date Range Picker - Diseño de Implementación
 
+> **REVERSADO el 2026-04-15** — Este feature fue declarado un fracaso según directiva del producto.
+> El widget unificado de rango de fechas fue removido y se restauraron los dos inputs separados (recogida/devolución).
+> Ver: [`2026-04-15-revert-date-range-picker.md`](./2026-04-15-revert-date-range-picker.md).
+> Documento conservado como registro histórico.
+
 **Fecha:** 2026-02-06
 **Componente:** Searcher.vue
 **Objetivo:** Reemplazar componentes separados de fecha pickup/return con un único date-range picker
