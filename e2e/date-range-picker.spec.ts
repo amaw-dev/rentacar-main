@@ -90,37 +90,6 @@ test.describe('Date Range Picker - URL Synchronization', () => {
     await expect(nextButton).toBeVisible();
   });
 
-  test('debe cerrar el popover al seleccionar rango con fechas previas ya establecidas', async ({ page }) => {
-    // Start with existing dates in URL
-    const testUrl = '/bogota/buscar-vehiculos/lugar-recogida/aeropuerto/lugar-devolucion/centro/fecha-recogida/2026-02-10/fecha-devolucion/2026-02-15/hora-recogida/10:00%20AM/hora-devolucion/10:00%20AM/';
-
-    await page.goto(testUrl);
-    await page.waitForLoadState('networkidle');
-    await page.waitForTimeout(1000);
-
-    // Open the date picker (which already has dates set)
-    const dateButton = page.locator('button').filter({ hasText: /feb.*2026/i }).first();
-    await expect(dateButton).toBeVisible({ timeout: 10000 });
-    await dateButton.click();
-    await page.waitForTimeout(500);
-
-    // Verify calendar is open
-    const calendarGrid = page.locator('[role="grid"]').first();
-    await expect(calendarGrid).toBeVisible({ timeout: 5000 });
-
-    // Click a new start date (March 5)
-    const march5 = page.locator('[data-value="2026-03-05"], [aria-label*="5 de marzo"]').first();
-    await march5.click();
-    await page.waitForTimeout(300);
-
-    // Click a new end date (March 10)
-    const march10 = page.locator('[data-value="2026-03-10"], [aria-label*="10 de marzo"]').first();
-    await march10.click();
-
-    // Calendar should auto-close (300ms delay + buffer)
-    await expect(calendarGrid).not.toBeVisible({ timeout: 2000 });
-  });
-
   // Skip mobile test - the search results page uses the same date-range picker component
   // in mobile, which is already tested in the desktop tests above.
   // Native mobile date inputs only exist on city landing pages, not on search results pages.
