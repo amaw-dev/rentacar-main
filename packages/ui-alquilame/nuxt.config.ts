@@ -478,12 +478,17 @@ export default defineNuxtConfig({
     firebaseDatabaseUrl: '',
     blogApiKey: '',
     blogApiAllowedIps: '',
+    // rentacar-dashboard reservation backend (server-only — keeps the
+    // x-api-key out of the client bundle). The browser hits the local
+    // /api/reservas/* proxy; the proxy forwards here.
+    // Override with NUXT_RENTACAR_DASHBOARD_BASE_URL, NUXT_RENTACAR_API_KEY.
+    rentacarDashboardBaseUrl: '',
+    rentacarApiKey: '',
     // Public config (exposed to client)
     public: {
       rentacarFranchise: "alquilame",
-      rentacarApiReservasDataEndpoint: "",
-      rentacarApiReservasFormRecordEndpoint: "",
-      rentacarApiReservasCategoriesAvailabilityEndpoint: "",
+      rentacarApiReservasFormRecordEndpoint: "/api/reservas/record",
+      rentacarApiReservasCategoriesAvailabilityEndpoint: "/api/reservas/availability",
       isTest: process.env.NODE_ENV === "test",
     },
   },
