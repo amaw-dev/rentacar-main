@@ -194,9 +194,11 @@ jobs:
           echo "NUXT_PUBLIC_FIREBASE_API_KEY=${{ secrets.NUXT_PUBLIC_FIREBASE_API_KEY }}" >> .env.prod
           echo "NUXT_PUBLIC_FIREBASE_AUTH_DOMAIN=${{ secrets.NUXT_PUBLIC_FIREBASE_AUTH_DOMAIN }}" >> .env.prod
           echo "NUXT_PUBLIC_FIREBASE_PROJECT_ID=${{ matrix.config.firebase_project }}" >> .env.prod
-          echo "NUXT_PUBLIC_RENTACAR_API_RESERVAS_DATA_ENDPOINT=${{ secrets.NUXT_PUBLIC_RENTACAR_API_RESERVAS_DATA_ENDPOINT }}" >> .env.prod
-          echo "NUXT_PUBLIC_RENTACAR_API_RESERVAS_FORM_RECORD_ENDPOINT=${{ secrets.NUXT_PUBLIC_RENTACAR_API_RESERVAS_FORM_RECORD_ENDPOINT }}" >> .env.prod
-          echo "NUXT_PUBLIC_RENTACAR_API_RESERVAS_CATEGORIES_AVAILABILITY_ENDPOINT=${{ secrets.NUXT_PUBLIC_RENTACAR_API_RESERVAS_CATEGORIES_AVAILABILITY_ENDPOINT }}" >> .env.prod
+          # Reservation backend (rentacar-dashboard) — server-only.
+          # The browser hits the local /api/reservas/* proxy (default in nuxt.config.ts),
+          # which forwards here with the x-api-key header.
+          echo "NUXT_RENTACAR_DASHBOARD_BASE_URL=${{ secrets.NUXT_RENTACAR_DASHBOARD_BASE_URL }}" >> .env.prod
+          echo "NUXT_RENTACAR_API_KEY=${{ secrets.NUXT_RENTACAR_API_KEY }}" >> .env.prod
           echo "NUXT_SEO_PASSWORD=${{ secrets.SEO_PASSWORD }}" >> .env.prod
           echo "NUXT_GSC_CLIENT_ID=${{ secrets.GSC_CLIENT_ID }}" >> .env.prod
           echo "NUXT_GSC_CLIENT_SECRET=${{ secrets.GSC_CLIENT_SECRET }}" >> .env.prod

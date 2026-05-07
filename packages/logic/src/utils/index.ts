@@ -20,6 +20,11 @@ export * from './useValidateFunctions';
 export { slugify } from './slugify';
 
 // ============================================================================
+// Dashboard Status Mapping
+// ============================================================================
+export { mapDashboardReservationStatus } from './dashboardStatus';
+
+// ============================================================================
 // Type Definitions - Data
 // ============================================================================
 export type { default as BranchData } from './types/data/BranchData';
